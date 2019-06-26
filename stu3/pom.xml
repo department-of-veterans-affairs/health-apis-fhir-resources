@@ -7,7 +7,7 @@
     <relativePath/>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>dstu3</artifactId>
+  <artifactId>stu3</artifactId>
   <version>1.0.12-SNAPSHOT</version>
   <packaging>jar</packaging>
   <properties>
