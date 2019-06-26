@@ -1,4 +1,4 @@
-# DSTU2
+# DSTU3
 
 All models required to build DSTU3 resources and datatypes are housed here.
 This includes Java models for all DSTU3 supported resources (below), and all needed datatypes.
