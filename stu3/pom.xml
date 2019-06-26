@@ -10,9 +10,6 @@
   <artifactId>stu3</artifactId>
   <version>1.0.12-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <properties>
-    <checkstyle.suppressions.location>${project.basedir}/checkstyle-suppressions.xml</checkstyle.suppressions.location>
-  </properties>
   <dependencies>
     <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
     <dependency>
