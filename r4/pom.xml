@@ -34,11 +34,6 @@
       <artifactId>hibernate-core</artifactId>
       <version>5.3.7.Final</version>
     </dependency>
-    <!--<dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.el</artifactId>
-      <scope>test</scope>
-    </dependency> -->
     <dependency>
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
