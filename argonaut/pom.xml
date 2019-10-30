@@ -12,14 +12,8 @@
   <packaging>jar</packaging>
   <properties>
     <checkstyle.suppressions.location>${project.basedir}/checkstyle-suppressions.xml</checkstyle.suppressions.location>
-    <jacoco.coverage>0.93</jacoco.coverage>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>gov.va.api.health</groupId>
-      <artifactId>validation</artifactId>
-      <version>${project.version}</version>
-    </dependency>
     <dependency>
       <groupId>gov.va.api.health</groupId>
       <artifactId>dstu2</artifactId>
