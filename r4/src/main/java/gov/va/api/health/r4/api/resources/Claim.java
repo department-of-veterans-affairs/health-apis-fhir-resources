@@ -174,9 +174,9 @@ public class Claim implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Claim.Bundle.BundleBuilder.class)
   @Schema(name = "ClaimBundle", example = "SWAGGER_EXAMPLE_CLAIM_BUNDLE")
-  public static class Bundle extends AbstractBundle<CoverageEligibilityResponse.Entry> {
+  public static class Bundle extends AbstractBundle<Claim.Entry> {
 
-    /** Coverage bundle builder. */
+    /** Claim bundle builder. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -189,7 +189,7 @@ public class Claim implements Resource {
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
-        @Valid List<CoverageEligibilityResponse.Entry> entry,
+        @Valid List<Claim.Entry> entry,
         @Valid Signature signature) {
       super(
           resourceType,
