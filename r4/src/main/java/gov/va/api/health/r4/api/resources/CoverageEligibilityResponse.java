@@ -24,6 +24,7 @@ import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -156,7 +157,7 @@ public class CoverageEligibilityResponse implements Resource {
         @Valid Identifier identifier,
         @NotNull BundleType type,
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
-        @Pattern(regexp = Fhir.UNSIGNED_INT) String total,
+        @Min(0) Integer total,
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {

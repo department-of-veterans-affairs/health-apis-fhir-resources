@@ -10,6 +10,7 @@ import gov.va.api.health.r4.api.resources.Resource;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -43,8 +44,8 @@ public abstract class AbstractBundle<N extends AbstractEntry<?>> implements Reso
   @Pattern(regexp = Fhir.INSTANT)
   protected String timestamp;
 
-  @Pattern(regexp = Fhir.UNSIGNED_INT)
-  protected String total;
+  @Min(0)
+  protected Integer total;
 
   @Valid protected List<BundleLink> link;
   @Valid protected List<N> entry;
