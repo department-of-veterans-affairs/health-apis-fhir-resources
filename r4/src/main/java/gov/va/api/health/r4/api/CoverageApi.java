@@ -15,6 +15,42 @@ import javax.ws.rs.Path;
 public interface CoverageApi {
 
   @Operation(
+    summary = "Coverage Read",
+    description = "https://www.hl7.org/fhir/coverage.html",
+    tags = {"Coverage"}
+  )
+  @GET
+  @Path("Coverage/{id}")
+  @ApiResponse(
+    responseCode = "200",
+    description = "Record found",
+    content =
+        @Content(
+          mediaType = "application/json+fhir",
+          schema = @Schema(implementation = Coverage.class)
+        )
+  )
+  @ApiResponse(
+    responseCode = "400",
+    description = "Bad request",
+    content =
+        @Content(
+          mediaType = "application/json+fhir",
+          schema = @Schema(implementation = OperationOutcome.class)
+        )
+  )
+  @ApiResponse(
+    responseCode = "404",
+    description = "Not found",
+    content =
+        @Content(
+          mediaType = "application/json+fhir",
+          schema = @Schema(implementation = OperationOutcome.class)
+        )
+  )
+  Coverage read(@Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
+
+  @Operation(
     summary = "Coverage Search",
     description = "https://www.hl7.org/fhir/R4/coverage.html",
     tags = {"Coverage"}
@@ -48,7 +84,7 @@ public interface CoverageApi {
           schema = @Schema(implementation = OperationOutcome.class)
         )
   )
-  Coverage.Bundle coverageSearch(
+  Coverage.Bundle searchByPatient(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
       @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);
