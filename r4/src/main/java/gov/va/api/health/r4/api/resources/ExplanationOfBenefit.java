@@ -205,10 +205,13 @@ public class ExplanationOfBenefit implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = ExplanationOfBenefit.Bundle.BundleBuilder.class)
-  @Schema(name = "ExplanationOfBenefitBundle", example = "SWAGGER_EXAMPLE_COVERAGE_BUNDLE")
+  @Schema(
+    name = "ExplanationOfBenefitBundle",
+    example = "SWAGGER_EXAMPLE_EXPLANATIONOFBENEFIT_BUNDLE"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
 
-    /** Coverage bundle builder. */
+    /** Explanation of benefit bundle builder. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
