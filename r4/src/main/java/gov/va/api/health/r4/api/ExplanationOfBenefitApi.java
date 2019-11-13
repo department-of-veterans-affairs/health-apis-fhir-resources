@@ -48,7 +48,7 @@ public interface ExplanationOfBenefitApi {
           schema = @Schema(implementation = OperationOutcome.class)
         )
   )
-  ExplanationOfBenefit read(
+  ExplanationOfBenefit explanationOfBenefitRead(
       @Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
 
   @Operation(
@@ -76,7 +76,7 @@ public interface ExplanationOfBenefitApi {
           schema = @Schema(implementation = OperationOutcome.class)
         )
   )
-  ExplanationOfBenefit.Bundle searchByPatient(
+  ExplanationOfBenefit.Bundle explanationOfBenefitSearch(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
       @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);

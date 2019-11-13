@@ -48,7 +48,7 @@ public interface CoverageApi {
           schema = @Schema(implementation = OperationOutcome.class)
         )
   )
-  Coverage read(@Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
+  Coverage coverageRead(@Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
 
   @Operation(
     summary = "Coverage Search",
@@ -84,7 +84,7 @@ public interface CoverageApi {
           schema = @Schema(implementation = OperationOutcome.class)
         )
   )
-  Coverage.Bundle searchByPatient(
+  Coverage.Bundle coverageSearch(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
       @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);
