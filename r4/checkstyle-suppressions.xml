@@ -8,4 +8,12 @@
     prefix by the Data Query specification.
   -->
   <suppress checks="MemberName" files=".*(/|\\)CoverageEligibilityResponse.java" message="Member name '(_coverage|_request)'"/>
+
+  <!--
+    Swagger examples exceed the 100 character line length limit.
+   -->
+  <suppress checks="LineLength" files="MetadataApi.java" lines="31" />
+  <suppress checks="LineLength" files="CoverageEligibilityResponse.java" lines="50,147" />
+  <suppress checks="LineLength" files="OperationOutcome.java" lines="32" />
+  <suppress checks="LineLength" files="ExplanationOfBenefit.java" lines="55,212" />
 </suppressions>

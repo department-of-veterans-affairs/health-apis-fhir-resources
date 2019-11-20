@@ -28,7 +28,8 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
   description = "https://www.hl7.org/fhir/R4/operationoutcome.html",
-  example = "SWAGGER_EXAMPLE_OPERATION_OUTCOME"
+  example =
+      "${operationOutcome:gov.va.api.health.r4.api.swaggerexamples.SwaggerOperationOutcome#operationOutcome}"
 )
 public class OperationOutcome implements DomainResource {
 

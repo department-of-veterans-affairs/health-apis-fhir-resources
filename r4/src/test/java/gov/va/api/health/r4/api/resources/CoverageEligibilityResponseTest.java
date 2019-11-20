@@ -18,7 +18,7 @@ public class CoverageEligibilityResponseTest {
   private final SampleCoverageEligibilityResponses data = SampleCoverageEligibilityResponses.get();
 
   @Test
-  public void bundlerCanBuildCoverageBundles() {
+  public void bundlerCanBuildCoverageEligibilityResponseBundles() {
     Entry entry =
         Entry.builder()
             .extension(singletonList(data.extension()))

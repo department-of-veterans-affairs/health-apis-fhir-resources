@@ -46,7 +46,8 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/coverageeligibilityresponse.html",
-  example = "SWAGGER_EXAMPLE_COVERAGEELIGIBILITYRESPONSE"
+  example =
+      "${coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}"
 )
 @ZeroOrOneOf(
   fields = {"servicedDate", "servicedPeriod"},
@@ -142,7 +143,8 @@ public class CoverageEligibilityResponse implements Resource {
   @JsonDeserialize(builder = CoverageEligibilityResponse.Bundle.BundleBuilder.class)
   @Schema(
     name = "CoverageEligibilityResponseBundle",
-    example = "SWAGGER_EXAMPLE_COVERAGEELIGIBILITYRESPONSE_BUNDLE"
+    example =
+        "${coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}"
   )
   public static class Bundle extends AbstractBundle<Entry> {
 

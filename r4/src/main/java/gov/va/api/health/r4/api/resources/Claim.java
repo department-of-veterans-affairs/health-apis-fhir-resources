@@ -48,7 +48,10 @@ import lombok.NoArgsConstructor;
   fieldVisibility = JsonAutoDetect.Visibility.ANY,
   isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
-@Schema(description = "https://www.hl7.org/fhir/R4/claim.html", example = "SWAGGER_EXAMPLE_CLAIM")
+@Schema(
+  description = "https://www.hl7.org/fhir/R4/claim.html",
+  example = "${claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}"
+)
 public class Claim implements Resource {
 
   // Ancestor -- Resource
@@ -173,7 +176,10 @@ public class Claim implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Claim.Bundle.BundleBuilder.class)
-  @Schema(name = "ClaimBundle", example = "SWAGGER_EXAMPLE_CLAIM_BUNDLE")
+  @Schema(
+    name = "ClaimBundle",
+    example = "${claimBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claimBundle}"
+  )
   public static class Bundle extends AbstractBundle<Claim.Entry> {
 
     /** Claim bundle builder. */

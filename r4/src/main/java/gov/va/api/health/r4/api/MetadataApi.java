@@ -25,7 +25,11 @@ public interface MetadataApi {
         @Content(
           mediaType = "application/json+fhir",
           schema = @Schema(implementation = Capability.class),
-          examples = @ExampleObject(value = "SWAGGER_EXAMPLE_METADATA")
+          examples =
+              @ExampleObject(
+                value =
+                    "${capability:gov.va.api.health.r4.api.swaggerexamples.SwaggerCapability#capability}"
+              )
         )
   )
   @ApiResponse(

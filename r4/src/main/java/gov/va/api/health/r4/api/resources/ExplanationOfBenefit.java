@@ -51,7 +51,8 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/explanationofbenefit.html",
-  example = "SWAGGER_EXAMPLE_EXPLANATIONOFBENEFIT"
+  example =
+      "${explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefit}"
 )
 public class ExplanationOfBenefit implements Resource {
 
@@ -207,7 +208,8 @@ public class ExplanationOfBenefit implements Resource {
   @JsonDeserialize(builder = ExplanationOfBenefit.Bundle.BundleBuilder.class)
   @Schema(
     name = "ExplanationOfBenefitBundle",
-    example = "SWAGGER_EXAMPLE_EXPLANATIONOFBENEFIT_BUNDLE"
+    example =
+        "${explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefitBundle}"
   )
   public static class Bundle extends AbstractBundle<Entry> {
 
