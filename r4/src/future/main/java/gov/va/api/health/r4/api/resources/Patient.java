@@ -40,7 +40,7 @@ import lombok.NonNull;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/patient.html",
-  example = "patient:com.example.Example#example"
+  example = "${patient:com.example.Example#example}"
 )
 @ZeroOrOneOfs({
   @ZeroOrOneOf(

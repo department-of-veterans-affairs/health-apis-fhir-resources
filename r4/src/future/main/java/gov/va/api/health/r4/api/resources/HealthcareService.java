@@ -34,7 +34,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/healthcareservice.html",
-  example = "healthcareService:com.example.Example#example"
+  example = "${healthcareService:com.example.Example#example}"
 )
 public class HealthcareService {
 

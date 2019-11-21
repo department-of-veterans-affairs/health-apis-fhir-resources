@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/slot.html", 
-  example = "slot:com.example.Example#example"
+  example = "${slot:com.example.Example#example}"
 )
 public class Slot {
 
