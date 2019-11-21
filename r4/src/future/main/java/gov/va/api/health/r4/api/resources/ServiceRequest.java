@@ -40,7 +40,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/servicerequest.html",
-  example = "SWAGGER_EXAMPLE_SERVICEREQUEST"
+  example = "serviceRequest:com.example.Example#example"
 )
 @ZeroOrOneOfs({
   @ZeroOrOneOf(

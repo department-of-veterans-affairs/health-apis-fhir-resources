@@ -1,10 +1,10 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Identifier;
+import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -30,8 +30,11 @@ import lombok.NoArgsConstructor;
   fieldVisibility = JsonAutoDetect.Visibility.ANY,
   isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
-@Schema(description = "https://www.hl7.org/fhir/R4/slot.html", example = "SWAGGER_EXAMPLE_SLOT")
-public class Slot {
+@Schema(
+  description = "https://www.hl7.org/fhir/R4/schedule.html",
+  example = "schedule:com.example.Example#example"
+)
+public class Schedule {
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
@@ -56,40 +59,22 @@ public class Slot {
 
   @Valid List<Extension> modifierExtension;
 
-  // Slot Resource
+  // Schedule Resource
   @Valid List<Identifier> identifier;
+
+  @Pattern(regexp = Fhir.BOOLEAN)
+  String active;
 
   @Valid List<CodeableConcept> serviceCategory;
 
   @Valid List<CodeableConcept> serviceType;
+
   @Valid List<CodeableConcept> specialty;
-  @Valid CodeableConcept appointmentType;
-  @NotNull @Valid Reference schedule;
 
-  @NotNull Status status;
+  @NotEmpty @Valid List<Reference> actor;
 
-  @NotBlank
-  @Pattern(regexp = Fhir.INSTANT)
-  String start;
-
-  @NotBlank
-  @Pattern(regexp = Fhir.INSTANT)
-  String end;
-
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String overbooked;
+  @Valid Period planningHorizon;
 
   @Pattern(regexp = Fhir.STRING)
   String comment;
-
-  public enum Status {
-    busy,
-    free,
-    @JsonProperty("busy-unavailable")
-    busy_unavailable,
-    @JsonProperty("busy-tentative")
-    busy_tentative,
-    @JsonProperty("entered-in-error")
-    entered_in_error
-  }
 }

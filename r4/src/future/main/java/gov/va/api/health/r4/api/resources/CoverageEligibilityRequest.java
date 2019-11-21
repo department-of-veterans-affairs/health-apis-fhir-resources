@@ -38,7 +38,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/coverageeligibilityrequest.html",
-  example = "SWAGGER_EXAMPLE_COVERAGEELIGIBILITYREQUEST"
+  example = "coverageEligibilityRequest:com.example.Example#example"
 )
 @ZeroOrOneOf(
   fields = {"servicedDate", "servicedPeriod"},

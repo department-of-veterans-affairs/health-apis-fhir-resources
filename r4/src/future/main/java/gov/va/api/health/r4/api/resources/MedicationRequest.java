@@ -40,7 +40,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/medicationrequest.html",
-  example = "SWAGGER_EXAMPLE_MEDICATIONREQUEST"
+  example = "medicationRequest:com.example.Example#example"
 )
 @ZeroOrOneOf(
   fields = {"reportedBoolean", "reportedReference"},
