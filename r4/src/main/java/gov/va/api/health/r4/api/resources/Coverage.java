@@ -45,7 +45,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/coverage.html",
-  example = "${coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}"
+  example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}"
 )
 public class Coverage implements Resource {
   // Anscestor -- Resource
@@ -120,7 +120,7 @@ public class Coverage implements Resource {
   @Schema(
     name = "CoverageBundle",
     example =
-        "${coverageBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverageBundle}"
+        "${r4.coverageBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverageBundle}"
   )
   public static class Bundle extends AbstractBundle<Entry> {
 

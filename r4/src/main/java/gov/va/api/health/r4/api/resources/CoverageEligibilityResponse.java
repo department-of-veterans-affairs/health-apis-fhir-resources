@@ -47,7 +47,7 @@ import lombok.NoArgsConstructor;
 @Schema(
   description = "https://www.hl7.org/fhir/R4/coverageeligibilityresponse.html",
   example =
-      "${coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}"
+      "${r4.coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}"
 )
 @ZeroOrOneOf(
   fields = {"servicedDate", "servicedPeriod"},
@@ -144,7 +144,7 @@ public class CoverageEligibilityResponse implements Resource {
   @Schema(
     name = "CoverageEligibilityResponseBundle",
     example =
-        "${coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}"
+        "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}"
   )
   public static class Bundle extends AbstractBundle<Entry> {
 

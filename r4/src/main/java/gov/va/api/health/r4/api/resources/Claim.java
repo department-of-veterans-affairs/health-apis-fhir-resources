@@ -50,7 +50,7 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/R4/claim.html",
-  example = "${claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}"
+  example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}"
 )
 public class Claim implements Resource {
 
@@ -178,7 +178,7 @@ public class Claim implements Resource {
   @JsonDeserialize(builder = Claim.Bundle.BundleBuilder.class)
   @Schema(
     name = "ClaimBundle",
-    example = "${claimBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claimBundle}"
+    example = "${r4.claimBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claimBundle}"
   )
   public static class Bundle extends AbstractBundle<Claim.Entry> {
 

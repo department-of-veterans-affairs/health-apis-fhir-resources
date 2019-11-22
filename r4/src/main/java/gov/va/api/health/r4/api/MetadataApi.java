@@ -28,7 +28,7 @@ public interface MetadataApi {
           examples =
               @ExampleObject(
                 value =
-                    "${capability:gov.va.api.health.r4.api.swaggerexamples.SwaggerCapability#capability}"
+                    "${r4.capability:gov.va.api.health.r4.api.swaggerexamples.SwaggerCapability#capability}"
               )
         )
   )
