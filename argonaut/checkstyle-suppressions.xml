@@ -11,4 +11,18 @@
   <suppress checks="MemberName" files=".*(/|\\)DiagnosticReport.java" message="Member name '(_performer)'"/>
   <suppress checks="MemberName" files=".*(/|\\)MedicationOrder.java" message="Member name '(_prescriber)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Procedure.java" message="Member name '(_status)'"/>
+  
+  <!--
+    Swagger examples exceed the 100 character line length limit.
+   -->
+  <suppress checks="LineLength" files="AllergyIntolerance.java" lines="48,146" />
+  <suppress checks="LineLength" files="Condition.java" lines="47,149" />
+  <suppress checks="LineLength" files="DiagnosticReport.java" lines="50,146" />
+  <suppress checks="LineLength" files="Immunization.java" lines="47,122" />
+  <suppress checks="LineLength" files="Medication.java" lines="44,100" />
+  <suppress checks="LineLength" files="MedicationOrder.java" lines="54,134" />
+  <suppress checks="LineLength" files="MedicationStatement.java" lines="52,130" />
+  <suppress checks="LineLength" files="Observation.java" lines="56,184" />
+  <suppress checks="LineLength" files="Patient.java" lines="162" />
+  <suppress checks="LineLength" files="Procedure.java" lines="48,135" />
 </suppressions>

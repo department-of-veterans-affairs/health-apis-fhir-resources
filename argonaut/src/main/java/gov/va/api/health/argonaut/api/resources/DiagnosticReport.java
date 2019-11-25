@@ -46,7 +46,8 @@ import org.apache.commons.lang3.StringUtils;
 @Schema(
   description =
       "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-diagnosticreport.html",
-  example = "SWAGGER_EXAMPLE_DIAGNOSTIC_REPORT"
+  example =
+      "${argonaut.diagnosticReport:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}"
 )
 @ExactlyOneOf(fields = {"performer", "_performer"})
 @ZeroOrOneOf(
@@ -139,7 +140,11 @@ public class DiagnosticReport implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = DiagnosticReport.Bundle.BundleBuilder.class)
-  @Schema(name = "DiagnosticReportBundle", example = "SWAGGER_EXAMPLE_DIAGNOSTIC_REPORT_BUNDLE")
+  @Schema(
+    name = "DiagnosticReportBundle",
+    example =
+        "${argonaut.diagnosticReportBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReportBundle}"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

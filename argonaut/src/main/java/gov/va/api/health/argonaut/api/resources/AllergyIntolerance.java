@@ -44,7 +44,8 @@ import lombok.NoArgsConstructor;
 @Schema(
   description =
       "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-allergyintolerance.html",
-  example = "SWAGGER_EXAMPLE_ALLERGY_INTOLERANCE"
+  example =
+      "${argonaut.allergyIntolerance:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerAllergyIntolerance#allergyIntolerance}"
 )
 public class AllergyIntolerance implements Resource {
   @NotBlank String resourceType;
@@ -139,7 +140,11 @@ public class AllergyIntolerance implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = AllergyIntolerance.Bundle.BundleBuilder.class)
-  @Schema(name = "AllergyIntoleranceBundle", example = "SWAGGER_EXAMPLE_ALLERGY_INTOLERANCE_BUNDLE")
+  @Schema(
+    name = "AllergyIntoleranceBundle",
+    example =
+        "${argonaut.allergyIntoleranceBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerAllergyIntolerance#allergyIntoleranceBundle}"
+  )
   public static class Bundle extends AbstractBundle<AllergyIntolerance.Entry> {
     @Builder
     public Bundle(

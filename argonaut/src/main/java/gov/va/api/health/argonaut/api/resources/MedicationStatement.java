@@ -48,7 +48,8 @@ import lombok.NoArgsConstructor;
 @Schema(
   description =
       "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medicationstatement.html",
-  example = "SWAGGER_EXAMPLE_MEDICATION_STATEMENT"
+  example =
+      "${argonaut.medicationStatement:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatement}"
 )
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
@@ -125,7 +126,8 @@ public class MedicationStatement implements Resource {
   @JsonDeserialize(builder = MedicationStatement.Bundle.BundleBuilder.class)
   @Schema(
     name = "MedicationStatementBundle",
-    example = "SWAGGER_EXAMPLE_MEDICATION_STATEMENT_BUNDLE"
+    example =
+        "${argonaut.medicationStatementBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatementBundle}"
   )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder

@@ -50,7 +50,8 @@ import lombok.NoArgsConstructor;
 )
 @Schema(
   description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
-  example = "SWAGGER_EXAMPLE_MEDICATION_DISPENSE"
+  example =
+      "${dstu2.medicationDispense:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispense}"
 )
 @ExactlyOneOf(
   fields = {"medicationCodeableConcept", "medicationReference"},
@@ -141,7 +142,11 @@ public class MedicationDispense implements DomainResource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = MedicationDispense.Bundle.BundleBuilder.class)
-  @Schema(name = "MedicationDispenseBundle", example = "SWAGGER_EXAMPLE_MEDICATION_DISPENSE_BUNDLE")
+  @Schema(
+    name = "MedicationDispenseBundle",
+    example =
+        "${dstu2.medicationDispenseBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispenseBundle}"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

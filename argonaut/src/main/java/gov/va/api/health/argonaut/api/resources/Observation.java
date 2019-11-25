@@ -52,7 +52,8 @@ import org.apache.commons.lang3.StringUtils;
 @Schema(
   description =
       "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
-  example = "SWAGGER_EXAMPLE_OBSERVATION"
+  example =
+      "${argonaut.observation:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observation}"
 )
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
@@ -177,7 +178,11 @@ public class Observation implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @JsonDeserialize(builder = Observation.Bundle.BundleBuilder.class)
-  @Schema(name = "ObservationBundle", example = "SWAGGER_EXAMPLE_OBSERVATION_BUNDLE")
+  @Schema(
+    name = "ObservationBundle",
+    example =
+        "${argonaut.observationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observationBundle}"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

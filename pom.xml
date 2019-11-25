@@ -14,7 +14,9 @@
     <module>r4</module>
     <module>r4-examples</module>
     <module>dstu2</module>
+    <module>dstu2-examples</module>
     <module>stu3</module>
     <module>argonaut</module>
+    <module>argonaut-examples</module>
   </modules>
 </project>

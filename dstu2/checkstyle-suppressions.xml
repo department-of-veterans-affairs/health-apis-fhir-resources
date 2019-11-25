@@ -1,0 +1,15 @@
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+  <!--
+    Swagger examples exceed the 100 character line length limit.
+   -->
+  <suppress checks="LineLength" files="Appointment.java" lines="43,111" />
+  <suppress checks="LineLength" files="Encounter.java" lines="119" />
+  <suppress checks="LineLength" files="Location.java" lines="108" />
+  <suppress checks="LineLength" files="MedicationDispense.java" lines="54,148" />
+  <suppress checks="LineLength" files="OperationOutcome.java" lines="32" />
+  <suppress checks="LineLength" files="Organization.java" lines="43,81" />
+  <suppress checks="LineLength" files="Practitioner.java" lines="45,129" />
+</suppressions>

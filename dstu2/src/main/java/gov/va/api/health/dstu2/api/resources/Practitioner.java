@@ -41,7 +41,8 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
   description = "https://www.hl7.org/fhir/DSTU2/practitioner.html",
-  example = "SWAGGER_EXAMPLE_PRACTITIONER"
+  example =
+      "${dstu2.practitioner:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerPractitioner#practitioner}"
 )
 public class Practitioner implements DomainResource {
   @NotBlank String resourceType;
@@ -100,7 +101,7 @@ public class Practitioner implements DomainResource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Practitioner.Entry.EntryBuilder.class)
-  @Schema(name = "PractitionerEntry", example = "SWAGGER_EXAMPLE_PRACTITIONER_BUNDLE")
+  @Schema(name = "PractitionerEntry")
   public static class Entry extends AbstractEntry<Practitioner> {
     @Builder
     public Entry(
@@ -122,7 +123,11 @@ public class Practitioner implements DomainResource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Practitioner.Bundle.BundleBuilder.class)
-  @Schema(name = "Practitioner")
+  @Schema(
+    name = "Practitioner",
+    example =
+        "${dstu2.practitionerBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerPractitioner#practitionerBundle}"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

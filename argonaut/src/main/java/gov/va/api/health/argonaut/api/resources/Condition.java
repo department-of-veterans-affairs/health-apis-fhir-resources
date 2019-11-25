@@ -43,7 +43,8 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
   description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-condition.html",
-  example = "SWAGGER_EXAMPLE_CONDITION"
+  example =
+      "${argonaut.condition:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerCondition#condition}"
 )
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
@@ -142,7 +143,11 @@ public class Condition implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Condition.Bundle.BundleBuilder.class)
-  @Schema(name = "ConditionBundle", example = "SWAGGER_EXAMPLE_CONDITION_BUNDLE")
+  @Schema(
+    name = "ConditionBundle",
+    example =
+        "${argonaut.conditionBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerCondition#conditionBundle}"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

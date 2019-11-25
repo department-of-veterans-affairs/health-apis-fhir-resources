@@ -40,7 +40,8 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = Visibility.ANY, isGetterVisibility = Visibility.NONE)
 @Schema(
   description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medication.html",
-  example = "SWAGGER_EXAMPLE_MEDICATION"
+  example =
+      "${argonaut.medication:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedication#medication}"
 )
 public class Medication implements Resource {
   @Pattern(regexp = Fhir.ID)
@@ -93,7 +94,11 @@ public class Medication implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @JsonDeserialize(builder = Medication.Bundle.BundleBuilder.class)
-  @Schema(name = "MedicationBundle", example = "SWAGGER_EXAMPLE_MEDICATION_BUNDLE")
+  @Schema(
+    name = "MedicationBundle",
+    example =
+        "${argonaut.medicationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedication#medicationBundle}"
+  )
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(
