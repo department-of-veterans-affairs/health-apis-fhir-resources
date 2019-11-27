@@ -19,11 +19,9 @@ public class SwaggerOperationOutcome {
             asList(
                 OperationOutcome.Issue.builder()
                     .severity(OperationOutcome.Issue.IssueSeverity.error)
-                    .code("forbidden")
+                    .code("request error")
                     .details(
-                        CodeableConcept.builder()
-                            .text("Token not allowed access to this patient.")
-                            .build())
+                        CodeableConcept.builder().text("This request can not be processed").build())
                     .build()))
         .build();
   }
