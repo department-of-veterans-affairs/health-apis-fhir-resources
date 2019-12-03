@@ -89,12 +89,12 @@ public class TerminologyCapabilities implements Resource {
   @Pattern(regexp = Fhir.BOOLEAN)
   String lockedDate;
 
-  List<CodeSystem> codeSystem;
-  List<Expansion> expansion;
-  CodeSearch codeSearch;
-  ValidateCode validateCode;
-  Translation translation;
-  Closure closure;
+  @Valid List<CodeSystem> codeSystem;
+  @Valid List<Expansion> expansion;
+  @Valid CodeSearch codeSearch;
+  @Valid ValidateCode validateCode;
+  @Valid Translation translation;
+  @Valid Closure closure;
 
   @SuppressWarnings("unused")
   public enum CodeSearch {
@@ -117,7 +117,7 @@ public class TerminologyCapabilities implements Resource {
     @Pattern(regexp = Fhir.CANONICAL)
     String uri;
 
-    List<Version> version;
+    @Valid List<Version> version;
 
     @Pattern(regexp = Fhir.BOOLEAN)
     String subsumption;
@@ -144,7 +144,7 @@ public class TerminologyCapabilities implements Resource {
     @Pattern(regexp = Fhir.BOOLEAN)
     String incomplete;
 
-    List<Parameter> parameter;
+    @Valid List<Parameter> parameter;
 
     @Pattern(regexp = Fhir.MARKDOWN)
     String textFilter;
@@ -162,6 +162,7 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
+    @Pattern(regexp = Fhir.STRING)
     String code;
 
     @Pattern(regexp = Fhir.BOOLEAN)
@@ -173,7 +174,7 @@ public class TerminologyCapabilities implements Resource {
     @Pattern(regexp = Fhir.CODE)
     List<String> language;
 
-    List<Filter> filter;
+    @Valid List<Filter> filter;
 
     @Pattern(regexp = Fhir.CODE)
     List<String> property;
@@ -253,6 +254,7 @@ public class TerminologyCapabilities implements Resource {
     @NotEmpty
     String name;
 
+    @Pattern(regexp = Fhir.STRING)
     String documentation;
   }
 
