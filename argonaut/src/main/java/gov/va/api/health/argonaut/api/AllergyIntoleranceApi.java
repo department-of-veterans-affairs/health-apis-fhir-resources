@@ -49,7 +49,15 @@ public interface AllergyIntoleranceApi {
         )
   )
   AllergyIntolerance allergyIntoleranceRead(
-      @Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
+      @Parameter(
+            in = ParameterIn.PATH,
+            name = "id",
+            required = true,
+            description =
+                "The logical id of the resource, as used in the URL for the resource."
+                    + " Once assigned, this value never changes."
+          )
+          String id);
 
   @Operation(
     summary = "Allergy Intolerance Search",
@@ -87,7 +95,29 @@ public interface AllergyIntoleranceApi {
         )
   )
   AllergyIntolerance.Bundle allergyIntoleranceSearch(
-      @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,
-      @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
-      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);
+      @Parameter(
+            in = ParameterIn.QUERY,
+            required = true,
+            name = "patient",
+            description =
+                "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI) "
+                    + "of the patient who has the allergy or intolerance."
+          )
+          String id,
+      @Parameter(
+            in = ParameterIn.QUERY,
+            name = "page",
+            description = "The page number of the search result."
+          )
+          @DefaultValue("1")
+          int page,
+      @Parameter(
+            in = ParameterIn.QUERY,
+            name = "_count",
+            description =
+                "The number of resources that should be returned in a single page."
+                    + " The maximum count size is 20."
+          )
+          @DefaultValue("15")
+          int count);
 }
