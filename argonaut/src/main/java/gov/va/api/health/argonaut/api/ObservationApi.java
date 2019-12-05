@@ -53,9 +53,7 @@ public interface ObservationApi {
             in = ParameterIn.PATH,
             name = "id",
             required = true,
-            description =
-                "The logical id of the resource, as used in the URL for the resource."
-                    + " Once assigned, this value never changes."
+            description = "The logical id of the resource. Once assigned, this value never changes."
           )
           String id);
 
@@ -101,9 +99,7 @@ public interface ObservationApi {
             name = "patient",
             description =
                 "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                    + " that refers to the patient whose characteristics (direct or indirect)"
-                    + " are described by the observation "
-                    + "and into whose record the observation is placed"
+                    + " that refers to the patient that is described by the observation"
           )
           String id,
       @Parameter(

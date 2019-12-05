@@ -53,7 +53,7 @@ public interface PatientApi {
             name = "id",
             required = true,
             description =
-                "The logical id of the resource, as used in the URL for the resource."
+                "The logical id of the resource."
                     + " Once assigned, this value never changes."
                     + " For Patients this id is an Integration Control Number (ICN)"
                     + " assigned by the Master Veteran Index (MVI)."
@@ -100,7 +100,7 @@ public interface PatientApi {
             required = true,
             name = "_id",
             description =
-                "The logical id of the resource, as used in the URL for the resource."
+                "The logical id of the resource."
                     + " Once assigned, this value never changes."
                     + " For Patients this id is an Integration Control Number (ICN)"
                     + " assigned by the Master Veteran Index (MVI)."

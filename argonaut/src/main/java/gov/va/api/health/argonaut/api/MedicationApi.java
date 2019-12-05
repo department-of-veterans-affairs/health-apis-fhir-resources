@@ -51,9 +51,7 @@ public interface MedicationApi {
             in = ParameterIn.PATH,
             name = "id",
             required = true,
-            description =
-                "The logical id of the resource, as used in the URL for the resource."
-                    + " Once assigned, this value never changes."
+            description = "The logical id of the resource. Once assigned, this value never changes."
           )
           String id);
 }

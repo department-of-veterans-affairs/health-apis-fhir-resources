@@ -53,9 +53,7 @@ public interface MedicationOrderApi {
             in = ParameterIn.PATH,
             name = "id",
             required = true,
-            description =
-                "The logical id of the resource, as used in the URL for the resource."
-                    + " Once assigned, this value never changes."
+            description = "The logical id of the resource. Once assigned, this value never changes."
           )
           String id);
 
@@ -101,8 +99,7 @@ public interface MedicationOrderApi {
             name = "patient",
             description =
                 "Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                    + " as a link to a resource representing the person"
-                    + " to whom the medication will be given."
+                    + " of the person to whom the medication will be given."
           )
           String id,
       @Parameter(
