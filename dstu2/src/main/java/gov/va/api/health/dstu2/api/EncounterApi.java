@@ -110,7 +110,7 @@ public interface EncounterApi {
             name = "_count",
             description =
                 "The number of resources that should be returned in a single page."
-                    + " The maximum count size is 20."
+                    + " The maximum count size is 100."
           )
           @DefaultValue("15")
           int count);
