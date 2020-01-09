@@ -67,11 +67,11 @@ public class Location implements DomainResource {
 
   @Valid List<Identifier> identifier;
 
-  @NotNull Status status;
+  Status status;
 
   Coding operationalStatus;
 
-  @NotNull String name;
+  String name;
 
   List<String> alias;
 
@@ -81,15 +81,15 @@ public class Location implements DomainResource {
 
   @Valid CodeableConcept type;
 
-  @Valid @NotEmpty List<ContactPoint> telecom;
+  @Valid List<ContactPoint> telecom;
 
-  @Valid @NotNull LocationAddress address;
+  @Valid LocationAddress address;
 
   @Valid CodeableConcept physicalType;
 
   @Valid Position position;
 
-  @Valid @NotNull Reference managingOrganization;
+  @Valid Reference managingOrganization;
 
   @Valid Reference partOf;
 
