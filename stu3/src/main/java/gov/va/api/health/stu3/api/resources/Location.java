@@ -25,7 +25,6 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -162,8 +161,8 @@ public class Location implements DomainResource {
     @Valid List<Extension> extension;
     Address.AddressUse use;
     Address.AddressType type;
-    @NotNull String text;
-    @NotEmpty List<String> line;
+    String text;
+    List<String> line;
     String city;
     String district;
     String state;
