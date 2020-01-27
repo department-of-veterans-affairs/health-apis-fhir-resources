@@ -33,9 +33,8 @@ public class Fhir {
           + "((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?";
 
   @Schema(
-    description =
-        "http://hl7.org/fhir/DSTU2/datatypes.html#datetime http://hl7.org/fhir/DSTU2/search.html#prefix"
-  )
+      description =
+          "http://hl7.org/fhir/DSTU2/datatypes.html#datetime http://hl7.org/fhir/DSTU2/search.html#prefix")
   public static final String DATETIME_SEARCH =
       "-?(ge|le|eq|ne|gt|lt|sa|eb)?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])"
           + "(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)"

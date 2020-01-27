@@ -42,8 +42,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitioner.html"
-)
+    description =
+        "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitioner.html")
 public class Practitioner implements DomainResource {
   @NotBlank String resourceType;
 

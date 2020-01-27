@@ -43,25 +43,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 @Schema(
-  description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-procedure.html",
-  example =
-      "${argonaut.procedure:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerProcedure#procedure}"
-)
+    description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-procedure.html",
+    example =
+        "${argonaut.procedure:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerProcedure#procedure}")
 @ExactlyOneOfs({
   @ExactlyOneOf(
-    fields = {"status", "_status"},
-    message = "Status or _Status, but not both."
-  ),
+      fields = {"status", "_status"},
+      message = "Status or _Status, but not both."),
   @ExactlyOneOf(
-    fields = {"performedDateTime", "performedPeriod"},
-    message = "performedDateTime or performedPeriod, but not both."
-  )
+      fields = {"performedDateTime", "performedPeriod"},
+      message = "performedDateTime or performedPeriod, but not both.")
 })
 @ZeroOrOneOfs(
     @ZeroOrOneOf(
-      fields = {"reasonCodeableConcept", "reasonReference"},
-      message = "At most one reason may be specified."
-    ))
+        fields = {"reasonCodeableConcept", "reasonReference"},
+        message = "At most one reason may be specified."))
 public class Procedure implements Resource {
   @NotBlank String resourceType;
 
@@ -130,10 +126,9 @@ public class Procedure implements Resource {
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @JsonDeserialize(builder = Procedure.Bundle.BundleBuilder.class)
   @Schema(
-    name = "ProcedureBundle",
-    example =
-        "${argonaut.procedureBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerProcedure#procedureBundle}"
-  )
+      name = "ProcedureBundle",
+      example =
+          "${argonaut.procedureBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerProcedure#procedureBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

@@ -47,19 +47,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-patient.html",
-  example =
-      "${argonaut.patient:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patient}"
-)
+    description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-patient.html",
+    example =
+        "${argonaut.patient:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patient}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
-    fields = {"deceasedBoolean", "deceasedDateTime"},
-    message = "Only one deceased value may be specified"
-  ),
+      fields = {"deceasedBoolean", "deceasedDateTime"},
+      message = "Only one deceased value may be specified"),
   @ZeroOrOneOf(
-    fields = {"multipleBirthBoolean", "multipleBirthInteger"},
-    message = "Only one multiple birth value may be specified"
-  )
+      fields = {"multipleBirthBoolean", "multipleBirthInteger"},
+      message = "Only one multiple birth value may be specified")
 })
 public class Patient implements Resource {
   @Pattern(regexp = Fhir.ID)
@@ -157,10 +154,9 @@ public class Patient implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Patient.Bundle.BundleBuilder.class)
   @Schema(
-    name = "PatientBundle",
-    example =
-        "${argonaut.patientBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patientBundle}"
-  )
+      name = "PatientBundle",
+      example =
+          "${argonaut.patientBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patientBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

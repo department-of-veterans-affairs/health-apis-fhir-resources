@@ -45,18 +45,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(
-  fieldVisibility = JsonAutoDetect.Visibility.ANY,
-  isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-  description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
-  example =
-      "${dstu2.medicationDispense:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispense}"
-)
+    description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
+    example =
+        "${dstu2.medicationDispense:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispense}")
 @ExactlyOneOf(
-  fields = {"medicationCodeableConcept", "medicationReference"},
-  message = "Exactly one medication field must be specified"
-)
+    fields = {"medicationCodeableConcept", "medicationReference"},
+    message = "Exactly one medication field must be specified")
 public class MedicationDispense implements DomainResource {
   @NotBlank String resourceType;
 
@@ -143,10 +140,9 @@ public class MedicationDispense implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = MedicationDispense.Bundle.BundleBuilder.class)
   @Schema(
-    name = "MedicationDispenseBundle",
-    example =
-        "${dstu2.medicationDispenseBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispenseBundle}"
-  )
+      name = "MedicationDispenseBundle",
+      example =
+          "${dstu2.medicationDispenseBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispenseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(
@@ -172,21 +168,17 @@ public class MedicationDispense implements DomainResource {
   @Schema(name = "MedicationDispenseDosageInstruction")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"asNeededBoolean", "asNeededCodeableConcept"},
-      message = "Only one asNeeded field may be specified"
-    ),
+        fields = {"asNeededBoolean", "asNeededCodeableConcept"},
+        message = "Only one asNeeded field may be specified"),
     @ZeroOrOneOf(
-      fields = {"siteCodeableConcept", "siteReference"},
-      message = "Only one site field may be specified"
-    ),
+        fields = {"siteCodeableConcept", "siteReference"},
+        message = "Only one site field may be specified"),
     @ZeroOrOneOf(
-      fields = {"doseRange", "doseQuantity"},
-      message = "Only one dose field may be specified"
-    ),
+        fields = {"doseRange", "doseQuantity"},
+        message = "Only one dose field may be specified"),
     @ZeroOrOneOf(
-      fields = {"rateRatio", "rateRange"},
-      message = "Only one rate field may be specified"
-    )
+        fields = {"rateRatio", "rateRange"},
+        message = "Only one rate field may be specified")
   })
   public static class DosageInstruction implements BackboneElement {
     @Pattern(regexp = Fhir.ID)

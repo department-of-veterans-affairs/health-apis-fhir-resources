@@ -41,22 +41,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(
-  fieldVisibility = JsonAutoDetect.Visibility.ANY,
-  isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/coverageeligibilityresponse.html",
-  example =
-      "${r4.coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}"
-)
+    description = "https://www.hl7.org/fhir/R4/coverageeligibilityresponse.html",
+    example =
+        "${r4.coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}")
 @ZeroOrOneOf(
-  fields = {"servicedDate", "servicedPeriod"},
-  message = "Only one serviced value may be specified."
-)
+    fields = {"servicedDate", "servicedPeriod"},
+    message = "Only one serviced value may be specified.")
 @ExactlyOneOf(
-  fields = {"request", "_request"},
-  message = "Exactly one request value must be specified."
-)
+    fields = {"request", "_request"},
+    message = "Exactly one request value must be specified.")
 public class CoverageEligibilityResponse implements Resource {
   // Anscestor -- Resource
   @Pattern(regexp = Fhir.ID)
@@ -142,10 +138,9 @@ public class CoverageEligibilityResponse implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = CoverageEligibilityResponse.Bundle.BundleBuilder.class)
   @Schema(
-    name = "CoverageEligibilityResponseBundle",
-    example =
-        "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}"
-  )
+      name = "CoverageEligibilityResponseBundle",
+      example =
+          "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Coverage bundle builder. */
@@ -209,9 +204,8 @@ public class CoverageEligibilityResponse implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "Insurance")
   @ExactlyOneOf(
-    fields = {"coverage", "_coverage"},
-    message = "Exactly one coverage value must be specified."
-  )
+      fields = {"coverage", "_coverage"},
+      message = "Exactly one coverage value must be specified.")
   public static class Insurance implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -281,13 +275,11 @@ public class CoverageEligibilityResponse implements Resource {
   @Schema(name = "Benefit")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"allowedUnsignedInt", "allowedString", "allowedMoney"},
-      message = "Only one effective value may be specified"
-    ),
+        fields = {"allowedUnsignedInt", "allowedString", "allowedMoney"},
+        message = "Only one effective value may be specified"),
     @ZeroOrOneOf(
-      fields = {"usedUnsignedInt", "usedString", "usedMoney"},
-      message = "Only one used value may be specified"
-    )
+        fields = {"usedUnsignedInt", "usedString", "usedMoney"},
+        message = "Only one used value may be specified")
   })
   public static class Benefit implements BackboneElement {
     @Pattern(regexp = Fhir.ID)

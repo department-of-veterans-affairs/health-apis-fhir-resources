@@ -14,104 +14,88 @@ import javax.ws.rs.Path;
 
 public interface OrganizationApi {
   @Operation(
-    summary = "Organization Read",
-    description = "https://www.hl7.org/fhir/DSTU2/organization.html",
-    tags = {"Organization"}
-  )
+      summary = "Organization Read",
+      description = "https://www.hl7.org/fhir/DSTU2/organization.html",
+      tags = {"Organization"})
   @GET
   @Path("Organization/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = Organization.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = Organization.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Organization organizationRead(
       @Parameter(
-            in = ParameterIn.PATH,
-            name = "id",
-            required = true,
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.PATH,
+              name = "id",
+              required = true,
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id);
 
   @Operation(
-    summary = "Organization Search",
-    description = "https://www.hl7.org/fhir/DSTU2/organization.html",
-    tags = {"Organization"}
-  )
+      summary = "Organization Search",
+      description = "https://www.hl7.org/fhir/DSTU2/organization.html",
+      tags = {"Organization"})
   @GET
   @Path("Organization")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = Organization.Bundle.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = Organization.Bundle.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Organization.Bundle organizationSearch(
       @Parameter(
-            in = ParameterIn.QUERY,
-            required = true,
-            name = "_id",
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "page",
-            description = "The page number of the search result."
-          )
+              in = ParameterIn.QUERY,
+              name = "page",
+              description = "The page number of the search result.")
           @DefaultValue("1")
           int page,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "_count",
-            description =
-                "The number of resources that should be returned in a single page."
-                    + " The maximum count size is 100."
-          )
+              in = ParameterIn.QUERY,
+              name = "_count",
+              description =
+                  "The number of resources that should be returned in a single page."
+                      + " The maximum count size is 100.")
           @DefaultValue("15")
           int count);
 }

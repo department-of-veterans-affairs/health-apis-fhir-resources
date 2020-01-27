@@ -57,9 +57,8 @@ public class OperationOutcome implements DomainResource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(
-    description =
-        "https://www.hl7.org/fhir/STU3/operationoutcome-definitions.html#OperationOutcome.issue"
-  )
+      description =
+          "https://www.hl7.org/fhir/STU3/operationoutcome-definitions.html#OperationOutcome.issue")
   public static class Issue implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;

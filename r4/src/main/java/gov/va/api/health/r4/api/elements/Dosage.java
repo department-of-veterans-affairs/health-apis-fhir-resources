@@ -26,9 +26,8 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/dosage.html")
 @ZeroOrOneOf(
-  fields = {"asNeededBoolean", "asNeededCodeableConcept"},
-  message = "Only one asNeeded field may be specified"
-)
+    fields = {"asNeededBoolean", "asNeededCodeableConcept"},
+    message = "Only one asNeeded field may be specified")
 public class Dosage implements BackboneElement {
 
   @Pattern(regexp = Fhir.ID)
@@ -78,13 +77,11 @@ public class Dosage implements BackboneElement {
   @Schema(name = "DosageDoseAndRate")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"doseRange", "doseQuantity"},
-      message = "Only one dose field may be specified"
-    ),
+        fields = {"doseRange", "doseQuantity"},
+        message = "Only one dose field may be specified"),
     @ZeroOrOneOf(
-      fields = {"rateRatio", "rateRange", "rateQuantity"},
-      message = "Only one rate field may be specified"
-    )
+        fields = {"rateRatio", "rateRange", "rateQuantity"},
+        message = "Only one rate field may be specified")
   })
   public static class DoseAndRate implements Element {
 

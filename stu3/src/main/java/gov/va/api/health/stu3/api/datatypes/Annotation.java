@@ -24,9 +24,8 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "http://hl7.org/fhir/STU3/datatypes.html#Annotation")
 @ZeroOrOneOf(
-  fields = {"authorReference", "authorString"},
-  message = "Only one author value may be specified"
-)
+    fields = {"authorReference", "authorString"},
+    message = "Only one author value may be specified")
 public class Annotation implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;

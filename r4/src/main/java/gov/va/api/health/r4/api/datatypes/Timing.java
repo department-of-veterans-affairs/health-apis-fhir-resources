@@ -42,9 +42,8 @@ public class Timing implements Element {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "TimingRepeat")
   @ZeroOrOneOf(
-    fields = {"boundsDuration", "boundsRange", "boundsPeriod"},
-    message = "Only one bounds field may be specified"
-  )
+      fields = {"boundsDuration", "boundsRange", "boundsPeriod"},
+      message = "Only one bounds field may be specified")
   public static class Repeat implements Element {
     @Pattern(regexp = Fhir.ID)
     String id;

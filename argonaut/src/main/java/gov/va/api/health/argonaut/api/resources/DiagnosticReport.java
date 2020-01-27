@@ -44,16 +44,14 @@ import org.apache.commons.lang3.StringUtils;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description =
-      "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-diagnosticreport.html",
-  example =
-      "${argonaut.diagnosticReport:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}"
-)
+    description =
+        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-diagnosticreport.html",
+    example =
+        "${argonaut.diagnosticReport:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}")
 @ExactlyOneOf(fields = {"performer", "_performer"})
 @ZeroOrOneOf(
-  fields = {"effectiveDateTime", "effectivePeriod"},
-  message = "Only one effective value may be specified"
-)
+    fields = {"effectiveDateTime", "effectivePeriod"},
+    message = "Only one effective value may be specified")
 public class DiagnosticReport implements Resource {
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -108,8 +106,8 @@ public class DiagnosticReport implements Resource {
 
   @JsonIgnore
   @AssertTrue(
-    message = "Category system should be http://hl7.org/fhir/ValueSet/diagnostic-service-sections."
-  )
+      message =
+          "Category system should be http://hl7.org/fhir/ValueSet/diagnostic-service-sections.")
   private boolean isValidCategory() {
     if (category == null) {
       return true;
@@ -141,10 +139,9 @@ public class DiagnosticReport implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = DiagnosticReport.Bundle.BundleBuilder.class)
   @Schema(
-    name = "DiagnosticReportBundle",
-    example =
-        "${argonaut.diagnosticReportBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReportBundle}"
-  )
+      name = "DiagnosticReportBundle",
+      example =
+          "${argonaut.diagnosticReportBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReportBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

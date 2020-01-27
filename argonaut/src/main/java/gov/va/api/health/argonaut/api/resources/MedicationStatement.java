@@ -46,25 +46,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = Visibility.ANY, isGetterVisibility = Visibility.NONE)
 @Schema(
-  description =
-      "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medicationstatement.html",
-  example =
-      "${argonaut.medicationStatement:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatement}"
-)
+    description =
+        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medicationstatement.html",
+    example =
+        "${argonaut.medicationStatement:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatement}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
-    fields = {"reasonForUseCodeableConcept", "reasonForUseReference"},
-    message = "Only one reasonForUse value may be specified"
-  ),
+      fields = {"reasonForUseCodeableConcept", "reasonForUseReference"},
+      message = "Only one reasonForUse value may be specified"),
   @ZeroOrOneOf(
-    fields = {"effectiveDateTime", "effectivePeriod"},
-    message = "Only one effective value may be specified"
-  )
+      fields = {"effectiveDateTime", "effectivePeriod"},
+      message = "Only one effective value may be specified")
 })
 @ExactlyOneOf(
-  fields = {"medicationCodeableConcept", "medicationReference"},
-  message = "Exactly one medication value must be specified"
-)
+    fields = {"medicationCodeableConcept", "medicationReference"},
+    message = "Exactly one medication value must be specified")
 public class MedicationStatement implements Resource {
   @NotBlank String resourceType;
 
@@ -125,10 +121,9 @@ public class MedicationStatement implements Resource {
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @JsonDeserialize(builder = MedicationStatement.Bundle.BundleBuilder.class)
   @Schema(
-    name = "MedicationStatementBundle",
-    example =
-        "${argonaut.medicationStatementBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatementBundle}"
-  )
+      name = "MedicationStatementBundle",
+      example =
+          "${argonaut.medicationStatementBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatementBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(
@@ -153,21 +148,17 @@ public class MedicationStatement implements Resource {
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"asNeededBoolean", "asNeededCodeableConcept"},
-      message = "Only one asNeeded field may be specified"
-    ),
+        fields = {"asNeededBoolean", "asNeededCodeableConcept"},
+        message = "Only one asNeeded field may be specified"),
     @ZeroOrOneOf(
-      fields = {"siteCodeableConcept", "siteReference"},
-      message = "Only one site field may be specified"
-    ),
+        fields = {"siteCodeableConcept", "siteReference"},
+        message = "Only one site field may be specified"),
     @ZeroOrOneOf(
-      fields = {"doseRange", "doseQuantity"},
-      message = "Only one dose field may be specified"
-    ),
+        fields = {"doseRange", "doseQuantity"},
+        message = "Only one dose field may be specified"),
     @ZeroOrOneOf(
-      fields = {"rateRatio", "rateRange"},
-      message = "Only one rate field may be specified"
-    )
+        fields = {"rateRatio", "rateRange"},
+        message = "Only one rate field may be specified")
   })
   public static class Dosage implements BackboneElement {
     @Pattern(regexp = Fhir.ID)

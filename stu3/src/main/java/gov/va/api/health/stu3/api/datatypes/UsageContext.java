@@ -23,12 +23,11 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "http://hl7.org/fhir/STU3/metadatatypes.html#UsageContext")
 @ExactlyOneOf(
-  fields = {
-    "valueCodeableConcept",
-    "valueQuantity",
-    "valueRange",
-  }
-)
+    fields = {
+      "valueCodeableConcept",
+      "valueQuantity",
+      "valueRange",
+    })
 public class UsageContext implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;

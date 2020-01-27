@@ -40,13 +40,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(
-  fieldVisibility = JsonAutoDetect.Visibility.ANY,
-  isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/coverage.html",
-  example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}"
-)
+    description = "https://www.hl7.org/fhir/R4/coverage.html",
+    example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
 public class Coverage implements Resource {
   // Anscestor -- Resource
   @Pattern(regexp = Fhir.ID)
@@ -118,10 +116,9 @@ public class Coverage implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Coverage.Bundle.BundleBuilder.class)
   @Schema(
-    name = "CoverageBundle",
-    example =
-        "${r4.coverageBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverageBundle}"
-  )
+      name = "CoverageBundle",
+      example =
+          "${r4.coverageBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverageBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Coverage bundle builder. */
@@ -162,9 +159,8 @@ public class Coverage implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageCostToBeneficiary")
   @ExactlyOneOf(
-    fields = {"valueQuantity", "valueMoney"},
-    message = "valueQuantity or valueMoney, but not both"
-  )
+      fields = {"valueQuantity", "valueMoney"},
+      message = "valueQuantity or valueMoney, but not both")
   public static class CostToBeneficiary implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;

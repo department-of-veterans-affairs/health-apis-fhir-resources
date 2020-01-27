@@ -14,78 +14,64 @@ import javax.ws.rs.Path;
 
 public interface PractitionerRoleApi {
   @Operation(
-    summary = "Practitioner Role Read",
-    description =
-        "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitionerrole.html",
-    tags = {"Practitioner Role"}
-  )
+      summary = "Practitioner Role Read",
+      description =
+          "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitionerrole.html",
+      tags = {"Practitioner Role"})
   @GET
   @Path("PractitionerRole/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = PractitionerRole.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = PractitionerRole.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   PractitionerRole practitionerRoleRead(
       @Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
 
   @Operation(
-    summary = "Practitioner Role Search",
-    description =
-        "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitionerrole.html",
-    tags = {"Practitioner Role"}
-  )
+      summary = "Practitioner Role Search",
+      description =
+          "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitionerrole.html",
+      tags = {"Practitioner Role"})
   @GET
   @Path("PractitionerRole")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = PractitionerRole.Bundle.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = PractitionerRole.Bundle.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   PractitionerRole.Bundle practitionerRoleSearch(
       @Parameter(in = ParameterIn.QUERY, name = "identifier") String identifier,
       @Parameter(in = ParameterIn.QUERY, name = "specialty") String specialty,

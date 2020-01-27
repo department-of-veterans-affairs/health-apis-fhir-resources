@@ -14,108 +14,91 @@ import javax.ws.rs.Path;
 
 public interface ObservationApi {
   @Operation(
-    summary = "Observation Read",
-    description =
-        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
-    tags = {"Observation"}
-  )
+      summary = "Observation Read",
+      description =
+          "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
+      tags = {"Observation"})
   @GET
   @Path("Observation/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/fhir+json",
-          schema = @Schema(implementation = Observation.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = Observation.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Observation observationRead(
       @Parameter(
-            in = ParameterIn.PATH,
-            name = "id",
-            required = true,
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.PATH,
+              name = "id",
+              required = true,
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id);
 
   @Operation(
-    summary = "Observation Search",
-    description =
-        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
-    tags = {"Observation"}
-  )
+      summary = "Observation Search",
+      description =
+          "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
+      tags = {"Observation"})
   @GET
   @Path("Observation")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          schema = @Schema(implementation = Observation.Bundle.class),
-          mediaType = "application/fhir+json"
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              schema = @Schema(implementation = Observation.Bundle.class),
+              mediaType = "application/fhir+json"))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Observation.Bundle observationSearch(
       @Parameter(
-            in = ParameterIn.QUERY,
-            required = true,
-            name = "patient",
-            description =
-                "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                    + " that refers to the patient that is described by the observation"
-          )
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "patient",
+              description =
+                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                      + " that refers to the patient that is described by the observation")
           String id,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "page",
-            description = "The page number of the search result."
-          )
+              in = ParameterIn.QUERY,
+              name = "page",
+              description = "The page number of the search result.")
           @DefaultValue("1")
           int page,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "_count",
-            description =
-                "The number of resources that should be returned in a single page. "
-                    + "The maximum count size is 100."
-          )
+              in = ParameterIn.QUERY,
+              name = "_count",
+              description =
+                  "The number of resources that should be returned in a single page. "
+                      + "The maximum count size is 100.")
           @DefaultValue("15")
           int count);
 }

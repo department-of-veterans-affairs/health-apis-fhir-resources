@@ -38,10 +38,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "http://www.hl7.org/fhir/DSTU2/encounter.html",
-  example =
-      "${dstu2.encounter:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerEncounter#encounter}"
-)
+    description = "http://www.hl7.org/fhir/DSTU2/encounter.html",
+    example =
+        "${dstu2.encounter:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerEncounter#encounter}")
 public class Encounter implements DomainResource {
   @NotBlank String resourceType;
 
@@ -114,10 +113,9 @@ public class Encounter implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Encounter.Bundle.BundleBuilder.class)
   @Schema(
-    name = "EncounterBundle",
-    example =
-        "${dstu2.encounterBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerEncounter#encounterBundle}"
-  )
+      name = "EncounterBundle",
+      example =
+          "${dstu2.encounterBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerEncounter#encounterBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

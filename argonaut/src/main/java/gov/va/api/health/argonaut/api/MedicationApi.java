@@ -13,45 +13,39 @@ import javax.ws.rs.Path;
 
 public interface MedicationApi {
   @Operation(
-    summary = "Medication Read",
-    description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medication.html",
-    tags = {"Medication"}
-  )
+      summary = "Medication Read",
+      description =
+          "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medication.html",
+      tags = {"Medication"})
   @GET
   @Path("Medication/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = Medication.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = Medication.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Medication medicationRead(
       @Parameter(
-            in = ParameterIn.PATH,
-            name = "id",
-            required = true,
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.PATH,
+              name = "id",
+              required = true,
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id);
 }

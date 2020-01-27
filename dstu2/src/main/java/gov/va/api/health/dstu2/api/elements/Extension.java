@@ -31,34 +31,33 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "http://hl7.org/fhir/DSTU2/extensibility.html#extension")
 @ZeroOrOneOf(
-  fields = {
-    "valueInteger",
-    "valueDecimal",
-    "valueDateTime",
-    "valueDate",
-    "valueDateTime",
-    "valueDate",
-    "valueInstant",
-    "valueString",
-    "valueUri",
-    "valueBoolean",
-    "valueCode",
-    "valueBase64Binary",
-    "valueCoding",
-    "valueCodeableConcept",
-    "valueIdentifier",
-    "valueQuantity",
-    "valueAttachment",
-    "valueRange",
-    "valuePeriod",
-    "valueRatio",
-    "valueHumanName",
-    "valueAddress",
-    "valueContactPoint",
-    "valueReference"
-  },
-  message = "Only one value type may be specified"
-)
+    fields = {
+      "valueInteger",
+      "valueDecimal",
+      "valueDateTime",
+      "valueDate",
+      "valueDateTime",
+      "valueDate",
+      "valueInstant",
+      "valueString",
+      "valueUri",
+      "valueBoolean",
+      "valueCode",
+      "valueBase64Binary",
+      "valueCoding",
+      "valueCodeableConcept",
+      "valueIdentifier",
+      "valueQuantity",
+      "valueAttachment",
+      "valueRange",
+      "valuePeriod",
+      "valueRatio",
+      "valueHumanName",
+      "valueAddress",
+      "valueContactPoint",
+      "valueReference"
+    },
+    message = "Only one value type may be specified")
 public class Extension implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;

@@ -45,13 +45,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(
-  fieldVisibility = JsonAutoDetect.Visibility.ANY,
-  isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/claim.html",
-  example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}"
-)
+    description = "https://www.hl7.org/fhir/R4/claim.html",
+    example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}")
 public class Claim implements Resource {
 
   // Ancestor -- Resource
@@ -177,9 +175,9 @@ public class Claim implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Claim.Bundle.BundleBuilder.class)
   @Schema(
-    name = "ClaimBundle",
-    example = "${r4.claimBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claimBundle}"
-  )
+      name = "ClaimBundle",
+      example =
+          "${r4.claimBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claimBundle}")
   public static class Bundle extends AbstractBundle<Claim.Entry> {
 
     /** Claim bundle builder. */
@@ -292,19 +290,17 @@ public class Claim implements Resource {
   @Schema(name = "ClaimSupportingInfo")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"timingDate", "timingPeriod"},
-      message = "Only one timing field may be specified"
-    ),
+        fields = {"timingDate", "timingPeriod"},
+        message = "Only one timing field may be specified"),
     @ZeroOrOneOf(
-      fields = {
-        "valueBoolean",
-        "valueString",
-        "valueQuantity",
-        "valueAttachment",
-        "valueReference"
-      },
-      message = "Only one value field may be specified"
-    )
+        fields = {
+          "valueBoolean",
+          "valueString",
+          "valueQuantity",
+          "valueAttachment",
+          "valueReference"
+        },
+        message = "Only one value field may be specified")
   })
   public static class SupportingInfo implements BackboneElement {
 
@@ -350,9 +346,8 @@ public class Claim implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimDiagnosis")
   @ExactlyOneOf(
-    fields = {"diagnosisCodeableConcept", "diagnosisReference"},
-    message = "diagnosisCodeableConcept or diagnosisReference, but not both"
-  )
+      fields = {"diagnosisCodeableConcept", "diagnosisReference"},
+      message = "diagnosisCodeableConcept or diagnosisReference, but not both")
   public static class Diagnosis implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
@@ -384,9 +379,8 @@ public class Claim implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimProcedure")
   @ExactlyOneOf(
-    fields = {"procedureCodeableConcept", "procedureReference"},
-    message = "procedureCodeableConcept or procedureReference, but not both"
-  )
+      fields = {"procedureCodeableConcept", "procedureReference"},
+      message = "procedureCodeableConcept or procedureReference, but not both")
   public static class Procedure implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
@@ -454,9 +448,8 @@ public class Claim implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimAccident")
   @ZeroOrOneOf(
-    fields = {"locationAddress", "locationReference"},
-    message = "Only one location field may be specified"
-  )
+      fields = {"locationAddress", "locationReference"},
+      message = "Only one location field may be specified")
   public static class Accident implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
@@ -485,13 +478,11 @@ public class Claim implements Resource {
   @Schema(name = "ClaimItem")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"servicedDate", "servicedPeriod"},
-      message = "Only one serviced field may be specified"
-    ),
+        fields = {"servicedDate", "servicedPeriod"},
+        message = "Only one serviced field may be specified"),
     @ZeroOrOneOf(
-      fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
-      message = "Only one location field may be specified"
-    )
+        fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
+        message = "Only one location field may be specified")
   })
   public static class Item implements BackboneElement {
 

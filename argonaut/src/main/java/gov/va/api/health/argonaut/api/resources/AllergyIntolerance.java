@@ -38,15 +38,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(
-  fieldVisibility = JsonAutoDetect.Visibility.ANY,
-  isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-  description =
-      "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-allergyintolerance.html",
-  example =
-      "${argonaut.allergyIntolerance:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerAllergyIntolerance#allergyIntolerance}"
-)
+    description =
+        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-allergyintolerance.html",
+    example =
+        "${argonaut.allergyIntolerance:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerAllergyIntolerance#allergyIntolerance}")
 public class AllergyIntolerance implements Resource {
   @NotBlank String resourceType;
 
@@ -141,10 +139,9 @@ public class AllergyIntolerance implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = AllergyIntolerance.Bundle.BundleBuilder.class)
   @Schema(
-    name = "AllergyIntoleranceBundle",
-    example =
-        "${argonaut.allergyIntoleranceBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerAllergyIntolerance#allergyIntoleranceBundle}"
-  )
+      name = "AllergyIntoleranceBundle",
+      example =
+          "${argonaut.allergyIntoleranceBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerAllergyIntolerance#allergyIntoleranceBundle}")
   public static class Bundle extends AbstractBundle<AllergyIntolerance.Entry> {
     @Builder
     public Bundle(

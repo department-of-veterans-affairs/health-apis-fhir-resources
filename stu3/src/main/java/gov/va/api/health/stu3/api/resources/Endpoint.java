@@ -39,8 +39,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-endpoint.html"
-)
+    description = "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-endpoint.html")
 public class Endpoint implements DomainResource {
   @NotBlank String resourceType;
 

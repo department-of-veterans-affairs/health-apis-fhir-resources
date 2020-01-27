@@ -17,8 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "http://hl7.org/fhir/smart-app-launch/conformance/index.html#using-well-known"
-)
+    description = "http://hl7.org/fhir/smart-app-launch/conformance/index.html#using-well-known")
 public final class WellKnown {
   @NotBlank String authorizationEndpoint;
   @NotBlank String tokenEndpoint;

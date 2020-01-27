@@ -46,14 +46,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(
-  fieldVisibility = JsonAutoDetect.Visibility.ANY,
-  isGetterVisibility = JsonAutoDetect.Visibility.NONE
-)
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/explanationofbenefit.html",
-  example =
-      "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefit}"
-)
+    description = "https://www.hl7.org/fhir/R4/explanationofbenefit.html",
+    example =
+        "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefit}")
 public class ExplanationOfBenefit implements Resource {
 
   // Ancestor -- Resource
@@ -207,10 +205,9 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = ExplanationOfBenefit.Bundle.BundleBuilder.class)
   @Schema(
-    name = "ExplanationOfBenefitBundle",
-    example =
-        "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefitBundle}"
-  )
+      name = "ExplanationOfBenefitBundle",
+      example =
+          "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefitBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Explanation of benefit bundle builder. */
@@ -274,9 +271,8 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitAccident")
   @ZeroOrOneOf(
-    fields = {"locationAddress", "locationReference"},
-    message = "Only one location field may be specified"
-  )
+      fields = {"locationAddress", "locationReference"},
+      message = "Only one location field may be specified")
   public static class Accident implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
@@ -304,13 +300,11 @@ public class ExplanationOfBenefit implements Resource {
   @Schema(name = "ExplanationOfBenefitAddItem")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"servicedDate", "servicedPeriod"},
-      message = "Only one serviced field may be specified"
-    ),
+        fields = {"servicedDate", "servicedPeriod"},
+        message = "Only one serviced field may be specified"),
     @ZeroOrOneOf(
-      fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
-      message = "Only one location field may be specified"
-    )
+        fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
+        message = "Only one location field may be specified")
   })
   public static class AddItem implements BackboneElement {
 
@@ -531,13 +525,11 @@ public class ExplanationOfBenefit implements Resource {
   @Schema(name = "ExplanationOfBenefitFinancial")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"allowedUnsignedInt", "allowedString", "allowedMoney"},
-      message = "Only one allowed field may be specified"
-    ),
+        fields = {"allowedUnsignedInt", "allowedString", "allowedMoney"},
+        message = "Only one allowed field may be specified"),
     @ZeroOrOneOf(
-      fields = {"usedUnsignedInt", "usedMoney"},
-      message = "Only one used field may be specified"
-    )
+        fields = {"usedUnsignedInt", "usedMoney"},
+        message = "Only one used field may be specified")
   })
   public static class Financial implements BackboneElement {
 
@@ -618,9 +610,8 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitDiagnosis")
   @ExactlyOneOf(
-    fields = {"diagnosisCodeableConcept", "diagnosisReference"},
-    message = "Only one diagnosis field may be specified"
-  )
+      fields = {"diagnosisCodeableConcept", "diagnosisReference"},
+      message = "Only one diagnosis field may be specified")
   public static class Diagnosis implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
@@ -677,13 +668,11 @@ public class ExplanationOfBenefit implements Resource {
   @Schema(name = "ExplanationOfBenefitItem")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"servicedDate", "servicedPeriod"},
-      message = "Only one serviced field may be specified"
-    ),
+        fields = {"servicedDate", "servicedPeriod"},
+        message = "Only one serviced field may be specified"),
     @ZeroOrOneOf(
-      fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
-      message = "Only one location field may be specified"
-    )
+        fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
+        message = "Only one location field may be specified")
   })
   public static class Item implements BackboneElement {
 
@@ -807,9 +796,8 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitProcedure")
   @ExactlyOneOf(
-    fields = {"procedureCodeableConcept", "procedureReference"},
-    message = "Only one procedure field may be specified"
-  )
+      fields = {"procedureCodeableConcept", "procedureReference"},
+      message = "Only one procedure field may be specified")
   public static class Procedure implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
@@ -936,19 +924,17 @@ public class ExplanationOfBenefit implements Resource {
   @Schema(name = "ExplanationOfBenefitSupportingInfo")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
-      fields = {"timingDate", "timingPeriod"},
-      message = "Only one timing field may be specified"
-    ),
+        fields = {"timingDate", "timingPeriod"},
+        message = "Only one timing field may be specified"),
     @ZeroOrOneOf(
-      fields = {
-        "valueBoolean",
-        "valueString",
-        "valueQuantity",
-        "valueAttachment",
-        "valueReference"
-      },
-      message = "Only one value field may be specified"
-    )
+        fields = {
+          "valueBoolean",
+          "valueString",
+          "valueQuantity",
+          "valueAttachment",
+          "valueReference"
+        },
+        message = "Only one value field may be specified")
   })
   public static class SupportingInfo implements BackboneElement {
 

@@ -42,10 +42,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-immunization.html",
-  example =
-      "${argonaut.immunization:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerImmunization#immunization}"
-)
+    description =
+        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-immunization.html",
+    example =
+        "${argonaut.immunization:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerImmunization#immunization}")
 @ExactlyOneOfs({
   @ExactlyOneOf(fields = {"status", "_status"}),
   @ExactlyOneOf(fields = {"reported", "_reported"})
@@ -117,10 +117,9 @@ public class Immunization implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Immunization.Bundle.BundleBuilder.class)
   @Schema(
-    name = "ImmunizationBundle",
-    example =
-        "${argonaut.immunizationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerImmunization#immunizationBundle}"
-  )
+      name = "ImmunizationBundle",
+      example =
+          "${argonaut.immunizationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerImmunization#immunizationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

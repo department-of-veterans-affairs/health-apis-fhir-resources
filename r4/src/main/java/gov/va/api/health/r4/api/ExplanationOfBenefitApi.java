@@ -15,67 +15,55 @@ import javax.ws.rs.Path;
 public interface ExplanationOfBenefitApi {
 
   @Operation(
-    summary = "ExplanationOfBenefit Read",
-    description = "https://www.hl7.org/fhir/explanationofbenefit.html",
-    tags = {"ExplanationOfBenefit"}
-  )
+      summary = "ExplanationOfBenefit Read",
+      description = "https://www.hl7.org/fhir/explanationofbenefit.html",
+      tags = {"ExplanationOfBenefit"})
   @GET
   @Path("ExplanationOfBenefit/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = ExplanationOfBenefit.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = ExplanationOfBenefit.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   ExplanationOfBenefit explanationOfBenefitRead(
       @Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
 
   @Operation(
-    summary = "Get detailed Explanation of Benefit for a Veteran",
-    description = "https://www.hl7.org/fhir/explanationofbenefit.html",
-    tags = {"ExplanationOfBenefit"}
-  )
+      summary = "Get detailed Explanation of Benefit for a Veteran",
+      description = "https://www.hl7.org/fhir/explanationofbenefit.html",
+      tags = {"ExplanationOfBenefit"})
   @GET
   @Path("ExplanationOfBenefit")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = ExplanationOfBenefit.Bundle.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = ExplanationOfBenefit.Bundle.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   ExplanationOfBenefit.Bundle explanationOfBenefitSearch(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,

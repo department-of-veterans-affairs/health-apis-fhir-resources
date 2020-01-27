@@ -27,10 +27,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/operationoutcome.html",
-  example =
-      "${r4.operationOutcome:gov.va.api.health.r4.api.swaggerexamples.SwaggerOperationOutcome#operationOutcome}"
-)
+    description = "https://www.hl7.org/fhir/R4/operationoutcome.html",
+    example =
+        "${r4.operationOutcome:gov.va.api.health.r4.api.swaggerexamples.SwaggerOperationOutcome#operationOutcome}")
 public class OperationOutcome implements DomainResource {
 
   @Pattern(regexp = Fhir.ID)
@@ -62,9 +61,8 @@ public class OperationOutcome implements DomainResource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(
-    description =
-        "https://www.hl7.org/fhir/R4/operationoutcome-definitions.html#OperationOutcome.issue"
-  )
+      description =
+          "https://www.hl7.org/fhir/R4/operationoutcome-definitions.html#OperationOutcome.issue")
   public static class Issue implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;

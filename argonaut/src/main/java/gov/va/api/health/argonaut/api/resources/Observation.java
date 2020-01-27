@@ -50,31 +50,28 @@ import org.apache.commons.lang3.StringUtils;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = Visibility.ANY, isGetterVisibility = Visibility.NONE)
 @Schema(
-  description =
-      "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
-  example =
-      "${argonaut.observation:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observation}"
-)
+    description =
+        "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
+    example =
+        "${argonaut.observation:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observation}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
-    fields = {"effectiveDateTime", "effectivePeriod"},
-    message = "Only one effective field may be specified"
-  ),
+      fields = {"effectiveDateTime", "effectivePeriod"},
+      message = "Only one effective field may be specified"),
   @ZeroOrOneOf(
-    fields = {
-      "valueAttachment",
-      "valueCodeableConcept",
-      "valueDateTime",
-      "valuePeriod",
-      "valueQuantity",
-      "valueRange",
-      "valueRatio",
-      "valueSampledData",
-      "valueString",
-      "valueTime"
-    },
-    message = "Only one value field may be specified"
-  )
+      fields = {
+        "valueAttachment",
+        "valueCodeableConcept",
+        "valueDateTime",
+        "valuePeriod",
+        "valueQuantity",
+        "valueRange",
+        "valueRatio",
+        "valueSampledData",
+        "valueString",
+        "valueTime"
+      },
+      message = "Only one value field may be specified")
 })
 public class Observation implements Resource {
   @NotBlank String resourceType;
@@ -179,10 +176,9 @@ public class Observation implements Resource {
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @JsonDeserialize(builder = Observation.Bundle.BundleBuilder.class)
   @Schema(
-    name = "ObservationBundle",
-    example =
-        "${argonaut.observationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observationBundle}"
-  )
+      name = "ObservationBundle",
+      example =
+          "${argonaut.observationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(
@@ -228,20 +224,19 @@ public class Observation implements Resource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = Visibility.ANY)
   @ZeroOrOneOf(
-    fields = {
-      "valueAttachment",
-      "valueCodeableConcept",
-      "valueDateTime",
-      "valuePeriod",
-      "valueQuantity",
-      "valueRange",
-      "valueRatio",
-      "valueSampledData",
-      "valueString",
-      "valueTime"
-    },
-    message = "Only one value value may be specified"
-  )
+      fields = {
+        "valueAttachment",
+        "valueCodeableConcept",
+        "valueDateTime",
+        "valuePeriod",
+        "valueQuantity",
+        "valueRange",
+        "valueRatio",
+        "valueSampledData",
+        "valueString",
+        "valueTime"
+      },
+      message = "Only one value value may be specified")
   public static class ObservationComponent implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;

@@ -14,104 +14,88 @@ import javax.ws.rs.Path;
 
 public interface EncounterApi {
   @Operation(
-    summary = "Encounter Read",
-    description = "https://www.hl7.org/fhir/DSTU2/encounter.html",
-    tags = {"Encounter"}
-  )
+      summary = "Encounter Read",
+      description = "https://www.hl7.org/fhir/DSTU2/encounter.html",
+      tags = {"Encounter"})
   @GET
   @Path("Encounter/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = Encounter.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = Encounter.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Encounter encounterRead(
       @Parameter(
-            in = ParameterIn.PATH,
-            name = "id",
-            required = true,
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.PATH,
+              name = "id",
+              required = true,
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id);
 
   @Operation(
-    summary = "Encounter Search",
-    description = "https://www.hl7.org/fhir/DSTU2/encounter.html",
-    tags = {"Encounter"}
-  )
+      summary = "Encounter Search",
+      description = "https://www.hl7.org/fhir/DSTU2/encounter.html",
+      tags = {"Encounter"})
   @GET
   @Path("Encounter")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = Encounter.Bundle.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = Encounter.Bundle.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   Encounter.Bundle encounterSearch(
       @Parameter(
-            in = ParameterIn.QUERY,
-            required = true,
-            name = "_id",
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "page",
-            description = "The page number of the search result."
-          )
+              in = ParameterIn.QUERY,
+              name = "page",
+              description = "The page number of the search result.")
           @DefaultValue("1")
           int page,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "_count",
-            description =
-                "The number of resources that should be returned in a single page."
-                    + " The maximum count size is 100."
-          )
+              in = ParameterIn.QUERY,
+              name = "_count",
+              description =
+                  "The number of resources that should be returned in a single page."
+                      + " The maximum count size is 100.")
           @DefaultValue("15")
           int count);
 }

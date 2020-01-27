@@ -14,106 +14,89 @@ import javax.ws.rs.Path;
 
 public interface MedicationDispenseApi {
   @Operation(
-    summary = "Medication Dispense Read",
-    description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
-    tags = {"Medication Dispense"}
-  )
+      summary = "Medication Dispense Read",
+      description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
+      tags = {"Medication Dispense"})
   @GET
   @Path("MedicationDispense/{id}")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = MedicationDispense.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = MedicationDispense.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   MedicationDispense medicationDispenseRead(
       @Parameter(
-            in = ParameterIn.PATH,
-            name = "id",
-            required = true,
-            description = "The logical id of the resource. Once assigned, this value never changes."
-          )
+              in = ParameterIn.PATH,
+              name = "id",
+              required = true,
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id);
 
   @Operation(
-    summary = "Medication Dispense Search",
-    description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
-    tags = {"Medication Dispense"}
-  )
+      summary = "Medication Dispense Search",
+      description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
+      tags = {"Medication Dispense"})
   @GET
   @Path("MedicationDispense")
   @ApiResponse(
-    responseCode = "200",
-    description = "Record found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = MedicationDispense.Bundle.class)
-        )
-  )
+      responseCode = "200",
+      description = "Record found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = MedicationDispense.Bundle.class)))
   @ApiResponse(
-    responseCode = "400",
-    description = "Bad request",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "400",
+      description = "Bad request",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-          mediaType = "application/json+fhir",
-          schema = @Schema(implementation = OperationOutcome.class)
-        )
-  )
+      responseCode = "404",
+      description = "Not found",
+      content =
+          @Content(
+              mediaType = "application/json+fhir",
+              schema = @Schema(implementation = OperationOutcome.class)))
   MedicationDispense.Bundle medicationDispenseSearch(
       @Parameter(
-            in = ParameterIn.QUERY,
-            required = true,
-            name = "patient",
-            description =
-                "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                    + " that refers to the person to whom the medication will be given."
-          )
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "patient",
+              description =
+                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                      + " that refers to the person to whom the medication will be given.")
           String id,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "page",
-            description = "The page number of the search result."
-          )
+              in = ParameterIn.QUERY,
+              name = "page",
+              description = "The page number of the search result.")
           @DefaultValue("1")
           int page,
       @Parameter(
-            in = ParameterIn.QUERY,
-            name = "_count",
-            description =
-                "The number of resources that should be returned in a single page."
-                    + " The maximum count size is 100."
-          )
+              in = ParameterIn.QUERY,
+              name = "_count",
+              description =
+                  "The number of resources that should be returned in a single page."
+                      + " The maximum count size is 100.")
           @DefaultValue("15")
           int count);
 }
