@@ -63,7 +63,10 @@ public class Organization implements DomainResource {
   @Valid List<Extension> extension;
 
   @Valid @NotEmpty List<OrganizationIdentifier> identifier;
-  @Valid @NotEmpty List<ContactPoint> telecom;
+
+  // Argonaut Provider Directory requires telecom, but that is not always available
+  @Valid List<ContactPoint> telecom;
+
   @Valid @NotEmpty List<OrganizationAddress> address;
 
   @NotNull Boolean active;
