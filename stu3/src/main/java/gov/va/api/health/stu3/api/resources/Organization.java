@@ -25,7 +25,6 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -62,16 +61,13 @@ public class Organization implements DomainResource {
   @Valid List<Extension> modifierExtension;
   @Valid List<Extension> extension;
 
-  @Valid @NotEmpty List<OrganizationIdentifier> identifier;
-
-  // Argonaut Provider Directory requires telecom, but that is not always available
+  @Valid List<OrganizationIdentifier> identifier;
   @Valid List<ContactPoint> telecom;
-
-  @Valid @NotEmpty List<OrganizationAddress> address;
+  @Valid List<OrganizationAddress> address;
 
   @NotNull Boolean active;
   @Valid List<CodeableConcept> type;
-  @NotNull String name;
+  String name;
   List<String> alias;
 
   @Valid Reference partOf;
@@ -138,11 +134,12 @@ public class Organization implements DomainResource {
     @Valid CodeableConcept type;
 
     @Pattern(regexp = Fhir.URI)
-    @NotNull
     String system;
 
     String value;
+
     @Valid Period period;
+
     @Valid Reference assigner;
   }
 
@@ -159,7 +156,7 @@ public class Organization implements DomainResource {
 
     Address.AddressUse use;
     Address.AddressType type;
-    @NotNull String text;
+    String text;
     List<String> line;
     String city;
     String district;
