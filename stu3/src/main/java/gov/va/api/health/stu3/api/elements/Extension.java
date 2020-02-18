@@ -116,6 +116,9 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.URI)
   String valueUuid;
 
+  @Pattern(regexp = Fhir.ID)
+  String valueId;
+
   Boolean valueBoolean;
 
   @Pattern(regexp = Fhir.CODE)
