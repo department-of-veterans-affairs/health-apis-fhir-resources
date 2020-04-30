@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonAutoDetect(
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
@@ -45,7 +45,7 @@ import lombok.NoArgsConstructor;
     example =
         "${r4.allergyIntolerance:gov.va.api.health.r4.api.swaggerexamples."
             + "SwaggerAllergyIntolerance#allergyIntolerance}")
-public class AllergyIntolerance implements Resource {
+public final class AllergyIntolerance implements Resource {
   @NotBlank String resourceType;
 
   @Pattern(regexp = Fhir.ID)
@@ -60,10 +60,35 @@ public class AllergyIntolerance implements Resource {
   String language;
 
   @Valid Narrative text;
+
   @Valid List<SimpleResource> contained;
+
   @Valid List<Extension> extension;
+
   @Valid List<Extension> modifierExtension;
+
   @Valid List<Identifier> identifier;
+
+  @Valid CodeableConcept clinicalStatus;
+
+  @Valid CodeableConcept verificationStatus;
+
+  Type type;
+
+  Category category;
+
+  Criticality criticality;
+  
+  @Valid CodeableConcept code;
+  
+  @NotNull @Valid Reference patient;
+  
+  @Valid Encounter encounter;
+  
+  
+  
+  
+  
 
   @Pattern(regexp = Fhir.DATETIME)
   String onset;
@@ -72,21 +97,46 @@ public class AllergyIntolerance implements Resource {
   String recordedDate;
 
   @Valid Reference recorder;
-  @NotNull @Valid Reference patient;
+
   @Valid Reference reporter;
+
   @NotNull @Valid CodeableConcept substance;
+
   @NotNull Status status;
-  Criticality criticality;
-  Type type;
-  Category category;
 
   @Pattern(regexp = Fhir.DATETIME)
   String lastOccurence;
 
   @Valid Annotation note;
+
   @Valid List<Reaction> reaction;
 
-  @SuppressWarnings("unused")
+  public enum Category {
+    food,
+    medication,
+    environment,
+    biologic
+  }
+
+  public enum Certainty {
+    unlikely,
+    likely,
+    confirmed
+  }
+
+  public enum Criticality {
+    low,
+    high,
+    @JsonProperty("unable-to-assess")
+    unable_to_assess,
+  }
+
+  public enum Severity {
+    mild,
+    moderate,
+    severe
+  }
+
   public enum Status {
     active,
     unconfirmed,
@@ -98,39 +148,9 @@ public class AllergyIntolerance implements Resource {
     entered_in_error
   }
 
-  @SuppressWarnings("unused")
-  public enum Criticality {
-    CRITL,
-    CRITH,
-    CRITU
-  }
-
-  @SuppressWarnings("unused")
   public enum Type {
     allergy,
     intolerance
-  }
-
-  @SuppressWarnings("unused")
-  public enum Category {
-    food,
-    medication,
-    environment,
-    other
-  }
-
-  @SuppressWarnings("unused")
-  public enum Certainty {
-    unlikely,
-    likely,
-    confirmed
-  }
-
-  @SuppressWarnings("unused")
-  public enum Severity {
-    mild,
-    moderate,
-    severe
   }
 
   @Data
@@ -143,7 +163,7 @@ public class AllergyIntolerance implements Resource {
       example =
           "${r4.allergyIntoleranceBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerAllergyIntolerance#allergyIntoleranceBundle}")
-  public static class Bundle extends AbstractBundle<AllergyIntolerance.Entry> {
+  public static final class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -151,12 +171,26 @@ public class AllergyIntolerance implements Resource {
         @Valid Meta meta,
         @Pattern(regexp = Fhir.URI) String implicitRules,
         @Pattern(regexp = Fhir.CODE) String language,
+        @Valid Identifier identifier,
         @NotNull AbstractBundle.BundleType type,
+        @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          resourceType,
+          id,
+          meta,
+          implicitRules,
+          language,
+          identifier,
+          type,
+          timestamp,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 
@@ -166,7 +200,7 @@ public class AllergyIntolerance implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = AllergyIntolerance.Entry.EntryBuilder.class)
   @Schema(name = "AllergyIntoleranceEntry")
-  public static class Entry extends AbstractEntry<AllergyIntolerance> {
+  public static final class Entry extends AbstractEntry<AllergyIntolerance> {
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -188,22 +222,29 @@ public class AllergyIntolerance implements Resource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "AllergyIntoleranceReaction")
-  public static class Reaction implements BackboneElement {
+  public static final class Reaction implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> modifierExtension;
+
     @Valid List<Extension> extension;
+
     @Valid CodeableConcept substance;
+
     Certainty certainty;
+
     @NotEmpty @Valid List<CodeableConcept> manifestation;
+
     String description;
 
     @Pattern(regexp = Fhir.DATETIME)
     String onset;
 
     Severity severity;
+
     @Valid CodeableConcept exposureRoute;
+
     @Valid Annotation note;
   }
 }
