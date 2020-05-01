@@ -1,4 +1,4 @@
-package gov.va.api.health.r4.api.resources;
+package gov.va.api.health.uscorer4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,6 +21,7 @@ import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,6 +29,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -36,7 +38,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Data
 @Builder
@@ -46,7 +47,8 @@ import lombok.NonNull;
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-    description = "https://www.hl7.org/fhir/R4/patient.html",
+    description =
+        "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html",
     example = "${r4.patient:com.example.Example#example}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
@@ -78,14 +80,14 @@ public class Patient implements Resource {
   @Valid List<Extension> modifierExtension;
 
   // R4 Patient Resource
-  @Valid List<Identifier> identifier;
+  @Valid @NotEmpty List<Identifier> identifier;
 
   @Pattern(regexp = Fhir.BOOLEAN)
   String active;
 
-  @Valid List<HumanName> name;
+  @Valid @NotEmpty List<HumanName> name;
   @Valid List<ContactPoint> telecom;
-  Gender gender;
+  @NotNull Gender gender;
 
   @Pattern(regexp = Fhir.DATE)
   String birthDate;
@@ -141,7 +143,7 @@ public class Patient implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Valid @NonNull CodeableConcept language;
+    @Valid @NotNull CodeableConcept language;
 
     @Pattern(regexp = Fhir.BOOLEAN)
     String preferred;
@@ -161,9 +163,9 @@ public class Patient implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NonNull @Valid Reference other;
+    @NotNull @Valid Reference other;
 
-    @NonNull Type type;
+    @NotNull Type type;
   }
 
   @Data
@@ -193,7 +195,7 @@ public class Patient implements Resource {
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Patient.Entry.EntryBuilder.class)
+  @JsonDeserialize(builder = Entry.EntryBuilder.class)
   @Schema(name = "PatientEntry")
   public static class Entry extends AbstractEntry<Patient> {
 
@@ -216,13 +218,13 @@ public class Patient implements Resource {
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Patient.Bundle.BundleBuilder.class)
+  @JsonDeserialize(builder = Bundle.BundleBuilder.class)
   @Schema(
       name = "PatientBundle",
       example =
           "${r4.patientBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerPatient#patientBundle}")
-  public static class Bundle extends AbstractBundle<Patient.Entry> {
+  public static class Bundle extends AbstractBundle<Entry> {
 
     /** Patient bundle builder. */
     @Builder
@@ -237,7 +239,7 @@ public class Patient implements Resource {
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
-        @Valid List<Patient.Entry> entry,
+        @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
           resourceType,

@@ -1,12 +1,12 @@
-package gov.va.api.health.r4.api.resources;
+package gov.va.api.health.uscorer4.api.resources;
 
-import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.samples.SamplePatients;
+import gov.va.api.health.uscorer4.api.RoundTrip;
+import gov.va.api.health.uscorer4.api.ZeroOrOneOfVerifier;
+import gov.va.api.health.uscorer4.api.samples.SamplePatients;
 import org.junit.Test;
 
 public class PatientTest {
@@ -31,7 +31,7 @@ public class PatientTest {
             .request(data.request())
             .response(data.response())
             .build();
-    Patient.Bundle bundle =
+    gov.va.api.health.uscorer4.api.resources.Patient.Bundle bundle =
         Patient.Bundle.builder()
             .entry(singletonList(entry))
             .link(
@@ -43,12 +43,12 @@ public class PatientTest {
             .type(searchset)
             .signature(data.signature())
             .build();
-    assertRoundTrip(bundle);
+    RoundTrip.assertRoundTrip(bundle);
   }
 
   @Test
   public void patient() {
-    assertRoundTrip(data.patient());
+    RoundTrip.assertRoundTrip(data.patient());
   }
 
   @Test

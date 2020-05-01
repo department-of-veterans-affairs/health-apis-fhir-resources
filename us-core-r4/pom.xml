@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>api-starter</artifactId>
+    <groupId>gov.va.api.health</groupId>
+    <version>5.0.3</version>
+    <relativePath/>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>us-core-r4</artifactId>
+  <version>2.0.33-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <properties>
+    <checkstyle.suppressions.location>${project.basedir}/checkstyle-suppressions.xml</checkstyle.suppressions.location>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>gov.va.api.health</groupId>
+      <artifactId>r4</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+</project>

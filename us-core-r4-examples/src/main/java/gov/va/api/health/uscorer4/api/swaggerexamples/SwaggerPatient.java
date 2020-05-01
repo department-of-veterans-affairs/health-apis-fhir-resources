@@ -1,4 +1,4 @@
-package gov.va.api.health.r4.api.swaggerexamples;
+package gov.va.api.health.uscorer4.api.swaggerexamples;
 
 import static java.util.Arrays.asList;
 
@@ -10,7 +10,8 @@ import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
-import gov.va.api.health.r4.api.resources.Patient;
+import gov.va.api.health.uscorer4.api.resources.Patient;
+import java.util.Arrays;
 
 public class SwaggerPatient {
 
@@ -30,7 +31,7 @@ public class SwaggerPatient {
                     .type(
                         CodeableConcept.builder()
                             .coding(
-                                asList(
+                                Arrays.asList(
                                     Coding.builder()
                                         .system("http://hl7.org/fhir/v2/0203")
                                         .code("MR")
@@ -44,7 +45,7 @@ public class SwaggerPatient {
                     .type(
                         CodeableConcept.builder()
                             .coding(
-                                asList(
+                                Arrays.asList(
                                     Coding.builder()
                                         .system("http://hl7.org/fhir/v2/0203")
                                         .code("SB")
@@ -54,7 +55,7 @@ public class SwaggerPatient {
                     .value("999-61-4803")
                     .build()))
         .name(
-            asList(
+            Arrays.asList(
                 HumanName.builder()
                     .use(HumanName.NameUse.usual)
                     .text("Mr. Aurelio227 Cruickshank494")
@@ -76,7 +77,7 @@ public class SwaggerPatient {
         .birthDate("1995-02-06")
         .deceasedBoolean("false")
         .address(
-            asList(
+            Arrays.asList(
                 Address.builder()
                     .line(asList("909 Rohan Highlands"))
                     .city("Mesa")
@@ -86,7 +87,7 @@ public class SwaggerPatient {
         .maritalStatus(
             CodeableConcept.builder()
                 .coding(
-                    asList(
+                    Arrays.asList(
                         Coding.builder()
                             .system("http://hl7.org/fhir/v3/NullFlavor")
                             .code("UNK")
@@ -123,7 +124,7 @@ public class SwaggerPatient {
                     .url(
                         "https://dev-api.va.gov/services/fhir/v0/r4/Patient?identifer=1008679665V880686&page=1&_count=15")
                     .build()))
-        .entry(asList(Patient.Entry.builder().resource(patient()).build()))
+        .entry(Arrays.asList(Patient.Entry.builder().resource(patient()).build()))
         .build();
   }
 }

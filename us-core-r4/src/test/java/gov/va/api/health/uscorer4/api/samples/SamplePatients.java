@@ -1,13 +1,13 @@
-package gov.va.api.health.r4.api.samples;
+package gov.va.api.health.uscorer4.api.samples;
 
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.resources.Patient;
-import gov.va.api.health.r4.api.resources.Patient.Communication;
-import gov.va.api.health.r4.api.resources.Patient.Gender;
-import gov.va.api.health.r4.api.resources.Patient.Link;
-import gov.va.api.health.r4.api.resources.Patient.PatientContact;
-import gov.va.api.health.r4.api.resources.Patient.Type;
+import gov.va.api.health.uscorer4.api.resources.Patient;
+import gov.va.api.health.uscorer4.api.resources.Patient.Communication;
+import gov.va.api.health.uscorer4.api.resources.Patient.Gender;
+import gov.va.api.health.uscorer4.api.resources.Patient.Link;
+import gov.va.api.health.uscorer4.api.resources.Patient.PatientContact;
+import gov.va.api.health.uscorer4.api.resources.Patient.Type;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
