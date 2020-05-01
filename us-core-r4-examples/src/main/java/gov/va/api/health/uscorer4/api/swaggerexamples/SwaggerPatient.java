@@ -10,6 +10,7 @@ import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
+import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.uscorer4.api.resources.Patient;
 import java.util.Arrays;
 
@@ -24,6 +25,47 @@ public class SwaggerPatient {
     return Patient.builder()
         .id("2000163")
         .resourceType("Patient")
+        .extension(
+            asList(
+                Extension.builder()
+                    .url("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race")
+                    .extension(
+                        asList(
+                            Extension.builder()
+                                .url("ombCategory")
+                                .valueCoding(
+                                    Coding.builder()
+                                        .system(
+                                            "https://www.hl7.org/fhir/us/core/CodeSystem-cdcrec.html")
+                                        .code("2016-3")
+                                        .display("White")
+                                        .build())
+                                .build(),
+                            Extension.builder().url("text").valueString("White").build()))
+                    .build(),
+                Extension.builder()
+                    .url("http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity")
+                    .extension(
+                        asList(
+                            Extension.builder()
+                                .url("ombCategory")
+                                .valueCoding(
+                                    Coding.builder()
+                                        .system(
+                                            "https://www.hl7.org/fhir/us/core/CodeSystem-cdcrec.html")
+                                        .code("2186-5")
+                                        .display("Not Hispanic or Latino")
+                                        .build())
+                                .build(),
+                            Extension.builder()
+                                .url("text")
+                                .valueString("Not Hispanic or Latino")
+                                .build()))
+                    .build(),
+                Extension.builder()
+                    .url("http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex")
+                    .valueCode("M")
+                    .build()))
         .identifier(
             asList(
                 Identifier.builder()
@@ -89,7 +131,7 @@ public class SwaggerPatient {
                 .coding(
                     Arrays.asList(
                         Coding.builder()
-                            .system("http://hl7.org/fhir/v3/NullFlavor")
+                            .system("http://hl7.org/fhir/R4/v3/NullFlavor/cs.html")
                             .code("UNK")
                             .display("unknown")
                             .build()))

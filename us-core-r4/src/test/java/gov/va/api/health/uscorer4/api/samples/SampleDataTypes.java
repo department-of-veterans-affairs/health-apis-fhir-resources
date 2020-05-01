@@ -1,5 +1,6 @@
 package gov.va.api.health.uscorer4.api.samples;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.bundle.AbstractEntry.HttpVerb;
@@ -50,7 +51,6 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleDataTypes {
-
   public Address address() {
     return Address.builder()
         .id("1234")
@@ -351,6 +351,24 @@ public class SampleDataTypes {
                 .offset("1")
                 .build())
         .code(codeableConcept())
+        .build();
+  }
+
+  public Extension usCoreEthnicityExtension() {
+    return Extension.builder()
+        .url("http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity")
+        .extension(
+            asList(
+                Extension.builder()
+                    .url("ombCategory")
+                    .valueCoding(
+                        Coding.builder()
+                            .system("https://www.hl7.org/fhir/us/core/CodeSystem-cdcrec.html")
+                            .code("2186-5")
+                            .display("Not Hispanic or Latino")
+                            .build())
+                    .build(),
+                Extension.builder().url("text").valueString("Not Hispanic or Latino").build()))
         .build();
   }
 

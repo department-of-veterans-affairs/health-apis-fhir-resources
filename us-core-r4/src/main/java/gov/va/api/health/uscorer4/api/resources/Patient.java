@@ -1,6 +1,7 @@
 package gov.va.api.health.uscorer4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
@@ -26,7 +27,9 @@ import gov.va.api.health.validation.api.ZeroOrOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -75,8 +78,11 @@ public class Patient implements Resource {
 
   // Ancestor -- DomainResource
   @Valid Narrative text;
+
   @Valid List<SimpleResource> contained;
+
   @Valid List<Extension> extension;
+
   @Valid List<Extension> modifierExtension;
 
   // R4 Patient Resource
@@ -86,7 +92,9 @@ public class Patient implements Resource {
   String active;
 
   @Valid @NotEmpty List<HumanName> name;
+
   @Valid List<ContactPoint> telecom;
+
   @NotNull Gender gender;
 
   @Pattern(regexp = Fhir.DATE)
@@ -99,6 +107,7 @@ public class Patient implements Resource {
   String deceasedDateTime;
 
   @Valid List<Address> address;
+
   @Valid CodeableConcept maritalStatus;
 
   @Pattern(regexp = Fhir.BOOLEAN)
@@ -108,11 +117,56 @@ public class Patient implements Resource {
   String multipleBirthInteger;
 
   @Valid List<Attachment> photo;
+
   @Valid List<PatientContact> contact;
+
   @Valid List<Communication> communication;
+
   @Valid List<Reference> generalPractitioner;
+
   @Valid Reference managingOrganization;
+
   @Valid List<Link> link;
+
+  @JsonIgnore
+  @AssertTrue(message = "US-Core-Ethnicity extension is not valid")
+  private boolean isValidEthnicityExtension() {
+    return isValidUsCoreExtensionCount(
+        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity", 1);
+  }
+
+  @JsonIgnore
+  @AssertTrue(message = "US-Core-Race extension is not valid")
+  private boolean isValidRaceExtension() {
+    return isValidUsCoreExtensionCount(
+        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race", 5);
+  }
+
+  private boolean isValidUsCoreExtensionCount(String url, int maxAllowedOmbExtensionCount) {
+    if (extension == null) {
+      return true;
+    }
+    Optional<Extension> usCoreExtension =
+        extension.stream().filter(e -> url.equals(e.url())).findFirst();
+    if (!usCoreExtension.isPresent()) {
+      return true;
+    }
+    int ombExtensionCount = 0;
+    int textExtensionCount = 0;
+    for (Extension e : usCoreExtension.get().extension()) {
+      switch (e.url()) {
+        case "ombCategory":
+          ombExtensionCount++;
+          break;
+        case "text":
+          textExtensionCount++;
+          break;
+        default:
+          break;
+      }
+    }
+    return ombExtensionCount <= maxAllowedOmbExtensionCount && textExtensionCount == 1;
+  }
 
   public enum Gender {
     male,
@@ -183,11 +237,17 @@ public class Patient implements Resource {
     @Valid List<Extension> modifierExtension;
 
     @Valid List<CodeableConcept> relationship;
+
     @Valid HumanName name;
+
     @Valid List<ContactPoint> telecom;
+
     @Valid Address address;
+
     Gender gender;
+
     @Valid Reference organization;
+
     @Valid Period period;
   }
 
@@ -198,7 +258,6 @@ public class Patient implements Resource {
   @JsonDeserialize(builder = Entry.EntryBuilder.class)
   @Schema(name = "PatientEntry")
   public static class Entry extends AbstractEntry<Patient> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -225,7 +284,6 @@ public class Patient implements Resource {
           "${r4.patientBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerPatient#patientBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Patient bundle builder. */
     @Builder
     public Bundle(

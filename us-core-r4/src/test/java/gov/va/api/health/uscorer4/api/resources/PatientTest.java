@@ -1,58 +1,61 @@
 package gov.va.api.health.uscorer4.api.resources;
 
-import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
-import static java.util.Collections.singletonList;
+import static gov.va.api.health.uscorer4.api.RoundTrip.assertRoundTrip;
 
+import gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.uscorer4.api.RoundTrip;
+import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.uscorer4.api.ZeroOrOneOfVerifier;
+import gov.va.api.health.uscorer4.api.resources.Patient.Bundle;
+import gov.va.api.health.uscorer4.api.resources.Patient.Entry;
 import gov.va.api.health.uscorer4.api.samples.SamplePatients;
+import java.util.Collections;
 import org.junit.Test;
 
 public class PatientTest {
-
   private final SamplePatients data = SamplePatients.get();
 
   @Test
   public void bundlerCanBuildPatientBundles() {
-    Patient.Entry entry =
-        Patient.Entry.builder()
-            .extension(singletonList(data.extension()))
-            .fullUrl("http://localhost")
+    Entry entry =
+        Entry.builder()
+            .extension(Collections.singletonList(data.extension()))
+            .fullUrl("http://patient.com")
             .id("123")
             .link(
-                singletonList(
+                Collections.singletonList(
                     BundleLink.builder()
-                        .relation(BundleLink.LinkRelation.self)
-                        .url(("http://localhost/1"))
+                        .relation(LinkRelation.self)
+                        .url(("http://patient.com/1"))
                         .build()))
             .resource(data.patient())
             .search(data.search())
             .request(data.request())
             .response(data.response())
             .build();
-    gov.va.api.health.uscorer4.api.resources.Patient.Bundle bundle =
-        Patient.Bundle.builder()
-            .entry(singletonList(entry))
+
+    Bundle bundle =
+        Bundle.builder()
+            .entry(Collections.singletonList(entry))
             .link(
-                singletonList(
+                Collections.singletonList(
                     BundleLink.builder()
-                        .relation(BundleLink.LinkRelation.self)
-                        .url(("http://localhost/2"))
+                        .relation(LinkRelation.self)
+                        .url(("http://patient.com/2"))
                         .build()))
-            .type(searchset)
-            .signature(data.signature())
+            .type(BundleType.searchset)
             .build();
-    RoundTrip.assertRoundTrip(bundle);
+
+    assertRoundTrip(bundle);
   }
 
   @Test
   public void patient() {
-    RoundTrip.assertRoundTrip(data.patient());
+    assertRoundTrip(data.patient());
   }
 
   @Test
-  public void relatedFields() {
+  public void relatedGroups() {
     ZeroOrOneOfVerifier.builder().sample(data.patient()).fieldPrefix("deceased").build().verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.patient())

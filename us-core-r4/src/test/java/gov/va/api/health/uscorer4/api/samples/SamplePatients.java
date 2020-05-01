@@ -34,7 +34,7 @@ public class SamplePatients {
         .language("Hello language")
         .text(narrative())
         .contained(singletonList(resource()))
-        .extension(Arrays.asList(extension(), extension()))
+        .extension(Arrays.asList(usCoreEthnicityExtension(), extension()))
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))
