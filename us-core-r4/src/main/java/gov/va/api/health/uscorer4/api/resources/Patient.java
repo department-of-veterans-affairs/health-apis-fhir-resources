@@ -59,7 +59,7 @@ import lombok.NoArgsConstructor;
       message = "Only one deceased field may be specified"),
   @ZeroOrOneOf(
       fields = {"multipleBirthBoolean", "multipleBirthInteger"},
-      message = "Only one deceased field may be specified")
+      message = "Only one multipleBirth field may be specified")
 })
 public class Patient implements Resource {
   // Anscestor -- Resource

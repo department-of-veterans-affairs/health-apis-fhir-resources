@@ -4,7 +4,7 @@
   <parent>
     <artifactId>health-apis-parent</artifactId>
     <groupId>gov.va.api.health</groupId>
-    <version>5.0.3</version>
+    <version>6.0.6</version>
     <relativePath/>
   </parent>
   <artifactId>us-core-r4-examples</artifactId>
