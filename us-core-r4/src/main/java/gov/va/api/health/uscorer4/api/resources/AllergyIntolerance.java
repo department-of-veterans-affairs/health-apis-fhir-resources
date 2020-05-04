@@ -128,12 +128,6 @@ public final class AllergyIntolerance implements Resource {
     biologic
   }
 
-  public enum ClinicalStatus {
-    active,
-    inactive,
-    resolved
-  }
-
   public enum Criticality {
     low,
     high,
@@ -150,14 +144,6 @@ public final class AllergyIntolerance implements Resource {
   public enum Type {
     allergy,
     intolerance
-  }
-
-  public enum VerificationStatus {
-    unconfirmed,
-    confirmed,
-    refuted,
-    @JsonProperty("entered-in-error")
-    entered_in_error
   }
 
   @Data
