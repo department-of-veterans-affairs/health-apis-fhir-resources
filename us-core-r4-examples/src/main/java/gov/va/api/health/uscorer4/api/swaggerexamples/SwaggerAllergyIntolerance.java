@@ -20,7 +20,7 @@ public final class SwaggerAllergyIntolerance {
         .onsetDateTime("1995-04-30T01:15:52Z")
         .patient(
             Reference.builder()
-                .reference("https://dev-api.va.gov/services/r4/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/r4/v0/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .clinicalStatus(
@@ -81,23 +81,23 @@ public final class SwaggerAllergyIntolerance {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 AllergyIntolerance.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance/6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
+                        "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance/6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
                     .resource(
                         AllergyIntolerance.builder()
                             .resourceType("AllergyIntolerance")
@@ -106,7 +106,7 @@ public final class SwaggerAllergyIntolerance {
                             .patient(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/r4/v0/Patient/2000163")
+                                        "https://sandbox-api.va.gov/services/r4/v0/Patient/2000163")
                                     .display("Mr. Aurelio227 Cruickshank494")
                                     .build())
                             .clinicalStatus(
