@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <!-- Exclusions can be defined here and should include a comment on why the finding can be ignored -->
+</FindBugsFilter>

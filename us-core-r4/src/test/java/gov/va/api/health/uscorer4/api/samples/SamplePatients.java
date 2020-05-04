@@ -1,13 +1,13 @@
-package gov.va.api.health.r4.api.samples;
+package gov.va.api.health.uscorer4.api.samples;
 
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.resources.Patient;
-import gov.va.api.health.r4.api.resources.Patient.Communication;
-import gov.va.api.health.r4.api.resources.Patient.Gender;
-import gov.va.api.health.r4.api.resources.Patient.Link;
-import gov.va.api.health.r4.api.resources.Patient.PatientContact;
-import gov.va.api.health.r4.api.resources.Patient.Type;
+import gov.va.api.health.uscorer4.api.resources.Patient;
+import gov.va.api.health.uscorer4.api.resources.Patient.Communication;
+import gov.va.api.health.uscorer4.api.resources.Patient.Gender;
+import gov.va.api.health.uscorer4.api.resources.Patient.Link;
+import gov.va.api.health.uscorer4.api.resources.Patient.PatientContact;
+import gov.va.api.health.uscorer4.api.resources.Patient.Type;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
@@ -34,7 +34,7 @@ public class SamplePatients {
         .language("Hello language")
         .text(narrative())
         .contained(singletonList(resource()))
-        .extension(Arrays.asList(extension(), extension()))
+        .extension(Arrays.asList(usCoreEthnicityExtension(), extension()))
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))

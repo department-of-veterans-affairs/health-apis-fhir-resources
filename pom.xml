@@ -18,5 +18,7 @@
     <module>stu3</module>
     <module>argonaut</module>
     <module>argonaut-examples</module>
+    <module>us-core-r4</module>
+    <module>us-core-r4-examples</module>
   </modules>
 </project>
