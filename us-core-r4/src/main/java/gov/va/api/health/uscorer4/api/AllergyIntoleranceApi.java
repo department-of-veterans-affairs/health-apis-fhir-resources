@@ -58,7 +58,7 @@ public interface AllergyIntoleranceApi {
   @Path("AllergyIntolerance")
   @ApiResponse(
       responseCode = "200",
-      description = "Record found",
+      description = "Records found",
       content =
           @Content(
               mediaType = "application/json+fhir",

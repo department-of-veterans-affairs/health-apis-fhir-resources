@@ -24,7 +24,7 @@ public final class SampleAllergyIntolerances {
         .clinicalStatus(codeableConcept())
         .verificationStatus(codeableConcept())
         .type(AllergyIntolerance.Type.allergy)
-        .category(AllergyIntolerance.Category.food)
+        .category(singletonList(AllergyIntolerance.Category.food))
         .criticality(AllergyIntolerance.Criticality.high)
         .code(codeableConcept())
         .patient(reference())

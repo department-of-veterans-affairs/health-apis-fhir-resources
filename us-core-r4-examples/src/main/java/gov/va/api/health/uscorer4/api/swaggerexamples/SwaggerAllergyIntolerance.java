@@ -16,7 +16,7 @@ public final class SwaggerAllergyIntolerance {
   public static AllergyIntolerance allergyIntolerance() {
     return AllergyIntolerance.builder()
         .resourceType("AllergyIntolerance")
-        .id("6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
+        .id("I2-6F9A021B07D553C88CCEB49A694D4AD9") 
         .onsetDateTime("1995-04-30T01:15:52Z")
         .patient(
             Reference.builder()
@@ -44,7 +44,7 @@ public final class SwaggerAllergyIntolerance {
                             .build()))
                 .build())
         .type(AllergyIntolerance.Type.allergy)
-        .category(AllergyIntolerance.Category.food)
+        .category(asList(AllergyIntolerance.Category.food))
         .note(
             asList(
                 Annotation.builder()
@@ -98,61 +98,7 @@ public final class SwaggerAllergyIntolerance {
                 AllergyIntolerance.Entry.builder()
                     .fullUrl(
                         "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance/6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
-                    .resource(
-                        AllergyIntolerance.builder()
-                            .resourceType("AllergyIntolerance")
-                            .id("e2019e0c-fa38-596d-b966-9b86926959a7")
-                            .onsetDateTime("1995-04-30T01:15:52Z")
-                            .patient(
-                                Reference.builder()
-                                    .reference(
-                                        "https://sandbox-api.va.gov/services/r4/v0/Patient/2000163")
-                                    .display("Mr. Aurelio227 Cruickshank494")
-                                    .build())
-                            .clinicalStatus(
-                                CodeableConcept.builder()
-                                    .coding(
-                                        asList(
-                                            Coding.builder()
-                                                .system(
-                                                    "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
-                                                .code("active")
-                                                .build()))
-                                    .build())
-                            .verificationStatus(
-                                CodeableConcept.builder()
-                                    .coding(
-                                        asList(
-                                            Coding.builder()
-                                                .system(
-                                                    "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
-                                                .code("confirmed")
-                                                .build()))
-                                    .build())
-                            .type(AllergyIntolerance.Type.allergy)
-                            .note(
-                                asList(
-                                    Annotation.builder()
-                                        .time("1995-04-30T01:15:52Z")
-                                        .text("Allergy to bee venom")
-                                        .build()))
-                            .reaction(
-                                asList(
-                                    AllergyIntolerance.Reaction.builder()
-                                        .manifestation(
-                                            asList(
-                                                CodeableConcept.builder()
-                                                    .coding(
-                                                        asList(
-                                                            Coding.builder()
-                                                                .display("Sneezing and Coughing")
-                                                                .system("urn:oid:2.16.840.1.233")
-                                                                .code("2000004")
-                                                                .build()))
-                                                    .text("Sneezing and Coughing")
-                                                    .build()))
-                                        .build()))
-                            .build())
+                    .resource(allergyIntolerance())
                     .search(
                         AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())
                     .build()))

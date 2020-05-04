@@ -86,7 +86,7 @@ public final class AllergyIntolerance implements Resource {
 
   Type type;
 
-  Category category;
+  List<Category> category;
 
   Criticality criticality;
 
