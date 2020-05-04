@@ -1,40 +1,56 @@
-package gov.va.api.health.r4.api.swaggerexamples;
+package gov.va.api.health.uscorer4.api.swaggerexamples;
 
 import static java.util.Arrays.asList;
 
-import gov.va.api.health.r4.api.resources.AllergyIntolerance;
-import gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType;
-import gov.va.api.health.r4.api.bundle.AbstractEntry.Search;
-import gov.va.api.health.r4.api.bundle.AbstractEntry.SearchMode;
+import gov.va.api.health.r4.api.bundle.AbstractBundle;
+import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.r4.api.datatypes.Annotation;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance;
 
-public class SwaggerAllergyIntolerance {
-
-  /**
-   * An example AllergyIntolerance.
-   *
-   * @return an example AllegryIntolerance.
-   */
+public final class SwaggerAllergyIntolerance {
+  /** Example AllergyIntolerance. */
   public static AllergyIntolerance allergyIntolerance() {
     return AllergyIntolerance.builder()
         .resourceType("AllergyIntolerance")
         .id("6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
-        .onset("1995-04-30T01:15:52Z")
+        .onsetDateTime("1995-04-30T01:15:52Z")
         .patient(
             Reference.builder()
                 .reference("https://dev-api.va.gov/services/r4/v0/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
-        .substance(CodeableConcept.builder().text("Allergy to peanuts").build())
-        .status(AllergyIntolerance.Status.active)
+        .clinicalStatus(
+            CodeableConcept.builder()
+                .coding(
+                    asList(
+                        Coding.builder()
+                            .system(
+                                "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
+                            .code("active")
+                            .build()))
+                .build())
+        .verificationStatus(
+            CodeableConcept.builder()
+                .coding(
+                    asList(
+                        Coding.builder()
+                            .system(
+                                "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
+                            .code("confirmed")
+                            .build()))
+                .build())
         .type(AllergyIntolerance.Type.allergy)
         .category(AllergyIntolerance.Category.food)
-        .note(Annotation.builder().time("1995-04-30T01:15:52Z").text("Allergy to peanuts").build())
+        .note(
+            asList(
+                Annotation.builder()
+                    .time("1995-04-30T01:15:52Z")
+                    .text("Allergy to peanuts")
+                    .build()))
         .reaction(
             asList(
                 AllergyIntolerance.Reaction.builder()
@@ -50,35 +66,30 @@ public class SwaggerAllergyIntolerance {
                                             .build()))
                                 .text("Inflammation of Skin")
                                 .build()))
-                    .certainty(AllergyIntolerance.Certainty.likely)
                     .build()))
         .build();
   }
 
-  /**
-   * An example AllergyIntolerance.Bundle.
-   *
-   * @return an example AllegryIntolerance.Bundle.
-   */
+  /** Example bundle. */
   public static AllergyIntolerance.Bundle allergyIntoleranceBundle() {
     return AllergyIntolerance.Bundle.builder()
         .resourceType("Bundle")
-        .type(BundleType.searchset)
+        .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(
             asList(
                 BundleLink.builder()
-                    .relation(LinkRelation.self)
+                    .relation(BundleLink.LinkRelation.self)
                     .url(
                         "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
-                    .relation(LinkRelation.first)
+                    .relation(BundleLink.LinkRelation.first)
                     .url(
                         "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
-                    .relation(LinkRelation.last)
+                    .relation(BundleLink.LinkRelation.last)
                     .url(
                         "https://dev-api.va.gov/services/r4/v0/AllergyIntolerance?patient=1017283148V813263&page=1&_count=15")
                     .build()))
@@ -91,22 +102,40 @@ public class SwaggerAllergyIntolerance {
                         AllergyIntolerance.builder()
                             .resourceType("AllergyIntolerance")
                             .id("e2019e0c-fa38-596d-b966-9b86926959a7")
-                            .onset("1995-04-30T01:15:52Z")
+                            .onsetDateTime("1995-04-30T01:15:52Z")
                             .patient(
                                 Reference.builder()
                                     .reference(
                                         "https://dev-api.va.gov/services/r4/v0/Patient/2000163")
                                     .display("Mr. Aurelio227 Cruickshank494")
                                     .build())
-                            .substance(
-                                CodeableConcept.builder().text("Allergy to bee venom").build())
-                            .status(AllergyIntolerance.Status.active)
+                            .clinicalStatus(
+                                CodeableConcept.builder()
+                                    .coding(
+                                        asList(
+                                            Coding.builder()
+                                                .system(
+                                                    "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
+                                                .code("active")
+                                                .build()))
+                                    .build())
+                            .verificationStatus(
+                                CodeableConcept.builder()
+                                    .coding(
+                                        asList(
+                                            Coding.builder()
+                                                .system(
+                                                    "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
+                                                .code("confirmed")
+                                                .build()))
+                                    .build())
                             .type(AllergyIntolerance.Type.allergy)
                             .note(
-                                Annotation.builder()
-                                    .time("1995-04-30T01:15:52Z")
-                                    .text("Allergy to bee venom")
-                                    .build())
+                                asList(
+                                    Annotation.builder()
+                                        .time("1995-04-30T01:15:52Z")
+                                        .text("Allergy to bee venom")
+                                        .build()))
                             .reaction(
                                 asList(
                                     AllergyIntolerance.Reaction.builder()
@@ -124,7 +153,8 @@ public class SwaggerAllergyIntolerance {
                                                     .build()))
                                         .build()))
                             .build())
-                    .search(Search.builder().mode(SearchMode.match).build())
+                    .search(
+                        AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())
                     .build()))
         .build();
   }
