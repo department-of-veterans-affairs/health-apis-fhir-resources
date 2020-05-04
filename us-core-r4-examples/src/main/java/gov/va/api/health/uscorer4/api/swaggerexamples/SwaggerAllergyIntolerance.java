@@ -20,7 +20,7 @@ public final class SwaggerAllergyIntolerance {
         .onsetDateTime("1995-04-30T01:15:52Z")
         .patient(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/r4/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/r4/v0/Patient/1017283148V813263")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .clinicalStatus(
@@ -28,8 +28,7 @@ public final class SwaggerAllergyIntolerance {
                 .coding(
                     asList(
                         Coding.builder()
-                            .system(
-                                "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
+                            .system("http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
                             .code("active")
                             .build()))
                 .build())
@@ -38,8 +37,7 @@ public final class SwaggerAllergyIntolerance {
                 .coding(
                     asList(
                         Coding.builder()
-                            .system(
-                                "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
+                            .system("http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
                             .code("confirmed")
                             .build()))
                 .build())
@@ -96,8 +94,7 @@ public final class SwaggerAllergyIntolerance {
         .entry(
             asList(
                 AllergyIntolerance.Entry.builder()
-                    .fullUrl(
-                        "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance/6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
+                    .fullUrl("https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance/I2-6F9A021B07D553C88CCEB49A694D4AD9")
                     .resource(allergyIntolerance())
                     .search(
                         AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())
