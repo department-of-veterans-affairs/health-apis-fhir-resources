@@ -154,7 +154,7 @@ public class SwaggerPatient {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Patient?indentifier=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Patient?identifier=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
