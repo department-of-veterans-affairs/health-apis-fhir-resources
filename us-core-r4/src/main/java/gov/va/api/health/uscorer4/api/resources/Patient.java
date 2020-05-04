@@ -130,6 +130,7 @@ public class Patient implements Resource {
 
   @JsonIgnore
   @AssertTrue(message = "US-Core-Ethnicity extension is not valid")
+  @SuppressWarnings("unused")
   private boolean isValidEthnicityExtension() {
     return isValidUsCoreExtensionCount(
         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity", 1);
@@ -137,6 +138,7 @@ public class Patient implements Resource {
 
   @JsonIgnore
   @AssertTrue(message = "US-Core-Race extension is not valid")
+  @SuppressWarnings("unused")
   private boolean isValidRaceExtension() {
     return isValidUsCoreExtensionCount(
         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race", 5);
@@ -154,15 +156,10 @@ public class Patient implements Resource {
     int ombExtensionCount = 0;
     int textExtensionCount = 0;
     for (Extension e : usCoreExtension.get().extension()) {
-      switch (e.url()) {
-        case "ombCategory":
-          ombExtensionCount++;
-          break;
-        case "text":
-          textExtensionCount++;
-          break;
-        default:
-          break;
+      if ("ombCategory".equals(e.url())) {
+        ombExtensionCount++;
+      } else if ("text".equals(e.url())) {
+        textExtensionCount++;
       }
     }
     return ombExtensionCount <= maxAllowedOmbExtensionCount && textExtensionCount == 1;
