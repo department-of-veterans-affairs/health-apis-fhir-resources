@@ -1,13 +1,12 @@
-package gov.va.api.health.r4.api.resources;
+package gov.va.api.health.uscorer4.api.resources;
 
-import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
+import static gov.va.api.health.uscorer4.api.RoundTrip.assertRoundTrip;
 
 import gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Bundle;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Entry;
-import gov.va.api.health.r4.api.samples.SampleAllergyIntolerances;
+import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance.Bundle;
+import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance.Entry;
+import gov.va.api.health.uscorer4.api.samples.SampleAllergyIntolerances;
 import java.util.Collections;
 import org.junit.Test;
 
@@ -29,7 +28,7 @@ public class AllergyIntoleranceTest {
             .link(
                 Collections.singletonList(
                     BundleLink.builder()
-                        .relation(LinkRelation.self)
+                        .relation(BundleLink.LinkRelation.self)
                         .url(("http://AllergyIntolerance.com/1"))
                         .build()))
             .resource(data.allergyIntolerance())
@@ -44,7 +43,7 @@ public class AllergyIntoleranceTest {
             .link(
                 Collections.singletonList(
                     BundleLink.builder()
-                        .relation(LinkRelation.self)
+                        .relation(BundleLink.LinkRelation.self)
                         .url(("http://AllergyIntolerance.com/2"))
                         .build()))
             .type(BundleType.searchset)

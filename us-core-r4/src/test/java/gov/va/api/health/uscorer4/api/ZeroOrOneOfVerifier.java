@@ -14,12 +14,11 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ZeroOrOneOfVerifier<T> extends AbstractRelatedFieldVerifier<T> {
-
   /** The prefix of the related fields. */
   private String fieldPrefix;
 
   @Builder
-  public ZeroOrOneOfVerifier(T sample, String fieldPrefix, @Singular Collection omissions) {
+  public ZeroOrOneOfVerifier(T sample, String fieldPrefix, @Singular Collection<?> omissions) {
     super(sample, name -> name.startsWith(fieldPrefix) && !omissions.contains(name));
     this.fieldPrefix = fieldPrefix;
   }

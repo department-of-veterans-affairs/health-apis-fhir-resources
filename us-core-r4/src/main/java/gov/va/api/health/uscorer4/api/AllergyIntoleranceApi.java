@@ -1,7 +1,7 @@
-package gov.va.api.health.r4.api;
+package gov.va.api.health.uscorer4.api;
 
-import gov.va.api.health.r4.api.resources.AllergyIntolerance;
 import gov.va.api.health.r4.api.resources.OperationOutcome;
+import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -15,7 +15,8 @@ import javax.ws.rs.Path;
 public interface AllergyIntoleranceApi {
   @Operation(
       summary = "Allergy Intolerance Read",
-      description = "http://hl7.org/fhir/R4/allergyintolerance.html",
+      description =
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-allergyintolerance.html",
       tags = {"Allergy Intolerance"})
   @GET
   @Path("AllergyIntolerance/{id}")

@@ -153,6 +153,7 @@ public abstract class AbstractRelatedFieldVerifier<T> {
   }
 
   /** Set the field to an automatically determined value based on it's type. */
+  @SuppressWarnings("unchecked")
   protected void setField(String name) {
     Field field = field(name);
     Supplier<?> supplier;

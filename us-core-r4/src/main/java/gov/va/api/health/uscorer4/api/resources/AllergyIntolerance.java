@@ -1,4 +1,4 @@
-package gov.va.api.health.r4.api.resources;
+package gov.va.api.health.uscorer4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,9 +7,12 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
+import gov.va.api.health.r4.api.datatypes.Age;
 import gov.va.api.health.r4.api.datatypes.Annotation;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Identifier;
+import gov.va.api.health.r4.api.datatypes.Period;
+import gov.va.api.health.r4.api.datatypes.Range;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
@@ -17,6 +20,9 @@ import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.r4.api.resources.Resource;
+import gov.va.api.health.validation.api.ZeroOrOneOf;
+import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
@@ -41,10 +47,15 @@ import lombok.NoArgsConstructor;
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
     description =
-        "http://www.fhir.org/guides/r4/r2/StructureDefinition-argo-allergyintolerance.html",
+        "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-allergyintolerance.html",
     example =
-        "${r4.allergyIntolerance:gov.va.api.health.r4.api.swaggerexamples."
+        "${uscorer4.allergyIntolerance:gov.va.api.health.uscorer4.api.swaggerexamples."
             + "SwaggerAllergyIntolerance#allergyIntolerance}")
+@ZeroOrOneOfs({
+  @ZeroOrOneOf(
+      fields = {"onsetDateTime", "onsetAge", "onsetPeriod", "onsetRange", "onsetString"},
+      message = "Only one onset field may be specified")
+})
 public final class AllergyIntolerance implements Resource {
   @NotBlank String resourceType;
 
@@ -78,36 +89,35 @@ public final class AllergyIntolerance implements Resource {
   Category category;
 
   Criticality criticality;
-  
+
   @Valid CodeableConcept code;
-  
+
   @NotNull @Valid Reference patient;
-  
-  @Valid Encounter encounter;
-  
-  
-  
-  
-  
+
+  @Valid Reference encounter;
 
   @Pattern(regexp = Fhir.DATETIME)
-  String onset;
+  String onsetDateTime;
+
+  @Valid Age onsetAge;
+
+  @Valid Period onsetPeriod;
+
+  @Valid Range onsetRange;
+
+  String onsetString;
 
   @Pattern(regexp = Fhir.DATETIME)
   String recordedDate;
 
   @Valid Reference recorder;
 
-  @Valid Reference reporter;
-
-  @NotNull @Valid CodeableConcept substance;
-
-  @NotNull Status status;
+  @Valid Reference asserter;
 
   @Pattern(regexp = Fhir.DATETIME)
   String lastOccurence;
 
-  @Valid Annotation note;
+  @Valid List<Annotation> note;
 
   @Valid List<Reaction> reaction;
 
@@ -118,10 +128,10 @@ public final class AllergyIntolerance implements Resource {
     biologic
   }
 
-  public enum Certainty {
-    unlikely,
-    likely,
-    confirmed
+  public enum ClinicalStatus {
+    active,
+    inactive,
+    resolved
   }
 
   public enum Criticality {
@@ -137,20 +147,17 @@ public final class AllergyIntolerance implements Resource {
     severe
   }
 
-  public enum Status {
-    active,
-    unconfirmed,
-    confirmed,
-    inactive,
-    resolved,
-    refuted,
-    @JsonProperty("entered-in-error")
-    entered_in_error
-  }
-
   public enum Type {
     allergy,
     intolerance
+  }
+
+  public enum VerificationStatus {
+    unconfirmed,
+    confirmed,
+    refuted,
+    @JsonProperty("entered-in-error")
+    entered_in_error
   }
 
   @Data
@@ -164,6 +171,7 @@ public final class AllergyIntolerance implements Resource {
           "${r4.allergyIntoleranceBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerAllergyIntolerance#allergyIntoleranceBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -226,13 +234,11 @@ public final class AllergyIntolerance implements Resource {
     @Pattern(regexp = Fhir.ID)
     String id;
 
-    @Valid List<Extension> modifierExtension;
-
     @Valid List<Extension> extension;
 
-    @Valid CodeableConcept substance;
+    @Valid List<Extension> modifierExtension;
 
-    Certainty certainty;
+    @Valid CodeableConcept substance;
 
     @NotEmpty @Valid List<CodeableConcept> manifestation;
 
@@ -245,6 +251,6 @@ public final class AllergyIntolerance implements Resource {
 
     @Valid CodeableConcept exposureRoute;
 
-    @Valid Annotation note;
+    @Valid List<Annotation> note;
   }
 }

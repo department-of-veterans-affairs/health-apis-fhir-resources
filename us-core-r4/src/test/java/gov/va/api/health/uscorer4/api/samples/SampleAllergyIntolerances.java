@@ -1,21 +1,13 @@
-package gov.va.api.health.r4.api.samples;
+package gov.va.api.health.uscorer4.api.samples;
 
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.resources.AllergyIntolerance;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Category;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Certainty;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Criticality;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Reaction;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Severity;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Status;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance.Type;
+import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
-@SuppressWarnings("WeakerAccess")
 @NoArgsConstructor(staticName = "get")
-public class SampleAllergyIntolerances {
+public final class SampleAllergyIntolerances {
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public AllergyIntolerance allergyIntolerance() {
@@ -29,35 +21,36 @@ public class SampleAllergyIntolerances {
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
         .identifier(singletonList(identifier()))
-        .onset("2015-04-15T04:00:00Z")
+        .clinicalStatus(codeableConcept())
+        .verificationStatus(codeableConcept())
+        .type(AllergyIntolerance.Type.allergy)
+        .category(AllergyIntolerance.Category.food)
+        .criticality(AllergyIntolerance.Criticality.high)
+        .code(codeableConcept())
+        .patient(reference())
+        .encounter(reference())
+        .onsetDateTime("2015-04-15T04:00:00Z")
         .recordedDate("2015-04-15T04:00:00Z")
         .recorder(reference())
-        .patient(reference())
-        .reporter(reference())
-        .substance(codeableConcept())
-        .status(Status.active)
-        .criticality(Criticality.CRITL)
-        .type(Type.allergy)
-        .category(Category.food)
+        .asserter(reference())
         .lastOccurence("2015-04-15T04:00:00Z")
-        .note(annotation())
+        .note(singletonList(annotation()))
         .reaction(singletonList(reaction()))
         .build();
   }
 
-  public Reaction reaction() {
-    return Reaction.builder()
+  public AllergyIntolerance.Reaction reaction() {
+    return AllergyIntolerance.Reaction.builder()
         .id("1111")
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
         .substance(codeableConcept())
-        .certainty(Certainty.unlikely)
         .manifestation(singletonList(codeableConcept()))
         .description("Test Reaction Description")
         .onset("2015-04-15T04:00:00Z")
-        .severity(Severity.severe)
+        .severity(AllergyIntolerance.Severity.severe)
         .exposureRoute(codeableConcept())
-        .note(annotation())
+        .note(singletonList(annotation()))
         .build();
   }
 }
