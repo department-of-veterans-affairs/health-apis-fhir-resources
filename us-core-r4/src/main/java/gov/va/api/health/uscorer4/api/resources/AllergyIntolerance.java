@@ -191,9 +191,9 @@ public final class AllergyIntolerance implements Resource {
   @Data
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
+  @Schema(name = "AllergyIntoleranceEntry")
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = AllergyIntolerance.Entry.EntryBuilder.class)
-  @Schema(name = "AllergyIntoleranceEntry")
   public static final class Entry extends AbstractEntry<AllergyIntolerance> {
     @Builder
     public Entry(
@@ -212,10 +212,10 @@ public final class AllergyIntolerance implements Resource {
 
   @Data
   @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "AllergyIntoleranceReaction")
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static final class Reaction implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
