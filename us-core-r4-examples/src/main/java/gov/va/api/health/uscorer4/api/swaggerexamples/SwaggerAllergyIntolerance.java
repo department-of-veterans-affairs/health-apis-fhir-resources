@@ -16,7 +16,7 @@ public final class SwaggerAllergyIntolerance {
   public static AllergyIntolerance allergyIntolerance() {
     return AllergyIntolerance.builder()
         .resourceType("AllergyIntolerance")
-        .id("I2-6F9A021B07D553C88CCEB49A694D4AD9") 
+        .id("I2-6F9A021B07D553C88CCEB49A694D4AD9")
         .onsetDateTime("1995-04-30T01:15:52Z")
         .patient(
             Reference.builder()
@@ -28,7 +28,8 @@ public final class SwaggerAllergyIntolerance {
                 .coding(
                     asList(
                         Coding.builder()
-                            .system("http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
+                            .system(
+                                "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical")
                             .code("active")
                             .build()))
                 .build())
@@ -37,7 +38,8 @@ public final class SwaggerAllergyIntolerance {
                 .coding(
                     asList(
                         Coding.builder()
-                            .system("http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
+                            .system(
+                                "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification")
                             .code("confirmed")
                             .build()))
                 .build())
@@ -94,7 +96,8 @@ public final class SwaggerAllergyIntolerance {
         .entry(
             asList(
                 AllergyIntolerance.Entry.builder()
-                    .fullUrl("https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance/I2-6F9A021B07D553C88CCEB49A694D4AD9")
+                    .fullUrl(
+                        "https://sandbox-api.va.gov/services/r4/v0/AllergyIntolerance/I2-6F9A021B07D553C88CCEB49A694D4AD9")
                     .resource(allergyIntolerance())
                     .search(
                         AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())
