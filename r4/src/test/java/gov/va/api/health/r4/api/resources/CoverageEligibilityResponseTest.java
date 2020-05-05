@@ -5,17 +5,19 @@ import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchse
 import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.ExactlyOneOfExtensionVerifier;
-import gov.va.api.health.r4.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Bundle;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Entry;
 import gov.va.api.health.r4.api.samples.SampleCoverageEligibilityResponses;
+import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import org.junit.Test;
 
 public class CoverageEligibilityResponseTest {
 
   private final SampleCoverageEligibilityResponses data = SampleCoverageEligibilityResponses.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildCoverageEligibilityResponseBundles() {
@@ -63,28 +65,50 @@ public class CoverageEligibilityResponseTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.coverageEligibilityResponse())
         .fieldPrefix("serviced")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
-    ZeroOrOneOfVerifier.builder().sample(data.benefit()).fieldPrefix("allowed").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.benefit()).fieldPrefix("used").build().verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.benefit())
+        .fieldPrefix("allowed")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.benefit())
+        .fieldPrefix("used")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.coverageEligibilityResponse())
         .field("request")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.coverageEligibilityResponseWithDataAbsentReason())
         .field("request")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.insurance())
         .field("coverage")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.insuranceWithDataAbsentReason())
         .field("coverage")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

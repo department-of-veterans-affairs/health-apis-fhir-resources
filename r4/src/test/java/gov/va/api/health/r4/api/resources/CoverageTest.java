@@ -4,17 +4,19 @@ import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.ExactlyOneOfVerifier;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.r4.api.resources.Coverage.Bundle;
 import gov.va.api.health.r4.api.resources.Coverage.Entry;
 import gov.va.api.health.r4.api.samples.SampleCoverages;
+import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import org.junit.Test;
 
 public class CoverageTest {
 
   private final SampleCoverages data = SampleCoverages.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildCoverageBundles() {
@@ -62,6 +64,8 @@ public class CoverageTest {
     ExactlyOneOfVerifier.builder()
         .sample(data.costToBeneficiaryWithValueQuantity())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

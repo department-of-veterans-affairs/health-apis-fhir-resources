@@ -3,15 +3,17 @@ package gov.va.api.health.dstu2.api.datatypes;
 import static gov.va.api.health.dstu2.api.RoundTrip.assertRoundTrip;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.dstu2.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.dstu2.api.resources.OperationOutcome;
 import gov.va.api.health.dstu2.api.samples.SampleDataTypes;
+import gov.va.api.health.dstu2.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Arrays;
 import org.junit.Test;
 
 public class DataTypesTest {
 
   private final SampleDataTypes data = SampleDataTypes.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void dataTypes() {
@@ -26,6 +28,8 @@ public class DataTypesTest {
     ZeroOrOneOfVerifier.builder()
         .sample(SampleDataTypes.get().extension())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

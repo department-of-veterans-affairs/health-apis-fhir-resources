@@ -3,14 +3,15 @@ package gov.va.api.health.dstu2.api.resources;
 import static gov.va.api.health.dstu2.api.RoundTrip.assertRoundTrip;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.dstu2.api.ExactlyOneOfVerifier;
-import gov.va.api.health.dstu2.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.dstu2.api.resources.MedicationDispense.Bundle;
 import gov.va.api.health.dstu2.api.resources.MedicationDispense.Entry;
+import gov.va.api.health.dstu2.api.samples.SampleKnownTypes;
 import gov.va.api.health.dstu2.api.samples.SampleMedicationDispenses;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -20,6 +21,7 @@ import org.junit.Test;
 
 public class MedicationDispenseTest {
   private final SampleMedicationDispenses data = SampleMedicationDispenses.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildMedicationDispenseBundles() {
@@ -63,26 +65,36 @@ public class MedicationDispenseTest {
     ExactlyOneOfVerifier.builder()
         .sample(data.medicationDispense())
         .fieldPrefix("medication")
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationDispense().dosageInstruction().get(0))
         .fieldPrefix("rate")
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationDispense().dosageInstruction().get(0))
         .fieldPrefix("asNeeded")
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationDispense().dosageInstruction().get(0))
         .fieldPrefix("site")
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationDispense().dosageInstruction().get(0))
         .fieldPrefix("dose")
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
         .build()
         .verify();
   }

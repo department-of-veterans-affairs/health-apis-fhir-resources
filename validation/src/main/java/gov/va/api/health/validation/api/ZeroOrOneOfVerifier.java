@@ -16,9 +16,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ZeroOrOneOfVerifier<T> extends AbstractRelatedFieldVerifier<T> {
-  private final Map<String, Supplier<?>> stringTypes;
-
-  private final Map<Class<?>, Supplier<?>> knownTypes;
 
   /** The prefix of the related fields. */
   private String fieldPrefix;
@@ -37,8 +34,6 @@ public class ZeroOrOneOfVerifier<T> extends AbstractRelatedFieldVerifier<T> {
         knownTypes,
         stringTypes);
     this.fieldPrefix = fieldPrefix;
-    this.stringTypes = stringTypes;
-    this.knownTypes = knownTypes;
   }
 
   @Override

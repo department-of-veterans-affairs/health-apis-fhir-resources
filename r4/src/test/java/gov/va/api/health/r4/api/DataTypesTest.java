@@ -5,12 +5,15 @@ import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.resources.OperationOutcome;
 import gov.va.api.health.r4.api.samples.SampleDataTypes;
+import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Arrays;
 import org.junit.Test;
 
 public class DataTypesTest {
 
   private final SampleDataTypes data = SampleDataTypes.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void operationOutcome() {
@@ -38,24 +41,32 @@ public class DataTypesTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.annotation().authorReference(null).authorString("string"))
         .fieldPrefix("author")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
     ZeroOrOneOfVerifier.builder()
         .sample(data.annotation().authorReference(data.reference()).authorString(null))
         .fieldPrefix("author")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
     ZeroOrOneOfVerifier.builder()
         .sample(data.dosage().asNeededBoolean(null).asNeededCodeableConcept(data.codeableConcept()))
         .fieldPrefix("asNeeded")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
     ZeroOrOneOfVerifier.builder()
         .sample(data.dosage().asNeededBoolean("true").asNeededCodeableConcept(null))
         .fieldPrefix("asNeeded")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -63,12 +74,16 @@ public class DataTypesTest {
         .sample(
             data.dosage().doseAndRate().get(0).doseRange(null).doseQuantity(data.simpleQuantity()))
         .fieldPrefix("dose")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
     ZeroOrOneOfVerifier.builder()
         .sample(data.dosage().doseAndRate().get(0).doseRange(data.range()).doseQuantity(null))
         .fieldPrefix("dose")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -81,6 +96,8 @@ public class DataTypesTest {
                 .rateRange(null)
                 .rateQuantity(data.simpleQuantity()))
         .fieldPrefix("rate")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -93,6 +110,8 @@ public class DataTypesTest {
                 .rateRange(data.range())
                 .rateQuantity(null))
         .fieldPrefix("rate")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -105,6 +124,8 @@ public class DataTypesTest {
                 .rateRange(null)
                 .rateQuantity(null))
         .fieldPrefix("rate")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -117,6 +138,8 @@ public class DataTypesTest {
                 .boundsRange(null)
                 .boundsPeriod(data.period()))
         .fieldPrefix("bounds")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -129,6 +152,8 @@ public class DataTypesTest {
                 .boundsRange(data.range())
                 .boundsPeriod(null))
         .fieldPrefix("bounds")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
 
@@ -141,6 +166,8 @@ public class DataTypesTest {
                 .boundsRange(null)
                 .boundsPeriod(null))
         .fieldPrefix("bounds")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

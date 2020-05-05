@@ -4,18 +4,20 @@ import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.ExactlyOneOfVerifier;
-import gov.va.api.health.r4.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.r4.api.resources.Claim.Bundle;
 import gov.va.api.health.r4.api.resources.Claim.Entry;
 import gov.va.api.health.r4.api.samples.SampleClaims;
+import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import org.junit.Test;
 
 public class ClaimTest {
 
   private final SampleClaims data = SampleClaims.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildClaimBundles() {
@@ -60,91 +62,127 @@ public class ClaimTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.accidentWithLocationAddress())
         .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.accidentWithLocationReference())
         .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingDateAndValueAttachment())
         .fieldPrefix("timing")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingPeriodAndValueAttachment())
         .fieldPrefix("timing")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingDateAndValueAttachment())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingDateAndValueBoolean())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingDateAndValueQuantity())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingDateAndValueReference())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfoWithTimingDateAndValueString())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.diagnosisWithCodeableConcept())
         .fieldPrefix("diagnosis")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.diagnosisWithReference())
         .fieldPrefix("diagnosis")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.procedureWithCodeableConcept())
         .fieldPrefix("procedure")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.procedureWithReference())
         .fieldPrefix("procedure")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.itemWithServicedDateAndLocationAddress())
         .fieldPrefix("serviced")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.itemWithServicedPeriodAndLocationAddress())
         .fieldPrefix("serviced")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.itemWithServicedDateAndLocationAddress())
         .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.itemWithServicedDateAndLocationCodeableConcept())
         .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.itemWithServicedDateAndLocationReference())
         .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

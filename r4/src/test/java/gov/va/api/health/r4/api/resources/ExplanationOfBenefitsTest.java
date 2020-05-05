@@ -4,18 +4,20 @@ import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.ExactlyOneOfVerifier;
-import gov.va.api.health.r4.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Bundle;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Entry;
 import gov.va.api.health.r4.api.samples.SampleExplanationOfBenefits;
+import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import org.junit.Test;
 
 public class ExplanationOfBenefitsTest {
 
   private final SampleExplanationOfBenefits data = SampleExplanationOfBenefits.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildExplanationOfBenefitBundles() {
@@ -60,29 +62,79 @@ public class ExplanationOfBenefitsTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfo())
         .fieldPrefix("timing")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.supportingInfo())
         .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.diagnosis())
         .fieldPrefix("diagnosis")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.procedure())
         .fieldPrefix("procedure")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
-    ZeroOrOneOfVerifier.builder().sample(data.accident()).fieldPrefix("location").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.item()).fieldPrefix("serviced").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.item()).fieldPrefix("location").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.addItem()).fieldPrefix("serviced").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.addItem()).fieldPrefix("location").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.financial()).fieldPrefix("allowed").build().verify();
-    ZeroOrOneOfVerifier.builder().sample(data.financial()).fieldPrefix("used").build().verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.accident())
+        .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.item())
+        .fieldPrefix("serviced")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.item())
+        .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.addItem())
+        .fieldPrefix("serviced")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.addItem())
+        .fieldPrefix("location")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.financial())
+        .fieldPrefix("allowed")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.financial())
+        .fieldPrefix("used")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
   }
 }
