@@ -60,7 +60,7 @@ public interface ConditionApi {
   @Path("Condition")
   @ApiResponse(
       responseCode = "200",
-      description = "Record Found",
+      description = "Records Found",
       content =
           @Content(
               mediaType = "application/json+fhir",
