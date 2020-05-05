@@ -6,6 +6,7 @@ import gov.va.api.health.argonaut.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.argonaut.api.resources.Immunization.Bundle;
 import gov.va.api.health.argonaut.api.resources.Immunization.Entry;
 import gov.va.api.health.argonaut.api.samples.SampleImmunizations;
+import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.AbstractEntry;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
@@ -15,6 +16,7 @@ import org.junit.Test;
 
 public class ImmunizationTest {
   private final SampleImmunizations data = SampleImmunizations.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildImmunizationBundles() {
@@ -63,11 +65,15 @@ public class ImmunizationTest {
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.immunization())
         .field("status")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.immunization())
         .field("reported")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

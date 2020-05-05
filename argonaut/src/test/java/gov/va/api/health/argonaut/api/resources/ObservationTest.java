@@ -3,13 +3,14 @@ package gov.va.api.health.argonaut.api.resources;
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.argonaut.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.argonaut.api.resources.Observation.Bundle;
 import gov.va.api.health.argonaut.api.resources.Observation.Entry;
+import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
 import gov.va.api.health.argonaut.api.samples.SampleObservations;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -19,6 +20,7 @@ import org.junit.Test;
 
 public class ObservationTest {
   private final SampleObservations data = SampleObservations.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildObservationBundles() {
@@ -64,9 +66,17 @@ public class ObservationTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.observation())
         .fieldPrefix("effective")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
-    ZeroOrOneOfVerifier.builder().sample(data.observation()).fieldPrefix("value").build().verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.observation())
+        .fieldPrefix("value")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
   }
 
   @Test

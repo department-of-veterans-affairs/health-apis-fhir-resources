@@ -2,16 +2,18 @@ package gov.va.api.health.argonaut.api.resources;
 
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 
-import gov.va.api.health.argonaut.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.argonaut.api.resources.Condition.Bundle;
 import gov.va.api.health.argonaut.api.samples.SampleConditions;
+import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import org.junit.Test;
 
 public class ConditionTest {
   private final SampleConditions data = SampleConditions.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildConditionBundles() {
@@ -54,10 +56,18 @@ public class ConditionTest {
 
   @Test
   public void relatedGroups() {
-    ZeroOrOneOfVerifier.builder().sample(data.condition()).fieldPrefix("onset").build().verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.condition())
+        .fieldPrefix("onset")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.condition())
         .fieldPrefix("abatement")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

@@ -3,10 +3,11 @@ package gov.va.api.health.argonaut.api.resources;
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.argonaut.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.argonaut.api.samples.SampleDiagnosticReports;
+import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -16,6 +17,7 @@ import org.junit.Test;
 
 public class DiagnosticReportTest {
   private final SampleDiagnosticReports data = SampleDiagnosticReports.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildDiagnosticReportBundles() {
@@ -60,6 +62,8 @@ public class DiagnosticReportTest {
   public void relatedGroups() {
     ZeroOrOneOfVerifier.builder()
         .sample(data.diagnosticReport())
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
         .fieldPrefix("effective")
         .build()
         .verify();

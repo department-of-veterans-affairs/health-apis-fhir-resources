@@ -2,19 +2,21 @@ package gov.va.api.health.argonaut.api.resources;
 
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 
-import gov.va.api.health.argonaut.api.ExactlyOneOfVerifier;
-import gov.va.api.health.argonaut.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.argonaut.api.resources.MedicationStatement.Bundle;
 import gov.va.api.health.argonaut.api.resources.MedicationStatement.Entry;
+import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
 import gov.va.api.health.argonaut.api.samples.SampleMedicationStatements;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import org.junit.Test;
 
 public class MedicationStatementTest {
   private final SampleMedicationStatements data = SampleMedicationStatements.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildMedicationStatementBundles() {
@@ -61,16 +63,22 @@ public class MedicationStatementTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationStatement())
         .fieldPrefix("reasonForUse")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationStatement())
         .fieldPrefix("effective")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ExactlyOneOfVerifier.builder()
         .sample(data.medicationStatement())
         .fieldPrefix("medication")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }

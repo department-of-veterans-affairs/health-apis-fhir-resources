@@ -2,20 +2,22 @@ package gov.va.api.health.argonaut.api.resources;
 
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 
-import gov.va.api.health.argonaut.api.ExactlyOneOfVerifier;
-import gov.va.api.health.argonaut.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.argonaut.api.resources.MedicationOrder.Bundle;
 import gov.va.api.health.argonaut.api.resources.MedicationOrder.Entry;
+import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
 import gov.va.api.health.argonaut.api.samples.SampleMedicationOrders;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.AbstractEntry;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import org.junit.Test;
 
 public class MedicationOrderTest {
   private final SampleMedicationOrders data = SampleMedicationOrders.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildMedicationOrderBundles() {
@@ -63,37 +65,51 @@ public class MedicationOrderTest {
     ExactlyOneOfVerifier.builder()
         .sample(data.medicationOrder())
         .fieldPrefix("medication")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder())
         .fieldPrefix("reason")
         .omission("reasonEnded")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder().dosageInstruction().get(0))
         .fieldPrefix("asNeeded")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder().dosageInstruction().get(0))
         .fieldPrefix("site")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder().dosageInstruction().get(0))
         .fieldPrefix("dose")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder().dosageInstruction().get(0))
         .fieldPrefix("rate")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder().dispenseRequest())
         .fieldPrefix("medication")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }
