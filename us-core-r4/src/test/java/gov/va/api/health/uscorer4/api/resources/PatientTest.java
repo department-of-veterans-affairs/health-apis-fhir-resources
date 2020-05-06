@@ -5,15 +5,17 @@ import static gov.va.api.health.uscorer4.api.RoundTrip.assertRoundTrip;
 import gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
-import gov.va.api.health.uscorer4.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.uscorer4.api.resources.Patient.Bundle;
 import gov.va.api.health.uscorer4.api.resources.Patient.Entry;
+import gov.va.api.health.uscorer4.api.samples.SampleKnownTypes;
 import gov.va.api.health.uscorer4.api.samples.SamplePatients;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import org.junit.Test;
 
 public class PatientTest {
   private final SamplePatients data = SamplePatients.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildPatientBundles() {
@@ -56,10 +58,18 @@ public class PatientTest {
 
   @Test
   public void relatedGroups() {
-    ZeroOrOneOfVerifier.builder().sample(data.patient()).fieldPrefix("deceased").build().verify();
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.patient())
+        .fieldPrefix("deceased")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
     ZeroOrOneOfVerifier.builder()
         .sample(data.patient())
         .fieldPrefix("multipleBirth")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
         .build()
         .verify();
   }
