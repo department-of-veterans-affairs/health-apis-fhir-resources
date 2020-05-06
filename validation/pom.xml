@@ -19,11 +19,16 @@
       <groupId>gov.va.api.health</groupId>
       <artifactId>service-auto-config</artifactId>
       <version>5.0.0-SNAPSHOT</version>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>28.2-jre</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

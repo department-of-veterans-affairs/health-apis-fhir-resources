@@ -1,6 +1,6 @@
 package gov.va.api.health.validation.api;
 
-import java.util.HashMap;
+import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,9 @@ import org.opentest4j.AssertionFailedError;
 public class ZeroOrOneOfVerifierTest {
   @Test(expected = AssertionFailedError.class)
   public void allFields() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ZeroOrOneOfVerifier.builder()
         .sample(new ZeroOrOne("zeroOr", 1, ZeroOrOneEnum.ZERO))
         .fieldPrefix("zeroOrOne")
@@ -27,11 +25,9 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test
   public void oneEnum() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ZeroOrOneOfVerifier.builder()
         .sample(new ZeroOrOne(null, null, ZeroOrOneEnum.ONE))
         .fieldPrefix("zeroOrOne")
@@ -43,11 +39,9 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test
   public void oneInteger() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ZeroOrOneOfVerifier.builder()
         .sample(new ZeroOrOne(null, 1, null))
         .fieldPrefix("zeroOrOne")
@@ -59,11 +53,9 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test
   public void oneString() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ZeroOrOneOfVerifier.builder()
         .sample(new ZeroOrOne("zeroOr", null, null))
         .fieldPrefix("zeroOrOne")
@@ -75,11 +67,9 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test(expected = AssertionFailedError.class)
   public void twoFields() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ZeroOrOneOfVerifier.builder()
         .sample(new ZeroOrOne("zeroOr", 1, null))
         .fieldPrefix("zeroOrOne")
@@ -91,11 +81,9 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test
   public void zeroFields() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ZeroOrOneOfVerifier.builder()
         .sample(new ZeroOrOne(null, null, null))
         .fieldPrefix("zeroOrOne")

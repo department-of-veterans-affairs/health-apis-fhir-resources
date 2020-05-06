@@ -1,6 +1,6 @@
 package gov.va.api.health.validation.api;
 
-import java.util.HashMap;
+import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,9 @@ import org.opentest4j.AssertionFailedError;
 public class ExactlyOneOfVerifierTest {
   @Test(expected = IllegalArgumentException.class)
   public void blankPrefixIsAnIllegalArgument() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ExactlyOneOfVerifier.builder()
         .sample(new ExactlyOne("exactly", null))
         .fieldPrefix("")
@@ -27,11 +25,9 @@ public class ExactlyOneOfVerifierTest {
 
   @Test(expected = AssertionFailedError.class)
   public void exactlyBoth() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ExactlyOneOfVerifier.builder()
         .sample(new ExactlyOne("exactly", 1))
         .fieldPrefix("exactlyOne")
@@ -43,11 +39,9 @@ public class ExactlyOneOfVerifierTest {
 
   @Test(expected = AssertionFailedError.class)
   public void exactlyNeither() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ExactlyOneOfVerifier.builder()
         .sample(new ExactlyOne(null, null))
         .fieldPrefix("exactlyOne")
@@ -59,11 +53,9 @@ public class ExactlyOneOfVerifierTest {
 
   @Test
   public void exactlyOneInteger() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ExactlyOneOfVerifier.builder()
         .sample(new ExactlyOne(null, 1))
         .fieldPrefix("exactlyOne")
@@ -75,11 +67,9 @@ public class ExactlyOneOfVerifierTest {
 
   @Test
   public void exactlyOneString() {
-    Map<String, Supplier<?>> stringTypes = new HashMap<>();
-    Map<Class<?>, Supplier<?>> types = new HashMap<>();
-    types.put(String.class, () -> "hello");
-    types.put(Integer.class, () -> 1);
-    stringTypes.put("", () -> "hello");
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     ExactlyOneOfVerifier.builder()
         .sample(new ExactlyOne("exactly", null))
         .fieldPrefix("exactlyOne")
