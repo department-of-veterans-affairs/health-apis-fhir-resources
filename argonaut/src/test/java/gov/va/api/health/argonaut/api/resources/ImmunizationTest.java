@@ -2,7 +2,6 @@ package gov.va.api.health.argonaut.api.resources;
 
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 
-import gov.va.api.health.argonaut.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.argonaut.api.resources.Immunization.Bundle;
 import gov.va.api.health.argonaut.api.resources.Immunization.Entry;
 import gov.va.api.health.argonaut.api.samples.SampleImmunizations;
@@ -11,6 +10,8 @@ import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.AbstractEntry;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.dstu2.api.elements.Extension;
+import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import java.util.Collections;
 import org.junit.Test;
 
@@ -65,6 +66,7 @@ public class ImmunizationTest {
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.immunization())
         .field("status")
+        .extensionClass(Extension.class)
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()
@@ -72,6 +74,7 @@ public class ImmunizationTest {
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.immunization())
         .field("reported")
+        .extensionClass(Extension.class)
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()

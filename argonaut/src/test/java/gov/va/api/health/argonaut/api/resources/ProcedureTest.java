@@ -2,7 +2,6 @@ package gov.va.api.health.argonaut.api.resources;
 
 import static gov.va.api.health.argonaut.api.RoundTrip.assertRoundTrip;
 
-import gov.va.api.health.argonaut.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.argonaut.api.resources.Procedure.Bundle;
 import gov.va.api.health.argonaut.api.resources.Procedure.Entry;
 import gov.va.api.health.argonaut.api.samples.SampleKnownTypes;
@@ -10,6 +9,8 @@ import gov.va.api.health.argonaut.api.samples.SampleProcedures;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.dstu2.api.elements.Extension;
+import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
@@ -71,6 +72,7 @@ public class ProcedureTest {
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.procedure())
         .field("status")
+        .extensionClass(Extension.class)
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()

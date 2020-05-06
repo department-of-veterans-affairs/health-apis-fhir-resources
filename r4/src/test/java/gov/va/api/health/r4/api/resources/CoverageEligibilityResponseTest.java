@@ -4,13 +4,14 @@ import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Bundle;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Entry;
 import gov.va.api.health.r4.api.samples.SampleCoverageEligibilityResponses;
 import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import org.junit.Test;
 
@@ -88,11 +89,13 @@ public class CoverageEligibilityResponseTest {
         .field("request")
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
+        .extensionClass(Extension.class)
         .build()
         .verify();
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.coverageEligibilityResponseWithDataAbsentReason())
         .field("request")
+        .extensionClass(Extension.class)
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()
@@ -100,6 +103,7 @@ public class CoverageEligibilityResponseTest {
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.insurance())
         .field("coverage")
+        .extensionClass(Extension.class)
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()
@@ -107,6 +111,7 @@ public class CoverageEligibilityResponseTest {
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.insuranceWithDataAbsentReason())
         .field("coverage")
+        .extensionClass(Extension.class)
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()

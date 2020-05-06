@@ -1,9 +1,7 @@
-package gov.va.api.health.r4.api;
+package gov.va.api.health.validation.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.r4.api.elements.Extension;
-import gov.va.api.health.validation.api.AbstractRelatedFieldVerifier;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.Builder;
@@ -23,16 +21,25 @@ public class ExactlyOneOfExtensionVerifier<T> extends AbstractRelatedFieldVerifi
   /** The base of the related fields, e.g. status vs _status. */
   private String baseField;
 
+  /** The extension class being used to verify. */
+  private Class<?> extensionClass;
+
+  /**
+   * Creates a customizable verifier with different prefixes, known types, and class needed to
+   * verify.
+   */
   @Builder
   public ExactlyOneOfExtensionVerifier(
       T sample,
       String field,
+      Class<?> extensionClass,
       Map<Class<?>, Supplier<?>> knownTypes,
       Map<String, Supplier<?>> stringTypes) {
     super(sample, name -> name.equals(field) || name.equals("_" + field), knownTypes, stringTypes);
     baseField = field;
     this.stringTypes = stringTypes;
     this.knownTypes = knownTypes;
+    this.extensionClass = extensionClass;
   }
 
   @Override
@@ -50,6 +57,6 @@ public class ExactlyOneOfExtensionVerifier<T> extends AbstractRelatedFieldVerifi
     unsetFields();
     setField(extensionField);
     assertProblems(0);
-    assertThat(field(extensionField).getType()).isEqualTo(Extension.class);
+    assertThat(field(extensionField).getType()).isEqualTo(extensionClass);
   }
 }
