@@ -53,7 +53,9 @@ import org.apache.commons.lang3.StringUtils;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
     example =
-        "${argonaut.observation:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observation}")
+        "${argonaut.observation:"
+            + "gov.va.api.health.argonaut.api.swaggerexamples."
+            + "SwaggerObservation#observation}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"effectiveDateTime", "effectivePeriod"},
@@ -133,13 +135,14 @@ public class Observation implements Resource {
   @Valid List<ObservationComponent> component;
 
   @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(message = "Category system should be http://hl7.org/fhir/observation-category.")
   private boolean isValidCategory() {
     if (category == null) {
       return true;
     }
     return StringUtils.equals(
-        "http://hl7.org/fhir/observation-category", (category.coding().get(0).system()));
+        "http://hl7.org/fhir/observation-category", category.coding().get(0).system());
   }
 
   @SuppressWarnings("unused")
@@ -178,7 +181,9 @@ public class Observation implements Resource {
   @Schema(
       name = "ObservationBundle",
       example =
-          "${argonaut.observationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerObservation#observationBundle}")
+          "${argonaut.observationBundle:"
+              + "gov.va.api.health.argonaut.api.swaggerexamples."
+              + "SwaggerObservation#observationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

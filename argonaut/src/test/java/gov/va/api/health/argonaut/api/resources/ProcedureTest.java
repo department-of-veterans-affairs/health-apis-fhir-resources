@@ -14,6 +14,7 @@ import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 
 public class ProcedureTest {
@@ -64,7 +65,7 @@ public class ProcedureTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.procedure())
         .fieldPrefix("reason")
-        .omission("reasonNotPerformed")
+        .omissions(List.of("reasonNotPerformed"))
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()

@@ -14,10 +14,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ExactlyOneOfExtensionVerifier<T> extends AbstractRelatedFieldVerifier<T> {
-  private final Map<String, Supplier<?>> stringTypes;
-
-  private final Map<Class<?>, Supplier<?>> knownTypes;
-
   /** The base of the related fields, e.g. status vs _status. */
   private String baseField;
 
@@ -37,8 +33,6 @@ public class ExactlyOneOfExtensionVerifier<T> extends AbstractRelatedFieldVerifi
       Map<String, Supplier<?>> stringTypes) {
     super(sample, name -> name.equals(field) || name.equals("_" + field), knownTypes, stringTypes);
     baseField = field;
-    this.stringTypes = stringTypes;
-    this.knownTypes = knownTypes;
     this.extensionClass = extensionClass;
   }
 

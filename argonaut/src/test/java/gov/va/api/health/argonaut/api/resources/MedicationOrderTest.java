@@ -13,6 +13,7 @@ import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 
 public class MedicationOrderTest {
@@ -72,7 +73,7 @@ public class MedicationOrderTest {
     ZeroOrOneOfVerifier.builder()
         .sample(data.medicationOrder())
         .fieldPrefix("reason")
-        .omission("reasonEnded")
+        .omissions(List.of("reasonEnded"))
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()

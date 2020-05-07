@@ -47,7 +47,9 @@ import org.apache.commons.lang3.StringUtils;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-diagnosticreport.html",
     example =
-        "${argonaut.diagnosticReport:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}")
+        "${argonaut.diagnosticReport:"
+            + "gov.va.api.health.argonaut.api.swaggerexamples."
+            + "SwaggerDiagnosticReport#diagnosticReport}")
 @ExactlyOneOf(fields = {"performer", "_performer"})
 @ZeroOrOneOf(
     fields = {"effectiveDateTime", "effectivePeriod"},
@@ -105,6 +107,7 @@ public class DiagnosticReport implements Resource {
   @Valid List<Attachment> presentedForm;
 
   @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(
       message =
           "Category system should be http://hl7.org/fhir/ValueSet/diagnostic-service-sections.")
@@ -141,7 +144,9 @@ public class DiagnosticReport implements Resource {
   @Schema(
       name = "DiagnosticReportBundle",
       example =
-          "${argonaut.diagnosticReportBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReportBundle}")
+          "${argonaut.diagnosticReportBundle:"
+              + "gov.va.api.health.argonaut.api.swaggerexamples."
+              + "SwaggerDiagnosticReport#diagnosticReportBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

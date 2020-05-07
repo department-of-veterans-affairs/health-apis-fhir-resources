@@ -1,12 +1,13 @@
 package gov.va.api.health.validation.api;
 
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Supplier;
 import lombok.Builder;
-import lombok.Singular;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -16,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ZeroOrOneOfVerifier<T> extends AbstractRelatedFieldVerifier<T> {
-
   /** The prefix of the related fields. */
   private String fieldPrefix;
 
@@ -25,12 +25,14 @@ public class ZeroOrOneOfVerifier<T> extends AbstractRelatedFieldVerifier<T> {
   ZeroOrOneOfVerifier(
       T sample,
       String fieldPrefix,
-      @Singular Collection<?> omissions,
+      Collection<?> omissions,
       Map<Class<?>, Supplier<?>> knownTypes,
       Map<String, Supplier<?>> stringTypes) {
     super(
         sample,
-        name -> name.startsWith(fieldPrefix) && !omissions.contains(name),
+        name ->
+            name.startsWith(fieldPrefix)
+                && !Optional.ofNullable(omissions).orElse(emptyList()).contains(name),
         knownTypes,
         stringTypes);
     this.fieldPrefix = fieldPrefix;

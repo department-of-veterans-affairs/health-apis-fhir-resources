@@ -228,6 +228,7 @@ public class Coverage implements Resource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CostToBeneficiaryException")
+  @SuppressWarnings("JavaLangClash")
   public static class Exception implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;

@@ -112,21 +112,17 @@ public class Patient implements Resource {
     int ombExtensionCount = 0;
     int textExtensionCount = 0;
     for (Extension e : argonautExtension.get().extension()) {
-      switch (e.url()) {
-        case "ombCategory":
-          ombExtensionCount++;
-          break;
-        case "text":
-          textExtensionCount++;
-          break;
-        default:
-          break;
+      if ("ombCategory".equals(e.url())) {
+        ombExtensionCount++;
+      } else if ("text".equals(e.url())) {
+        textExtensionCount++;
       }
     }
     return ombExtensionCount <= maxAllowedOmbExtensionCount && textExtensionCount == 1;
   }
 
   @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(message = "Argo-Ethnicity extension is not valid")
   private boolean isValidEthnicityExtension() {
     return isValidArgonautExtensionCount(
@@ -134,6 +130,7 @@ public class Patient implements Resource {
   }
 
   @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(message = "Argo-Race extension is not valid")
   private boolean isValidRaceExtension() {
     return isValidArgonautExtensionCount(
@@ -156,7 +153,9 @@ public class Patient implements Resource {
   @Schema(
       name = "PatientBundle",
       example =
-          "${argonaut.patientBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patientBundle}")
+          "${argonaut.patientBundle:"
+              + "gov.va.api.health.argonaut.api.swaggerexamples."
+              + "SwaggerPatient#patientBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

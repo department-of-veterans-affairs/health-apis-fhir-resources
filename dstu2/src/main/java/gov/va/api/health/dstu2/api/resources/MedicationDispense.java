@@ -50,7 +50,9 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/DSTU2/medicationdispense.html",
     example =
-        "${dstu2.medicationDispense:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispense}")
+        "${dstu2.medicationDispense:"
+            + "gov.va.api.health.dstu2.api.swaggerexamples."
+            + "SwaggerMedicationDispense#medicationDispense}")
 @ExactlyOneOf(
     fields = {"medicationCodeableConcept", "medicationReference"},
     message = "Exactly one medication field must be specified")
@@ -101,6 +103,7 @@ public class MedicationDispense implements DomainResource {
    * Constraint mdd-1: whenHandedOver cannot be before whenPrepared.
    */
   @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(message = "whenPrepared must be chronologically before whenHandedOver.")
   private boolean isPreparedBeforeHandedOver() {
     if (whenPrepared == null || whenHandedOver == null) {
@@ -142,7 +145,9 @@ public class MedicationDispense implements DomainResource {
   @Schema(
       name = "MedicationDispenseBundle",
       example =
-          "${dstu2.medicationDispenseBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerMedicationDispense#medicationDispenseBundle}")
+          "${dstu2.medicationDispenseBundle:"
+              + "gov.va.api.health.dstu2.api.swaggerexamples."
+              + "SwaggerMedicationDispense#medicationDispenseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

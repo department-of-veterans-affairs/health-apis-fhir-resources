@@ -17,12 +17,9 @@
    -->
   <suppress checks="LineLength" files="AllergyIntolerance.java" lines="47,144" />
   <suppress checks="LineLength" files="Condition.java" lines="47,146" />
-  <suppress checks="LineLength" files="DiagnosticReport.java" lines="50,144" />
   <suppress checks="LineLength" files="Immunization.java" lines="48,122" />
   <suppress checks="LineLength" files="Medication.java" lines="44,99" />
   <suppress checks="LineLength" files="MedicationOrder.java" lines="54,130" />
   <suppress checks="LineLength" files="MedicationStatement.java" lines="52,126" />
-  <suppress checks="LineLength" files="Observation.java" lines="56,181" />
-  <suppress checks="LineLength" files="Patient.java" lines="159" />
   <suppress checks="LineLength" files="Procedure.java" lines="48,131" />
 </suppressions>
