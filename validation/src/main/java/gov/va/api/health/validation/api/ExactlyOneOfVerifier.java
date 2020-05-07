@@ -1,8 +1,8 @@
 package gov.va.api.health.validation.api;
 
 import static java.util.Collections.emptyList;
-import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.common.base.Preconditions;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -41,9 +41,7 @@ public class ExactlyOneOfVerifier<T> extends AbstractRelatedFieldVerifier<T> {
     assertProblems(1);
     /* Make sure setting any two fields is not ok. */
     log.info("{} fields in group {}: {}", sample.getClass().getSimpleName(), fieldPrefix, fields());
-    assertThat(fields().size())
-        .withFailMessage("Not enough fields in group: " + fieldPrefix)
-        .isGreaterThan(1);
+    Preconditions.checkState(fields().size() > 1, "Not enough fields in group: " + fieldPrefix);
     String anchor = fields().get(0);
     for (int i = 1; i < fields().size(); i++) {
       unsetFields();

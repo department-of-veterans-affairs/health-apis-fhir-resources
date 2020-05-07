@@ -1,7 +1,7 @@
 package gov.va.api.health.validation.api;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import com.google.common.base.Preconditions;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.Builder;
@@ -40,7 +40,8 @@ public class ExactlyOneOfExtensionVerifier<T> extends AbstractRelatedFieldVerifi
   public void verify() {
     log.info("Verifying {}", sample.getClass());
     String extensionField = "_" + baseField;
-    assertThat(fields()).containsExactlyInAnyOrder(baseField, extensionField);
+    Preconditions.checkState(
+        fields().containsAll(List.of(baseField, extensionField)) && fields().size() == 2);
     /* Make sure the sample is valid before we mess it up. */
     assertProblems(0);
     /* Make sure we are valid if no fields are set. */
@@ -51,6 +52,6 @@ public class ExactlyOneOfExtensionVerifier<T> extends AbstractRelatedFieldVerifi
     unsetFields();
     setField(extensionField);
     assertProblems(0);
-    assertThat(field(extensionField).getType()).isEqualTo(extensionClass);
+    Preconditions.checkState(field(extensionField).getType() == extensionClass);
   }
 }

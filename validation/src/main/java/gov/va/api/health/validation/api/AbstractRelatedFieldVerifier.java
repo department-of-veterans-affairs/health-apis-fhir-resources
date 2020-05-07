@@ -1,9 +1,9 @@
 package gov.va.api.health.validation.api;
 
 import static java.util.stream.Collectors.toList;
-import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.autoconfig.configuration.JacksonConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Preconditions;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -19,7 +19,6 @@ import javax.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -69,10 +68,9 @@ public abstract class AbstractRelatedFieldVerifier<T> {
     if (problems.size() == count) {
       return;
     }
-    log.info(
-        JacksonConfig.createMapper().writerWithDefaultPrettyPrinter().writeValueAsString(sample));
+    log.info(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(sample));
     problems.forEach(p -> log.error("{}", p));
-    assertThat(problems.size()).isEqualTo(count);
+    Preconditions.checkState(problems.size() == count);
   }
 
   private Supplier<?> enumSupplier(Class<? extends Enum<?>> type) {
@@ -82,7 +80,7 @@ public abstract class AbstractRelatedFieldVerifier<T> {
   @SneakyThrows
   protected Field field(String name) {
     Field field = sample.getClass().getDeclaredField(name);
-    assertThat(field).withFailMessage("Cannot determine field type: " + name).isNotNull();
+    Preconditions.checkState(field != null, "Cannot determine field type: " + name);
     return field;
   }
 
@@ -103,9 +101,8 @@ public abstract class AbstractRelatedFieldVerifier<T> {
     } else {
       supplier = knownTypes().get(field.getType());
     }
-    Assertions.assertThat(supplier)
-        .withFailMessage("Unknown value type for field: " + name + " type: " + field.getType())
-        .isNotNull();
+    Preconditions.checkState(
+        supplier != null, "Unknown value type for field: " + name + " type: " + field.getType());
     setField(name, supplier.get());
   }
 

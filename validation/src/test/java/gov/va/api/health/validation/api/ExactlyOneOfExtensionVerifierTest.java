@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.junit.Test;
-import org.opentest4j.AssertionFailedError;
 
 public class ExactlyOneOfExtensionVerifierTest {
 
@@ -29,7 +28,7 @@ public class ExactlyOneOfExtensionVerifierTest {
         .verify();
   }
 
-  @Test(expected = AssertionFailedError.class)
+  @Test(expected = IllegalStateException.class)
   public void moreThanOneField() {
     Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
     Map<Class<?>, Supplier<?>> types =
