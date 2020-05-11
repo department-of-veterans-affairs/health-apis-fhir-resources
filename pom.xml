@@ -10,6 +10,7 @@
   <version>2.0.37-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
+    <module>fhir-common</module>
     <module>validation</module>
     <module>r4</module>
     <module>r4-examples</module>
