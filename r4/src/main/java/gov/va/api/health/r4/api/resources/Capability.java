@@ -91,11 +91,9 @@ public class Capability implements Resource {
 
   @NotNull Kind kind;
 
-  @Pattern(regexp = Fhir.URI)
-  List<String> instantiates;
+  @Valid List<@Pattern(regexp = Fhir.URI) String> instantiates;
 
-  @Pattern(regexp = Fhir.URI)
-  List<String> imports;
+  @Valid List<@Pattern(regexp = Fhir.URI) String> imports;
 
   @Valid Software software;
   @Valid Implementation implementation;
@@ -104,15 +102,11 @@ public class Capability implements Resource {
   @Pattern(regexp = Fhir.CODE)
   String fhirVersion;
 
-  @NotEmpty
-  @Pattern(regexp = Fhir.CODE)
-  List<String> format;
+  @NotEmpty @Valid List<@Pattern(regexp = Fhir.CODE) String> format;
 
-  @Pattern(regexp = Fhir.CODE)
-  List<String> patchFormat;
+  @Valid List<@Pattern(regexp = Fhir.CODE) String> patchFormat;
 
-  @Pattern(regexp = Fhir.URI)
-  List<String> implementationGuide;
+  @Valid List<@Pattern(regexp = Fhir.URI) String> implementationGuide;
 
   @Valid List<Rest> rest;
   @Valid List<Messaging> messaging;
@@ -247,8 +241,7 @@ public class Capability implements Resource {
     @Pattern(regexp = Fhir.URI)
     String profile;
 
-    @Pattern(regexp = Fhir.URI)
-    List<String> supportedProfile;
+    @Valid List<@Pattern(regexp = Fhir.URI) String> supportedProfile;
 
     @Pattern(regexp = Fhir.MARKDOWN)
     String documentation;
@@ -275,13 +268,12 @@ public class Capability implements Resource {
 
     List<ReferencePolicy> referencePolicy;
 
-    @Pattern(regexp = Fhir.STRING)
-    List<String> searchInclude;
+    @Valid List<@Pattern(regexp = Fhir.STRING) String> searchInclude;
 
-    @Pattern(regexp = Fhir.STRING)
-    List<String> searchRevInclude;
+    @Valid List<@Pattern(regexp = Fhir.STRING) String> searchRevInclude;
 
     @Valid List<SearchParam> searchParam;
+
     @Valid List<Operation> operation;
   }
 
