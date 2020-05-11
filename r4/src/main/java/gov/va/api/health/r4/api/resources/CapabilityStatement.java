@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/capabilitystatement.html")
-public class Capability implements Resource {
+public class CapabilityStatement implements Resource {
 
   @Pattern(regexp = Fhir.ID)
   String id;

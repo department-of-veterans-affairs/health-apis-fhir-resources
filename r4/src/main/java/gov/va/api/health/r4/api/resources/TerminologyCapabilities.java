@@ -53,7 +53,7 @@ public class TerminologyCapabilities implements Resource {
   @Pattern(regexp = Fhir.STRING)
   String title;
 
-  @NotNull Capability.Status status;
+  @NotNull CapabilityStatement.Status status;
 
   @Pattern(regexp = Fhir.BOOLEAN)
   String experimental;
@@ -80,7 +80,7 @@ public class TerminologyCapabilities implements Resource {
   @Pattern(regexp = Fhir.MARKDOWN)
   String copyright;
 
-  @NotNull Capability.Kind kind;
+  @NotNull CapabilityStatement.Kind kind;
 
   @Valid Software software;
 
@@ -100,6 +100,22 @@ public class TerminologyCapabilities implements Resource {
   public enum CodeSearch {
     all,
     explicit
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class Closure implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> modifierExtension;
+    @Valid List<Extension> extension;
+
+    @Pattern(regexp = Fhir.BOOLEAN)
+    String translation;
   }
 
   @Data
@@ -155,36 +171,6 @@ public class TerminologyCapabilities implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Version implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.STRING)
-    String code;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String isDefault;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String compositional;
-
-    @Pattern(regexp = Fhir.CODE)
-    List<String> language;
-
-    @Valid List<Filter> filter;
-
-    @Pattern(regexp = Fhir.CODE)
-    List<String> property;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Filter implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -199,23 +185,6 @@ public class TerminologyCapabilities implements Resource {
     @Pattern(regexp = Fhir.CODE)
     @NotEmpty
     List<String> op;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class ValidateCode implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    @NotEmpty
-    String translations;
   }
 
   @Data
@@ -263,15 +232,19 @@ public class TerminologyCapabilities implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Closure implements BackboneElement {
+  public static class Software implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String translation;
+    @NotBlank
+    @Pattern(regexp = Fhir.STRING)
+    String name;
+
+    @Pattern(regexp = Fhir.STRING)
+    String version;
   }
 
   @Data
@@ -296,18 +269,45 @@ public class TerminologyCapabilities implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Software implements BackboneElement {
+  public static class ValidateCode implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.STRING)
-    String name;
+    @Pattern(regexp = Fhir.BOOLEAN)
+    @NotEmpty
+    String translations;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class Version implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> modifierExtension;
+    @Valid List<Extension> extension;
 
     @Pattern(regexp = Fhir.STRING)
-    String version;
+    String code;
+
+    @Pattern(regexp = Fhir.BOOLEAN)
+    String isDefault;
+
+    @Pattern(regexp = Fhir.BOOLEAN)
+    String compositional;
+
+    @Pattern(regexp = Fhir.CODE)
+    List<String> language;
+
+    @Valid List<Filter> filter;
+
+    @Pattern(regexp = Fhir.CODE)
+    List<String> property;
   }
 }

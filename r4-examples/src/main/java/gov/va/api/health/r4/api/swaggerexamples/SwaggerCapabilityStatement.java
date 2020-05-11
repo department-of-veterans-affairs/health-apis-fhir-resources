@@ -6,30 +6,30 @@ import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.ContactPoint.ContactPointSystem;
 import gov.va.api.health.r4.api.elements.Extension;
-import gov.va.api.health.r4.api.resources.Capability;
-import gov.va.api.health.r4.api.resources.Capability.CapabilityResource;
-import gov.va.api.health.r4.api.resources.Capability.Kind;
-import gov.va.api.health.r4.api.resources.Capability.ResourceInteraction;
-import gov.va.api.health.r4.api.resources.Capability.Rest;
-import gov.va.api.health.r4.api.resources.Capability.RestMode;
-import gov.va.api.health.r4.api.resources.Capability.SearchParam;
-import gov.va.api.health.r4.api.resources.Capability.SearchParamType;
-import gov.va.api.health.r4.api.resources.Capability.Security;
-import gov.va.api.health.r4.api.resources.Capability.Software;
-import gov.va.api.health.r4.api.resources.Capability.Status;
-import gov.va.api.health.r4.api.resources.Capability.TypeRestfulInteraction;
+import gov.va.api.health.r4.api.resources.CapabilityStatement;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.CapabilityResource;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Kind;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.ResourceInteraction;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Rest;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.RestMode;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SearchParam;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SearchParamType;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Security;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Software;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Status;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.TypeRestfulInteraction;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class SwaggerCapability {
+public class SwaggerCapabilityStatement {
 
   /**
    * An example Capability.
    *
    * @return an example Capability.
    */
-  public static Capability capability() {
-    return Capability.builder()
+  public static CapabilityStatement capability() {
+    return CapabilityStatement.builder()
         .id("health-api-application")
         .resourceType("Capability")
         .version("2.0.0")
