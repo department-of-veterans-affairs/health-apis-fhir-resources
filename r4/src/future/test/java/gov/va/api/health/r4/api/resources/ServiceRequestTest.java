@@ -75,7 +75,7 @@ public class ServiceRequestTest {
         .build()
         .verify();
     ZeroOrOneOfVerifier.builder()
-        .sample(data.serviceRequest().asNeededBoolean("true").asNeededCodeableConcept(null))
+        .sample(data.serviceRequest().asNeededBoolean(true).asNeededCodeableConcept(null))
         .fieldPrefix("asNeeded")
         .build()
         .verify();

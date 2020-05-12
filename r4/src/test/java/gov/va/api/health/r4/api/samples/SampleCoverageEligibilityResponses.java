@@ -71,7 +71,7 @@ public class SampleCoverageEligibilityResponses {
   public Insurance insurance() {
     return Insurance.builder()
         .coverage(reference())
-        .inforce("true")
+        .inforce(true)
         .benefitPeriod(period())
         .item(singletonList(item()))
         .build();
@@ -87,14 +87,14 @@ public class SampleCoverageEligibilityResponses {
         .productOrService(codeableConcept())
         .modifier(singletonList(codeableConcept()))
         .provider(reference())
-        .excluded("false")
+        .excluded(false)
         .name("Hello name")
         .description("Hello description")
         .network(codeableConcept())
         .unit(codeableConcept())
         .term(codeableConcept())
         .benefit(singletonList(benefit()))
-        .authorizationRequired("true")
+        .authorizationRequired(true)
         .authorizationSupporting(singletonList(codeableConcept()))
         .authorizationUrl("http://example.com")
         .build();

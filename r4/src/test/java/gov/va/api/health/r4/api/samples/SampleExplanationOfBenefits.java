@@ -106,7 +106,7 @@ public class SampleExplanationOfBenefits {
   public BenefitBalance benefitBalance() {
     return BenefitBalance.builder()
         .category(codeableConcept())
-        .excluded("true")
+        .excluded(true)
         .name("name")
         .description("description")
         .network(codeableConcept())
@@ -120,7 +120,7 @@ public class SampleExplanationOfBenefits {
     return CareTeam.builder()
         .sequence("1")
         .provider(reference())
-        .responsible("false")
+        .responsible(false)
         .role(codeableConcept())
         .qualification(codeableConcept())
         .build();
@@ -223,7 +223,7 @@ public class SampleExplanationOfBenefits {
 
   public Insurance insurance() {
     return Insurance.builder()
-        .focal("false")
+        .focal(false)
         .coverage(reference())
         .preAuthRef(singletonList("preAuthRef"))
         .build();
@@ -323,7 +323,7 @@ public class SampleExplanationOfBenefits {
         .category(codeableConcept())
         .code(codeableConcept())
         .timingPeriod(period())
-        .valueBoolean("false")
+        .valueBoolean(false)
         .reason(coding())
         .build();
   }

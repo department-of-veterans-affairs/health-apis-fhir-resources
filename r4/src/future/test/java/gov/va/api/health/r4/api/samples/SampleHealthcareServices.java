@@ -19,7 +19,7 @@ public class SampleHealthcareServices {
   public AvailableTime availableTime() {
     return AvailableTime.builder()
         .daysOfWeek(Arrays.asList(DaysOfWeek.mon, DaysOfWeek.fri))
-        .allDay("false")
+        .allDay(false)
         .availableStartTime("03:00:00")
         .availableEndTime("05:00:00")
         .build();
@@ -42,7 +42,7 @@ public class SampleHealthcareServices {
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))
-        .active("true")
+        .active(true)
         .providedBy(reference())
         .category(singletonList(codeableConcept()))
         .type(singletonList(codeableConcept()))
@@ -60,7 +60,7 @@ public class SampleHealthcareServices {
         .characteristic(singletonList(codeableConcept()))
         .communication(singletonList(codeableConcept()))
         .referralMethod(singletonList(codeableConcept()))
-        .appointmentRequired("true")
+        .appointmentRequired(true)
         .availableTime(singletonList(availableTime()))
         .notAvailable(singletonList(notAvailable()))
         .availabilityExceptions("available exceptions")

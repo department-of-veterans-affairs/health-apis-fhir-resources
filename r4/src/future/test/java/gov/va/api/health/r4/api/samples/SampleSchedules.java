@@ -25,7 +25,7 @@ public class SampleSchedules {
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))
-        .active("true")
+        .active(true)
         .serviceCategory(singletonList(codeableConcept()))
         .serviceType(singletonList(codeableConcept()))
         .specialty(singletonList(codeableConcept()))

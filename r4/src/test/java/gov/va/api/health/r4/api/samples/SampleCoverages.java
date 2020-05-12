@@ -67,7 +67,7 @@ public class SampleCoverages {
         .order("1")
         .network("Hello network")
         .costToBeneficiary(singletonList(costToBeneficiaryWithValueMoney()))
-        .subrogation("true")
+        .subrogation(true)
         .contract(singletonList(reference()))
         .build();
   }
@@ -99,7 +99,7 @@ public class SampleCoverages {
         .order("1")
         .network("Hello network")
         .costToBeneficiary(singletonList(costToBeneficiaryWithValueQuantity()))
-        .subrogation("true")
+        .subrogation(true)
         .contract(singletonList(reference()))
         .build();
   }

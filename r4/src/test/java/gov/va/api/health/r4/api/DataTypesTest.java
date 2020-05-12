@@ -63,7 +63,7 @@ public class DataTypesTest {
         .verify();
 
     ZeroOrOneOfVerifier.builder()
-        .sample(data.dosage().asNeededBoolean("true").asNeededCodeableConcept(null))
+        .sample(data.dosage().asNeededBoolean(true).asNeededCodeableConcept(null))
         .fieldPrefix("asNeeded")
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())

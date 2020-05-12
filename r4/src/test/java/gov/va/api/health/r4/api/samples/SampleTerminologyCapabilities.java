@@ -18,7 +18,7 @@ public class SampleTerminologyCapabilities {
     return singletonList(
         TerminologyCapabilities.CodeSystem.builder()
             .version(version())
-            .subsumption("true")
+            .subsumption(true)
             .build());
   }
 
@@ -44,7 +44,7 @@ public class SampleTerminologyCapabilities {
         .name("conformin' norman")
         .title("urgent care capability")
         .status(CapabilityStatement.Status.active)
-        .experimental("true")
+        .experimental(true)
         .date("2000-01-01T00:00:00-00:00")
         .publisher("random house")
         .contact(singletonList(contactDetail()))
@@ -56,7 +56,7 @@ public class SampleTerminologyCapabilities {
         .kind(CapabilityStatement.Kind.capability)
         .software(software())
         .implementation(implementation())
-        .lockedDate("true")
+        .lockedDate(true)
         .codeSystem(codeSystem())
         .build();
   }
@@ -64,8 +64,8 @@ public class SampleTerminologyCapabilities {
   public List<TerminologyCapabilities.Version> version() {
     return singletonList(
         TerminologyCapabilities.Version.builder()
-            .isDefault("true")
-            .compositional("true")
+            .isDefault(true)
+            .compositional(true)
             .property(Arrays.asList("version_property"))
             .build());
   }

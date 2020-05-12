@@ -44,7 +44,7 @@ public class SampleClaims {
     return CareTeam.builder()
         .sequence("1")
         .provider(reference())
-        .responsible("true")
+        .responsible(true)
         .role(codeableConcept())
         .qualification(codeableConcept())
         .build();
@@ -166,7 +166,7 @@ public class SampleClaims {
   public Insurance insurance() {
     return Insurance.builder()
         .sequence("1")
-        .focal("true")
+        .focal(true)
         .identifier(identifier())
         .coverage(reference())
         .businessArrangement("business arrangement")
@@ -283,7 +283,7 @@ public class SampleClaims {
   }
 
   public SupportingInfo supportingInfoWithTimingDateAndValueBoolean() {
-    return supportingInfoWithTimingDate().valueBoolean("true");
+    return supportingInfoWithTimingDate().valueBoolean(true);
   }
 
   public SupportingInfo supportingInfoWithTimingDateAndValueQuantity() {
@@ -307,7 +307,7 @@ public class SampleClaims {
   }
 
   public SupportingInfo supportingInfoWithTimingPeriodAndValueBoolean() {
-    return supportingInfoWithTimingPeriod().valueBoolean("true");
+    return supportingInfoWithTimingPeriod().valueBoolean(true);
   }
 
   public SupportingInfo supportingInfoWithTimingPeriodAndValueQuantity() {

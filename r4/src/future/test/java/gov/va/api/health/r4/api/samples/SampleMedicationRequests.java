@@ -48,8 +48,8 @@ public class SampleMedicationRequests {
         .intent(Intent.original_order)
         .category(singletonList(codeableConcept()))
         .priority(Priority.urgent)
-        .doNotPerform("true")
-        .reportedBoolean("true")
+        .doNotPerform(true)
+        .reportedBoolean(true)
         .medicationCodeableConcept(codeableConcept())
         .subject(reference())
         .encounter(reference())
@@ -78,6 +78,6 @@ public class SampleMedicationRequests {
   }
 
   public Substitution substitution() {
-    return Substitution.builder().allowedBoolean("true").reason(codeableConcept()).build();
+    return Substitution.builder().allowedBoolean(true).reason(codeableConcept()).build();
   }
 }

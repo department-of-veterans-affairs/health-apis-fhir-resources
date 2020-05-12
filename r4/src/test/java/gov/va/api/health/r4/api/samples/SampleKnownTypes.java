@@ -32,7 +32,7 @@ public class SampleKnownTypes {
   public Map<String, Supplier<?>> knownStringTypes() {
     Map<String, Supplier<?>> suppliers = new HashMap<>();
     suppliers.put("", () -> "hello");
-    suppliers.put(Fhir.BOOLEAN, () -> "true");
+    suppliers.put(Fhir.BOOLEAN, () -> true);
     suppliers.put(Fhir.BASE64, () -> "SSBqdXN0IGF0ZSBhIHBlYW51dAo=");
     suppliers.put(Fhir.CODE, () -> "code");
     suppliers.put(Fhir.URI, () -> "http://example.com");

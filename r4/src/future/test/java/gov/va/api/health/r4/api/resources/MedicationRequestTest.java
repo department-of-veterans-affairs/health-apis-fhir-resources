@@ -25,7 +25,7 @@ public class MedicationRequestTest {
         .verify();
 
     ZeroOrOneOfVerifier.builder()
-        .sample(data.medicationRequest().reportedBoolean("true").reportedReference(null))
+        .sample(data.medicationRequest().reportedBoolean(true).reportedReference(null))
         .fieldPrefix("reported")
         .build()
         .verify();
@@ -56,7 +56,7 @@ public class MedicationRequestTest {
         .verify();
 
     ExactlyOneOfVerifier.builder()
-        .sample(data.substitution().allowedBoolean("true").allowedCodeableConcept(null))
+        .sample(data.substitution().allowedBoolean(true).allowedCodeableConcept(null))
         .fieldPrefix("allowed")
         .build()
         .verify();

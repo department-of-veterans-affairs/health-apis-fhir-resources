@@ -99,7 +99,7 @@ public class SampleDataTypes {
         .version("Hello Version")
         .code("Hello Code")
         .display("Hello Display")
-        .userSelected("true")
+        .userSelected(true)
         .build();
   }
 
