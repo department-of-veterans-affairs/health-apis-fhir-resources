@@ -16,7 +16,7 @@ import javax.ws.rs.Path;
 public interface PatientApi {
   @Operation(
       summary = "Patient Read",
-      description = "https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html",
+      description = "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html",
       tags = {"Patient"})
   @GET
   @Path("Patient/{id}")
@@ -55,7 +55,7 @@ public interface PatientApi {
 
   @Operation(
       summary = "Patient Search",
-      description = "https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html",
+      description = "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html",
       tags = {"Patient"})
   @GET
   @Path("Patient")
