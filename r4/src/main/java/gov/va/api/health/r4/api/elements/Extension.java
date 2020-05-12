@@ -19,6 +19,7 @@ import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -93,7 +94,7 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.DATETIME)
   String valueDateTime;
 
-  Double valueDecimal;
+  BigDecimal valueDecimal;
 
   @Pattern(regexp = Fhir.ID)
   String valueId;

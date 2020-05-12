@@ -5,6 +5,7 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.elements.Element;
 import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -26,7 +27,7 @@ public final class Age implements Element {
 
   @Valid List<Extension> extension;
 
-  Double value;
+  BigDecimal value;
 
   @Pattern(regexp = "(<|<=|>=|>)")
   String comparator;
