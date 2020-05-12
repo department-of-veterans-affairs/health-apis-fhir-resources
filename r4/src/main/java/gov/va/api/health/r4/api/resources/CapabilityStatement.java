@@ -16,6 +16,7 @@ import gov.va.api.health.r4.api.elements.Reference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -65,8 +66,7 @@ public class CapabilityStatement implements Resource {
 
   @NotNull Status status;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String experimental;
+  Boolean experimental;
 
   @NotBlank
   @Pattern(regexp = Fhir.DATETIME)
@@ -250,19 +250,15 @@ public class CapabilityStatement implements Resource {
 
     Versioning versioning;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String readHistory;
+    Boolean readHistory;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String updateCreate;
+    Boolean updateCreate;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String conditionalCreate;
+    Boolean conditionalCreate;
 
     ConditionalRead conditionalRead;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String conditionalUpdate;
+    Boolean conditionalUpdate;
 
     ConditionalDelete conditionalDelete;
 
@@ -304,25 +300,6 @@ public class CapabilityStatement implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class MessagingEndpoint implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
-
-    @NotNull Coding protocol;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.URI)
-    String address;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Implementation implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -354,13 +331,32 @@ public class CapabilityStatement implements Resource {
 
     @Valid List<MessagingEndpoint> endpoint;
 
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String reliableCache;
+    @Min(0)
+    Integer reliableCache;
 
     @Pattern(regexp = Fhir.MARKDOWN)
     String documentation;
 
     @Valid List<SupportedMessage> supportedMessage;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class MessagingEndpoint implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> modifierExtension;
+    @Valid List<Extension> extension;
+
+    @NotNull Coding protocol;
+
+    @NotBlank
+    @Pattern(regexp = Fhir.URI)
+    String address;
   }
 
   @Data
@@ -486,10 +482,7 @@ public class CapabilityStatement implements Resource {
 
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String cors;
-
+    Boolean cors;
     @Valid List<CodeableConcept> service;
 
     @Pattern(regexp = Fhir.MARKDOWN)

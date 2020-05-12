@@ -55,8 +55,7 @@ public class TerminologyCapabilities implements Resource {
 
   @NotNull CapabilityStatement.Status status;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String experimental;
+  Boolean experimental;
 
   @NotBlank
   @Pattern(regexp = Fhir.DATETIME)
@@ -86,8 +85,7 @@ public class TerminologyCapabilities implements Resource {
 
   @Valid Implementation implementation;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String lockedDate;
+  Boolean lockedDate;
 
   @Valid List<CodeSystem> codeSystem;
   @Valid List<Expansion> expansion;
@@ -114,8 +112,7 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String translation;
+    Boolean translation;
   }
 
   @Data
@@ -135,8 +132,7 @@ public class TerminologyCapabilities implements Resource {
 
     @Valid List<Version> version;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String subsumption;
+    Boolean subsumption;
   }
 
   @Data
@@ -151,14 +147,11 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String hierarchical;
+    Boolean hierarchical;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String paging;
+    Boolean paging;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String incomplete;
+    Boolean incomplete;
 
     @Valid List<Parameter> parameter;
 
@@ -259,9 +252,7 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    @NotEmpty
-    String needsMap;
+    @NotNull Boolean needsMap;
   }
 
   @Data
@@ -276,9 +267,7 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    @NotEmpty
-    String translations;
+    @NotEmpty Boolean translations;
   }
 
   @Data
@@ -296,11 +285,9 @@ public class TerminologyCapabilities implements Resource {
     @Pattern(regexp = Fhir.STRING)
     String code;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String isDefault;
+    Boolean isDefault;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String compositional;
+    Boolean compositional;
 
     @Pattern(regexp = Fhir.CODE)
     List<String> language;

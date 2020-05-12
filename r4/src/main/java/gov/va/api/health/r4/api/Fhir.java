@@ -59,26 +59,11 @@ public class Fhir {
 
   public static final String XHTML = "<.+>";
 
-  @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#positiveInt")
-  public static final String POSITIVE_INT = "\\+?[1-9][0-9]*";
-
-  @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#unsignedInt")
-  public static final String UNSIGNED_INT = "[0]|([1-9][0-9]*)";
-
   @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#string")
   public static final String STRING = "[ \\r\\n\\t\\S]+";
 
-  @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#boolean")
-  public static final String BOOLEAN = "true|false";
-
   @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#markdown")
   public static final String MARKDOWN = "\\s*(\\S|\\s)*";
-
-  @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#decimal")
-  public static final String DECIMAL = "-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?";
-
-  @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#integer")
-  public static final String INTEGER = "[0]|[-+]?[1-9][0-9]*";
 
   /** Deprecated: Use gov.va.api.health.fhir.api.FhirDateTime#parseDateTime(java.lang.String). */
   @SneakyThrows

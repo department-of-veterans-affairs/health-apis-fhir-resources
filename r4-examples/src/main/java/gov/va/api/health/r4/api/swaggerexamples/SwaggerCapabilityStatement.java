@@ -76,7 +76,7 @@ public class SwaggerCapabilityStatement {
                                                         "https://example.com/oauth2/authorization")
                                                     .build()))
                                         .build()))
-                            .cors("true")
+                            .cors(true)
                             .service(
                                 Collections.singletonList(
                                     CodeableConcept.builder()

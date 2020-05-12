@@ -26,6 +26,7 @@ import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -147,26 +148,32 @@ public class Claim implements Resource {
   }
 
   @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Claim.Entry.EntryBuilder.class)
-  @Schema(name = "ClaimEntry")
-  public static class Entry extends AbstractEntry<Claim> {
+  @Schema(name = "ClaimAccident")
+  @ZeroOrOneOf(
+      fields = {"locationAddress", "locationReference"},
+      message = "Only one location field may be specified")
+  public static class Accident implements BackboneElement {
 
-    @Builder
-    public Entry(
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid List<Extension> extension,
-        @Valid List<Extension> modifierExtension,
-        @Valid List<BundleLink> link,
-        @Pattern(regexp = Fhir.URI) String fullUrl,
-        @Valid Claim resource,
-        @Valid Search search,
-        @Valid Request request,
-        @Valid Response response) {
-      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
-    }
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotBlank
+    @Pattern(regexp = Fhir.DATE)
+    String date;
+
+    @Valid CodeableConcept type;
+
+    @Valid Address locationAddress;
+
+    @Valid Reference locationReference;
   }
 
   @Data
@@ -216,8 +223,8 @@ public class Claim implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimRelated")
-  public static class Related implements BackboneElement {
+  @Schema(name = "ClaimCareTeam")
+  public static class CareTeam implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -226,11 +233,263 @@ public class Claim implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Valid Reference claim;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
-    @Valid CodeableConcept relationship;
+    @NotNull @Valid Reference provider;
 
-    @Valid Identifier reference;
+    Boolean responsible;
+
+    @Valid CodeableConcept role;
+
+    @Valid CodeableConcept qualification;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ClaimDiagnosis")
+  @ExactlyOneOf(
+      fields = {"diagnosisCodeableConcept", "diagnosisReference"},
+      message = "diagnosisCodeableConcept or diagnosisReference, but not both")
+  public static class Diagnosis implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull
+    @Min(1)
+    Integer sequence;
+
+    @Valid CodeableConcept diagnosisCodeableConcept;
+
+    @Valid Reference diagnosisReference;
+
+    @Valid List<CodeableConcept> type;
+
+    @Valid CodeableConcept onAdmission;
+
+    @Valid CodeableConcept packageCode;
+  }
+
+  @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = Claim.Entry.EntryBuilder.class)
+  @Schema(name = "ClaimEntry")
+  public static class Entry extends AbstractEntry<Claim> {
+
+    @Builder
+    public Entry(
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid List<Extension> extension,
+        @Valid List<Extension> modifierExtension,
+        @Valid List<BundleLink> link,
+        @Pattern(regexp = Fhir.URI) String fullUrl,
+        @Valid Claim resource,
+        @Valid Search search,
+        @Valid Request request,
+        @Valid Response response) {
+      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
+    }
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ClaimInsurance")
+  public static class Insurance implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull
+    @Min(1)
+    Integer sequence;
+
+    @NotNull Boolean focal;
+
+    @Valid Identifier identifier;
+
+    @NotNull @Valid Reference coverage;
+
+    @Pattern(regexp = Fhir.STRING)
+    String businessArrangement;
+
+    List<@Pattern(regexp = Fhir.STRING) String> preAuthRef;
+
+    @Valid Reference claimResponse;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ClaimItem")
+  @ZeroOrOneOfs({
+    @ZeroOrOneOf(
+        fields = {"servicedDate", "servicedPeriod"},
+        message = "Only one serviced field may be specified"),
+    @ZeroOrOneOf(
+        fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
+        message = "Only one location field may be specified")
+  })
+  public static class Item implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull
+    @Min(1)
+    Integer sequence;
+
+    List<@Min(1) Integer> careTeamSequence;
+
+    List<@Min(1) Integer> diagnosisSequence;
+
+    List<@Min(1) Integer> procedureSequence;
+
+    List<@Min(1) Integer> informationSequence;
+
+    @Valid CodeableConcept revenue;
+
+    @Valid CodeableConcept category;
+
+    @NotNull @Valid CodeableConcept productOrService;
+
+    @Valid List<CodeableConcept> modifier;
+
+    @Valid List<CodeableConcept> programCode;
+
+    @Pattern(regexp = Fhir.DATE)
+    String servicedDate;
+
+    @Valid Period servicedPeriod;
+
+    @Valid CodeableConcept locationCodeableConcept;
+
+    @Valid Address locationAddress;
+
+    @Valid Reference locationReference;
+
+    @Valid SimpleQuantity quantity;
+
+    @Valid Money unitPrice;
+
+    BigDecimal factor;
+
+    @Valid Money net;
+
+    @Valid List<Reference> udi;
+
+    @Valid CodeableConcept bodySite;
+
+    @Valid List<CodeableConcept> subSite;
+
+    @Valid List<Reference> encounter;
+
+    @Valid List<Detail> detail;
+
+    @Data
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @AllArgsConstructor
+    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+    @Schema(name = "ClaimItemDetail")
+    public static class Detail implements BackboneElement {
+
+      @Pattern(regexp = Fhir.ID)
+      String id;
+
+      @Valid List<Extension> extension;
+
+      @Valid List<Extension> modifierExtension;
+
+      @NotNull
+      @Min(1)
+      Integer sequence;
+
+      @Valid CodeableConcept revenue;
+
+      @Valid CodeableConcept category;
+
+      @NotNull @Valid CodeableConcept productOrService;
+
+      @Valid List<CodeableConcept> modifier;
+
+      @Valid List<CodeableConcept> programCode;
+
+      @Valid SimpleQuantity quantity;
+
+      @Valid Money unitPrice;
+
+      BigDecimal factor;
+
+      @Valid Money net;
+
+      @Valid List<Reference> udi;
+
+      @Valid List<SubDetail> subDetail;
+
+      @Data
+      @Builder
+      @NoArgsConstructor(access = AccessLevel.PRIVATE)
+      @AllArgsConstructor
+      @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+      @Schema(name = "ClaimItemDetailSubDetail")
+      public static class SubDetail implements BackboneElement {
+
+        @Pattern(regexp = Fhir.ID)
+        String id;
+
+        @Valid List<Extension> extension;
+
+        @Valid List<Extension> modifierExtension;
+
+        @NotNull
+        @Min(1)
+        Integer sequence;
+
+        @Valid CodeableConcept revenue;
+
+        @Valid CodeableConcept category;
+
+        @NotNull @Valid CodeableConcept productOrService;
+
+        @Valid List<CodeableConcept> modifier;
+
+        @Valid List<CodeableConcept> programCode;
+
+        @Valid SimpleQuantity quantity;
+
+        @Valid Money unitPrice;
+
+        BigDecimal factor;
+
+        @Valid Money net;
+
+        @Valid List<Reference> udi;
+      }
+    }
   }
 
   @Data
@@ -258,8 +517,11 @@ public class Claim implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimCareTeam")
-  public static class CareTeam implements BackboneElement {
+  @Schema(name = "ClaimProcedure")
+  @ExactlyOneOf(
+      fields = {"procedureCodeableConcept", "procedureReference"},
+      message = "procedureCodeableConcept or procedureReference, but not both")
+  public static class Procedure implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -268,18 +530,42 @@ public class Claim implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
-    @NotNull @Valid Reference provider;
+    @Valid List<CodeableConcept> type;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String responsible;
+    @Pattern(regexp = Fhir.DATETIME)
+    String date;
 
-    @Valid CodeableConcept role;
+    @Valid CodeableConcept procedureCodeableConcept;
 
-    @Valid CodeableConcept qualification;
+    @Valid Reference procedureReference;
+
+    @Valid List<Reference> udi;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ClaimRelated")
+  public static class Related implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @Valid Reference claim;
+
+    @Valid CodeableConcept relationship;
+
+    @Valid Identifier reference;
   }
 
   @Data
@@ -311,9 +597,9 @@ public class Claim implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
     @NotNull @Valid CodeableConcept category;
 
@@ -324,8 +610,7 @@ public class Claim implements Resource {
 
     @Valid Period timingPeriod;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String valueBoolean;
+    Boolean valueBoolean;
 
     @Pattern(regexp = Fhir.STRING)
     String valueString;
@@ -337,296 +622,5 @@ public class Claim implements Resource {
     @Valid Reference valueReference;
 
     @Valid CodeableConcept reason;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimDiagnosis")
-  @ExactlyOneOf(
-      fields = {"diagnosisCodeableConcept", "diagnosisReference"},
-      message = "diagnosisCodeableConcept or diagnosisReference, but not both")
-  public static class Diagnosis implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    @Valid CodeableConcept diagnosisCodeableConcept;
-
-    @Valid Reference diagnosisReference;
-
-    @Valid List<CodeableConcept> type;
-
-    @Valid CodeableConcept onAdmission;
-
-    @Valid CodeableConcept packageCode;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimProcedure")
-  @ExactlyOneOf(
-      fields = {"procedureCodeableConcept", "procedureReference"},
-      message = "procedureCodeableConcept or procedureReference, but not both")
-  public static class Procedure implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    @Valid List<CodeableConcept> type;
-
-    @Pattern(regexp = Fhir.DATETIME)
-    String date;
-
-    @Valid CodeableConcept procedureCodeableConcept;
-
-    @Valid Reference procedureReference;
-
-    @Valid List<Reference> udi;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimInsurance")
-  public static class Insurance implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String focal;
-
-    @Valid Identifier identifier;
-
-    @NotNull @Valid Reference coverage;
-
-    @Pattern(regexp = Fhir.STRING)
-    String businessArrangement;
-
-    List<@Pattern(regexp = Fhir.STRING) String> preAuthRef;
-
-    @Valid Reference claimResponse;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimAccident")
-  @ZeroOrOneOf(
-      fields = {"locationAddress", "locationReference"},
-      message = "Only one location field may be specified")
-  public static class Accident implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.DATE)
-    String date;
-
-    @Valid CodeableConcept type;
-
-    @Valid Address locationAddress;
-
-    @Valid Reference locationReference;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ClaimItem")
-  @ZeroOrOneOfs({
-    @ZeroOrOneOf(
-        fields = {"servicedDate", "servicedPeriod"},
-        message = "Only one serviced field may be specified"),
-    @ZeroOrOneOf(
-        fields = {"locationCodeableConcept", "locationAddress", "locationReference"},
-        message = "Only one location field may be specified")
-  })
-  public static class Item implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> careTeamSequence;
-
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> diagnosisSequence;
-
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> procedureSequence;
-
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> informationSequence;
-
-    @Valid CodeableConcept revenue;
-
-    @Valid CodeableConcept category;
-
-    @NotNull @Valid CodeableConcept productOrService;
-
-    @Valid List<CodeableConcept> modifier;
-
-    @Valid List<CodeableConcept> programCode;
-
-    @Pattern(regexp = Fhir.DATE)
-    String servicedDate;
-
-    @Valid Period servicedPeriod;
-
-    @Valid CodeableConcept locationCodeableConcept;
-
-    @Valid Address locationAddress;
-
-    @Valid Reference locationReference;
-
-    @Valid SimpleQuantity quantity;
-
-    @Valid Money unitPrice;
-
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
-
-    @Valid Money net;
-
-    @Valid List<Reference> udi;
-
-    @Valid CodeableConcept bodySite;
-
-    @Valid List<CodeableConcept> subSite;
-
-    @Valid List<Reference> encounter;
-
-    @Valid List<Detail> detail;
-
-    @Data
-    @Builder
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    @AllArgsConstructor
-    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-    @Schema(name = "ClaimItemDetail")
-    public static class Detail implements BackboneElement {
-
-      @Pattern(regexp = Fhir.ID)
-      String id;
-
-      @Valid List<Extension> extension;
-
-      @Valid List<Extension> modifierExtension;
-
-      @NotBlank
-      @Pattern(regexp = Fhir.POSITIVE_INT)
-      String sequence;
-
-      @Valid CodeableConcept revenue;
-
-      @Valid CodeableConcept category;
-
-      @NotNull @Valid CodeableConcept productOrService;
-
-      @Valid List<CodeableConcept> modifier;
-
-      @Valid List<CodeableConcept> programCode;
-
-      @Valid SimpleQuantity quantity;
-
-      @Valid Money unitPrice;
-
-      @Pattern(regexp = Fhir.DECIMAL)
-      String factor;
-
-      @Valid Money net;
-
-      @Valid List<Reference> udi;
-
-      @Valid List<SubDetail> subDetail;
-
-      @Data
-      @Builder
-      @NoArgsConstructor(access = AccessLevel.PRIVATE)
-      @AllArgsConstructor
-      @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-      @Schema(name = "ClaimItemDetailSubDetail")
-      public static class SubDetail implements BackboneElement {
-
-        @Pattern(regexp = Fhir.ID)
-        String id;
-
-        @Valid List<Extension> extension;
-
-        @Valid List<Extension> modifierExtension;
-
-        @NotBlank
-        @Pattern(regexp = Fhir.POSITIVE_INT)
-        String sequence;
-
-        @Valid CodeableConcept revenue;
-
-        @Valid CodeableConcept category;
-
-        @NotNull @Valid CodeableConcept productOrService;
-
-        @Valid List<CodeableConcept> modifier;
-
-        @Valid List<CodeableConcept> programCode;
-
-        @Valid SimpleQuantity quantity;
-
-        @Valid Money unitPrice;
-
-        @Pattern(regexp = Fhir.DECIMAL)
-        String factor;
-
-        @Valid Money net;
-
-        @Valid List<Reference> udi;
-      }
-    }
   }
 }

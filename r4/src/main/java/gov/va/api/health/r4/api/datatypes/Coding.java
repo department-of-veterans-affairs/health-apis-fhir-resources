@@ -36,12 +36,11 @@ public class Coding implements Element {
   @Pattern(regexp = Fhir.STRING)
   String display;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String userSelected;
+  Boolean userSelected;
 
   /** All-args builder constructor. */
   @Builder
-  public Coding(String system, String version, String code, String display, String userSelected) {
+  public Coding(String system, String version, String code, String display, Boolean userSelected) {
     this.system = defaultIfBlank(system, null);
     this.version = defaultIfBlank(version, null);
     this.code = defaultIfBlank(code, null);

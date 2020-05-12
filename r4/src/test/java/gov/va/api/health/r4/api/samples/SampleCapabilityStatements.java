@@ -51,7 +51,7 @@ public class SampleCapabilityStatements {
         .name("conformin' norman")
         .title("urgent care capability")
         .status(Status.active)
-        .experimental("true")
+        .experimental(true)
         .date("2000-01-01T00:00:00-00:00")
         .publisher("random house")
         .contact(singletonList(contactDetail()))
@@ -82,11 +82,11 @@ public class SampleCapabilityStatements {
         .documentation("words words")
         .interaction(singletonList(resourceInteraction()))
         .versioning(Versioning.no_version)
-        .readHistory("true")
-        .updateCreate("false")
-        .conditionalCreate("true")
+        .readHistory(true)
+        .updateCreate(false)
+        .conditionalCreate(true)
         .conditionalRead(ConditionalRead.not_supported)
-        .conditionalUpdate("false")
+        .conditionalUpdate(false)
         .conditionalDelete(ConditionalDelete.not_supported)
         .referencePolicy(singletonList(ReferencePolicy.enforced))
         .searchInclude(singletonList("indlude dem"))
@@ -119,7 +119,7 @@ public class SampleCapabilityStatements {
   public Messaging messaging() {
     return Messaging.builder()
         .endpoint(singletonList(endpoint()))
-        .reliableCache("0")
+        .reliableCache(0)
         .documentation("words words")
         .supportedMessage(singletonList(supportedMessage()))
         .build();
@@ -171,7 +171,7 @@ public class SampleCapabilityStatements {
 
   public Security security() {
     return Security.builder()
-        .cors("true")
+        .cors(true)
         .service(singletonList(codeableConcept()))
         .description("words words")
         .build();

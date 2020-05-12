@@ -7,6 +7,7 @@ import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -38,8 +39,8 @@ public class Attachment implements Element {
   @Pattern(regexp = Fhir.URI)
   String url;
 
-  @Pattern(regexp = Fhir.UNSIGNED_INT)
-  String size;
+  @Min(0)
+  Integer size;
 
   @Pattern(regexp = Fhir.BASE64)
   String hash;

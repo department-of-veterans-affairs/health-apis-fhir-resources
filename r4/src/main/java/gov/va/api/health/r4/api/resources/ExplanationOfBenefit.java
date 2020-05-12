@@ -27,6 +27,7 @@ import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -141,8 +142,8 @@ public class ExplanationOfBenefit implements Resource {
 
   @Valid List<Procedure> procedure;
 
-  @Pattern(regexp = Fhir.POSITIVE_INT)
-  String precedence;
+  @Min(1)
+  Integer precedence;
 
   @NotEmpty @Valid List<Insurance> insurance;
 
@@ -200,71 +201,6 @@ public class ExplanationOfBenefit implements Resource {
   }
 
   @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = ExplanationOfBenefit.Bundle.BundleBuilder.class)
-  @Schema(
-      name = "ExplanationOfBenefitBundle",
-      example =
-          "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefitBundle}")
-  public static class Bundle extends AbstractBundle<Entry> {
-
-    /** Explanation of benefit bundle builder. */
-    @Builder
-    public Bundle(
-        @NotBlank String resourceType,
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid Meta meta,
-        @Pattern(regexp = Fhir.URI) String implicitRules,
-        @Pattern(regexp = Fhir.CODE) String language,
-        @Valid Identifier identifier,
-        @NotNull AbstractBundle.BundleType type,
-        @Pattern(regexp = Fhir.INSTANT) String timestamp,
-        @Min(0) Integer total,
-        @Valid List<BundleLink> link,
-        @Valid List<Entry> entry,
-        @Valid Signature signature) {
-      super(
-          resourceType,
-          id,
-          meta,
-          implicitRules,
-          language,
-          identifier,
-          type,
-          timestamp,
-          total,
-          link,
-          entry,
-          signature);
-    }
-  }
-
-  @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = ExplanationOfBenefit.Entry.EntryBuilder.class)
-  @Schema(name = "ExplanationOfBenefitEntry")
-  public static class Entry extends AbstractEntry<ExplanationOfBenefit> {
-
-    @Builder
-    public Entry(
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid List<Extension> extension,
-        @Valid List<Extension> modifierExtension,
-        @Valid List<BundleLink> link,
-        @Pattern(regexp = Fhir.URI) String fullUrl,
-        @Valid ExplanationOfBenefit resource,
-        @Valid Search search,
-        @Valid Request request,
-        @Valid Response response) {
-      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
-    }
-  }
-
-  @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
@@ -315,11 +251,11 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> itemSequence;
+    List<@Min(1) Integer> itemSequence;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> detailSequence;
+    List<@Min(1) Integer> detailSequence;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> subDetailSequence;
+    List<@Min(1) Integer> subDetailSequence;
 
     @Valid List<Reference> provider;
 
@@ -344,8 +280,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid Money unitPrice;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
+    BigDecimal factor;
 
     @Valid Money net;
 
@@ -353,7 +288,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<CodeableConcept> subSite;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> noteNumber;
+    List<@Min(1) Integer> noteNumber;
 
     @Valid List<Adjudication> adjudication;
 
@@ -383,12 +318,11 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid Money unitPrice;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
+    BigDecimal factor;
 
     @Valid Money net;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> noteNumber;
+    List<@Min(1) Integer> noteNumber;
 
     @Valid List<Adjudication> adjudication;
 
@@ -418,12 +352,11 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid Money unitPrice;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
+    BigDecimal factor;
 
     @Valid Money net;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> noteNumber;
+    List<@Min(1) Integer> noteNumber;
 
     @Valid List<Adjudication> adjudication;
   }
@@ -449,8 +382,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid Money amount;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String value;
+    BigDecimal value;
   }
 
   @Data
@@ -470,8 +402,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @NotNull @Valid CodeableConcept category;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String excluded;
+    Boolean excluded;
 
     @Pattern(regexp = Fhir.STRING)
     String name;
@@ -489,6 +420,48 @@ public class ExplanationOfBenefit implements Resource {
   }
 
   @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = ExplanationOfBenefit.Bundle.BundleBuilder.class)
+  @Schema(
+      name = "ExplanationOfBenefitBundle",
+      example =
+          "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefitBundle}")
+  public static class Bundle extends AbstractBundle<Entry> {
+
+    /** Explanation of benefit bundle builder. */
+    @Builder
+    public Bundle(
+        @NotBlank String resourceType,
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid Meta meta,
+        @Pattern(regexp = Fhir.URI) String implicitRules,
+        @Pattern(regexp = Fhir.CODE) String language,
+        @Valid Identifier identifier,
+        @NotNull AbstractBundle.BundleType type,
+        @Pattern(regexp = Fhir.INSTANT) String timestamp,
+        @Min(0) Integer total,
+        @Valid List<BundleLink> link,
+        @Valid List<Entry> entry,
+        @Valid Signature signature) {
+      super(
+          resourceType,
+          id,
+          meta,
+          implicitRules,
+          language,
+          identifier,
+          type,
+          timestamp,
+          total,
+          link,
+          entry,
+          signature);
+    }
+  }
+
+  @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
@@ -503,18 +476,73 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
     @NotNull @Valid Reference provider;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String responsible;
+    Boolean responsible;
 
     @Valid CodeableConcept role;
 
     @Valid CodeableConcept qualification;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ExplanationOfBenefitDiagnosis")
+  @ExactlyOneOf(
+      fields = {"diagnosisCodeableConcept", "diagnosisReference"},
+      message = "Only one diagnosis field may be specified")
+  public static class Diagnosis implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull
+    @Min(1)
+    Integer sequence;
+
+    @Valid CodeableConcept diagnosisCodeableConcept;
+
+    @Valid Reference diagnosisReference;
+
+    @Valid List<CodeableConcept> type;
+
+    @Valid CodeableConcept onAdmission;
+
+    @Valid CodeableConcept packageCode;
+  }
+
+  @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = ExplanationOfBenefit.Entry.EntryBuilder.class)
+  @Schema(name = "ExplanationOfBenefitEntry")
+  public static class Entry extends AbstractEntry<ExplanationOfBenefit> {
+
+    @Builder
+    public Entry(
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid List<Extension> extension,
+        @Valid List<Extension> modifierExtension,
+        @Valid List<BundleLink> link,
+        @Pattern(regexp = Fhir.URI) String fullUrl,
+        @Valid ExplanationOfBenefit resource,
+        @Valid Search search,
+        @Valid Request request,
+        @Valid Response response) {
+      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
+    }
   }
 
   @Data
@@ -542,98 +570,18 @@ public class ExplanationOfBenefit implements Resource {
 
     @NotNull @Valid CodeableConcept type;
 
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String allowedUnsignedInt;
+    @Min(0)
+    Integer allowedUnsignedInt;
 
     @Pattern(regexp = Fhir.STRING)
     String allowedString;
 
     @Valid Money allowedMoney;
 
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String usedUnsignedInt;
+    @Min(0)
+    Integer usedUnsignedInt;
 
     @Valid Money usedMoney;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ExplanationOfBenefitItemDetail")
-  public static class ItemDetail implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    @Valid CodeableConcept revenue;
-
-    @Valid CodeableConcept category;
-
-    @NotNull @Valid CodeableConcept productOrService;
-
-    @Valid List<CodeableConcept> modifier;
-
-    @Valid List<CodeableConcept> programCode;
-
-    @Valid SimpleQuantity quantity;
-
-    @Valid Money unitPrice;
-
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
-
-    @Valid Money net;
-
-    @Valid List<Reference> udi;
-
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> noteNumber;
-
-    @Valid List<Adjudication> adjudication;
-
-    @Valid List<ItemSubDetail> subDetail;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ExplanationOfBenefitDiagnosis")
-  @ExactlyOneOf(
-      fields = {"diagnosisCodeableConcept", "diagnosisReference"},
-      message = "Only one diagnosis field may be specified")
-  public static class Diagnosis implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    @Valid CodeableConcept diagnosisCodeableConcept;
-
-    @Valid Reference diagnosisReference;
-
-    @Valid List<CodeableConcept> type;
-
-    @Valid CodeableConcept onAdmission;
-
-    @Valid CodeableConcept packageCode;
   }
 
   @Data
@@ -651,9 +599,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String focal;
+    @NotNull Boolean focal;
 
     @NotNull @Valid Reference coverage;
 
@@ -683,17 +629,17 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> careTeamSequence;
+    List<@Min(1) Integer> careTeamSequence;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> diagnosisSequence;
+    List<@Min(1) Integer> diagnosisSequence;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> procedureSequence;
+    List<@Min(1) Integer> procedureSequence;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> informationSequence;
+    List<@Min(1) Integer> informationSequence;
 
     @Valid CodeableConcept revenue;
 
@@ -720,8 +666,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid Money unitPrice;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
+    BigDecimal factor;
 
     @Valid Money net;
 
@@ -733,11 +678,101 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Reference> encounter;
 
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> noteNumber;
+    List<@Min(1) Integer> noteNumber;
 
     @Valid List<Adjudication> adjudication;
 
     @Valid List<ItemDetail> detail;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ExplanationOfBenefitItemDetail")
+  public static class ItemDetail implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull
+    @Min(1)
+    Integer sequence;
+
+    @Valid CodeableConcept revenue;
+
+    @Valid CodeableConcept category;
+
+    @NotNull @Valid CodeableConcept productOrService;
+
+    @Valid List<CodeableConcept> modifier;
+
+    @Valid List<CodeableConcept> programCode;
+
+    @Valid SimpleQuantity quantity;
+
+    @Valid Money unitPrice;
+
+    BigDecimal factor;
+
+    @Valid Money net;
+
+    @Valid List<Reference> udi;
+
+    List<@Min(1) Integer> noteNumber;
+
+    @Valid List<Adjudication> adjudication;
+
+    @Valid List<ItemSubDetail> subDetail;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "ExplanationOfBenefitItemSubDetail")
+  public static class ItemSubDetail implements BackboneElement {
+
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull
+    @Min(1)
+    Integer sequence;
+
+    @Valid CodeableConcept revenue;
+
+    @Valid CodeableConcept category;
+
+    @NotNull @Valid CodeableConcept productOrService;
+
+    @Valid List<CodeableConcept> modifier;
+
+    @Valid List<CodeableConcept> programCode;
+
+    @Valid SimpleQuantity quantity;
+
+    @Valid Money unitPrice;
+
+    BigDecimal factor;
+
+    @Valid Money net;
+
+    @Valid List<Reference> udi;
+
+    List<@Min(1) Integer> noteNumber;
+
+    @Valid List<Adjudication> adjudication;
   }
 
   @Data
@@ -807,9 +842,9 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
     @Valid List<CodeableConcept> type;
 
@@ -838,8 +873,8 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String number;
+    @Min(1)
+    Integer number;
 
     Type type;
 
@@ -876,51 +911,6 @@ public class ExplanationOfBenefit implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "ExplanationOfBenefitItemSubDetail")
-  public static class ItemSubDetail implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
-
-    @Valid CodeableConcept revenue;
-
-    @Valid CodeableConcept category;
-
-    @NotNull @Valid CodeableConcept productOrService;
-
-    @Valid List<CodeableConcept> modifier;
-
-    @Valid List<CodeableConcept> programCode;
-
-    @Valid SimpleQuantity quantity;
-
-    @Valid Money unitPrice;
-
-    @Pattern(regexp = Fhir.DECIMAL)
-    String factor;
-
-    @Valid Money net;
-
-    @Valid List<Reference> udi;
-
-    List<@Pattern(regexp = Fhir.POSITIVE_INT) String> noteNumber;
-
-    @Valid List<Adjudication> adjudication;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitSupportingInfo")
   @ZeroOrOneOfs({
     @ZeroOrOneOf(
@@ -945,9 +935,9 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String sequence;
+    @NotNull
+    @Min(1)
+    Integer sequence;
 
     @NotNull @Valid CodeableConcept category;
 
@@ -958,8 +948,7 @@ public class ExplanationOfBenefit implements Resource {
 
     @Valid Period timingPeriod;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String valueBoolean;
+    Boolean valueBoolean;
 
     @Pattern(regexp = Fhir.STRING)
     String valueString;

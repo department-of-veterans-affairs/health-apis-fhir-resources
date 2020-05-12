@@ -88,16 +88,15 @@ public class Coverage implements Resource {
   @JsonProperty("class")
   List<CoverageClass> coverageClass;
 
-  @Pattern(regexp = Fhir.POSITIVE_INT)
-  String order;
+  @Min(1)
+  Integer order;
 
   @Pattern(regexp = Fhir.STRING)
   String network;
 
   @Valid List<CostToBeneficiary> costToBeneficiary;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String subrogation;
+  Boolean subrogation;
 
   @Valid List<Reference> contract;
 
