@@ -21,6 +21,7 @@ import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.dstu2.api.elements.Meta;
 import gov.va.api.health.dstu2.api.elements.Narrative;
 import gov.va.api.health.dstu2.api.elements.Reference;
+import gov.va.api.health.fhir.api.FhirDateTime;
 import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import gov.va.api.health.validation.api.ZeroOrOneOfs;
@@ -114,8 +115,8 @@ public class MedicationDispense implements DomainResource {
      * to be the only one thrown instead of this one with a more generic message.
      */
     try {
-      Instant prepared = Fhir.parseDateTime(whenPrepared);
-      Instant handedOver = Fhir.parseDateTime(whenHandedOver);
+      Instant prepared = FhirDateTime.parseDateTime(whenPrepared);
+      Instant handedOver = FhirDateTime.parseDateTime(whenHandedOver);
       return !prepared.isAfter(handedOver);
     } catch (IllegalArgumentException e) {
       /*
