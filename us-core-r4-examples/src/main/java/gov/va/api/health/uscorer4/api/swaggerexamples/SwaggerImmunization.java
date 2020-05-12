@@ -19,7 +19,7 @@ public class SwaggerImmunization {
   public static Immunization immunization() {
     return Immunization.builder()
         .resourceType("Immunization")
-        .id("1fd82e3a-a95b-5c04-9a68-c8ddf740ea0c")
+        .id("I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
         .status(Immunization.Status.completed)
         .occurrenceString("2017-04-24T01:15:52Z")
         .vaccineCode(
@@ -73,7 +73,7 @@ public class SwaggerImmunization {
             asList(
                 Immunization.Entry.builder()
                     .fullUrl(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization/1fd82e3a-a95b-5c04-9a68-c8ddf740ea0c")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization/I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
                     .resource(immunization())
                     .build()))
         .build();

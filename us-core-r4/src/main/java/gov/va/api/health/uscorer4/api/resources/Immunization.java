@@ -100,7 +100,7 @@ public class Immunization implements Resource {
   @Pattern(regexp = Fhir.DATETIME)
   String recorded;
 
-  Boolean primarySource;
+  @NotNull Boolean primarySource;
 
   @Valid CodeableConcept reportOrigin;
 
@@ -123,11 +123,11 @@ public class Immunization implements Resource {
 
   @Valid List<Annotation> note;
 
-  @Valid CodeableConcept reasonCode;
+  @Valid List<CodeableConcept> reasonCode;
 
-  @Valid Reference reasonReference;
+  @Valid List<Reference> reasonReference;
 
-  @Valid Boolean isSubpotent;
+  Boolean isSubpotent;
 
   @Valid List<CodeableConcept> subpotentReason;
 
@@ -274,7 +274,7 @@ public class Immunization implements Resource {
 
     @Valid Reference detail;
 
-    @Valid Boolean reported;
+    Boolean reported;
   }
 
   @Data
