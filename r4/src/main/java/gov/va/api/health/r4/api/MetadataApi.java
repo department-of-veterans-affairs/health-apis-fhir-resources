@@ -12,7 +12,7 @@ import javax.ws.rs.Path;
 
 public interface MetadataApi {
   @Operation(
-      summary = "Capability",
+      summary = "metadata",
       description = "http://hl7.org/fhir/R4/capabilitystatement.html",
       tags = "Metadata")
   @GET
