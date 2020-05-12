@@ -149,8 +149,8 @@ public class Condition implements Resource {
   @Schema(
       name = "ConditionBundle",
       example =
-          "${r4.conditionBundle:gov.va.api.health."
-              + "r4.api.swaggerexamples.SwaggerCondition#conditionBundle}")
+          "${uscorer4.conditionBundle:gov.va.api.health."
+              + "uscorer4.api.swaggerexamples.SwaggerCondition#conditionBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */
     @Builder

@@ -56,7 +56,7 @@ public class SwaggerCondition {
                     asList(
                         Coding.builder()
                             .code("38341003")
-                            .system("https://www.snomed.org/snomed-ct")
+                            .system("http://www.snomed.org/snomed-ct")
                             .display("Hypertension")
                             .build()))
                 .text("Hypertension")
@@ -64,7 +64,7 @@ public class SwaggerCondition {
         .subject(
             Reference.builder()
                 .reference(
-                    "https://sandbox-api.va.gov/services/argonaut/v0/Patient/1017283148V813263")
+                    "https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/1017283148V813263")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .onsetDateTime("2013-04-15T01:15:52Z")
@@ -87,23 +87,23 @@ public class SwaggerCondition {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Condition?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Condition?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Condition?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Condition.Entry.builder()
                     .fullUrl(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition/I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Condition/I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
                     .resource(condition())
                     .build()))
         .build();
