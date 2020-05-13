@@ -57,17 +57,17 @@ public class SwaggerImmunization {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=2000163&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=2000163&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=2000163&page=1&_count=15")
                     .build()))
         .entry(
             asList(
