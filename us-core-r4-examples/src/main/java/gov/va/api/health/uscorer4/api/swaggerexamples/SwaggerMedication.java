@@ -1,13 +1,14 @@
 package gov.va.api.health.uscorer4.api.swaggerexamples;
 
-import static java.util.Arrays.asList;
-
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.uscorer4.api.resources.Medication;
+
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class SwaggerMedication {
 
@@ -49,7 +50,7 @@ public class SwaggerMedication {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/r4/Medication?"
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Medication?"
                             + "patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
