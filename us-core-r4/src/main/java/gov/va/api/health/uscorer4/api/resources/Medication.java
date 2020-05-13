@@ -7,20 +7,32 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.datatypes.*;
-import gov.va.api.health.r4.api.elements.*;
+import gov.va.api.health.r4.api.datatypes.CodeableConcept;
+import gov.va.api.health.r4.api.datatypes.Identifier;
+import gov.va.api.health.r4.api.datatypes.Ratio;
+import gov.va.api.health.r4.api.datatypes.Signature;
+import gov.va.api.health.r4.api.datatypes.SimpleResource;
+import gov.va.api.health.r4.api.elements.BackboneElement;
+import gov.va.api.health.r4.api.elements.Extension;
+import gov.va.api.health.r4.api.elements.Meta;
+import gov.va.api.health.r4.api.elements.Narrative;
+import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ExactlyOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
