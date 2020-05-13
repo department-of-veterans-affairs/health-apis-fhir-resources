@@ -37,8 +37,7 @@ public class Dosage implements BackboneElement {
 
   @Valid List<Extension> modifierExtension;
 
-  @Pattern(regexp = Fhir.INTEGER)
-  String sequence;
+  Integer sequence;
 
   @Pattern(regexp = Fhir.STRING)
   String text;
@@ -50,8 +49,7 @@ public class Dosage implements BackboneElement {
 
   @Valid Timing timing;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String asNeededBoolean;
+  Boolean asNeededBoolean;
 
   @Valid CodeableConcept asNeededCodeableConcept;
 

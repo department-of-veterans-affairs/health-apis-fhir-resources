@@ -7,8 +7,10 @@ import gov.va.api.health.r4.api.elements.Element;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -56,31 +58,27 @@ public class Timing implements Element {
 
     @Valid Period boundsPeriod;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String count;
+    @Min(1)
+    Integer count;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String countMax;
+    @Min(1)
+    Integer countMax;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String duration;
+    BigDecimal duration;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String durationMax;
+    BigDecimal durationMax;
 
     UnitOfTime durationUnit;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String frequency;
+    @Min(1)
+    Integer frequency;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String frequencyMax;
+    @Min(1)
+    Integer frequencyMax;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String period;
+    BigDecimal period;
 
-    @Pattern(regexp = Fhir.DECIMAL)
-    String periodMax;
+    BigDecimal periodMax;
 
     UnitOfTime periodUnit;
 
@@ -90,8 +88,8 @@ public class Timing implements Element {
 
     List<EventTime> when;
 
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String offset;
+    @Min(0)
+    Integer offset;
 
     public enum UnitOfTime {
       s,

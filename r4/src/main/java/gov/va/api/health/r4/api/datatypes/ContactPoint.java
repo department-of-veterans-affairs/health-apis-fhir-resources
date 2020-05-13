@@ -7,6 +7,7 @@ import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -33,8 +34,8 @@ public class ContactPoint implements Element {
 
   ContactPointUse use;
 
-  @Pattern(regexp = Fhir.POSITIVE_INT)
-  String rank;
+  @Min(1)
+  Integer rank;
 
   @Valid Period period;
 

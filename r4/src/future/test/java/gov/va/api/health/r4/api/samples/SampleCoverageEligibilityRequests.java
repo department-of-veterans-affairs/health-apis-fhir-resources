@@ -64,7 +64,7 @@ public class SampleCoverageEligibilityRequests {
 
   public Insurance insurance() {
     return Insurance.builder()
-        .focal("true")
+        .focal(true)
         .coverage(reference())
         .businessArrangement("businessArrangement")
         .build();
@@ -89,7 +89,7 @@ public class SampleCoverageEligibilityRequests {
     return SupportingInfo.builder()
         .sequence("1")
         .information(reference())
-        .appliesToAll("true")
+        .appliesToAll(true)
         .build();
   }
 }

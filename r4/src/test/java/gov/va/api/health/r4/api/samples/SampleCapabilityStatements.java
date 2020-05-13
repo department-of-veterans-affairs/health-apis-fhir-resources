@@ -2,42 +2,42 @@ package gov.va.api.health.r4.api.samples;
 
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.resources.Capability;
-import gov.va.api.health.r4.api.resources.Capability.CapabilityResource;
-import gov.va.api.health.r4.api.resources.Capability.ConditionalDelete;
-import gov.va.api.health.r4.api.resources.Capability.ConditionalRead;
-import gov.va.api.health.r4.api.resources.Capability.Document;
-import gov.va.api.health.r4.api.resources.Capability.DocumentMode;
-import gov.va.api.health.r4.api.resources.Capability.Implementation;
-import gov.va.api.health.r4.api.resources.Capability.Kind;
-import gov.va.api.health.r4.api.resources.Capability.Messaging;
-import gov.va.api.health.r4.api.resources.Capability.MessagingEndpoint;
-import gov.va.api.health.r4.api.resources.Capability.Operation;
-import gov.va.api.health.r4.api.resources.Capability.ReferencePolicy;
-import gov.va.api.health.r4.api.resources.Capability.ResourceInteraction;
-import gov.va.api.health.r4.api.resources.Capability.Rest;
-import gov.va.api.health.r4.api.resources.Capability.RestInteraction;
-import gov.va.api.health.r4.api.resources.Capability.RestMode;
-import gov.va.api.health.r4.api.resources.Capability.SearchParam;
-import gov.va.api.health.r4.api.resources.Capability.SearchParamType;
-import gov.va.api.health.r4.api.resources.Capability.Security;
-import gov.va.api.health.r4.api.resources.Capability.Software;
-import gov.va.api.health.r4.api.resources.Capability.Status;
-import gov.va.api.health.r4.api.resources.Capability.SupportedMessage;
-import gov.va.api.health.r4.api.resources.Capability.SupportedMessageMode;
-import gov.va.api.health.r4.api.resources.Capability.SystemRestfulInteraction;
-import gov.va.api.health.r4.api.resources.Capability.TypeRestfulInteraction;
-import gov.va.api.health.r4.api.resources.Capability.Versioning;
+import gov.va.api.health.r4.api.resources.CapabilityStatement;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.CapabilityResource;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.ConditionalDelete;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.ConditionalRead;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Document;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.DocumentMode;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Implementation;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Kind;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Messaging;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.MessagingEndpoint;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Operation;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.ReferencePolicy;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.ResourceInteraction;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Rest;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.RestInteraction;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.RestMode;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SearchParam;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SearchParamType;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Security;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Software;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Status;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SupportedMessage;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SupportedMessageMode;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.SystemRestfulInteraction;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.TypeRestfulInteraction;
+import gov.va.api.health.r4.api.resources.CapabilityStatement.Versioning;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
-public class SampleCapabilities {
+public class SampleCapabilityStatements {
 
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
-  public Capability capability() {
-    return Capability.builder()
+  public CapabilityStatement capability() {
+    return CapabilityStatement.builder()
         .id("c1")
         .resourceType("Conformance")
         .implicitRules("https://example.com")
@@ -51,7 +51,7 @@ public class SampleCapabilities {
         .name("conformin' norman")
         .title("urgent care capability")
         .status(Status.active)
-        .experimental("true")
+        .experimental(true)
         .date("2000-01-01T00:00:00-00:00")
         .publisher("random house")
         .contact(singletonList(contactDetail()))
@@ -82,11 +82,11 @@ public class SampleCapabilities {
         .documentation("words words")
         .interaction(singletonList(resourceInteraction()))
         .versioning(Versioning.no_version)
-        .readHistory("true")
-        .updateCreate("false")
-        .conditionalCreate("true")
+        .readHistory(true)
+        .updateCreate(false)
+        .conditionalCreate(true)
         .conditionalRead(ConditionalRead.not_supported)
-        .conditionalUpdate("false")
+        .conditionalUpdate(false)
         .conditionalDelete(ConditionalDelete.not_supported)
         .referencePolicy(singletonList(ReferencePolicy.enforced))
         .searchInclude(singletonList("indlude dem"))
@@ -119,7 +119,7 @@ public class SampleCapabilities {
   public Messaging messaging() {
     return Messaging.builder()
         .endpoint(singletonList(endpoint()))
-        .reliableCache("0")
+        .reliableCache(0)
         .documentation("words words")
         .supportedMessage(singletonList(supportedMessage()))
         .build();
@@ -171,7 +171,7 @@ public class SampleCapabilities {
 
   public Security security() {
     return Security.builder()
-        .cors("true")
+        .cors(true)
         .service(singletonList(codeableConcept()))
         .description("words words")
         .build();

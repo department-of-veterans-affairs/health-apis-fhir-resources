@@ -22,6 +22,7 @@ import gov.va.api.health.r4.api.datatypes.Timing;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Reference;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -32,21 +33,16 @@ public class SampleKnownTypes {
   public Map<String, Supplier<?>> knownStringTypes() {
     Map<String, Supplier<?>> suppliers = new HashMap<>();
     suppliers.put("", () -> "hello");
-    suppliers.put(Fhir.BOOLEAN, () -> "true");
     suppliers.put(Fhir.BASE64, () -> "SSBqdXN0IGF0ZSBhIHBlYW51dAo=");
     suppliers.put(Fhir.CODE, () -> "code");
     suppliers.put(Fhir.URI, () -> "http://example.com");
     suppliers.put(Fhir.DATE, () -> "2005-01-21");
     suppliers.put(Fhir.DATETIME, () -> "2005-01-21T07:57:00Z");
-    suppliers.put(Fhir.DECIMAL, () -> "0.03");
     suppliers.put(Fhir.ID, () -> "id");
     suppliers.put(Fhir.INSTANT, () -> "2005-01-21T07:57:00.000Z");
-    suppliers.put(Fhir.INTEGER, () -> "10");
     suppliers.put(Fhir.OID, () -> "urn:oid:0.1");
-    suppliers.put(Fhir.POSITIVE_INT, () -> "1");
     suppliers.put(Fhir.STRING, () -> "hello");
     suppliers.put(Fhir.TIME, () -> "07:57:00.000");
-    suppliers.put(Fhir.UNSIGNED_INT, () -> "0");
     suppliers.put(Fhir.XHTML, () -> "<div>html</div>");
     return suppliers;
   }
@@ -54,6 +50,10 @@ public class SampleKnownTypes {
   public Map<Class<?>, Supplier<?>> knownTypes() {
     SampleDataTypes dataTypes = SampleDataTypes.get();
     Map<Class<?>, Supplier<?>> suppliers = new HashMap<>();
+    suppliers.put(Integer.class, () -> 1);
+    suppliers.put(Boolean.class, () -> true);
+    suppliers.put(Double.class, () -> 1.0);
+    suppliers.put(BigDecimal.class, () -> new BigDecimal("1.0"));
     suppliers.put(Address.class, dataTypes::address);
     suppliers.put(Attachment.class, dataTypes::attachment);
     suppliers.put(CodeableConcept.class, dataTypes::codeableConcept);

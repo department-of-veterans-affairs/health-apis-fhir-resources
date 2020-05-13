@@ -1,11 +1,8 @@
 package gov.va.api.health.dstu2.api;
 
-import gov.va.api.health.fhir.api.FhirDateTime;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Fhir {
@@ -52,11 +49,4 @@ public class Fhir {
   public static final String OID = "urn:oid:[0-2](\\.[1-9]\\d*)+";
 
   public static final String XHTML = "<.+>";
-
-  /** Deprecated: Use gov.va.api.health.fhir.api.FhirDateTime#parseDateTime(java.lang.String). */
-  @SneakyThrows
-  @Deprecated
-  public static Instant parseDateTime(String dateTime) {
-    return FhirDateTime.parseDateTime(dateTime);
-  }
 }

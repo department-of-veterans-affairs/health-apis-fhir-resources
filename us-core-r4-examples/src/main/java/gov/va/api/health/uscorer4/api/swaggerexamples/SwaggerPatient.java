@@ -117,7 +117,7 @@ public class SwaggerPatient {
                     .build()))
         .gender(Patient.Gender.male)
         .birthDate("1995-02-06")
-        .deceasedBoolean("false")
+        .deceasedBoolean(false)
         .address(
             Arrays.asList(
                 Address.builder()

@@ -6,6 +6,7 @@ import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.resources.Resource;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -124,7 +125,6 @@ public abstract class AbstractEntry<T extends Resource> implements BackboneEleme
 
     @Min(0)
     @Max(1)
-    @Pattern(regexp = Fhir.DECIMAL)
-    String score;
+    BigDecimal score;
   }
 }

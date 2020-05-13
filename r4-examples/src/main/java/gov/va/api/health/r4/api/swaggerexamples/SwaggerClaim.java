@@ -39,7 +39,7 @@ public class SwaggerClaim {
         .procedure(
             Collections.singletonList(
                 Claim.Procedure.builder()
-                    .sequence("78362914")
+                    .sequence(78362914)
                     .type(
                         Collections.singletonList(
                             CodeableConcept.builder()
@@ -60,8 +60,8 @@ public class SwaggerClaim {
         .insurance(
             Collections.singletonList(
                 Claim.Insurance.builder()
-                    .sequence("122")
-                    .focal("true")
+                    .sequence(122)
+                    .focal(true)
                     .coverage(Reference.builder().display("Coverage/98203441").build())
                     .build()))
         .build();

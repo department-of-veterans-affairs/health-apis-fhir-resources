@@ -34,7 +34,7 @@ public class SampleSlots {
         .status(Status.busy)
         .start("2017-01-01T00:00:00Z")
         .end("2017-01-01T00:00:00Z")
-        .overbooked("true")
+        .overbooked(true)
         .comment("comment")
         .build();
   }

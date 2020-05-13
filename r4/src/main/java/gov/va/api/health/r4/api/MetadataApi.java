@@ -1,6 +1,6 @@
 package gov.va.api.health.r4.api;
 
-import gov.va.api.health.r4.api.resources.Capability;
+import gov.va.api.health.r4.api.resources.CapabilityStatement;
 import gov.va.api.health.r4.api.resources.OperationOutcome;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,7 +12,7 @@ import javax.ws.rs.Path;
 
 public interface MetadataApi {
   @Operation(
-      summary = "Capability",
+      summary = "metadata",
       description = "http://hl7.org/fhir/R4/capabilitystatement.html",
       tags = "Metadata")
   @GET
@@ -23,7 +23,7 @@ public interface MetadataApi {
       content =
           @Content(
               mediaType = "application/json+fhir",
-              schema = @Schema(implementation = Capability.class),
+              schema = @Schema(implementation = CapabilityStatement.class),
               examples =
                   @ExampleObject(
                       value =
@@ -42,5 +42,5 @@ public interface MetadataApi {
           @Content(
               mediaType = "application/json+fhir",
               schema = @Schema(implementation = OperationOutcome.class)))
-  Capability metadata();
+  CapabilityStatement metadata();
 }

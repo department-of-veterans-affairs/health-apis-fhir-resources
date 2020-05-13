@@ -19,8 +19,10 @@ import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -81,8 +83,7 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.BASE64)
   String valueBase64Binary;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String valueBoolean;
+  Boolean valueBoolean;
 
   @Pattern(regexp = Fhir.CODE)
   String valueCode;
@@ -93,8 +94,7 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.DATETIME)
   String valueDateTime;
 
-  @Pattern(regexp = Fhir.DECIMAL)
-  String valueDecimal;
+  BigDecimal valueDecimal;
 
   @Pattern(regexp = Fhir.ID)
   String valueId;
@@ -102,20 +102,19 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.INSTANT)
   String valueInstant;
 
-  @Pattern(regexp = Fhir.INTEGER)
-  String valueInteger;
+  Integer valueInteger;
 
   @Pattern(regexp = Fhir.MARKDOWN)
   String valueMarkdown;
 
-  @Pattern(regexp = Fhir.POSITIVE_INT)
-  String valuePositiveInt;
+  @Min(1)
+  Integer valuePositiveInt;
 
   @Pattern(regexp = Fhir.STRING)
   String valueString;
 
-  @Pattern(regexp = Fhir.UNSIGNED_INT)
-  String valueUnsignedInt;
+  @Min(0)
+  Integer valueUnsignedInt;
 
   @Pattern(regexp = Fhir.URI)
   String valueUri;

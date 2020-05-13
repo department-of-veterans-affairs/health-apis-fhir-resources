@@ -2,7 +2,7 @@ package gov.va.api.health.r4.api.samples;
 
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.resources.Capability;
+import gov.va.api.health.r4.api.resources.CapabilityStatement;
 import gov.va.api.health.r4.api.resources.TerminologyCapabilities;
 import java.util.Arrays;
 import java.util.List;
@@ -16,10 +16,7 @@ public class SampleTerminologyCapabilities {
 
   public List<TerminologyCapabilities.CodeSystem> codeSystem() {
     return singletonList(
-        TerminologyCapabilities.CodeSystem.builder()
-            .version(version())
-            .subsumption("true")
-            .build());
+        TerminologyCapabilities.CodeSystem.builder().version(version()).subsumption(true).build());
   }
 
   public TerminologyCapabilities.Implementation implementation() {
@@ -43,8 +40,8 @@ public class SampleTerminologyCapabilities {
         .version("1")
         .name("conformin' norman")
         .title("urgent care capability")
-        .status(Capability.Status.active)
-        .experimental("true")
+        .status(CapabilityStatement.Status.active)
+        .experimental(true)
         .date("2000-01-01T00:00:00-00:00")
         .publisher("random house")
         .contact(singletonList(contactDetail()))
@@ -53,10 +50,10 @@ public class SampleTerminologyCapabilities {
         .jurisdiction(singletonList(codeableConcept()))
         .purpose("words words")
         .copyright("Alphonso, Lord of the Mangos")
-        .kind(Capability.Kind.capability)
+        .kind(CapabilityStatement.Kind.capability)
         .software(software())
         .implementation(implementation())
-        .lockedDate("true")
+        .lockedDate(true)
         .codeSystem(codeSystem())
         .build();
   }
@@ -64,8 +61,8 @@ public class SampleTerminologyCapabilities {
   public List<TerminologyCapabilities.Version> version() {
     return singletonList(
         TerminologyCapabilities.Version.builder()
-            .isDefault("true")
-            .compositional("true")
+            .isDefault(true)
+            .compositional(true)
             .property(Arrays.asList("version_property"))
             .build());
   }

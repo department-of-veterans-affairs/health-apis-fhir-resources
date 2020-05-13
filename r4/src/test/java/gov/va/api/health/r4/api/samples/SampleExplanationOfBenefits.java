@@ -27,6 +27,7 @@ import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.SupportingInfo;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Total;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Type;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Use;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
@@ -46,9 +47,9 @@ public class SampleExplanationOfBenefits {
 
   public AddItem addItem() {
     return AddItem.builder()
-        .itemSequence(singletonList("1"))
-        .detailSequence(singletonList("1"))
-        .subDetailSequence(singletonList("1"))
+        .itemSequence(singletonList(1))
+        .detailSequence(singletonList(1))
+        .subDetailSequence(singletonList(1))
         .provider(singletonList(reference()))
         .productOrService(codeableConcept())
         .modifier(singletonList(codeableConcept()))
@@ -57,11 +58,11 @@ public class SampleExplanationOfBenefits {
         .locationCodeableConcept(codeableConcept())
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("10.0")
+        .factor(new BigDecimal("10.0"))
         .net(money())
         .bodySite(codeableConcept())
         .subSite(singletonList(codeableConcept()))
-        .noteNumber(singletonList("1"))
+        .noteNumber(singletonList(1))
         .adjudication(singletonList(adjudication()))
         .detail(singletonList(addItemDetail()))
         .build();
@@ -73,9 +74,9 @@ public class SampleExplanationOfBenefits {
         .modifier(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("10.0")
+        .factor(new BigDecimal("10.0"))
         .net(money())
-        .noteNumber(singletonList("1"))
+        .noteNumber(singletonList(1))
         .adjudication(singletonList(adjudication()))
         .subDetail(singletonList(addItemSubDetail()))
         .build();
@@ -87,9 +88,9 @@ public class SampleExplanationOfBenefits {
         .modifier(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("10.0")
+        .factor(new BigDecimal("10.0"))
         .net(money())
-        .noteNumber(singletonList("1"))
+        .noteNumber(singletonList(1))
         .adjudication(singletonList(adjudication()))
         .build();
   }
@@ -99,14 +100,14 @@ public class SampleExplanationOfBenefits {
         .category(codeableConcept())
         .reason(codeableConcept())
         .amount(money())
-        .value("10.0")
+        .value(new BigDecimal("10.0"))
         .build();
   }
 
   public BenefitBalance benefitBalance() {
     return BenefitBalance.builder()
         .category(codeableConcept())
-        .excluded("true")
+        .excluded(true)
         .name("name")
         .description("description")
         .network(codeableConcept())
@@ -118,9 +119,9 @@ public class SampleExplanationOfBenefits {
 
   public CareTeam careTeam() {
     return CareTeam.builder()
-        .sequence("1")
+        .sequence(1)
         .provider(reference())
-        .responsible("false")
+        .responsible(false)
         .role(codeableConcept())
         .qualification(codeableConcept())
         .build();
@@ -128,7 +129,7 @@ public class SampleExplanationOfBenefits {
 
   public ItemDetail detail() {
     return ItemDetail.builder()
-        .sequence("1")
+        .sequence(1)
         .revenue(codeableConcept())
         .category(codeableConcept())
         .productOrService(codeableConcept())
@@ -136,10 +137,10 @@ public class SampleExplanationOfBenefits {
         .programCode(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("10.0")
+        .factor(new BigDecimal("10.0"))
         .net(money())
         .udi(singletonList(reference()))
-        .noteNumber(singletonList("1"))
+        .noteNumber(singletonList(1))
         .adjudication(singletonList(adjudication()))
         .subDetail(singletonList(itemSubDetail()))
         .build();
@@ -147,7 +148,7 @@ public class SampleExplanationOfBenefits {
 
   public Diagnosis diagnosis() {
     return Diagnosis.builder()
-        .sequence("1")
+        .sequence(1)
         .diagnosisCodeableConcept(codeableConcept())
         .type(singletonList(codeableConcept()))
         .onAdmission(codeableConcept())
@@ -197,7 +198,7 @@ public class SampleExplanationOfBenefits {
         .supportingInfo(singletonList(supportingInfo()))
         .diagnosis(singletonList(diagnosis()))
         .procedure(singletonList(procedure()))
-        .precedence("1")
+        .precedence(1)
         .insurance(singletonList(insurance()))
         .accident(accident())
         .item(singletonList(item()))
@@ -223,7 +224,7 @@ public class SampleExplanationOfBenefits {
 
   public Insurance insurance() {
     return Insurance.builder()
-        .focal("false")
+        .focal(false)
         .coverage(reference())
         .preAuthRef(singletonList("preAuthRef"))
         .build();
@@ -231,11 +232,11 @@ public class SampleExplanationOfBenefits {
 
   public Item item() {
     return Item.builder()
-        .sequence("1")
-        .careTeamSequence(singletonList("1"))
-        .diagnosisSequence(singletonList("1"))
-        .procedureSequence(singletonList("1"))
-        .informationSequence(singletonList("1"))
+        .sequence(1)
+        .careTeamSequence(singletonList(1))
+        .diagnosisSequence(singletonList(1))
+        .procedureSequence(singletonList(1))
+        .informationSequence(singletonList(1))
         .revenue(codeableConcept())
         .category(codeableConcept())
         .productOrService(codeableConcept())
@@ -245,13 +246,13 @@ public class SampleExplanationOfBenefits {
         .locationReference(reference())
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("10.0")
+        .factor(new BigDecimal("10.0"))
         .net(money())
         .udi(singletonList(reference()))
         .bodySite(codeableConcept())
         .subSite(singletonList(codeableConcept()))
         .encounter(singletonList(reference()))
-        .noteNumber(singletonList("1"))
+        .noteNumber(singletonList(1))
         .adjudication(singletonList(adjudication()))
         .detail(singletonList(detail()))
         .build();
@@ -259,7 +260,7 @@ public class SampleExplanationOfBenefits {
 
   public ItemSubDetail itemSubDetail() {
     return ItemSubDetail.builder()
-        .sequence("1")
+        .sequence(1)
         .revenue(codeableConcept())
         .category(codeableConcept())
         .productOrService(codeableConcept())
@@ -267,10 +268,10 @@ public class SampleExplanationOfBenefits {
         .programCode(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("10.0")
+        .factor(new BigDecimal("10.0"))
         .net(money())
         .udi(singletonList(reference()))
-        .noteNumber(singletonList("1"))
+        .noteNumber(singletonList(1))
         .adjudication(singletonList(adjudication()))
         .build();
   }
@@ -292,7 +293,7 @@ public class SampleExplanationOfBenefits {
 
   public Procedure procedure() {
     return Procedure.builder()
-        .sequence("1")
+        .sequence(1)
         .type(singletonList(codeableConcept()))
         .date("2017-01-01T00:00:00.000Z")
         .procedureCodeableConcept(codeableConcept())
@@ -302,7 +303,7 @@ public class SampleExplanationOfBenefits {
 
   public ProcessNote processNote() {
     return ProcessNote.builder()
-        .number("1")
+        .number(1)
         .type(Type.display)
         .text("text")
         .language(codeableConcept())
@@ -319,11 +320,11 @@ public class SampleExplanationOfBenefits {
 
   public SupportingInfo supportingInfo() {
     return SupportingInfo.builder()
-        .sequence("1")
+        .sequence(1)
         .category(codeableConcept())
         .code(codeableConcept())
         .timingPeriod(period())
-        .valueBoolean("false")
+        .valueBoolean(false)
         .reason(coding())
         .build();
   }

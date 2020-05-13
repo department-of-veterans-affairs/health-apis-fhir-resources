@@ -21,8 +21,10 @@ import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Payee;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Status;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Total;
 import gov.va.api.health.r4.api.resources.ExplanationOfBenefit.Use;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class SwaggerExplanationOfBenefit {
 
@@ -84,20 +86,20 @@ public class SwaggerExplanationOfBenefit {
         .careTeam(
             Collections.singletonList(
                 CareTeam.builder()
-                    .sequence("1")
+                    .sequence(1)
                     .provider(Reference.builder().reference("Practitioner/example").build())
                     .build()))
         .insurance(
             Collections.singletonList(
                 Insurance.builder()
-                    .focal("true")
+                    .focal(true)
                     .coverage(Reference.builder().reference("Coverage/9876B1").build())
                     .build()))
         .item(
             Arrays.asList(
                 Item.builder()
-                    .sequence("1")
-                    .careTeamSequence(Collections.singletonList("1"))
+                    .sequence(1)
+                    .careTeamSequence(List.of(1))
                     .productOrService(
                         CodeableConcept.builder()
                             .coding(
@@ -108,8 +110,9 @@ public class SwaggerExplanationOfBenefit {
                                         .build()))
                             .build())
                     .servicedDate("2014-08-16")
-                    .unitPrice(Money.builder().value("135.57").currency("USD").build())
-                    .net(Money.builder().value("135.57").currency("USD").build())
+                    .unitPrice(
+                        Money.builder().value(new BigDecimal("135.57")).currency("USD").build())
+                    .net(Money.builder().value(new BigDecimal("135.57")).currency("USD").build())
                     .udi(
                         Collections.singletonList(
                             Reference.builder().reference("Device/example").build()))
@@ -125,7 +128,11 @@ public class SwaggerExplanationOfBenefit {
                                             Collections.singletonList(
                                                 Coding.builder().code("eligible").build()))
                                         .build())
-                                .amount(Money.builder().value("120.00").currency("USD").build())
+                                .amount(
+                                    Money.builder()
+                                        .value(new BigDecimal("120.00"))
+                                        .currency("USD")
+                                        .build())
                                 .build(),
                             Adjudication.builder()
                                 .category(
@@ -134,7 +141,7 @@ public class SwaggerExplanationOfBenefit {
                                             Collections.singletonList(
                                                 Coding.builder().code("eligpercent").build()))
                                         .build())
-                                .value("0.8")
+                                .value(new BigDecimal("0.8"))
                                 .build(),
                             Adjudication.builder()
                                 .category(
@@ -143,19 +150,23 @@ public class SwaggerExplanationOfBenefit {
                                             Collections.singletonList(
                                                 Coding.builder().code("benefit").build()))
                                         .build())
-                                .amount(Money.builder().value("96.00").currency("USD").build())
+                                .amount(
+                                    Money.builder()
+                                        .value(new BigDecimal("96.00"))
+                                        .currency("USD")
+                                        .build())
                                 .build()))
                     .build(),
                 Item.builder()
-                    .sequence("2")
-                    .careTeamSequence(Collections.singletonList("1"))
+                    .sequence(2)
+                    .careTeamSequence(List.of(1))
                     .productOrService(
                         CodeableConcept.builder()
                             .coding(
                                 Collections.singletonList(Coding.builder().code("group").build()))
                             .build())
                     .servicedDate("2014-08-16")
-                    .net(Money.builder().value("200.00").currency("USD").build())
+                    .net(Money.builder().value(new BigDecimal("200.00")).currency("USD").build())
                     .adjudication(
                         Collections.singletonList(
                             Adjudication.builder()
@@ -165,19 +176,27 @@ public class SwaggerExplanationOfBenefit {
                                             Collections.singletonList(
                                                 Coding.builder().code("benefit").build()))
                                         .build())
-                                .amount(Money.builder().value("180.00").currency("USD").build())
+                                .amount(
+                                    Money.builder()
+                                        .value(new BigDecimal("180.00"))
+                                        .currency("USD")
+                                        .build())
                                 .build()))
                     .detail(
                         Collections.singletonList(
                             ItemDetail.builder()
-                                .sequence("1")
+                                .sequence(1)
                                 .productOrService(
                                     CodeableConcept.builder()
                                         .coding(
                                             Collections.singletonList(
                                                 Coding.builder().code("group").build()))
                                         .build())
-                                .net(Money.builder().value("200.00").currency("USD").build())
+                                .net(
+                                    Money.builder()
+                                        .value(new BigDecimal("200.00"))
+                                        .currency("USD")
+                                        .build())
                                 .udi(
                                     Collections.singletonList(
                                         Reference.builder().reference("Device/example").build()))
@@ -194,14 +213,14 @@ public class SwaggerExplanationOfBenefit {
                                                     .build())
                                             .amount(
                                                 Money.builder()
-                                                    .value("180.00")
+                                                    .value(new BigDecimal("180.00"))
                                                     .currency("USD")
                                                     .build())
                                             .build()))
                                 .subDetail(
                                     Collections.singletonList(
                                         ItemSubDetail.builder()
-                                            .sequence("1")
+                                            .sequence(1)
                                             .productOrService(
                                                 CodeableConcept.builder()
                                                     .coding(
@@ -214,12 +233,12 @@ public class SwaggerExplanationOfBenefit {
                                                     .build())
                                             .unitPrice(
                                                 Money.builder()
-                                                    .value("200.00")
+                                                    .value(new BigDecimal("200.00"))
                                                     .currency("USD")
                                                     .build())
                                             .net(
                                                 Money.builder()
-                                                    .value("200.00")
+                                                    .value(new BigDecimal("200.00"))
                                                     .currency("USD")
                                                     .build())
                                             .udi(
@@ -240,7 +259,7 @@ public class SwaggerExplanationOfBenefit {
                                                                 .build())
                                                         .amount(
                                                             Money.builder()
-                                                                .value("200.00")
+                                                                .value(new BigDecimal("200.00"))
                                                                 .currency("USD")
                                                                 .build())
                                                         .build(),
@@ -254,7 +273,9 @@ public class SwaggerExplanationOfBenefit {
                                                                             .build()))
                                                                 .build())
                                                         .amount(
-                                                            Money.builder().value("0.9").build())
+                                                            Money.builder()
+                                                                .value(new BigDecimal("0.9"))
+                                                                .build())
                                                         .build(),
                                                     Adjudication.builder()
                                                         .category(
@@ -267,7 +288,7 @@ public class SwaggerExplanationOfBenefit {
                                                                 .build())
                                                         .amount(
                                                             Money.builder()
-                                                                .value("180.00")
+                                                                .value(new BigDecimal("180.00"))
                                                                 .currency("USD")
                                                                 .build())
                                                         .build()))
@@ -283,7 +304,7 @@ public class SwaggerExplanationOfBenefit {
                                 Collections.singletonList(
                                     Coding.builder().code("submitted").build()))
                             .build())
-                    .amount(Money.builder().value("135.57").currency("USD").build())
+                    .amount(Money.builder().value(new BigDecimal("135.57")).currency("USD").build())
                     .build(),
                 Total.builder()
                     .category(
@@ -291,7 +312,7 @@ public class SwaggerExplanationOfBenefit {
                             .coding(
                                 Collections.singletonList(Coding.builder().code("benefit").build()))
                             .build())
-                    .amount(Money.builder().value("96.00").currency("USD").build())
+                    .amount(Money.builder().value(new BigDecimal("96.00")).currency("USD").build())
                     .build()))
         .build();
   }

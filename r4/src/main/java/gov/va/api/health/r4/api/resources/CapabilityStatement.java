@@ -16,6 +16,7 @@ import gov.va.api.health.r4.api.elements.Reference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -32,7 +33,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/capabilitystatement.html")
-public class Capability implements Resource {
+public class CapabilityStatement implements Resource {
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -65,8 +66,7 @@ public class Capability implements Resource {
 
   @NotNull Status status;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String experimental;
+  Boolean experimental;
 
   @NotBlank
   @Pattern(regexp = Fhir.DATETIME)
@@ -91,11 +91,9 @@ public class Capability implements Resource {
 
   @NotNull Kind kind;
 
-  @Pattern(regexp = Fhir.URI)
-  List<String> instantiates;
+  @Valid List<@Pattern(regexp = Fhir.URI) String> instantiates;
 
-  @Pattern(regexp = Fhir.URI)
-  List<String> imports;
+  @Valid List<@Pattern(regexp = Fhir.URI) String> imports;
 
   @Valid Software software;
   @Valid Implementation implementation;
@@ -104,15 +102,11 @@ public class Capability implements Resource {
   @Pattern(regexp = Fhir.CODE)
   String fhirVersion;
 
-  @NotEmpty
-  @Pattern(regexp = Fhir.CODE)
-  List<String> format;
+  @NotEmpty @Valid List<@Pattern(regexp = Fhir.CODE) String> format;
 
-  @Pattern(regexp = Fhir.CODE)
-  List<String> patchFormat;
+  @Valid List<@Pattern(regexp = Fhir.CODE) String> patchFormat;
 
-  @Pattern(regexp = Fhir.URI)
-  List<String> implementationGuide;
+  @Valid List<@Pattern(regexp = Fhir.URI) String> implementationGuide;
 
   @Valid List<Rest> rest;
   @Valid List<Messaging> messaging;
@@ -247,8 +241,7 @@ public class Capability implements Resource {
     @Pattern(regexp = Fhir.URI)
     String profile;
 
-    @Pattern(regexp = Fhir.URI)
-    List<String> supportedProfile;
+    @Valid List<@Pattern(regexp = Fhir.URI) String> supportedProfile;
 
     @Pattern(regexp = Fhir.MARKDOWN)
     String documentation;
@@ -257,31 +250,26 @@ public class Capability implements Resource {
 
     Versioning versioning;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String readHistory;
+    Boolean readHistory;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String updateCreate;
+    Boolean updateCreate;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String conditionalCreate;
+    Boolean conditionalCreate;
 
     ConditionalRead conditionalRead;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String conditionalUpdate;
+    Boolean conditionalUpdate;
 
     ConditionalDelete conditionalDelete;
 
     List<ReferencePolicy> referencePolicy;
 
-    @Pattern(regexp = Fhir.STRING)
-    List<String> searchInclude;
+    @Valid List<@Pattern(regexp = Fhir.STRING) String> searchInclude;
 
-    @Pattern(regexp = Fhir.STRING)
-    List<String> searchRevInclude;
+    @Valid List<@Pattern(regexp = Fhir.STRING) String> searchRevInclude;
 
     @Valid List<SearchParam> searchParam;
+
     @Valid List<Operation> operation;
   }
 
@@ -305,25 +293,6 @@ public class Capability implements Resource {
     @NotBlank
     @Pattern(regexp = Fhir.URI)
     String profile;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class MessagingEndpoint implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
-
-    @NotNull Coding protocol;
-
-    @NotBlank
-    @Pattern(regexp = Fhir.URI)
-    String address;
   }
 
   @Data
@@ -362,13 +331,32 @@ public class Capability implements Resource {
 
     @Valid List<MessagingEndpoint> endpoint;
 
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String reliableCache;
+    @Min(0)
+    Integer reliableCache;
 
     @Pattern(regexp = Fhir.MARKDOWN)
     String documentation;
 
     @Valid List<SupportedMessage> supportedMessage;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class MessagingEndpoint implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> modifierExtension;
+    @Valid List<Extension> extension;
+
+    @NotNull Coding protocol;
+
+    @NotBlank
+    @Pattern(regexp = Fhir.URI)
+    String address;
   }
 
   @Data
@@ -494,10 +482,7 @@ public class Capability implements Resource {
 
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String cors;
-
+    Boolean cors;
     @Valid List<CodeableConcept> service;
 
     @Pattern(regexp = Fhir.MARKDOWN)

@@ -1,7 +1,7 @@
 package gov.va.api.health.uscorer4.api;
 
 import gov.va.api.health.r4.api.resources.OperationOutcome;
-import gov.va.api.health.uscorer4.api.resources.Condition;
+import gov.va.api.health.uscorer4.api.resources.Immunization;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -12,22 +12,21 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-public interface ConditionApi {
-
+public interface ImmunizationApi {
   @Operation(
-      summary = "Condition Read",
+      summary = "Immunization Read",
       description =
-          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html",
-      tags = {"Condition"})
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-immunization.html",
+      tags = {"Immunization"})
   @GET
-  @Path("Condition/{id}")
+  @Path("Immunization/{id}")
   @ApiResponse(
       responseCode = "200",
       description = "Record found",
       content =
           @Content(
               mediaType = "application/fhir+json",
-              schema = @Schema(implementation = Condition.class)))
+              schema = @Schema(implementation = Immunization.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
@@ -42,7 +41,7 @@ public interface ConditionApi {
           @Content(
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
-  Condition conditionRead(
+  Immunization immunizationRead(
       @Parameter(
               in = ParameterIn.PATH,
               name = "id",
@@ -52,19 +51,19 @@ public interface ConditionApi {
           String id);
 
   @Operation(
-      summary = "Condition Search",
+      summary = "Immunization Search",
       description =
-          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html",
-      tags = {"Condition"})
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-immunization.html",
+      tags = {"Immunization"})
   @GET
-  @Path("Condition")
+  @Path("Immunization")
   @ApiResponse(
       responseCode = "200",
       description = "Records Found",
       content =
           @Content(
               mediaType = "application/fhir+json",
-              schema = @Schema(implementation = Condition.Bundle.class)))
+              schema = @Schema(implementation = Immunization.Bundle.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
@@ -79,14 +78,16 @@ public interface ConditionApi {
           @Content(
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
-  Condition.Bundle conditionSearch(
+  Immunization.Bundle immunizationSearch(
       @Parameter(
               in = ParameterIn.QUERY,
               required = true,
               name = "patient",
               description =
-                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                      + " that indicates the patient who the condition record is associated with.")
+                  " The Integration Control Number (ICN) assigned by the "
+                      + "Master Veteran Index (MVI) that indicates "
+                      + "the patient who the immunization record is "
+                      + "associated with.")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,

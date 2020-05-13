@@ -5,6 +5,7 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.elements.Element;
 import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -26,8 +27,7 @@ public class Money implements Element {
 
   @Valid List<Extension> extension;
 
-  @Pattern(regexp = Fhir.DECIMAL)
-  String value;
+  BigDecimal value;
 
   @Pattern(regexp = Fhir.CODE)
   String currency;

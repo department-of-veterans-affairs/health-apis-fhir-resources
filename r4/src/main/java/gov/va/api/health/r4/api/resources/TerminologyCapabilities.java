@@ -53,10 +53,9 @@ public class TerminologyCapabilities implements Resource {
   @Pattern(regexp = Fhir.STRING)
   String title;
 
-  @NotNull Capability.Status status;
+  @NotNull CapabilityStatement.Status status;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String experimental;
+  Boolean experimental;
 
   @NotBlank
   @Pattern(regexp = Fhir.DATETIME)
@@ -80,14 +79,13 @@ public class TerminologyCapabilities implements Resource {
   @Pattern(regexp = Fhir.MARKDOWN)
   String copyright;
 
-  @NotNull Capability.Kind kind;
+  @NotNull CapabilityStatement.Kind kind;
 
   @Valid Software software;
 
   @Valid Implementation implementation;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String lockedDate;
+  Boolean lockedDate;
 
   @Valid List<CodeSystem> codeSystem;
   @Valid List<Expansion> expansion;
@@ -107,6 +105,21 @@ public class TerminologyCapabilities implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class Closure implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> modifierExtension;
+    @Valid List<Extension> extension;
+
+    Boolean translation;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class CodeSystem implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -119,8 +132,7 @@ public class TerminologyCapabilities implements Resource {
 
     @Valid List<Version> version;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String subsumption;
+    Boolean subsumption;
   }
 
   @Data
@@ -135,49 +147,16 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String hierarchical;
+    Boolean hierarchical;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String paging;
+    Boolean paging;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String incomplete;
+    Boolean incomplete;
 
     @Valid List<Parameter> parameter;
 
     @Pattern(regexp = Fhir.MARKDOWN)
     String textFilter;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Version implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.STRING)
-    String code;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String isDefault;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String compositional;
-
-    @Pattern(regexp = Fhir.CODE)
-    List<String> language;
-
-    @Valid List<Filter> filter;
-
-    @Pattern(regexp = Fhir.CODE)
-    List<String> property;
   }
 
   @Data
@@ -199,23 +178,6 @@ public class TerminologyCapabilities implements Resource {
     @Pattern(regexp = Fhir.CODE)
     @NotEmpty
     List<String> op;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class ValidateCode implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.BOOLEAN)
-    @NotEmpty
-    String translations;
   }
 
   @Data
@@ -263,15 +225,19 @@ public class TerminologyCapabilities implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Closure implements BackboneElement {
+  public static class Software implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String translation;
+    @NotBlank
+    @Pattern(regexp = Fhir.STRING)
+    String name;
+
+    @Pattern(regexp = Fhir.STRING)
+    String version;
   }
 
   @Data
@@ -286,9 +252,7 @@ public class TerminologyCapabilities implements Resource {
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    @NotEmpty
-    String needsMap;
+    @NotNull Boolean needsMap;
   }
 
   @Data
@@ -296,18 +260,43 @@ public class TerminologyCapabilities implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Software implements BackboneElement {
+  public static class ValidateCode implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    @NotBlank
-    @Pattern(regexp = Fhir.STRING)
-    String name;
+    @NotEmpty Boolean translations;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(
+      fieldVisibility = JsonAutoDetect.Visibility.ANY,
+      isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+  public static class Version implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> modifierExtension;
+    @Valid List<Extension> extension;
 
     @Pattern(regexp = Fhir.STRING)
-    String version;
+    String code;
+
+    Boolean isDefault;
+
+    Boolean compositional;
+
+    @Pattern(regexp = Fhir.CODE)
+    List<String> language;
+
+    @Valid List<Filter> filter;
+
+    @Pattern(regexp = Fhir.CODE)
+    List<String> property;
   }
 }

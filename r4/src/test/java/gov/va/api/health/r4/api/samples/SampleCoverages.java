@@ -64,10 +64,10 @@ public class SampleCoverages {
         .period(period())
         .payor(singletonList(reference()))
         .coverageClass(singletonList(coverageClass()))
-        .order("1")
+        .order(1)
         .network("Hello network")
         .costToBeneficiary(singletonList(costToBeneficiaryWithValueMoney()))
-        .subrogation("true")
+        .subrogation(true)
         .contract(singletonList(reference()))
         .build();
   }
@@ -96,10 +96,10 @@ public class SampleCoverages {
         .period(period())
         .payor(singletonList(reference()))
         .coverageClass(singletonList(coverageClass()))
-        .order("1")
+        .order(1)
         .network("Hello network")
         .costToBeneficiary(singletonList(costToBeneficiaryWithValueQuantity()))
-        .subrogation("true")
+        .subrogation(true)
         .contract(singletonList(reference()))
         .build();
   }

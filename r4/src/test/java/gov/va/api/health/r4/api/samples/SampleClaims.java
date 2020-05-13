@@ -16,6 +16,7 @@ import gov.va.api.health.r4.api.resources.Claim.Related;
 import gov.va.api.health.r4.api.resources.Claim.Status;
 import gov.va.api.health.r4.api.resources.Claim.SupportingInfo;
 import gov.va.api.health.r4.api.resources.Claim.Use;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
@@ -42,9 +43,9 @@ public class SampleClaims {
 
   public CareTeam careTeam() {
     return CareTeam.builder()
-        .sequence("1")
+        .sequence(1)
         .provider(reference())
-        .responsible("true")
+        .responsible(true)
         .role(codeableConcept())
         .qualification(codeableConcept())
         .build();
@@ -116,7 +117,7 @@ public class SampleClaims {
 
   public Detail detail() {
     return Detail.builder()
-        .sequence("1")
+        .sequence(1)
         .revenue(codeableConcept())
         .category(codeableConcept())
         .productOrService(codeableConcept())
@@ -124,7 +125,7 @@ public class SampleClaims {
         .programCode(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("1.0")
+        .factor(new BigDecimal("1.0"))
         .net(money())
         .udi(singletonList(reference()))
         .subDetail(singletonList(subDetail()))
@@ -144,7 +145,7 @@ public class SampleClaims {
    */
   private Diagnosis incompleteDiagnosis() {
     return Diagnosis.builder()
-        .sequence("1")
+        .sequence(1)
         .type(singletonList(codeableConcept()))
         .onAdmission(codeableConcept())
         .packageCode(codeableConcept())
@@ -156,7 +157,7 @@ public class SampleClaims {
    */
   private Procedure incompleteProcedure() {
     return Procedure.builder()
-        .sequence("1")
+        .sequence(1)
         .type(singletonList(codeableConcept()))
         .date("2017-01-01T00:00:00.000Z")
         .udi(singletonList(reference()))
@@ -165,8 +166,8 @@ public class SampleClaims {
 
   public Insurance insurance() {
     return Insurance.builder()
-        .sequence("1")
-        .focal("true")
+        .sequence(1)
+        .focal(true)
         .identifier(identifier())
         .coverage(reference())
         .businessArrangement("business arrangement")
@@ -180,11 +181,11 @@ public class SampleClaims {
    */
   public Item item() {
     return Item.builder()
-        .sequence("1")
-        .careTeamSequence(singletonList("1"))
-        .diagnosisSequence(singletonList("1"))
-        .procedureSequence(singletonList("1"))
-        .informationSequence(singletonList("1"))
+        .sequence(1)
+        .careTeamSequence(singletonList(1))
+        .diagnosisSequence(singletonList(1))
+        .procedureSequence(singletonList(1))
+        .informationSequence(singletonList(1))
         .revenue(codeableConcept())
         .category(codeableConcept())
         .productOrService(codeableConcept())
@@ -192,7 +193,7 @@ public class SampleClaims {
         .programCode(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("1.0")
+        .factor(new BigDecimal("1.0"))
         .net(money())
         .udi(singletonList(reference()))
         .bodySite(codeableConcept())
@@ -248,7 +249,7 @@ public class SampleClaims {
 
   public SubDetail subDetail() {
     return SubDetail.builder()
-        .sequence("1")
+        .sequence(1)
         .revenue(codeableConcept())
         .category(codeableConcept())
         .productOrService(codeableConcept())
@@ -256,7 +257,7 @@ public class SampleClaims {
         .programCode(singletonList(codeableConcept()))
         .quantity(simpleQuantity())
         .unitPrice(money())
-        .factor("1.0")
+        .factor(new BigDecimal("1.0"))
         .net(money())
         .udi(singletonList(reference()))
         .build();
@@ -267,7 +268,7 @@ public class SampleClaims {
    */
   public SupportingInfo supportingInfo() {
     return SupportingInfo.builder()
-        .sequence("1")
+        .sequence(1)
         .category(codeableConcept())
         .code(codeableConcept())
         .reason(codeableConcept())
@@ -283,7 +284,7 @@ public class SampleClaims {
   }
 
   public SupportingInfo supportingInfoWithTimingDateAndValueBoolean() {
-    return supportingInfoWithTimingDate().valueBoolean("true");
+    return supportingInfoWithTimingDate().valueBoolean(true);
   }
 
   public SupportingInfo supportingInfoWithTimingDateAndValueQuantity() {
@@ -307,7 +308,7 @@ public class SampleClaims {
   }
 
   public SupportingInfo supportingInfoWithTimingPeriodAndValueBoolean() {
-    return supportingInfoWithTimingPeriod().valueBoolean("true");
+    return supportingInfoWithTimingPeriod().valueBoolean(true);
   }
 
   public SupportingInfo supportingInfoWithTimingPeriodAndValueQuantity() {

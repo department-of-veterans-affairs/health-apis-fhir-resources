@@ -133,6 +133,47 @@ public class CoverageEligibilityResponse implements Resource {
   }
 
   @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "Benefit")
+  @ZeroOrOneOfs({
+    @ZeroOrOneOf(
+        fields = {"allowedUnsignedInt", "allowedString", "allowedMoney"},
+        message = "Only one effective value may be specified"),
+    @ZeroOrOneOf(
+        fields = {"usedUnsignedInt", "usedString", "usedMoney"},
+        message = "Only one used value may be specified")
+  })
+  public static class Benefit implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull @Valid CodeableConcept type;
+
+    @Min(0)
+    Integer allowedUnsignedInt;
+
+    @Pattern(regexp = Fhir.STRING)
+    String allowedString;
+
+    @Valid Money allowedMoney;
+
+    @Min(0)
+    Integer usedUnsignedInt;
+
+    @Pattern(regexp = Fhir.STRING)
+    String usedString;
+
+    @Valid Money usedMoney;
+  }
+
+  @Data
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -172,6 +213,23 @@ public class CoverageEligibilityResponse implements Resource {
           entry,
           signature);
     }
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "CoverageEligibilityResponseError")
+  public static class CoverageEligibilityResponseError implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull @Valid CodeableConcept code;
   }
 
   @Data
@@ -217,8 +275,7 @@ public class CoverageEligibilityResponse implements Resource {
     @Valid Reference coverage;
     @Valid Extension _coverage;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String inforce;
+    Boolean inforce;
 
     @Valid Period benefitPeriod;
 
@@ -244,8 +301,7 @@ public class CoverageEligibilityResponse implements Resource {
     @Valid List<CodeableConcept> modifier;
     @Valid Reference provider;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String excluded;
+    Boolean excluded;
 
     @Pattern(regexp = Fhir.STRING)
     String name;
@@ -258,70 +314,11 @@ public class CoverageEligibilityResponse implements Resource {
     @Valid CodeableConcept term;
     @Valid List<Benefit> benefit;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String authorizationRequired;
+    Boolean authorizationRequired;
 
     @Valid List<CodeableConcept> authorizationSupporting;
 
     @Pattern(regexp = Fhir.URI)
     String authorizationUrl;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "Benefit")
-  @ZeroOrOneOfs({
-    @ZeroOrOneOf(
-        fields = {"allowedUnsignedInt", "allowedString", "allowedMoney"},
-        message = "Only one effective value may be specified"),
-    @ZeroOrOneOf(
-        fields = {"usedUnsignedInt", "usedString", "usedMoney"},
-        message = "Only one used value may be specified")
-  })
-  public static class Benefit implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotNull @Valid CodeableConcept type;
-
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String allowedUnsignedInt;
-
-    @Pattern(regexp = Fhir.STRING)
-    String allowedString;
-
-    @Valid Money allowedMoney;
-
-    @Pattern(regexp = Fhir.UNSIGNED_INT)
-    String usedUnsignedInt;
-
-    @Pattern(regexp = Fhir.STRING)
-    String usedString;
-
-    @Valid Money usedMoney;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "CoverageEligibilityResponseError")
-  public static class CoverageEligibilityResponseError implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @NotNull @Valid CodeableConcept code;
   }
 }
