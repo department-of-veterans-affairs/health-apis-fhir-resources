@@ -45,6 +45,7 @@ import gov.va.api.health.r4.api.elements.Narrative.NarrativeStatus;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.OperationOutcome.Issue;
 import gov.va.api.health.r4.api.resources.OperationOutcome.Issue.IssueSeverity;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
 
@@ -82,7 +83,7 @@ public class SampleDataTypes {
         .language("HelloLanguage")
         .data("SSBqdXN0IGF0ZSBhIHBlYW51dAo=")
         .url("http://HelloUrl.com")
-        .size("1")
+        .size(1)
         .hash("SSBqdXN0IGF0ZSBhIHBlYW51dAo=")
         .title("HelloTitle")
         .creation("2000-01-01T00:00:00-00:00")
@@ -115,7 +116,7 @@ public class SampleDataTypes {
         .system(ContactPointSystem.other)
         .value("HelloValue")
         .use(ContactPointUse.home)
-        .rank("1")
+        .rank(1)
         .period(period())
         .build();
   }
@@ -126,7 +127,7 @@ public class SampleDataTypes {
 
   public Dosage dosage() {
     return Dosage.builder()
-        .sequence("1")
+        .sequence(1)
         .text("text")
         .additionalInstruction(singletonList(codeableConcept()))
         .patientInstruction("patient instruction")
@@ -151,7 +152,7 @@ public class SampleDataTypes {
   }
 
   public Duration duration() {
-    return Duration.builder().value("1.0").code("code").unit("a").build();
+    return Duration.builder().value(new BigDecimal("1.0")).code("code").unit("a").build();
   }
 
   public Extension extension() {
@@ -172,7 +173,7 @@ public class SampleDataTypes {
                 .id("Q1")
                 .unit("things")
                 .system("http://example.com")
-                .value("1.0")
+                .value(new BigDecimal("1.0"))
                 .build())
         .build();
   }
@@ -228,7 +229,7 @@ public class SampleDataTypes {
   }
 
   public Money money() {
-    return Money.builder().value("11.11").currency("USD").build();
+    return Money.builder().value(new BigDecimal("11.11")).currency("USD").build();
   }
 
   public Narrative narrative() {
@@ -239,14 +240,14 @@ public class SampleDataTypes {
     return Period.builder()
         .id("5678")
         .extension(
-            singletonList(Extension.builder().url("http://example.com").valueInteger("1").build()))
+            singletonList(Extension.builder().url("http://example.com").valueInteger(1).build()))
         .start("2000-01-01T00:00:00-00:00")
         .end("2001-01-01T00:00:00-00:00")
         .build();
   }
 
   public Quantity quantity() {
-    return Quantity.builder().value("11.11").unit("HelloUnit").build();
+    return Quantity.builder().value(new BigDecimal("11.11")).unit("HelloUnit").build();
   }
 
   public Range range() {
@@ -256,8 +257,8 @@ public class SampleDataTypes {
   public Ratio ratio() {
     return Ratio.builder()
         .id("R1")
-        .denominator(Quantity.builder().value("1.0").build())
-        .numerator(Quantity.builder().value("2.0").build())
+        .denominator(Quantity.builder().value(new BigDecimal("1.0")).build())
+        .numerator(Quantity.builder().value(new BigDecimal("2.0")).build())
         .build();
   }
 
@@ -306,7 +307,7 @@ public class SampleDataTypes {
         .mode(SearchMode.match)
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
-        .score("0.5")
+        .score(new BigDecimal("0.5"))
         .build();
   }
 
@@ -324,7 +325,7 @@ public class SampleDataTypes {
 
   public SimpleQuantity simpleQuantity() {
     return SimpleQuantity.builder()
-        .value("11.11")
+        .value(new BigDecimal("11.11"))
         .unit("HelloUnit")
         .system("http://example.com")
         .build();
@@ -336,19 +337,19 @@ public class SampleDataTypes {
         .repeat(
             Repeat.builder()
                 .boundsPeriod(period())
-                .count("1")
-                .countMax("10")
-                .duration("0.5")
-                .durationMax("1.0")
+                .count(1)
+                .countMax(10)
+                .duration(new BigDecimal("0.5"))
+                .durationMax(new BigDecimal("1.0"))
                 .durationUnit(UnitOfTime.a)
-                .frequency("1")
-                .frequencyMax("10")
-                .period("0.5")
-                .periodMax("1.0")
+                .frequency(1)
+                .frequencyMax(10)
+                .period(new BigDecimal("0.5"))
+                .periodMax(new BigDecimal("1.0"))
                 .periodUnit(UnitOfTime.wk)
                 .timeOfDay(singletonList("11:00:00"))
                 .when(singletonList(EventTime.AC))
-                .offset("1")
+                .offset(1)
                 .build())
         .code(codeableConcept())
         .build();

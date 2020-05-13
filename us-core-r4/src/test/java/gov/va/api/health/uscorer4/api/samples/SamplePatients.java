@@ -18,7 +18,7 @@ public class SamplePatients {
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Communication communication() {
-    return Communication.builder().language(codeableConcept()).preferred("true").build();
+    return Communication.builder().language(codeableConcept()).preferred(true).build();
   }
 
   public Link link() {
@@ -38,15 +38,15 @@ public class SamplePatients {
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))
-        .active("true")
+        .active(true)
         .name(singletonList(humanName()))
         .telecom(singletonList(contactPoint()))
         .gender(Gender.unknown)
         .birthDate("2000-01-01")
-        .deceasedBoolean("true")
+        .deceasedBoolean(true)
         .address(singletonList(address()))
         .maritalStatus(codeableConcept())
-        .multipleBirthInteger("2")
+        .multipleBirthInteger(2)
         .photo(singletonList(attachment()))
         .contact(singletonList(patientContact()))
         .communication(singletonList(communication()))

@@ -88,8 +88,7 @@ public class Patient implements Resource {
   // R4 Patient Resource
   @Valid @NotEmpty List<Identifier> identifier;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String active;
+  Boolean active;
 
   @Valid @NotEmpty List<HumanName> name;
 
@@ -100,8 +99,7 @@ public class Patient implements Resource {
   @Pattern(regexp = Fhir.DATE)
   String birthDate;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String deceasedBoolean;
+  Boolean deceasedBoolean;
 
   @Pattern(regexp = Fhir.DATETIME)
   String deceasedDateTime;
@@ -110,11 +108,9 @@ public class Patient implements Resource {
 
   @Valid CodeableConcept maritalStatus;
 
-  @Pattern(regexp = Fhir.BOOLEAN)
-  String multipleBirthBoolean;
+  Boolean multipleBirthBoolean;
 
-  @Pattern(regexp = Fhir.INTEGER)
-  String multipleBirthInteger;
+  Integer multipleBirthInteger;
 
   @Valid List<Attachment> photo;
 
@@ -181,6 +177,48 @@ public class Patient implements Resource {
   }
 
   @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = Bundle.BundleBuilder.class)
+  @Schema(
+      name = "PatientBundle",
+      example =
+          "${r4.patientBundle:gov.va.api.health.r4.api.swaggerexamples."
+              + "SwaggerPatient#patientBundle}")
+  public static class Bundle extends AbstractBundle<Entry> {
+    /** Patient bundle builder. */
+    @Builder
+    public Bundle(
+        @NotBlank String resourceType,
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid Meta meta,
+        @Pattern(regexp = Fhir.URI) String implicitRules,
+        @Pattern(regexp = Fhir.CODE) String language,
+        @Valid Identifier identifier,
+        @NotNull BundleType type,
+        @Pattern(regexp = Fhir.INSTANT) String timestamp,
+        @Min(0) Integer total,
+        @Valid List<BundleLink> link,
+        @Valid List<Entry> entry,
+        @Valid Signature signature) {
+      super(
+          resourceType,
+          id,
+          meta,
+          implicitRules,
+          language,
+          identifier,
+          type,
+          timestamp,
+          total,
+          link,
+          entry,
+          signature);
+    }
+  }
+
+  @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
@@ -196,8 +234,29 @@ public class Patient implements Resource {
 
     @Valid @NotNull CodeableConcept language;
 
-    @Pattern(regexp = Fhir.BOOLEAN)
-    String preferred;
+    Boolean preferred;
+  }
+
+  @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = Entry.EntryBuilder.class)
+  @Schema(name = "PatientEntry")
+  public static class Entry extends AbstractEntry<Patient> {
+    @Builder
+    public Entry(
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid List<Extension> extension,
+        @Valid List<Extension> modifierExtension,
+        @Valid List<BundleLink> link,
+        @Pattern(regexp = Fhir.URI) String fullUrl,
+        @Valid Patient resource,
+        @Valid Search search,
+        @Valid Request request,
+        @Valid Response response) {
+      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
+    }
   }
 
   @Data
@@ -246,69 +305,5 @@ public class Patient implements Resource {
     @Valid Reference organization;
 
     @Valid Period period;
-  }
-
-  @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Entry.EntryBuilder.class)
-  @Schema(name = "PatientEntry")
-  public static class Entry extends AbstractEntry<Patient> {
-    @Builder
-    public Entry(
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid List<Extension> extension,
-        @Valid List<Extension> modifierExtension,
-        @Valid List<BundleLink> link,
-        @Pattern(regexp = Fhir.URI) String fullUrl,
-        @Valid Patient resource,
-        @Valid Search search,
-        @Valid Request request,
-        @Valid Response response) {
-      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
-    }
-  }
-
-  @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Bundle.BundleBuilder.class)
-  @Schema(
-      name = "PatientBundle",
-      example =
-          "${r4.patientBundle:gov.va.api.health.r4.api.swaggerexamples."
-              + "SwaggerPatient#patientBundle}")
-  public static class Bundle extends AbstractBundle<Entry> {
-    /** Patient bundle builder. */
-    @Builder
-    public Bundle(
-        @NotBlank String resourceType,
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid Meta meta,
-        @Pattern(regexp = Fhir.URI) String implicitRules,
-        @Pattern(regexp = Fhir.CODE) String language,
-        @Valid Identifier identifier,
-        @NotNull BundleType type,
-        @Pattern(regexp = Fhir.INSTANT) String timestamp,
-        @Min(0) Integer total,
-        @Valid List<BundleLink> link,
-        @Valid List<Entry> entry,
-        @Valid Signature signature) {
-      super(
-          resourceType,
-          id,
-          meta,
-          implicitRules,
-          language,
-          identifier,
-          type,
-          timestamp,
-          total,
-          link,
-          entry,
-          signature);
-    }
   }
 }

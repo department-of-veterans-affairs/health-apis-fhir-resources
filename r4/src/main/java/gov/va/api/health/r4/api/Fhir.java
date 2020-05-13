@@ -1,11 +1,8 @@
 package gov.va.api.health.r4.api;
 
-import gov.va.api.health.fhir.api.FhirDateTime;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Fhir {
@@ -64,11 +61,4 @@ public class Fhir {
 
   @Schema(description = "https://www.hl7.org/fhir/R4/datatypes.html#markdown")
   public static final String MARKDOWN = "\\s*(\\S|\\s)*";
-
-  /** Deprecated: Use gov.va.api.health.fhir.api.FhirDateTime#parseDateTime(java.lang.String). */
-  @SneakyThrows
-  @Deprecated
-  public static Instant parseDateTime(String dateTime) {
-    return FhirDateTime.parseDateTime(dateTime);
-  }
 }

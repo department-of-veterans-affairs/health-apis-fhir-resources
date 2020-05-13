@@ -16,10 +16,7 @@ public class SampleTerminologyCapabilities {
 
   public List<TerminologyCapabilities.CodeSystem> codeSystem() {
     return singletonList(
-        TerminologyCapabilities.CodeSystem.builder()
-            .version(version())
-            .subsumption(true)
-            .build());
+        TerminologyCapabilities.CodeSystem.builder().version(version()).subsumption(true).build());
   }
 
   public TerminologyCapabilities.Implementation implementation() {

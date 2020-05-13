@@ -274,7 +274,9 @@ public class TerminologyCapabilities implements Resource {
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonAutoDetect(
+      fieldVisibility = JsonAutoDetect.Visibility.ANY,
+      isGetterVisibility = JsonAutoDetect.Visibility.NONE)
   public static class Version implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
