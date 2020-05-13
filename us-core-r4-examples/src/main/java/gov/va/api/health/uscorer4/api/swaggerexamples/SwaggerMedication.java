@@ -4,6 +4,7 @@ import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
+import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.uscorer4.api.resources.Medication;
 
 import java.util.List;
@@ -24,14 +25,32 @@ public class SwaggerMedication {
         .status(Medication.Status.active)
         .code(
             CodeableConcept.builder()
-                .text("Methyltestosterone 10 MG Oral Tablet")
+                .text("Timoptic 5mg/ml solution")
                 .coding(
                     List.of(
                         Coding.builder()
-                            .system("http://www.nlm.nih.gov/research/umls/rxnorm")
-                            .code("91805")
+                            .system("http://hl7.org/fhir/sid/ndc")
+                            .code("2501-813-16")
                             .build()))
                 .build())
+        .manufacturer(Reference.builder().id("org5").display("Aton Pharma Inc").build())
+        .form(
+            CodeableConcept.builder()
+                .text("Opthalmic Solution")
+                .coding(List.of(Coding.builder().system("SNOMED CT").code("75359005").build()))
+                .build())
+        .ingredient(
+            asList(
+                Medication.Ingredient.builder()
+                    .itemCodeableConcept(
+                        CodeableConcept.builder()
+                            .text("Timolol Maleate (substance)")
+                            .coding(
+                                List.of(
+                                    Coding.builder().system("SNOMED CT").code("75359005").build()))
+                            .build())
+                    .build()))
+        .batch(Medication.Batch.builder().lotNumber("9494788").expirationDate("22/05/2017").build())
         .build();
   }
 
@@ -51,19 +70,19 @@ public class SwaggerMedication {
                     .relation(BundleLink.LinkRelation.self)
                     .url(
                         "https://sandbox-api.va.gov/services/fhir/v0/r4/Medication?"
-                            + "patient=1017283148V813263&page=1&_count=15")
+                            + "_id=I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
                         "https://sandbox-api.va.gov/services/fhir/v0/r4/Medication?"
-                            + "patient=1017283148V813263&page=1&_count=15")
+                            + "_id=I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
                         "https://sandbox-api.va.gov/services/fhir/v0/r4/Medication?"
-                            + "patient=1017283148V813263&page=1&_count=15")
+                            + "_id=I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000&page=1&_count=15")
                     .build()))
         .entry(
             asList(

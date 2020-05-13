@@ -21,19 +21,18 @@ import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ExactlyOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.List;
 
 @Data
 @Builder
@@ -87,7 +86,7 @@ public class Medication implements Resource {
 
   @Valid List<Ingredient> ingredient;
 
-  @Valid List<Batch> batch;
+  @Valid Batch batch;
 
   public enum Status {
     active,
@@ -172,6 +171,7 @@ public class Medication implements Resource {
         message = "Exactly one field for item... itemCodeableConcept | itemReference")
   })
   public static class Ingredient implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
@@ -181,6 +181,10 @@ public class Medication implements Resource {
     @Valid CodeableConcept itemCodeableConcept;
 
     @Valid Reference itemReference;
+
+    @Valid boolean isActive;
+
+    @Valid Ratio strength;
   }
 
   @Data
@@ -190,6 +194,7 @@ public class Medication implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Batch implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;

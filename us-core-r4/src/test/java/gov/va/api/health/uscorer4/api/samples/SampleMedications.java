@@ -26,6 +26,8 @@ public class SampleMedications {
         .extension(singletonList(extension()))
         .itemCodeableConcept(codeableConcept())
         .itemReference(reference())
+        .isActive(true)
+        .strength(ratio())
         .build();
   }
 
@@ -46,7 +48,7 @@ public class SampleMedications {
         .form(codeableConcept())
         .amount(ratio())
         .ingredient(singletonList(ingredient()))
-        .batch(singletonList(batch()))
+        .batch(batch())
         .build();
   }
 }
