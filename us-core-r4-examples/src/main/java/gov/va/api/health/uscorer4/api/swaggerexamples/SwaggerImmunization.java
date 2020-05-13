@@ -31,7 +31,7 @@ public class SwaggerImmunization {
                 .build())
         .patient(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .reaction(
@@ -57,23 +57,23 @@ public class SwaggerImmunization {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=2000163&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Immunization?patient=2000163&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=2000163&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Immunization?patient=2000163&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization?patient=2000163&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Immunization?patient=2000163&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Immunization.Entry.builder()
                     .fullUrl(
-                        "https://sandbox-api.va.gov/services/argonaut/v0/Immunization/I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Immunization/I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
                     .resource(immunization())
                     .build()))
         .build();

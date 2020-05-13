@@ -81,7 +81,7 @@ public class SampleImmunizations {
         .series("GoodNightSeries")
         .authority(reference())
         .targetDisease(singletonList(codeableConcept()))
-        .seriesDosesPositiveInt("1")
+        .seriesDosesPositiveInt(1)
         .doseNumberString("2")
         .build();
   }

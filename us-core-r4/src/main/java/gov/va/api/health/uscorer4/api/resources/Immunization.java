@@ -158,7 +158,7 @@ public class Immunization implements Resource {
       name = "ImmunizationBundle",
       example =
           "${r4.immunizationBundle:gov.va.api.health."
-              + "r4.api.swaggerexamples.SwaggerImmunization#immunizationBundle}")
+              + "uscorer4.api.swaggerexamples.SwaggerImmunization#immunizationBundle}")
   public static final class Bundle extends AbstractBundle<Immunization.Entry> {
     /** Builder constructor. */
     @Builder
@@ -308,13 +308,13 @@ public class Immunization implements Resource {
 
     @Valid List<CodeableConcept> targetDisease;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String doseNumberPositiveInt;
+    @Min(1)
+    Integer doseNumberPositiveInt;
 
     String doseNumberString;
 
-    @Pattern(regexp = Fhir.POSITIVE_INT)
-    String seriesDosesPositiveInt;
+    @Min(1)
+    Integer seriesDosesPositiveInt;
 
     String seriesDosesString;
   }
