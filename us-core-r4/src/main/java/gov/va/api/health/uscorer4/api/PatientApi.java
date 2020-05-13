@@ -1,7 +1,7 @@
 package gov.va.api.health.uscorer4.api;
 
 import gov.va.api.health.r4.api.resources.OperationOutcome;
-import gov.va.api.health.uscorer4.api.resources.Condition;
+import gov.va.api.health.uscorer4.api.resources.Patient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -12,22 +12,21 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-public interface ConditionApi {
-
+public interface PatientApi {
   @Operation(
-      summary = "Condition Read",
+      summary = "Patient Read",
       description =
-          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html",
-      tags = {"Condition"})
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html",
+      tags = {"Patient"})
   @GET
-  @Path("Condition/{id}")
+  @Path("Patient/{id}")
   @ApiResponse(
       responseCode = "200",
       description = "Record found",
       content =
           @Content(
               mediaType = "application/fhir+json",
-              schema = @Schema(implementation = Condition.class)))
+              schema = @Schema(implementation = Patient.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
@@ -42,29 +41,32 @@ public interface ConditionApi {
           @Content(
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
-  Condition conditionRead(
+  Patient patientRead(
       @Parameter(
               in = ParameterIn.PATH,
               name = "id",
               required = true,
               description =
-                  "The logical id of the resource. Once assigned, this value never changes.")
+                  "The logical id of the resource."
+                      + " Once assigned, this value never changes."
+                      + " For Patients this id is an Integration Control Number (ICN)"
+                      + " assigned by the Master Veteran Index (MVI).")
           String id);
 
   @Operation(
-      summary = "Condition Search",
+      summary = "Patient Search",
       description =
-          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html",
-      tags = {"Condition"})
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html",
+      tags = {"Patient"})
   @GET
-  @Path("Condition")
+  @Path("Patient")
   @ApiResponse(
       responseCode = "200",
-      description = "Records Found",
+      description = "Records found",
       content =
           @Content(
               mediaType = "application/fhir+json",
-              schema = @Schema(implementation = Condition.Bundle.class)))
+              schema = @Schema(implementation = Patient.Bundle.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
@@ -79,19 +81,21 @@ public interface ConditionApi {
           @Content(
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
-  Condition.Bundle conditionSearch(
+  Patient.Bundle patientSearch(
       @Parameter(
               in = ParameterIn.QUERY,
               required = true,
-              name = "patient",
+              name = "_id",
               description =
-                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                      + " that indicates the patient who the condition record is associated with.")
+                  "The logical id of the resource."
+                      + " Once assigned, this value never changes."
+                      + " For Patients this id is an Integration Control Number (ICN)"
+                      + " assigned by the Master Veteran Index (MVI).")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
-              description = "The page number being requested.")
+              description = "The page number of the search result.")
           @DefaultValue("1")
           int page,
       @Parameter(

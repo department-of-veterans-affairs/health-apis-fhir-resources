@@ -25,21 +25,21 @@ public interface AllergyIntoleranceApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = AllergyIntolerance.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   AllergyIntolerance allergyIntoleranceRead(
       @Parameter(
@@ -61,21 +61,21 @@ public interface AllergyIntoleranceApi {
       description = "Records found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = AllergyIntolerance.Bundle.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   AllergyIntolerance.Bundle allergyIntoleranceSearch(
       @Parameter(
