@@ -1,14 +1,15 @@
 package gov.va.api.health.uscorer4.api.swaggerexamples;
 
-import static java.util.Arrays.asList;
-
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.uscorer4.api.resources.Medication;
+
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class SwaggerMedication {
 
@@ -36,7 +37,9 @@ public class SwaggerMedication {
         .form(
             CodeableConcept.builder()
                 .text("Opthalmic Solution")
-                .coding(List.of(Coding.builder().system("SNOMED CT").code("75359005").build()))
+                .coding(
+                    List.of(
+                        Coding.builder().system("http://snomed.info/sct").code("75359005").build()))
                 .build())
         .ingredient(
             asList(
@@ -46,10 +49,13 @@ public class SwaggerMedication {
                             .text("Timolol Maleate (substance)")
                             .coding(
                                 List.of(
-                                    Coding.builder().system("SNOMED CT").code("75359005").build()))
+                                    Coding.builder()
+                                        .system("http://snomed.info/sct")
+                                        .code("75359005")
+                                        .build()))
                             .build())
                     .build()))
-        .batch(Medication.Batch.builder().lotNumber("9494788").expirationDate("22/05/2017").build())
+        .batch(Medication.Batch.builder().lotNumber("9494788").expirationDate("2017-05-22").build())
         .build();
   }
 
