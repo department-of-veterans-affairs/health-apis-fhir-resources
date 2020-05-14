@@ -25,7 +25,6 @@ public class SampleMedications {
         .id("509")
         .extension(singletonList(extension()))
         .itemCodeableConcept(codeableConcept())
-        .itemReference(reference())
         .isActive(true)
         .strength(ratio())
         .build();

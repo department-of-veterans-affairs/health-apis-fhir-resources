@@ -21,18 +21,19 @@ import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ExactlyOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @Data
 @Builder
@@ -103,7 +104,7 @@ public class Medication implements Resource {
   @Schema(
       name = "MedicationBundle",
       example =
-          "${uscorer4.medicationBundle:gov.va.api.health."
+          "${r4.medicationBundle:gov.va.api.health."
               + "uscorer4.api.swaggerexamples.SwaggerMedication#medicationBundle}")
   public static final class Bundle extends AbstractBundle<Medication.Entry> {
     /** Builder constructor. */
@@ -182,7 +183,7 @@ public class Medication implements Resource {
 
     @Valid Reference itemReference;
 
-    @Valid boolean isActive;
+    Boolean isActive;
 
     @Valid Ratio strength;
   }
