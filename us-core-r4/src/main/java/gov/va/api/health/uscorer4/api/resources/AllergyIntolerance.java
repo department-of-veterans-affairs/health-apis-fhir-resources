@@ -154,7 +154,7 @@ public final class AllergyIntolerance implements Resource {
   @Schema(
       name = "AllergyIntoleranceBundle",
       example =
-          "${r4.allergyIntoleranceBundle:gov.va.api.health.r4.api.swaggerexamples."
+          "${uscorer4.allergyIntoleranceBundle:gov.va.api.health.uscorer4.api.swaggerexamples."
               + "SwaggerAllergyIntolerance#allergyIntoleranceBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */
