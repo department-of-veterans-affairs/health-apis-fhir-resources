@@ -1,15 +1,14 @@
 package gov.va.api.health.uscorer4.api.swaggerexamples;
 
+import static java.util.Arrays.asList;
+
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.uscorer4.api.resources.Medication;
-
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 public class SwaggerMedication {
 
