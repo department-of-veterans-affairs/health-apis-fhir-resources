@@ -54,7 +54,10 @@ import lombok.NoArgsConstructor;
   @ExactlyOneOf(
       fields = {"occurrenceDateTime", "occurrenceString"},
       message =
-          "Exactly one occurrence field may be specified... occurrenceDateTime | occurrenceString")
+          "Exactly one occurrence field may be specified... occurrenceDateTime | occurrenceString"),
+  @ExactlyOneOf(
+      fields = {"status", "_status"},
+      message = "Exactly one occurrence may be specified... status | _status")
 })
 public class Immunization implements Resource {
   // Ancestors
@@ -83,6 +86,7 @@ public class Immunization implements Resource {
   @Valid List<Identifier> identifier;
 
   @Valid @NotNull Status status;
+  @Valid Extension _status;
 
   @Valid CodeableConcept statusReason;
 
