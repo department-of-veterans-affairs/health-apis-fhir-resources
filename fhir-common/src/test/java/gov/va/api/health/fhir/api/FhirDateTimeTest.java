@@ -1,11 +1,11 @@
 package gov.va.api.health.fhir.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.time.Instant;
 import java.util.Arrays;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FhirDateTimeTest {
   /**
@@ -50,8 +50,9 @@ public class FhirDateTimeTest {
     }
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void parseDateTimeThrowsExceptionWhenCannotBeParsed() {
-    FhirDateTime.parseDateTime("nope");
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> FhirDateTime.parseDateTime("nope"));
   }
 }
