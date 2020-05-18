@@ -85,7 +85,7 @@ public class Immunization implements Resource {
   // Immunization
   @Valid List<Identifier> identifier;
 
-  @Valid @NotNull Status status;
+  @Valid Status status;
   @Valid Extension _status;
 
   @Valid CodeableConcept statusReason;
