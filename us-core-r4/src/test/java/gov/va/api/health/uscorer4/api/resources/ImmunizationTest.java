@@ -1,12 +1,12 @@
 package gov.va.api.health.uscorer4.api.resources;
 
+import static gov.va.api.health.uscorer4.api.RoundTrip.assertRoundTrip;
+import static java.util.Collections.singletonList;
+
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.uscorer4.api.samples.SampleImmunizations;
 import org.junit.jupiter.api.Test;
-
-import static gov.va.api.health.uscorer4.api.RoundTrip.assertRoundTrip;
-import static java.util.Collections.singletonList;
 
 public class ImmunizationTest {
   private final SampleImmunizations samples = SampleImmunizations.get();
