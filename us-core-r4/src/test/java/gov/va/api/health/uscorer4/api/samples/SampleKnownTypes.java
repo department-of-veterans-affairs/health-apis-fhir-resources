@@ -15,6 +15,7 @@ import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Quantity;
 import gov.va.api.health.r4.api.datatypes.Range;
 import gov.va.api.health.r4.api.datatypes.Ratio;
+import gov.va.api.health.r4.api.datatypes.SampledData;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.SimpleQuantity;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
@@ -69,6 +70,7 @@ public class SampleKnownTypes {
     suppliers.put(Quantity.class, dataTypes::quantity);
     suppliers.put(Range.class, dataTypes::range);
     suppliers.put(Ratio.class, dataTypes::ratio);
+    suppliers.put(SampledData.class, dataTypes::sampledData);
     suppliers.put(Signature.class, dataTypes::signature);
     suppliers.put(SimpleQuantity.class, dataTypes::simpleQuantity);
     suppliers.put(Reference.class, dataTypes::reference);
