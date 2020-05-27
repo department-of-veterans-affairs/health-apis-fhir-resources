@@ -419,7 +419,7 @@ public class Observation implements Resource {
     @JsonIgnore
     @SuppressWarnings("unused")
     @AssertTrue(
-        message = "Reference range is invalid. " + "Must have at least a low or a high or text.")
+        message = "Reference range is invalid. Must have at least a low or a high or text.")
     private boolean isValidReferenceRange() {
       return low != null || high != null || text != null;
     }
