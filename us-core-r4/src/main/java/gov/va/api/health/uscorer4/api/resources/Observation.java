@@ -113,9 +113,8 @@ public class Observation implements Resource {
 
   @NotNull ObservationStatus status;
 
-  /* For both labs and vital-signs, the cardinality of allowed codeable concept
-   *  slices in the array per category is 1..1. That is to say only one of each
-   *  may be included in this array. */
+  /* ToDo Smoking Status Observation Profile Cardinality is 0..* for category,
+   *       deal with cardinality in isValidCategory() instead. */
   @Valid @NotEmpty List<CodeableConcept> category;
 
   @NotNull CodeableConcept code;
@@ -126,6 +125,7 @@ public class Observation implements Resource {
 
   @Valid Reference encounter;
 
+  /* ToDo Add effectiveTiming and effectiveInstant for SmokingStatus Observation Profile */
   @Pattern(regexp = Fhir.DATETIME)
   String effectiveDateTime;
 
@@ -136,6 +136,8 @@ public class Observation implements Resource {
 
   @Valid List<Reference> performer;
 
+  /* ToDo value[x] is considered as a slice definition in some observation profiles,
+   *       create a validation method for value[x] based on Observation Type */
   @Valid Quantity valueQuantity;
 
   @Valid CodeableConcept valueCodeableConcept;
@@ -191,20 +193,24 @@ public class Observation implements Resource {
   @SuppressWarnings("unused")
   @AssertTrue(message = "One or more category values found to be invalid.")
   private boolean isValidCategory() {
-    List<String> codes = new ArrayList<>();
+    List<String> sliceTypes = new ArrayList<>();
     for (CodeableConcept cc : category) {
       if (!isValidSliceCodingDefinition(cc.coding())) {
         return false;
       }
       // The only real way to determine there is one CC of each type is by the code values.
-      codes.addAll(cc.coding().stream().map(Coding::code).distinct().collect(Collectors.toList()));
+      sliceTypes.addAll(
+          cc.coding().stream()
+              .map(coding -> mapToCategorySliceType(coding.code()))
+              .distinct()
+              .collect(Collectors.toList()));
     }
-    /* US-Core R4 Observation defines that vital signs and laboratory slices in the
-     * category array have a cardinality of 1..1
+    /* US-Core R4 Observation defines that vital signs (Slice: VSCat) and
+     * laboratory (Slice: Laboratory) slices in the category array have a cardinality of 1..1
      * Therefore, a lab observation may only exist once in the category array.
      * The same applies to vital-signs. */
-    return containsNoMoreThanOneOf(codes, "laboratory")
-        && containsNoMoreThanOneOf(codes, "vital-signs");
+    return containsNoMoreThanOneOf(sliceTypes, "Laboratory")
+        && containsNoMoreThanOneOf(sliceTypes, "VSCat");
   }
 
   /**
@@ -227,9 +233,22 @@ public class Observation implements Resource {
         .allMatch(
             c ->
                 c.code() != null
-                    && (c.system() != null
-                        && c.system()
-                            .equals("http://terminology.hl7.org/CodeSystem/observation-category")));
+                    && "http://terminology.hl7.org/CodeSystem/observation-category"
+                        .equals(c.system()));
+  }
+
+  @JsonIgnore
+  private String mapToCategorySliceType(String code) {
+    /* ToDo Other observation types have a slice type of VSCat and will need to be
+     *       added into this switch <-- maybe use enum instead of string */
+    switch (code) {
+      case "laboratory":
+        return "Laboratory";
+      case "vital-signs":
+        return "VSCat";
+      default:
+        return "undefined";
+    }
   }
 
   public enum ObservationStatus {
@@ -396,5 +415,13 @@ public class Observation implements Resource {
     @Valid Range age;
 
     String text;
+
+    @JsonIgnore
+    @SuppressWarnings("unused")
+    @AssertTrue(
+        message = "Reference range is invalid. " + "Must have at least a low or a high or text.")
+    private boolean isValidReferenceRange() {
+      return low != null || high != null || text != null;
+    }
   }
 }
