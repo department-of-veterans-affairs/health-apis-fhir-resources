@@ -11,6 +11,7 @@ import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.Annotation;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Identifier;
+import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
@@ -106,9 +107,11 @@ public class Procedure implements Resource {
 
   @Valid Reference encounter;
 
-  @Valid String performedDateTime;
+  @Pattern(regexp = Fhir.DATETIME)
+  @Valid
+  String performedDateTime;
 
-  @Valid String performedPeriod;
+  @Valid Period performedPeriod;
 
   @Valid Reference recorder;
 
