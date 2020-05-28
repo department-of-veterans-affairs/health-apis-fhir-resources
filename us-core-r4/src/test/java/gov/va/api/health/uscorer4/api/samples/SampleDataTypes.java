@@ -29,6 +29,7 @@ import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Quantity;
 import gov.va.api.health.r4.api.datatypes.Range;
 import gov.va.api.health.r4.api.datatypes.Ratio;
+import gov.va.api.health.r4.api.datatypes.SampledData;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.SimpleQuantity;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
@@ -298,6 +299,20 @@ public class SampleDataTypes {
         .location("http://example.com")
         .etag("you're it")
         .lastModified("2005-01-21T07:57:00Z")
+        .build();
+  }
+
+  public SampledData sampledData() {
+    return SampledData.builder()
+        .id("1234")
+        .extension(singletonList(extension()))
+        .origin(simpleQuantity())
+        .period(new BigDecimal("10.234"))
+        .factor(new BigDecimal("2.5"))
+        .lowerLimit(new BigDecimal("1.0"))
+        .upperLimit(new BigDecimal("10.0"))
+        .dimensions(5)
+        .data("HelloData")
         .build();
   }
 
