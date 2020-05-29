@@ -126,23 +126,23 @@ public class SwaggerPractitioner {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Practitioner?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Practitioner?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Practitioner?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Practitioner.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Practitioner/9e8531cb-8069-5328-b737-938fa044a4e2")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner/9e8531cb-8069-5328-b737-938fa044a4e2")
                     .resource(
                         Practitioner.builder()
                             .resourceType("Practitioner")

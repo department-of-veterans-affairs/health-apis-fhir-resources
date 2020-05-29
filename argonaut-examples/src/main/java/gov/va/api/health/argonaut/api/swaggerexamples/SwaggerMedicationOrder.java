@@ -26,7 +26,7 @@ public class SwaggerMedicationOrder {
         .status(MedicationOrder.Status.active)
         .patient(
             Reference.builder()
-                .reference("https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         ._prescriber(
@@ -41,7 +41,7 @@ public class SwaggerMedicationOrder {
         .medicationReference(
             Reference.builder()
                 .reference(
-                    "https://dev-api.va.gov/services/argonaut/v0/Medication/7b550d7f-2db8-5002-bc0c-150a70d02944")
+                    "https://sandbox-api.va.gov/services/argonaut/v0/Medication/7b550d7f-2db8-5002-bc0c-150a70d02944")
                 .display("Hydrochlorothiazide 25 MG")
                 .build())
         .build();
@@ -62,23 +62,23 @@ public class SwaggerMedicationOrder {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationOrder?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationOrder?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationOrder?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 MedicationOrder.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationOrder/f07dd74e-844e-5463-99d4-0ca4d5cbeb41")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder/f07dd74e-844e-5463-99d4-0ca4d5cbeb41")
                     .resource(
                         MedicationOrder.builder()
                             .resourceType("MedicationOrder")
@@ -88,7 +88,7 @@ public class SwaggerMedicationOrder {
                             .patient(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                                     .display("Mr. Aurelio227 Cruickshank494")
                                     .build())
                             ._prescriber(
@@ -104,7 +104,7 @@ public class SwaggerMedicationOrder {
                             .medicationReference(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Medication/7b550d7f-2db8-5002-bc0c-150a70d02944")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Medication/7b550d7f-2db8-5002-bc0c-150a70d02944")
                                     .display("Hydrochlorothiazide 25 MG")
                                     .build())
                             .build())

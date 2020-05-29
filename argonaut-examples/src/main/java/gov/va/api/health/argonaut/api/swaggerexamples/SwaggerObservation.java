@@ -47,7 +47,7 @@ public class SwaggerObservation {
                 .build())
         .subject(
             Reference.builder()
-                .reference("https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .effectiveDateTime("2017-04-24T01:15:52Z")
@@ -77,23 +77,23 @@ public class SwaggerObservation {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Observation?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Observation?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Observation?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Observation?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Observation?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Observation?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Observation.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Observation/7889e577-88d6-5e6f-8a4d-fb6988b7b3c1")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Observation/7889e577-88d6-5e6f-8a4d-fb6988b7b3c1")
                     .resource(
                         Observation.builder()
                             .resourceType("Observation")
@@ -122,7 +122,7 @@ public class SwaggerObservation {
                             .subject(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                                     .display("Mr. Aurelio227 Cruickshank494")
                                     .build())
                             .effectiveDateTime("2017-04-24T01:15:52Z")

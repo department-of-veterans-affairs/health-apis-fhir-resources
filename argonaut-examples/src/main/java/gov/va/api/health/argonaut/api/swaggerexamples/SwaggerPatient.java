@@ -154,23 +154,23 @@ public class SwaggerPatient {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Patient?_id=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient?_id=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Patient?_id=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient?_id=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Patient?_id=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient?_id=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Patient.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Patient/1017283148V813263")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient/1017283148V813263")
                     .resource(
                         Patient.builder()
                             .id("2000163")

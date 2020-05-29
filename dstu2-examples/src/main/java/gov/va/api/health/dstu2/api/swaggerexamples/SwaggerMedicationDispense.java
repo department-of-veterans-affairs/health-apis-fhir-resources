@@ -35,20 +35,20 @@ public class SwaggerMedicationDispense {
         .status(MedicationDispense.Status.completed)
         .patient(
             Reference.builder()
-                .reference("https://dev-api.va.gov/services/argonaut/v0/Patient/185601V825290")
+                .reference("https://sandbox-api.va.gov/services/argonaut/v0/Patient/185601V825290")
                 .display("VETERAN,JOHN Q")
                 .build())
         .dispenser(
             Reference.builder()
                 .reference(
-                    "https://dev-api.va.gov/services/argonaut/v0/Practitioner/a98d6c9c-c5bd-58a5-a5d0-0da31cafd37c")
+                    "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner/a98d6c9c-c5bd-58a5-a5d0-0da31cafd37c")
                 .display("SMITH,ATTENDING C")
                 .build())
         .authorizingPrescription(
             asList(
                 Reference.builder()
                     .reference(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationOrder/8c95153c-817b-53f3-8166-55b1e01ac2a2")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder/8c95153c-817b-53f3-8166-55b1e01ac2a2")
                     .display("OUTPATIENT PHARMACY")
                     .build()))
         .type(
@@ -72,7 +72,7 @@ public class SwaggerMedicationDispense {
         .medicationReference(
             Reference.builder()
                 .reference(
-                    "https://dev-api.va.gov/services/argonaut/v0/Medication/b07873cb-24cb-5aa7-a0be-78b7ac5aee22")
+                    "https://sandbox-api.va.gov/services/argonaut/v0/Medication/b07873cb-24cb-5aa7-a0be-78b7ac5aee22")
                 .display("CODEINE 10/GG 100MG/5ML (ALC-F/SF) LIQ")
                 .build())
         .whenPrepared("2015-04-15T04:00:00Z")
@@ -112,28 +112,28 @@ public class SwaggerMedicationDispense {
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=1&_count=1")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=1&_count=1")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=1&_count=1")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=1&_count=1")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.next)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=2&_count=1")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=2&_count=1")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=1155&_count=1")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationDispense?patient=185601V825290&page=1155&_count=1")
                     .build()))
         .entry(
             asList(
                 MedicationDispense.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/MedicationDispense/2f587c16-5182-59a5-bdcb-518c7c501f37")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/MedicationDispense/2f587c16-5182-59a5-bdcb-518c7c501f37")
                     .resource(
                         MedicationDispense.builder()
                             .resourceType("MedicationDispense")
@@ -148,20 +148,20 @@ public class SwaggerMedicationDispense {
                             .patient(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Patient/185601V825290")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient/185601V825290")
                                     .display("VETERAN,JOHN Q")
                                     .build())
                             .dispenser(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Practitioner/f3276418-063d-52d8-a7f9-5fcaadc2f22b")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner/f3276418-063d-52d8-a7f9-5fcaadc2f22b")
                                     .display("BONES,ATTENDING C")
                                     .build())
                             .authorizingPrescription(
                                 asList(
                                     Reference.builder()
                                         .reference(
-                                            "https://dev-api.va.gov/services/argonaut/v0/MedicationOrder/e4638ac7-7af1-587c-8f93-811abf8158c7")
+                                            "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder/e4638ac7-7af1-587c-8f93-811abf8158c7")
                                         .display("OUTPATIENT PHARMACY")
                                         .build()))
                             .type(
@@ -185,7 +185,7 @@ public class SwaggerMedicationDispense {
                             .medicationReference(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Medication/8ab05080-af33-5724-a090-e9f76386ce30")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Medication/8ab05080-af33-5724-a090-e9f76386ce30")
                                     .display("ALBUTEROL 90MCG (CFC-F) 200D ORAL INHL")
                                     .build())
                             .whenPrepared("2015-04-15T04:00:00Z")

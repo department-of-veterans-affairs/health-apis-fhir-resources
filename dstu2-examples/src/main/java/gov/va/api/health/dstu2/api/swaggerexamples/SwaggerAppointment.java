@@ -88,23 +88,23 @@ public class SwaggerAppointment {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Appointment?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Appointment?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Appointment?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Appointment?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Appointment?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Appointment?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Appointment.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Appointment/0be173b4-721c-554e-ba7d-966d04633b68")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Appointment/0be173b4-721c-554e-ba7d-966d04633b68")
                     .resource(
                         Appointment.builder()
                             .resourceType("Appointment")
