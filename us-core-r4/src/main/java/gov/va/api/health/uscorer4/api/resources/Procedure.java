@@ -103,7 +103,6 @@ public class Procedure implements Resource {
   @Valid Reference encounter;
 
   @Pattern(regexp = Fhir.DATETIME)
-  @Valid
   String performedDateTime;
 
   @Valid Period performedPeriod;

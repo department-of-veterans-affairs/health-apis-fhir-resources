@@ -59,7 +59,7 @@ public interface ProcedureApi {
   @Path("Procedure")
   @ApiResponse(
       responseCode = "200",
-      description = "Record founds",
+      description = "Records found",
       content =
           @Content(
               mediaType = "application/fhir+json",
