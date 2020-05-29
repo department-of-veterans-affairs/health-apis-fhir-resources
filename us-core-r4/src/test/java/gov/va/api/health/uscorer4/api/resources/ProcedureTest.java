@@ -6,10 +6,8 @@ import static java.util.Collections.singletonList;
 import gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
-import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.uscorer4.api.samples.SampleKnownTypes;
 import gov.va.api.health.uscorer4.api.samples.SampleProcedures;
-import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import org.junit.Test;
 
@@ -56,14 +54,6 @@ public class ProcedureTest {
 
   @Test
   public void relatedGroupsTest() {
-    ExactlyOneOfExtensionVerifier.builder()
-        .sample(samples.procedure())
-        .field("status")
-        .extensionClass(Extension.class)
-        .knownTypes(types.knownTypes())
-        .stringTypes(types.knownStringTypes())
-        .build()
-        .verify();
     ExactlyOneOfVerifier.builder()
         .sample(samples.procedure())
         .fieldPrefix("performed")

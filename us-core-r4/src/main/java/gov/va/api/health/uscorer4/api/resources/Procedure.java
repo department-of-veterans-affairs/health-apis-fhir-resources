@@ -51,9 +51,6 @@ import lombok.NoArgsConstructor;
             + "uscorer4.api.swaggerexamples.SwaggerProcedure#procedure}")
 @ExactlyOneOfs({
   @ExactlyOneOf(
-      fields = {"status", "_status"},
-      message = "Status or _Status, but not both."),
-  @ExactlyOneOf(
       fields = {"performedDateTime", "performedPeriod"},
       message = "performedDateTime or performedPeriod, but not both.")
 })
@@ -93,9 +90,7 @@ public class Procedure implements Resource {
   @Valid List<Reference> partOf;
 
   // TODO: Consult Data-Sources on the differences from the Argonaut Profile
-  @Valid Status status;
-
-  @Valid Extension _status;
+  @Valid @NotNull Status status;
 
   @Valid CodeableConcept statusReason;
 
