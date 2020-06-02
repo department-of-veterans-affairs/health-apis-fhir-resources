@@ -90,6 +90,20 @@ public interface ConditionApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
+              name = "category",
+              description =
+                  "The category the condition record belongs to. Can be used to "
+                      + "distinguish between health concerns and problems.")
+          String category,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "clinical-status",
+              description =
+                  "Indicates the clinical state of the condition described by "
+                      + "the record, taking prior conditions into account.")
+          String clinicalStatus,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number being requested.")
           @DefaultValue("1")
