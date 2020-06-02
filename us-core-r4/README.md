@@ -16,4 +16,5 @@ Because validation logic is shared among all FHIR versions, it has been pulled o
   * [Condition](https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html)
   * [Immunization](https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-immunization.html)
   * [Medication](https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medication.html)
+  * [MedicationRequest](https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medicationrequest.html)
   * [Patient](https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html)
