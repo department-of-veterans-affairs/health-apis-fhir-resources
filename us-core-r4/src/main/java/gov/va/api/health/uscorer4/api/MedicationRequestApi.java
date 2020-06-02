@@ -91,8 +91,10 @@ public interface MedicationRequestApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "intent",
-              description = "TODO: IS THIS A GOOD DESCRIPTION?" +
-                      "The code referring to medications prescribed by or administered by the VA.")
+              description =
+                  "TODO: IS THIS A GOOD DESCRIPTION?"
+                      + "The code referring to medications prescribed by or administered "
+                      + "by the VA.")
           String order,
       @Parameter(
               in = ParameterIn.QUERY,
