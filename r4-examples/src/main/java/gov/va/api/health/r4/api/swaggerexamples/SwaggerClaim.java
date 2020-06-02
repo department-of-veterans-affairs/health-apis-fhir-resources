@@ -82,17 +82,17 @@ public class SwaggerClaim {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/fhir/v0/r4/Claim?patient=1008679665V880686&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Claim?patient=1008679665V880686&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/fhir/v0/r4/Claim?patient=1008679665V880686&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Claim?patient=1008679665V880686&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/fhir/v0/r4/Claim?patient=1008679665V880686&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Claim?patient=1008679665V880686&page=1&_count=15")
                     .build()))
         .entry(asList(Claim.Entry.builder().resource(claim()).build()))
         .build();

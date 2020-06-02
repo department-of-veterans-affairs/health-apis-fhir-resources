@@ -25,7 +25,7 @@ public class SwaggerProcedure {
         .id("532070f1-cb7b-582e-9380-9e0ef27bc817")
         .subject(
             Reference.builder()
-                .reference("https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .status(Procedure.Status.completed)
@@ -59,23 +59,23 @@ public class SwaggerProcedure {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Procedure?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Procedure?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Procedure?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Procedure?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Procedure?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Procedure?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Procedure.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Procedure/532070f1-cb7b-582e-9380-9e0ef27bc817")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Procedure/532070f1-cb7b-582e-9380-9e0ef27bc817")
                     .resource(
                         Procedure.builder()
                             .resourceType("Procedure")
@@ -83,7 +83,7 @@ public class SwaggerProcedure {
                             .subject(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                                     .display("Mr. Aurelio227 Cruickshank494")
                                     .build())
                             .status(Procedure.Status.completed)

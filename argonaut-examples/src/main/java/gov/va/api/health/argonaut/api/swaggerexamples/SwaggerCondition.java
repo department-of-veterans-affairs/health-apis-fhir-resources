@@ -25,7 +25,7 @@ public class SwaggerCondition {
         .id("b34bacd3-42b6-5613-b1c2-1abafe1248ba")
         .patient(
             Reference.builder()
-                .reference("https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .code(
@@ -67,23 +67,23 @@ public class SwaggerCondition {
                 BundleLink.builder()
                     .relation(LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Condition.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Condition/b34bacd3-42b6-5613-b1c2-1abafe1248ba")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Condition/b34bacd3-42b6-5613-b1c2-1abafe1248ba")
                     .resource(
                         Condition.builder()
                             .resourceType("Condition")
@@ -91,7 +91,7 @@ public class SwaggerCondition {
                             .patient(
                                 Reference.builder()
                                     .reference(
-                                        "https://dev-api.va.gov/services/argonaut/v0/Patient/2000163")
+                                        "https://sandbox-api.va.gov/services/argonaut/v0/Patient/2000163")
                                     .display("Mr. Aurelio227 Cruickshank494")
                                     .build())
                             .code(

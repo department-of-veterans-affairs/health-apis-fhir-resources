@@ -107,23 +107,23 @@ public class SwaggerEncounter {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Encounter?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Encounter?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Encounter?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Encounter?patient=1017283148V813263&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://dev-api.va.gov/services/argonaut/v0/Encounter?patient=1017283148V813263&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Encounter?patient=1017283148V813263&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Encounter.Entry.builder()
                     .fullUrl(
-                        "https://dev-api.va.gov/services/argonaut/v0/Encounter/dc7f6fcc-41f9-5be9-a364-0b0aa938917a")
+                        "https://sandbox-api.va.gov/services/argonaut/v0/Encounter/dc7f6fcc-41f9-5be9-a364-0b0aa938917a")
                     .resource(
                         Encounter.builder()
                             .resourceType("Encounter")
