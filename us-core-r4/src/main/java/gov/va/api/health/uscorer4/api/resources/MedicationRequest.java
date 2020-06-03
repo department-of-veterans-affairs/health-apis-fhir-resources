@@ -105,9 +105,9 @@ public class MedicationRequest implements Resource {
 
   @Valid Reference reportedReference;
 
-  @Valid @NotNull CodeableConcept medicationCodeableConcept;
+  @Valid CodeableConcept medicationCodeableConcept;
 
-  @Valid @NotNull Reference medicationReference;
+  @Valid Reference medicationReference;
 
   @Valid @NotNull Reference subject;
 
