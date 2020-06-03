@@ -30,13 +30,13 @@ public class SwaggerMedicationRequest {
         .medicationReference(
             Reference.builder()
                 .reference(
-                    "https://sandbox-api.va.gov/services/r4/v0/Medication"
-                        + "/7b550d7f-2db8-5002-bc0c-150a70d02944")
+                    "https://sandbox-api.va.gov/services/fhir/v0/r4/Medication"
+                        + "/I2-LTU3MVTE2VLWXUQKKCRRTEWJDE000000")
                 .display("Azithromycin 250mg capsule")
                 .build())
         .subject(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/r4/v0/Patient/32000225")
+                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/32000225")
                 .display("Mrs. Sheba703 Harris789")
                 .build())
         .authoredOn("2015-01-15T12:03:52Z")
@@ -87,26 +87,26 @@ public class SwaggerMedicationRequest {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/r4/v0/"
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/"
                             + "MedicationRequest?patient=32000225&intent=order&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/r4/v0/"
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/"
                             + "MedicationRequest?patient=32000225&intent=order&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://sandbox-api.va.gov/services/r4/v0/"
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/"
                             + "MedicationRequest?patient=32000225&intent=order&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 MedicationRequest.Entry.builder()
                     .fullUrl(
-                        "https://sandbox-api.va.gov/services/r4/v0/MedicationRequest/"
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/MedicationRequest/"
                             + "I2-AOV4FXGQLPIXGZPTMTWY7Y7KJ4000000")
                     .resource(medicationRequest())
                     .search(
