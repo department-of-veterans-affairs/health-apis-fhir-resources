@@ -5,8 +5,10 @@ import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
+import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.uscorer4.api.samples.SampleKnownTypes;
 import gov.va.api.health.uscorer4.api.samples.SampleMedicationRequests;
+import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import org.junit.jupiter.api.Test;
@@ -57,11 +59,13 @@ public class MedicationRequestTest {
         .stringTypes(types.knownStringTypes())
         .build()
         .verify();
-    ExactlyOneOfVerifier.builder()
+
+    ExactlyOneOfExtensionVerifier.builder()
         .sample(samples.medicationRequestWithDataAbsentReason())
-        .fieldPrefix("requester")
+        .field("requester")
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
+        .extensionClass(Extension.class)
         .build()
         .verify();
   }

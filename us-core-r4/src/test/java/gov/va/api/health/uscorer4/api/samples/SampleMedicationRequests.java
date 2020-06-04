@@ -73,8 +73,8 @@ public class SampleMedicationRequests {
 
   public MedicationRequest medicationRequestWithDataAbsentReason() {
     return medicationRequest()
-            ._requester(DataAbsentReason.of(DataAbsentReason.Reason.unsupported))
-            .requester(null);
+        ._requester(DataAbsentReason.of(DataAbsentReason.Reason.unknown))
+        .requester(null);
   }
 
   public Substitution substitution() {

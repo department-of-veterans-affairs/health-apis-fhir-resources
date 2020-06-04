@@ -42,18 +42,14 @@ public class SwaggerMedicationRequest {
                 .build())
         .authoredOn("2015-01-15T12:03:52Z")
         ._requester(
-                Extension.builder()
-                        .extension(
-                                asList(
-                                        Extension.builder()
-                                                .url("http://hl7.org/fhir/extension-data-absent-reason.html")
-                                                .valueCode("unsupported")
-                                                .build()
-                                )
-                        )
-
-                        .build()
-        )
+            Extension.builder()
+                .extension(
+                    asList(
+                        Extension.builder()
+                            .url("http://hl7.org/fhir/extension-data-absent-reason.html")
+                            .valueCode("unsupported")
+                            .build()))
+                .build())
         .reasonCode(
             asList(
                 CodeableConcept.builder()
@@ -123,7 +119,6 @@ public class SwaggerMedicationRequest {
                         "https://sandbox-api.va.gov/services/fhir/v0/r4/MedicationRequest/"
                             + "I2-AOV4FXGQLPIXGZPTMTWY7Y7KJ4000000")
                     .resource(medicationRequest())
-
                     .search(
                         AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())
                     .build()))
