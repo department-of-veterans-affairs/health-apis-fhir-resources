@@ -9,5 +9,6 @@
   -->
   <suppress checks="MemberName" files=".*(/|\\)Immunization.java" message="Member name '(_status)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Procedure.java" message="Member name '(_status)'"/>
+  <suppress checks="MemberName" files=".*(/|\\)MedicationRequest.java" message="Member name '(_requester)'"/>
 
 </suppressions>

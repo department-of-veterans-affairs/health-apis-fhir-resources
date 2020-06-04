@@ -2,6 +2,7 @@ package gov.va.api.health.uscorer4.api.samples;
 
 import static java.util.Collections.singletonList;
 
+import gov.va.api.health.r4.api.DataAbsentReason;
 import gov.va.api.health.uscorer4.api.resources.MedicationRequest;
 import gov.va.api.health.uscorer4.api.resources.MedicationRequest.DispenseRequest;
 import gov.va.api.health.uscorer4.api.resources.MedicationRequest.DispenseRequest.InitialFill;
@@ -68,6 +69,12 @@ public class SampleMedicationRequests {
         .detectedIssue(singletonList(reference()))
         .eventHistory(singletonList(reference()))
         .build();
+  }
+
+  public MedicationRequest medicationRequestWithDataAbsentReason() {
+    return medicationRequest()
+            ._requester(DataAbsentReason.of(DataAbsentReason.Reason.unsupported))
+            .requester(null);
   }
 
   public Substitution substitution() {

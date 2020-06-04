@@ -51,8 +51,15 @@ public class MedicationRequestTest {
   @Test
   void exactlyOneOfTest() {
     ExactlyOneOfVerifier.builder()
-        .sample(samples.medicationRequest())
+        .sample(samples.medicationRequestWithDataAbsentReason())
         .fieldPrefix("medication")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ExactlyOneOfVerifier.builder()
+        .sample(samples.medicationRequestWithDataAbsentReason())
+        .fieldPrefix("requester")
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())
         .build()
@@ -67,7 +74,7 @@ public class MedicationRequestTest {
   @Test
   void zeroOrOneOfTest() {
     ZeroOrOneOfVerifier.builder()
-        .sample(samples.medicationRequest())
+        .sample(samples.medicationRequestWithDataAbsentReason())
         .fieldPrefix("reported")
         .knownTypes(types.knownTypes())
         .stringTypes(types.knownStringTypes())

@@ -10,6 +10,7 @@ import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.Timing;
 import gov.va.api.health.r4.api.elements.Dosage;
+import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.uscorer4.api.resources.MedicationRequest;
 import java.util.List;
@@ -40,6 +41,19 @@ public class SwaggerMedicationRequest {
                 .display("Mrs. Sheba703 Harris789")
                 .build())
         .authoredOn("2015-01-15T12:03:52Z")
+        ._requester(
+                Extension.builder()
+                        .extension(
+                                asList(
+                                        Extension.builder()
+                                                .url("http://hl7.org/fhir/extension-data-absent-reason.html")
+                                                .valueCode("unsupported")
+                                                .build()
+                                )
+                        )
+
+                        .build()
+        )
         .reasonCode(
             asList(
                 CodeableConcept.builder()
@@ -109,6 +123,7 @@ public class SwaggerMedicationRequest {
                         "https://sandbox-api.va.gov/services/fhir/v0/r4/MedicationRequest/"
                             + "I2-AOV4FXGQLPIXGZPTMTWY7Y7KJ4000000")
                     .resource(medicationRequest())
+
                     .search(
                         AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())
                     .build()))

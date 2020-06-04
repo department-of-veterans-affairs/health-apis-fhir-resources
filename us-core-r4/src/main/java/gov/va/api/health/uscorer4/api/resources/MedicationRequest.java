@@ -60,7 +60,10 @@ import lombok.NoArgsConstructor;
 @ExactlyOneOfs({
   @ExactlyOneOf(
       fields = {"medicationCodeableConcept", "medicationReference"},
-      message = "medicationCodeableConcept or medicationReference, but not both.")
+      message = "medicationCodeableConcept or medicationReference, but not both."),
+  @ExactlyOneOf(
+      fields = {"requester, _requester"},
+      message = "Exactly one requester field must be specified")
 })
 public class MedicationRequest implements Resource {
 
@@ -119,7 +122,8 @@ public class MedicationRequest implements Resource {
   @NotNull
   String authoredOn;
 
-  @Valid @NotNull Reference requester;
+  @Valid Reference requester;
+  @Valid Extension _requester;
 
   @Valid Reference performer;
 
