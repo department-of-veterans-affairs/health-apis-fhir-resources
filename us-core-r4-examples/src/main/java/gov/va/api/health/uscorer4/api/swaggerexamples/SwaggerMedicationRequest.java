@@ -47,7 +47,7 @@ public class SwaggerMedicationRequest {
                     asList(
                         Extension.builder()
                             .url("http://hl7.org/fhir/extension-data-absent-reason.html")
-                            .valueCode("unsupported")
+                            .valueCode("unknown")
                             .build()))
                 .build())
         .reasonCode(
