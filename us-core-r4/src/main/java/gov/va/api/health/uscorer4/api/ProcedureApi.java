@@ -89,6 +89,13 @@ public interface ProcedureApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
+              name = "date",
+              description =
+                  "A date or range of dates (maximum of 2) that describes "
+                      + "the date that the procedure was performed.")
+          String[] date,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number of the search result.")
           @DefaultValue("1")
