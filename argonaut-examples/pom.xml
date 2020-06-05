@@ -8,7 +8,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>argonaut-examples</artifactId>
-  <version>3.0.12-SNAPSHOT</version>
+  <version>3.0.13-SNAPSHOT</version>
   <packaging>jar</packaging>
   <properties>
     <checkstyle.suppressions.location>${project.basedir}/checkstyle-suppressions.xml</checkstyle.suppressions.location>
