@@ -205,7 +205,7 @@ public class MedicationRequest implements Resource {
       name = "MedicationRequestBundle",
       example =
           "${uscorer4.medicationRequestBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerMedicationRequest#medicatinRequestBundle}")
+              + "uscorer4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequestBundle}")
   public static class Bundle extends AbstractBundle<MedicationRequest.Entry> {
 
     /** Build a Medication Request bundle. */
