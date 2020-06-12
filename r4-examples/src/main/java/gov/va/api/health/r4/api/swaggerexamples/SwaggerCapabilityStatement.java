@@ -52,7 +52,7 @@ public class SwaggerCapabilityStatement {
         .kind(Kind.instance)
         .software(Software.builder().name("health-api").build())
         .fhirVersion("4.0.0")
-        .format(Arrays.asList("application/json+fhir", "application/json", "application/fhir+json"))
+        .format(Arrays.asList("application/json", "application/fhir+json"))
         .rest(
             Collections.singletonList(
                 Rest.builder()

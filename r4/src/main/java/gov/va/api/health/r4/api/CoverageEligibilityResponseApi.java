@@ -33,14 +33,14 @@ public interface CoverageEligibilityResponseApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = CoverageEligibilityResponse.Bundle.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   CoverageEligibilityResponse.Bundle coverageEligibilityResponseSearch(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,

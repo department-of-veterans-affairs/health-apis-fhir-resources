@@ -24,21 +24,21 @@ public interface EndpointApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = Endpoint.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   Endpoint endpointRead(@Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
 
@@ -53,21 +53,21 @@ public interface EndpointApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = Endpoint.Bundle.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   Endpoint.Bundle endpointSearch(
       @Parameter(in = ParameterIn.QUERY, name = "identifier") String identifier,

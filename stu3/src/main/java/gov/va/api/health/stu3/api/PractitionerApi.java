@@ -25,21 +25,21 @@ public interface PractitionerApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = Practitioner.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   Practitioner practitionerRead(
       @Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
@@ -56,21 +56,21 @@ public interface PractitionerApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = Practitioner.Bundle.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   Practitioner.Bundle practitionerSearch(
       @Parameter(in = ParameterIn.QUERY, name = "identifier") String identifier,

@@ -25,21 +25,21 @@ public interface CoverageApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = Coverage.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   Coverage coverageRead(@Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
 
@@ -54,21 +54,21 @@ public interface CoverageApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = Coverage.Bundle.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   Coverage.Bundle coverageSearch(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,

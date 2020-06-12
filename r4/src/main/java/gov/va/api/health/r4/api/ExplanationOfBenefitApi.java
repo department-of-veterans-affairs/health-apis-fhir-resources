@@ -25,21 +25,21 @@ public interface ExplanationOfBenefitApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = ExplanationOfBenefit.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
       responseCode = "404",
       description = "Not found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   ExplanationOfBenefit explanationOfBenefitRead(
       @Parameter(in = ParameterIn.PATH, name = "id", required = true) String id);
@@ -55,14 +55,14 @@ public interface ExplanationOfBenefitApi {
       description = "Record found",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = ExplanationOfBenefit.Bundle.class)))
   @ApiResponse(
       responseCode = "400",
       description = "Bad request",
       content =
           @Content(
-              mediaType = "application/json+fhir",
+              mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   ExplanationOfBenefit.Bundle explanationOfBenefitSearch(
       @Parameter(in = ParameterIn.QUERY, required = true, name = "patient") String id,
