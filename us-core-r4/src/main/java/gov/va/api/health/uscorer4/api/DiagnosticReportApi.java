@@ -1,0 +1,128 @@
+package gov.va.api.health.uscorer4.api;
+
+import gov.va.api.health.r4.api.resources.OperationOutcome;
+import gov.va.api.health.uscorer4.api.resources.DiagnosticReport;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
+public interface DiagnosticReportApi {
+
+  @Operation(
+      summary = "Diagnostic Report Read",
+      description =
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-diagnosticreport-lab.html",
+      tags = {"DiagnosticReport"})
+  @GET
+  @Path("DiagnosticReport/{id}")
+  @ApiResponse(
+      responseCode = "200",
+      description = "Record Found",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = DiagnosticReport.class)))
+  @ApiResponse(
+      responseCode = "400",
+      description = "Bad Request",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = OperationOutcome.class)))
+  @ApiResponse(
+      responseCode = "404",
+      description = "Not Found",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = OperationOutcome.class)))
+  DiagnosticReport diagnosticReportRead(
+      @Parameter(
+              in = ParameterIn.PATH,
+              name = "id",
+              required = true,
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
+          String id);
+
+  @Operation(
+      summary = "Diagnostic Report Search",
+      description =
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-diagnosticreport-lab.html",
+      tags = {"DiagnosticReport"})
+  @GET
+  @Path("DiagnosticReport")
+  @ApiResponse(
+      responseCode = "200",
+      description = "Records Found",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = DiagnosticReport.Bundle.class)))
+  @ApiResponse(
+      responseCode = "400",
+      description = "Bad Request",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = OperationOutcome.class)))
+  @ApiResponse(
+      responseCode = "404",
+      description = "Not Found",
+      content =
+          @Content(
+              mediaType = "application/fhir+json",
+              schema = @Schema(implementation = OperationOutcome.class)))
+  /*
+   * Missing Optional Search Parameters:
+   *   - status
+   */
+  DiagnosticReport.Bundle diagnosticReportSearch(
+      @Parameter(
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "patient",
+              description =
+                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                      + " that indicates the patient who the record is associated with.")
+          String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "category",
+              description = "The category the diagnostic report record belongs to (e.g. LAB).")
+          String category,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "code",
+              description =
+                  "A code that indicates the type of information contained within "
+                      + "the diagnostic report.")
+          String code,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "date",
+              description =
+                  "A date or range of dates (maximum of 2) that describe "
+                      + "the date that the diagnostic report was recorded.")
+          String[] date,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "page",
+              description = "The page number being requested.")
+          @DefaultValue("1")
+          int page,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "_count",
+              description =
+                  "The number of resources that should be returned in a single page."
+                      + " The maximum count size is 100.")
+          @DefaultValue("15")
+          int count);
+}
