@@ -6,10 +6,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
+import gov.va.api.health.r4.api.datatypes.CodeableConcept;
+import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.uscorer4.api.samples.SampleDiagnosticReports;
 import gov.va.api.health.uscorer4.api.samples.SampleKnownTypes;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -79,16 +82,17 @@ public class DiagnosticReportTest {
 
   @Test
   void validationPassesGivenGoodCategory() {
-    assertThat(
-            violationsOf(
-                data.diagnosticReport()
-                    .category()
-                    .get(0)
-                    .coding()
-                    .get(0)
-                    .system("http://terminology.hl7.org/CodeSystem/v2-0074")
-                    .code("LAB")))
-        .isEmpty();
+    List<CodeableConcept> validCc =
+        singletonList(
+            CodeableConcept.builder()
+                .coding(
+                    singletonList(
+                        Coding.builder()
+                            .system("http://terminology.hl7.org/CodeSystem/v2-0074")
+                            .code("LAB")
+                            .build()))
+                .build());
+    assertThat(violationsOf(data.diagnosticReport().category(validCc))).isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {

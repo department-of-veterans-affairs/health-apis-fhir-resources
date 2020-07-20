@@ -24,7 +24,6 @@ import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ExactlyOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
@@ -88,11 +87,11 @@ public class DiagnosticReport implements Resource {
   /* This is a slice definition.
    * That being the case, it requires fields that plain old CC would not.
    */
-  @NotEmpty @Valid List<CodeableConcept> category;
+  @Valid @NotEmpty List<CodeableConcept> category;
 
-  @NotNull @Valid CodeableConcept code;
+  @Valid @NotNull CodeableConcept code;
 
-  @NotNull @Valid Reference subject;
+  @Valid @NotNull Reference subject;
 
   @Valid Reference encounter;
 
@@ -126,20 +125,20 @@ public class DiagnosticReport implements Resource {
   @JsonIgnore
   @SuppressWarnings("unused")
   @AssertTrue(message = "Slice Definition is Invalid.")
-  private boolean categoryContainsValidSlices() {
+  private boolean isValidCategoryWithSlices() {
     /* Both System and Code are required fields for the slice.
      *  We only support LAB, so check exclusively for LAB values.
      */
     for (CodeableConcept slice : category) {
       // LaboratorySlice is a 1..1 cardinality for the category CodeableConcept array
-      Integer labSliceCount =
-          slice.coding().stream()
-              .filter(
-                  c ->
-                      "http://terminology.hl7.org/CodeSystem/v2-0074".equals(c.system())
-                          && "LAB".equals(c.code()))
-              .collect(Collectors.toList())
-              .size();
+      int labSliceCount =
+          (int)
+              slice.coding().stream()
+                  .filter(
+                      c ->
+                          "http://terminology.hl7.org/CodeSystem/v2-0074".equals(c.system())
+                              && "LAB".equals(c.code()))
+                  .count();
       if (labSliceCount != 1) {
         return false;
       }

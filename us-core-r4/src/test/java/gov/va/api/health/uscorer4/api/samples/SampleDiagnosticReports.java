@@ -9,20 +9,17 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
-public final class SampleDiagnosticReports {
+public class SampleDiagnosticReports {
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   private CodeableConcept categorySliceLab() {
     return CodeableConcept.builder()
-        .id("123")
-        .extension(singletonList(extension()))
         .coding(
             singletonList(
                 Coding.builder()
                     .system("http://terminology.hl7.org/CodeSystem/v2-0074")
                     .code("LAB")
                     .build()))
-        .text("Laboratory")
         .build();
   }
 
