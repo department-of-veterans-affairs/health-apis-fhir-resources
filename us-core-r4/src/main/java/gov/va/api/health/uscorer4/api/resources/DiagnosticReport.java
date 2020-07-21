@@ -51,10 +51,14 @@ import lombok.NoArgsConstructor;
     example =
         "${uscorer4.diagnosticReport:gov.va.api.health."
             + "uscorer4.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}")
-@ExactlyOneOfs(
-    @ExactlyOneOf(
-        fields = {"effectiveDateTime", "effectivePeriod"},
-        message = "One of effectiveDateTime | effectivePeriod must be set"))
+@ExactlyOneOfs({
+  @ExactlyOneOf(
+      fields = {"effectiveDateTime", "effectivePeriod"},
+      message = "One of effectiveDateTime | effectivePeriod must be set"),
+  @ExactlyOneOf(
+      fields = {"performer", "_performer"},
+      message = "One of performer | _performer must be set")
+})
 public class DiagnosticReport implements Resource {
   @NotBlank @Builder.Default String resourceType = "DiagnosticReport";
 
@@ -105,6 +109,8 @@ public class DiagnosticReport implements Resource {
   String issued;
 
   @Valid List<Reference> performer;
+
+  @Valid Extension _performer;
 
   @Valid List<Reference> resultsInterpreter;
 
