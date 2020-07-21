@@ -43,13 +43,6 @@ public class SwaggerDiagnosticReport {
                     "https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/1011537977V693883")
                 .display("Mr. Aurelio Cruickshank")
                 .build())
-        .performer(
-            singletonList(
-                Reference.builder()
-                    .reference(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Organization/I2-OA74OGR44VNQILUJEJGEFZ2TTU000000")
-                    .display("MANILA-RO")
-                    .build()))
         .result(
             List.of(
                 Reference.builder()
