@@ -13,7 +13,6 @@ import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse;
-import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Entry;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Insurance;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Item;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Outcome;
@@ -95,7 +94,11 @@ public class SwaggerCoverageEligibilityResponse {
                     .url(
                         "https://sandbox-api.va.gov/services/fhir/v0/r4/CoverageEligibilityResponse?patient=1008679665V880686&page=1&_count=15")
                     .build()))
-        .entry(asList(Entry.builder().resource(coverageEligibilityResponse()).build()))
+        .entry(
+            asList(
+                CoverageEligibilityResponse.Entry.builder()
+                    .resource(coverageEligibilityResponse())
+                    .build()))
         .build();
   }
 }
