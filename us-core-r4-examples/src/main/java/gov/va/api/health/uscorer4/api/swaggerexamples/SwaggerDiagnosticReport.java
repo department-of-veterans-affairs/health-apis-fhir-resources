@@ -9,6 +9,7 @@ import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.uscorer4.api.resources.DiagnosticReport;
+import java.time.Instant;
 import java.util.List;
 
 public class SwaggerDiagnosticReport {
@@ -35,8 +36,8 @@ public class SwaggerDiagnosticReport {
                                 .build()))
                     .build()))
         .code(CodeableConcept.builder().text("panel").build())
-        .effectiveDateTime("2020-07-20T01:15:52Z")
-        .issued("2020-07-20T01:15:52Z")
+        .effectiveDateTime(Instant.parse("2020-07-20T01:15:52Z"))
+        .issued(Instant.parse("2020-07-20T01:15:52Z"))
         .subject(
             Reference.builder()
                 .reference(
