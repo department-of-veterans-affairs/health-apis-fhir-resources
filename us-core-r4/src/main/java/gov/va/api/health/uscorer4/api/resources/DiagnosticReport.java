@@ -23,6 +23,7 @@ import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.validation.api.ExactlyOneOf;
 import gov.va.api.health.validation.api.ExactlyOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.Instant;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
@@ -96,14 +97,11 @@ public class DiagnosticReport implements Resource {
 
   @Valid Reference encounter;
 
-  @Pattern(regexp = Fhir.DATETIME)
-  String effectiveDateTime;
+  Instant effectiveDateTime;
 
   @Valid Period effectivePeriod;
 
-  @NotNull
-  @Pattern(regexp = Fhir.INSTANT)
-  String issued;
+  @NotNull Instant issued;
 
   @Valid List<Reference> performer;
 
