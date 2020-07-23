@@ -24,6 +24,7 @@ import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Reference;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -65,6 +66,7 @@ public class SampleKnownTypes {
     suppliers.put(Extension.class, dataTypes::extension);
     suppliers.put(HumanName.class, dataTypes::humanName);
     suppliers.put(Identifier.class, dataTypes::identifier);
+    suppliers.put(Instant.class, () -> Instant.parse("2020-01-20T21:36:00Z"));
     suppliers.put(Money.class, dataTypes::money);
     suppliers.put(Period.class, dataTypes::period);
     suppliers.put(Quantity.class, dataTypes::quantity);

@@ -5,6 +5,7 @@ import static java.util.Collections.singletonList;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.uscorer4.api.resources.DiagnosticReport;
+import java.time.Instant;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
@@ -40,8 +41,8 @@ public class SampleDiagnosticReports {
         .code(codeableConcept())
         .subject(reference())
         .encounter(reference())
-        .effectiveDateTime("2020-07-20T12:47:00Z")
-        .issued("2020-07-20T12:47:00Z")
+        .effectiveDateTime(Instant.parse("2020-07-20T12:47:00Z"))
+        .issued(Instant.parse("2020-07-20T12:47:00Z"))
         .performer(singletonList(reference()))
         .resultsInterpreter(singletonList(reference()))
         .specimen(singletonList(reference()))
