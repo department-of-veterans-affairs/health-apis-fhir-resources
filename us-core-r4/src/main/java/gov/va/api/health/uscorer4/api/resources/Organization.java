@@ -6,6 +6,7 @@ import gov.va.api.health.r4.api.datatypes.Address;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.HumanName;
+import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
@@ -39,10 +40,8 @@ import lombok.NoArgsConstructor;
         "${uscorer4.medication:gov.va.api.health."
             + "uscorer4.api.swaggerexamples.SwaggerOrganization#Organization}")
 public class Organization implements Resource {
-
   // Ancestors
-  @NotBlank
-  @Builder.Default String resourceType = "Organization";
+  @NotBlank @Builder.Default String resourceType = "Organization";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -63,17 +62,13 @@ public class Organization implements Resource {
 
   @Valid List<Extension> modifierExtension;
 
-  //Organization
-  //TODO: Identifier as a slice
+  // Organization
 
-  @NotNull
-  Boolean active;
+  @NotNull Boolean active;
 
-  @Valid
-  List<CodeableConcept> type;
+  @Valid List<CodeableConcept> type;
 
-  @Valid @NotNull
-  String name;
+  @Valid @NotNull String name;
 
   @Valid String alias;
 
@@ -84,6 +79,8 @@ public class Organization implements Resource {
   @Valid Reference partOf;
 
   @Valid Contact contact;
+
+  @Valid List<Reference> endpoint;
 
   @Data
   @Builder
@@ -105,5 +102,17 @@ public class Organization implements Resource {
     @Valid List<ContactPoint> telecom;
 
     @Valid Address address;
-    }
+  }
+
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class IdentifierSlices {
+    @Valid Identifier identifier;
+
+    @Valid Identifier identifierNpi;
+
+    @Valid Identifier identifierClia;
+  }
 }
