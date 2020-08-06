@@ -14,13 +14,19 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * The "access" element sets the access level of the constructor, by setting this value to
+ * "PROTECTED", the constructor will no longer be public.
+
+@SuppressWarnings("PublicConstructorForAbstractClass")*/
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://hl7.org/fhir/R4/bundle.html")
 public abstract class AbstractBundle<N extends AbstractEntry<?>> implements Resource {
