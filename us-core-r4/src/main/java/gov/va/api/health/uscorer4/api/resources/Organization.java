@@ -83,9 +83,9 @@ public class Organization implements Resource {
 
   @Valid List<CodeableConcept> type;
 
-  @Valid @NotNull String name;
+  @NotNull String name;
 
-  @Valid String alias;
+  @Valid List<String> alias;
 
   @Valid List<ContactPoint> telecom;
 
@@ -130,6 +130,7 @@ public class Organization implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Contact implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;

@@ -24,6 +24,7 @@ public class SampleOrganizations {
         .identifier(Collections.singletonList(identifier()))
         .active(true)
         .name("Goodnight Club")
+        .alias(List.of("Nap-time Club"))
         .telecom(List.of(contactPoint(), contactPoint()))
         .address(List.of(address(), address()))
         .build();
