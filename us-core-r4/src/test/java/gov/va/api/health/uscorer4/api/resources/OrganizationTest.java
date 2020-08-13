@@ -55,7 +55,7 @@ public class OrganizationTest {
   }
 
   @Test
-  public void sliceValidationHandlesNulls() {
+  public void sliceValidationHandlesNullIdentifierList() {
     assertThat(violationsOf(data.organization().identifier(null))).isEmpty();
   }
 
