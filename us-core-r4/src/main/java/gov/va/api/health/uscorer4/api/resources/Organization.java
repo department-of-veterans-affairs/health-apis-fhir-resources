@@ -101,6 +101,9 @@ public class Organization implements Resource {
   @SuppressWarnings("unused")
   @AssertTrue(message = "At most one IdentifierClia can be specified.")
   private boolean isIdentifierCliaSliceValid() {
+    if (identifier == null) {
+      return true;
+    }
     return identifier.stream()
             .filter(
                 e ->
@@ -114,6 +117,9 @@ public class Organization implements Resource {
   @SuppressWarnings("unused")
   @AssertTrue(message = "At most one IdentifierNpi can be specified.")
   private boolean isIdentifierNpiSliceValid() {
+    if (identifier == null) {
+      return true;
+    }
     return identifier.stream()
             .filter(
                 e ->

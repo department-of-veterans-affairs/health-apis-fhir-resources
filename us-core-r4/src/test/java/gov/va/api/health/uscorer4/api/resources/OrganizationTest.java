@@ -15,7 +15,6 @@ import javax.validation.ValidatorFactory;
 import org.junit.Test;
 
 public class OrganizationTest {
-
   private final SampleOrganizations data = SampleOrganizations.get();
 
   @Test
@@ -36,7 +35,6 @@ public class OrganizationTest {
             .request(data.request())
             .response(data.response())
             .build();
-
     Organization.Bundle bundle =
         Organization.Bundle.builder()
             .entry(Collections.singletonList(entry))
@@ -48,13 +46,17 @@ public class OrganizationTest {
                         .build()))
             .type(AbstractBundle.BundleType.searchset)
             .build();
-
     assertRoundTrip(bundle);
   }
 
   @Test
   public void organization() {
     assertRoundTrip(data.organization());
+  }
+
+  @Test
+  public void sliceValidationHandlesNulls() {
+    assertThat(violationsOf(data.organization().identifier(null))).isEmpty();
   }
 
   @Test
