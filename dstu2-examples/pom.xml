@@ -3,12 +3,12 @@
   <parent>
     <artifactId>health-apis-parent</artifactId>
     <groupId>gov.va.api.health</groupId>
-    <version>7.0.2</version>
+    <version>7.0.6</version>
     <relativePath/>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>dstu2-examples</artifactId>
-  <version>4.0.3-SNAPSHOT</version>
+  <version>4.0.4-SNAPSHOT</version>
   <packaging>jar</packaging>
   <properties>
     <checkstyle.suppressions.location>${project.basedir}/checkstyle-suppressions.xml</checkstyle.suppressions.location>
