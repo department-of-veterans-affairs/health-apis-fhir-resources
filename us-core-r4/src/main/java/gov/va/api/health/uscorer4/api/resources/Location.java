@@ -20,6 +20,7 @@ import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.DomainResource;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -45,7 +46,7 @@ import lombok.NoArgsConstructor;
         "${uscorer4.location:gov.va.api.health.uscorer4.api."
             + "swaggerexamples.SwaggerLocation#location}")
 public class Location implements DomainResource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Location";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -74,13 +75,13 @@ public class Location implements DomainResource {
 
   @NotBlank String name;
 
-  String alias;
+  @Valid List<String> alias;
 
   String description;
 
   Mode mode;
 
-  @Valid CodeableConcept type;
+  @Valid List<CodeableConcept> type;
 
   @Valid List<ContactPoint> telecom;
 
@@ -98,7 +99,7 @@ public class Location implements DomainResource {
 
   String availabilityExceptions;
 
-  @Valid Reference endpoint;
+  @Valid List<Reference> endpoint;
 
   public enum Mode {
     instance,
@@ -198,11 +199,11 @@ public class Location implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull double longitude;
+    @NotNull BigDecimal longitude;
 
-    @NotNull double latitude;
+    @NotNull BigDecimal latitude;
 
-    double altitude;
+    BigDecimal altitude;
   }
 
   @Data
@@ -220,7 +221,7 @@ public class Location implements DomainResource {
 
     @Valid List<DaysOfWeek> daysOfWeek;
 
-    boolean allDay;
+    Boolean allDay;
 
     @Pattern(regexp = Fhir.TIME)
     String openingTime;

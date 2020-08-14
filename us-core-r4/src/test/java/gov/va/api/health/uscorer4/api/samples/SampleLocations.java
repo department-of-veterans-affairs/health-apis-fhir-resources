@@ -5,6 +5,7 @@ import gov.va.api.health.uscorer4.api.resources.Location.HoursOfOperation;
 import gov.va.api.health.uscorer4.api.resources.Location.Mode;
 import gov.va.api.health.uscorer4.api.resources.Location.Position;
 import gov.va.api.health.uscorer4.api.resources.Location.Status;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class SampleLocations {
     return Location.builder()
         .status(Status.active)
         .name("My Name")
-        .alias("My Alias")
+        .alias(List.of("My", "Alias"))
         .hoursOfOperation(
             HoursOfOperation.builder()
                 .allDay(true)
@@ -29,14 +30,19 @@ public class SampleLocations {
         .description("Description")
         .availabilityExceptions("Closed every other monday")
         .mode(Mode.instance)
-        .type(dataTypes.codeableConcept())
+        .type(List.of(dataTypes.codeableConcept()))
         .telecom(Collections.singletonList(dataTypes.contactPoint()))
         .address(dataTypes.address())
         .physicalType(dataTypes.codeableConcept())
-        .position(Position.builder().latitude(3.0).longitude(2.0).altitude(1.0).build())
+        .position(
+            Position.builder()
+                .latitude(new BigDecimal(3.0))
+                .longitude(new BigDecimal(2.0))
+                .altitude(new BigDecimal(1.0))
+                .build())
         .managingOrganization(dataTypes.reference())
         .partOf(dataTypes.reference())
-        .endpoint(dataTypes.reference())
+        .endpoint(List.of(dataTypes.reference()))
         .build();
   }
 }
