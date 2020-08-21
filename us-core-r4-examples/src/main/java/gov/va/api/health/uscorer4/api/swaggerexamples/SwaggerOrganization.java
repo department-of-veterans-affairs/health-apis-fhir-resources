@@ -15,7 +15,6 @@ public class SwaggerOrganization {
    *
    * @return an example Organization read
    */
-
   public static Organization organization() {
     return Organization.builder()
         .resourceType("Organization")
@@ -28,26 +27,25 @@ public class SwaggerOrganization {
                     .build()))
         .active(true)
         .name("NEW AMSTERDAM CBOC")
-        .telecom(List.of(
-            ContactPoint.builder()
-                .system(ContactPointSystem.phone)
-                .value("800 555-7710")
-                .build(),
-            ContactPoint.builder()
-                .system(ContactPointSystem.phone)
-                .value("800 555-7710")
-                .build()
-        ))
-        .address(List.of(Address.builder()
-            .text("10 MONROE AVE, SUITE 6B PO BOX 4160 NEW AMSTERDAM OH 44444-4160")
-            .line(List.of(
-                "10 MONROE AVE, SUITE 6B",
-                "PO BOX 4160"
-            ))
-            .city("NEW AMSTERDAM")
-            .state("OH")
-            .postalCode("44444-4160")
-            .build()))
+        .telecom(
+            List.of(
+                ContactPoint.builder()
+                    .system(ContactPointSystem.phone)
+                    .value("800 555-7710")
+                    .build(),
+                ContactPoint.builder()
+                    .system(ContactPointSystem.phone)
+                    .value("800 555-7710")
+                    .build()))
+        .address(
+            List.of(
+                Address.builder()
+                    .text("10 MONROE AVE, SUITE 6B PO BOX 4160 NEW AMSTERDAM OH 44444-4160")
+                    .line(List.of("10 MONROE AVE, SUITE 6B", "PO BOX 4160"))
+                    .city("NEW AMSTERDAM")
+                    .state("OH")
+                    .postalCode("44444-4160")
+                    .build()))
         .build();
   }
 
@@ -89,6 +87,6 @@ public class SwaggerOrganization {
                             + "Organization/I2-ZJURFG76GQN5LW7WP56TXADUFM000000")
                     .resource(organization())
                     .build()))
-        .build();  }
-
+        .build();
+  }
 }
