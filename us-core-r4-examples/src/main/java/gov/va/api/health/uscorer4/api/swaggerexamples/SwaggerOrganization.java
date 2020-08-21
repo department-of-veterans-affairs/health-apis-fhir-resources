@@ -1,5 +1,7 @@
 package gov.va.api.health.uscorer4.api.swaggerexamples;
 
+import gov.va.api.health.r4.api.bundle.AbstractBundle;
+import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.Address;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.ContactPoint.ContactPointSystem;
@@ -48,5 +50,45 @@ public class SwaggerOrganization {
             .build()))
         .build();
   }
+
+  /**
+   * An example Organization bundle.
+   *
+   * @return an example Organization bundle.
+   */
+  public static Organization.Bundle organizationBundle() {
+    return Organization.Bundle.builder()
+        .resourceType("Bundle")
+        .type(AbstractBundle.BundleType.searchset)
+        .total(1)
+        .link(
+            List.of(
+                BundleLink.builder()
+                    .relation(BundleLink.LinkRelation.self)
+                    .url(
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Organization?"
+                            + "_id=I2-ZJURFG76GQN5LW7WP56TXADUFM000000&page=1&_count=15")
+                    .build(),
+                BundleLink.builder()
+                    .relation(BundleLink.LinkRelation.first)
+                    .url(
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Organization?"
+                            + "_id=I2-ZJURFG76GQN5LW7WP56TXADUFM000000&page=1&_count=15")
+                    .build(),
+                BundleLink.builder()
+                    .relation(BundleLink.LinkRelation.last)
+                    .url(
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/Organization?"
+                            + "_id=I2-ZJURFG76GQN5LW7WP56TXADUFM000000&page=1&_count=15")
+                    .build()))
+        .entry(
+            List.of(
+                Organization.Entry.builder()
+                    .fullUrl(
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/"
+                            + "Organization/I2-ZJURFG76GQN5LW7WP56TXADUFM000000")
+                    .resource(organization())
+                    .build()))
+        .build();  }
 
 }
