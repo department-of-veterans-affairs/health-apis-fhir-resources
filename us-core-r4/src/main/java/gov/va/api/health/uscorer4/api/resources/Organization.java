@@ -47,8 +47,8 @@ import org.apache.commons.lang3.StringUtils;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-organization.html",
     example =
-        "${uscorer4.medication:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerOrganization#Organization}")
+        "${uscorer4.organization:gov.va.api.health."
+            + "uscorer4.api.swaggerexamples.SwaggerOrganization#organization}")
 public class Organization implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Organization";
