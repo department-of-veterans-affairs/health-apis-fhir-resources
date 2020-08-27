@@ -81,7 +81,6 @@ public interface OrganizationApi {
   Organization.Bundle organizationSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
@@ -111,6 +110,11 @@ public interface OrganizationApi {
                   "Indicates the postal code that designates the region"
                       + " where the organization resides.")
           String addressPostalCode,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "name",
+              description = "Indicates the name of the organization as it is referenced by humans.")
+          String name,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
