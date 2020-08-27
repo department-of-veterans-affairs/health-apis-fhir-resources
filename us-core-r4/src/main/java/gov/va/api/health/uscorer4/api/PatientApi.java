@@ -84,7 +84,6 @@ public interface PatientApi {
   Patient.Bundle patientSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "_id",
               description =
                   "The logical id of the resource."
@@ -92,6 +91,7 @@ public interface PatientApi {
                       + " For Patients this id is an Integration Control Number (ICN)"
                       + " assigned by the Master Veteran Index (MVI).")
           String id,
+      // Search by Name, Gender, and BirthDate are available but not as part of the patient flow
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
