@@ -52,7 +52,8 @@ public interface AllergyIntoleranceApi {
 
   @Operation(
       summary = "Allergy Intolerance Search",
-      description = "http://hl7.org/fhir/R4/allergyintolerance.html",
+      description =
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-allergyintolerance.html",
       tags = {"Allergy Intolerance"})
   @GET
   @Path("AllergyIntolerance")
