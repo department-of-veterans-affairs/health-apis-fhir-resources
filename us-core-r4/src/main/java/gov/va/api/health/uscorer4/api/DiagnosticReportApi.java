@@ -79,10 +79,6 @@ public interface DiagnosticReportApi {
           @Content(
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
-  /*
-   * Missing Optional Search Parameters:
-   *   - status
-   */
   DiagnosticReport.Bundle diagnosticReportSearch(
       @Parameter(
               in = ParameterIn.QUERY,
@@ -111,6 +107,8 @@ public interface DiagnosticReportApi {
                   "A date or range of dates (maximum of 2) that describe "
                       + "the date that the diagnostic report was recorded.")
           String[] date,
+      @Parameter(in = ParameterIn.QUERY, name = "status", description = "The status of the report.")
+          String status,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
