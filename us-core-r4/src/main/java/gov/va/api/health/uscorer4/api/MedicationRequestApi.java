@@ -89,7 +89,6 @@ public interface MedicationRequestApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "intent",
               description = "Describes the represented intention made by the request.")
           String order,
