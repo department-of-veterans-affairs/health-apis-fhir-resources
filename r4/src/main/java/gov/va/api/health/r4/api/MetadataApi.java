@@ -4,15 +4,16 @@ import gov.va.api.health.r4.api.resources.CapabilityStatement;
 import gov.va.api.health.r4.api.resources.OperationOutcome;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 public interface MetadataApi {
   @Operation(
-      summary = "metadata",
+      security = @SecurityRequirement(name = "none"),
+      summary = "Capability Statement",
       description = "http://hl7.org/fhir/R4/capabilitystatement.html",
       tags = "Metadata")
   @GET
@@ -23,21 +24,17 @@ public interface MetadataApi {
       content =
           @Content(
               mediaType = "application/fhir+json",
-              schema = @Schema(implementation = CapabilityStatement.class),
-              examples =
-                  @ExampleObject(
-                      value =
-                          "${r4.capability:gov.va.api.health.r4.api.swaggerexamples.SwaggerCapability#capability}")))
+              schema = @Schema(implementation = CapabilityStatement.class)))
   @ApiResponse(
-      responseCode = "404",
-      description = "Not found",
+      responseCode = "400",
+      description = "Bad request",
       content =
           @Content(
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   @ApiResponse(
-      responseCode = "400",
-      description = "Bad request",
+      responseCode = "404",
+      description = "Not found",
       content =
           @Content(
               mediaType = "application/fhir+json",
