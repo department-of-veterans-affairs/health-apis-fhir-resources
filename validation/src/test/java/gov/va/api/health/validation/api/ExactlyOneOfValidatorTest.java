@@ -1,6 +1,7 @@
 package gov.va.api.health.validation.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -9,7 +10,6 @@ import javax.validation.ValidationException;
 import javax.validation.ValidatorFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ExactlyOneOfValidatorTest {
@@ -28,11 +28,7 @@ public class ExactlyOneOfValidatorTest {
 
   @Test
   public void exactlyOneWithUnknownFieldThrowsException() {
-    Assertions.assertThrows(
-        ValidationException.class,
-        () -> {
-          violationsOf(new PoorlyDefinedGroup(1, null));
-        });
+    assertThrows(ValidationException.class, () -> violationsOf(new PoorlyDefinedGroup(1, null)));
   }
 
   @Test

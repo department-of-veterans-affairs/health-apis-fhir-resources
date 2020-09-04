@@ -1,17 +1,18 @@
 package gov.va.api.health.validation.api;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ZeroOrOneOfVerifierTest {
   @Test
   public void allFields() {
-    Assertions.assertThrows(
+    assertThrows(
         IllegalStateException.class,
         () -> {
           Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
@@ -71,7 +72,7 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test
   public void twoFields() {
-    Assertions.assertThrows(
+    assertThrows(
         IllegalStateException.class,
         () -> {
           Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");

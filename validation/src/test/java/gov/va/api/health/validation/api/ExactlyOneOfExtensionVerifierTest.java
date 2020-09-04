@@ -1,11 +1,12 @@
 package gov.va.api.health.validation.api;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ExactlyOneOfExtensionVerifierTest {
@@ -31,16 +32,16 @@ public class ExactlyOneOfExtensionVerifierTest {
 
   @Test
   public void moreThanOneField() {
-    Assertions.assertThrows(
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(
+            String.class,
+            () -> "hello",
+            ExactlyOneExtension.class,
+            () -> new ExactlyOneExtension("hello.com", "nope"));
+    assertThrows(
         IllegalStateException.class,
         () -> {
-          Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
-          Map<Class<?>, Supplier<?>> types =
-              ImmutableMap.of(
-                  String.class,
-                  () -> "hello",
-                  ExactlyOneExtension.class,
-                  () -> new ExactlyOneExtension("hello.com", "nope"));
           ExactlyOneOfExtensionVerifier.builder()
               .sample(new ExactlyOne("exactly", new ExactlyOneExtension("hello.com", "exactly")))
               .field("exactlyOneString")
