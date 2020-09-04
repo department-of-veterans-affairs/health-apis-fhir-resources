@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 public class ExactlyOneOfVerifierTest {
   @Test
   public void blankPrefixIsAnIllegalArgument() {
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     assertThrows(
         IllegalArgumentException.class,
         () -> {
-          Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
-          Map<Class<?>, Supplier<?>> types =
-              ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
           ExactlyOneOfVerifier.builder()
               .sample(new ExactlyOne("exactly", null))
               .fieldPrefix("")
@@ -30,12 +30,12 @@ public class ExactlyOneOfVerifierTest {
 
   @Test
   public void exactlyBoth() {
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     assertThrows(
         IllegalStateException.class,
         () -> {
-          Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
-          Map<Class<?>, Supplier<?>> types =
-              ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
           ExactlyOneOfVerifier.builder()
               .sample(new ExactlyOne("exactly", 1))
               .fieldPrefix("exactlyOne")
