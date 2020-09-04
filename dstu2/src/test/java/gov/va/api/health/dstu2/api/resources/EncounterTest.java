@@ -9,7 +9,7 @@ import gov.va.api.health.dstu2.api.resources.Encounter.Bundle;
 import gov.va.api.health.dstu2.api.resources.Encounter.Entry;
 import gov.va.api.health.dstu2.api.samples.SampleEncounters;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EncounterTest {
   private final SampleEncounters data = SampleEncounters.get();

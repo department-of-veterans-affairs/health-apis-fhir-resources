@@ -13,7 +13,7 @@ import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmunizationTest {
   private final SampleImmunizations data = SampleImmunizations.get();

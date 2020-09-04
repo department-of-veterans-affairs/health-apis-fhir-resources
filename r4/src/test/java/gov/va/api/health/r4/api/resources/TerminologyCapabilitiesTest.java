@@ -3,7 +3,7 @@ package gov.va.api.health.r4.api.resources;
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 
 import gov.va.api.health.r4.api.samples.SampleTerminologyCapabilities;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TerminologyCapabilitiesTest {
 

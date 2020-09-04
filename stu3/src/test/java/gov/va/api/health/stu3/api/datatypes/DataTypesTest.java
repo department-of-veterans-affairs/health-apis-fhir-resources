@@ -6,7 +6,7 @@ import gov.va.api.health.stu3.api.RoundTrip;
 import gov.va.api.health.stu3.api.resources.OperationOutcome;
 import gov.va.api.health.stu3.api.samples.SampleDataTypes;
 import java.util.Arrays;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DataTypesTest {
 

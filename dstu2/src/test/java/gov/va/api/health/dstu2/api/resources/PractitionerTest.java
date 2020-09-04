@@ -6,7 +6,7 @@ import gov.va.api.health.dstu2.api.bundle.AbstractBundle;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.samples.SamplePractitioners;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PractitionerTest {
   private final SamplePractitioners data = SamplePractitioners.get();

@@ -6,7 +6,7 @@ import static java.util.Collections.singletonList;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.uscorer4.api.samples.SampleConditions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConditionTest {
   private final SampleConditions samples = SampleConditions.get();

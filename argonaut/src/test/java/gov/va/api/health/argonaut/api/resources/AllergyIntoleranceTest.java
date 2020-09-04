@@ -9,7 +9,7 @@ import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AllergyIntoleranceTest {
   private final SampleAllergyIntolerances data = SampleAllergyIntolerances.get();

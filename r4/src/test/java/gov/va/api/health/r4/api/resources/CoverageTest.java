@@ -11,7 +11,7 @@ import gov.va.api.health.r4.api.resources.Coverage.Entry;
 import gov.va.api.health.r4.api.samples.SampleCoverages;
 import gov.va.api.health.r4.api.samples.SampleKnownTypes;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CoverageTest {
 

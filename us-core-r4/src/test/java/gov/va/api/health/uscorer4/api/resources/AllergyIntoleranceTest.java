@@ -8,7 +8,7 @@ import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance.Bundle;
 import gov.va.api.health.uscorer4.api.resources.AllergyIntolerance.Entry;
 import gov.va.api.health.uscorer4.api.samples.SampleAllergyIntolerances;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AllergyIntoleranceTest {
   private final SampleAllergyIntolerances data = SampleAllergyIntolerances.get();
