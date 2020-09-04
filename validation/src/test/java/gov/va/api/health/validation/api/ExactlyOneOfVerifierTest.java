@@ -48,12 +48,12 @@ public class ExactlyOneOfVerifierTest {
 
   @Test
   public void exactlyNeither() {
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     assertThrows(
         IllegalStateException.class,
         () -> {
-          Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
-          Map<Class<?>, Supplier<?>> types =
-              ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
           ExactlyOneOfVerifier.builder()
               .sample(new ExactlyOne(null, null))
               .fieldPrefix("exactlyOne")

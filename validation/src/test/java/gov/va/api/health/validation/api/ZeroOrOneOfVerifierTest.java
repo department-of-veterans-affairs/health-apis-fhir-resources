@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 public class ZeroOrOneOfVerifierTest {
   @Test
   public void allFields() {
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     assertThrows(
         IllegalStateException.class,
         () -> {
-          Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
-          Map<Class<?>, Supplier<?>> types =
-              ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
           ZeroOrOneOfVerifier.builder()
               .sample(new ZeroOrOne("zeroOr", 1, ZeroOrOneEnum.ZERO))
               .fieldPrefix("zeroOrOne")
@@ -72,12 +72,12 @@ public class ZeroOrOneOfVerifierTest {
 
   @Test
   public void twoFields() {
+    Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
+    Map<Class<?>, Supplier<?>> types =
+        ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
     assertThrows(
         IllegalStateException.class,
         () -> {
-          Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
-          Map<Class<?>, Supplier<?>> types =
-              ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
           ZeroOrOneOfVerifier.builder()
               .sample(new ZeroOrOne("zeroOr", 1, null))
               .fieldPrefix("zeroOrOne")
