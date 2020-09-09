@@ -49,7 +49,6 @@ import gov.va.api.health.r4.api.resources.OperationOutcome.Issue;
 import gov.va.api.health.r4.api.resources.OperationOutcome.Issue.IssueSeverity;
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.List;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(staticName = "get")
@@ -94,10 +93,6 @@ public class SampleDataTypes {
 
   public CodeableConcept codeableConcept() {
     return CodeableConcept.builder().coding(singletonList(coding())).text("code text test").build();
-  }
-
-  public List<CodeableConcept> codeableConceptList() {
-    return singletonList(codeableConcept());
   }
 
   public Coding coding() {
@@ -270,10 +265,6 @@ public class SampleDataTypes {
 
   public Reference reference() {
     return Reference.builder().reference("HelloReference").display("HelloDisplay").build();
-  }
-
-  public List<Reference> referenceList() {
-    return singletonList(reference());
   }
 
   public Request request() {

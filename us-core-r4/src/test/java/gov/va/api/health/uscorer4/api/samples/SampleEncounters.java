@@ -5,7 +5,6 @@ import static java.util.Collections.singletonList;
 import gov.va.api.health.uscorer4.api.resources.Encounter;
 import gov.va.api.health.uscorer4.api.resources.Encounter.ClassHistory;
 import gov.va.api.health.uscorer4.api.resources.Encounter.Diagnosis;
-import gov.va.api.health.uscorer4.api.resources.Encounter.EncounterClass;
 import gov.va.api.health.uscorer4.api.resources.Encounter.Hospitalization;
 import gov.va.api.health.uscorer4.api.resources.Encounter.Location;
 import gov.va.api.health.uscorer4.api.resources.Encounter.Participant;
@@ -28,7 +27,7 @@ public class SampleEncounters {
         .id("0000")
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
-        .encounterClass(EncounterClass.pre_admission)
+        .encounterClass(coding())
         .period(period())
         .build();
   }
@@ -47,18 +46,18 @@ public class SampleEncounters {
   public Encounter encounter() {
     return Encounter.builder()
         .id("1234")
-        .meta(meta())
+        //        .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")
         .text(narrative())
-        .contained(singletonList(resource()))
+        .contained(resource())
         .extension(Arrays.asList(extension(), extension()))
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))
         .status(Status.arrived)
-        .statusHistory(singletonList(statusHistory()))
-        .encounterClass(EncounterClass.ambulatory)
+        .statusHistory(statusHistory())
+        .encounterClass(coding())
         .classHistory(classHistory())
         .type(codeableConceptList())
         .serviceType(codeableConceptList())
@@ -66,11 +65,12 @@ public class SampleEncounters {
         .subject(reference())
         .episodeOfCare(referenceList())
         .basedOn(referenceList())
-        .participant(singletonList(participant()))
+        .participant(participant())
         .appointment(reference())
         .period(period())
         .length(duration())
-        .reason(codeableConceptList())
+        .reasonCode(codeableConcept())
+        .reasonReference(referenceList())
         .account(reference())
         .hospitalization(hospitalization())
         .location(singletonList(location()))

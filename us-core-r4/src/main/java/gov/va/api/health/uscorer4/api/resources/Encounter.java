@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
+import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
@@ -35,6 +36,9 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-encounter.html")
 public class Encounter implements DomainResource {
+
+  @NotNull @Valid Coding encounterClass;
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -58,23 +62,19 @@ public class Encounter implements DomainResource {
 
   @Valid StatusHistory statusHistory;
 
-  @JsonProperty("class")
-  @NotNull
-  EncounterClass encounterClass;
-
   @Valid ClassHistory classHistory;
 
-  @Valid CodeableConcept type;
+  @Valid List<CodeableConcept> type;
 
-  @Valid CodeableConcept serviceType;
+  @Valid List<CodeableConcept> serviceType;
 
-  @Valid CodeableConcept priority;
+  @Valid List<CodeableConcept> priority;
 
   @Valid Reference subject;
 
-  @Valid Reference episodeOfCare;
+  @Valid List<Reference> episodeOfCare;
 
-  @Valid Reference basedOn;
+  @Valid List<Reference> basedOn;
 
   @Valid Participant participant;
 
@@ -86,7 +86,7 @@ public class Encounter implements DomainResource {
 
   @Valid CodeableConcept reasonCode;
 
-  @Valid Reference reasonReference;
+  @Valid List<Reference> reasonReference;
 
   @Valid Reference account;
 
@@ -152,20 +152,6 @@ public class Encounter implements DomainResource {
     cancelled
   }
 
-  public enum EncounterClass {
-    ambulatory,
-    emergency,
-    field,
-    home,
-    inpatient,
-    inpatient_acute,
-    inpatient_non_acute,
-    observation_encounter,
-    pre_admission,
-    short_stay,
-    virtual
-  }
-
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -180,7 +166,7 @@ public class Encounter implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull EncounterClass encounterClass;
+    @NotNull Coding encounterClass;
 
     @NotNull @Valid Period period;
 
