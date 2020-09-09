@@ -8,6 +8,7 @@ import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
+import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -51,7 +52,7 @@ public class Encounter implements Resource {
 
   @Valid Narrative text;
 
-  @Valid List<Resource> contained;
+  @Valid List<SimpleResource> contained;
 
   @Valid List<Extension> extension;
 

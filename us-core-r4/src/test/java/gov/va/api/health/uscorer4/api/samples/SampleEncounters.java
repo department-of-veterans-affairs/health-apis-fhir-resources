@@ -19,6 +19,7 @@ import lombok.experimental.Delegate;
  * This class provides data structures that are populated with dummy values, suitable for testing
  * serialization.
  */
+@SuppressWarnings("WeakerAccess")
 @NoArgsConstructor(staticName = "get")
 public class SampleEncounters {
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
@@ -51,7 +52,7 @@ public class SampleEncounters {
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")
         .text(narrative())
-        .contained(List.of(resource(), resource()))
+        .contained(Arrays.asList(resource(), resource()))
         .extension(Arrays.asList(extension(), extension()))
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
