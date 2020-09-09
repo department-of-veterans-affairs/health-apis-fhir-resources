@@ -47,7 +47,7 @@ public class SampleEncounters {
   public Encounter encounter() {
     return Encounter.builder()
         .id("1234")
-        //        .meta(meta())
+        .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")
         .text(narrative())

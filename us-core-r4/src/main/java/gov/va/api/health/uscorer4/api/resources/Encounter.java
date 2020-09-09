@@ -47,6 +47,8 @@ public class Encounter implements Resource {
   @Pattern(regexp = Fhir.CODE)
   String language;
 
+  @Valid Meta meta;
+
   @Valid Narrative text;
 
   @Valid Resource contained;
