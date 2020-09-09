@@ -51,7 +51,7 @@ public class Encounter implements Resource {
 
   @Valid Narrative text;
 
-  @Valid Resource contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 
@@ -61,13 +61,13 @@ public class Encounter implements Resource {
 
   @NotNull Encounter.Status status;
 
-  @Valid StatusHistory statusHistory;
+  @Valid List<StatusHistory> statusHistory;
 
-  @Valid ClassHistory classHistory;
+  @Valid List<ClassHistory> classHistory;
 
   @Valid List<CodeableConcept> type;
 
-  @Valid List<CodeableConcept> serviceType;
+  @Valid CodeableConcept serviceType;
 
   @Valid List<CodeableConcept> priority;
 
@@ -77,19 +77,19 @@ public class Encounter implements Resource {
 
   @Valid List<Reference> basedOn;
 
-  @Valid Participant participant;
+  @Valid List<Participant> participant;
 
-  @Valid Reference appointment;
+  @Valid List<Reference> appointment;
 
   @NotNull @Valid Period period;
 
   @Valid Duration length;
 
-  @Valid CodeableConcept reasonCode;
+  @Valid List<CodeableConcept> reasonCode;
 
   @Valid List<Reference> reasonReference;
 
-  @Valid Reference account;
+  @Valid List<Reference> account;
 
   @Valid Hospitalization hospitalization;
 
@@ -290,6 +290,8 @@ public class Encounter implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
+    @Valid List<Identifier> preAdmissionIdentifier;
+
     @Valid Reference origin;
 
     @Valid CodeableConcept admitSource;
@@ -341,7 +343,7 @@ public class Encounter implements Resource {
 
     @Valid Status status;
 
-    @Valid List<CodeableConcept> physicalType;
+    @Valid CodeableConcept physicalType;
 
     @Valid Period period;
 
