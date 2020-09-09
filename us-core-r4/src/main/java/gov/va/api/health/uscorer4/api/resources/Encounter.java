@@ -99,26 +99,6 @@ public class Encounter implements Resource {
 
   @Valid Reference partOf;
 
-  @Override
-  public @Pattern(regexp = Fhir.STRING) String id() {
-    return null;
-  }
-
-  @Override
-  public @Pattern(regexp = Fhir.STRING) String implicitRules() {
-    return null;
-  }
-
-  @Override
-  public @Pattern(regexp = Fhir.STRING) String language() {
-    return null;
-  }
-
-  @Override
-  public Meta meta() {
-    return null;
-  }
-
   public enum Status {
     planned,
     arrived,
@@ -147,22 +127,6 @@ public class Encounter implements Resource {
     @NotNull Coding encounterClass;
 
     @NotNull @Valid Period period;
-
-    @Override
-    public List<Extension> extension() {
-      return null;
-    }
-
-    @Override
-    @Pattern(regexp = Fhir.STRING)
-    public String id() {
-      return null;
-    }
-
-    @Override
-    public List<Extension> modifierExtension() {
-      return null;
-    }
   }
 
   @Data
@@ -182,22 +146,6 @@ public class Encounter implements Resource {
     @NotNull Encounter.Status status;
 
     @NotNull @Valid Period period;
-
-    @Override
-    public List<Extension> extension() {
-      return null;
-    }
-
-    @Override
-    @Pattern(regexp = Fhir.STRING)
-    public String id() {
-      return null;
-    }
-
-    @Override
-    public List<Extension> modifierExtension() {
-      return null;
-    }
   }
 
   @Data
@@ -219,22 +167,6 @@ public class Encounter implements Resource {
     @NotNull @Valid Period period;
 
     @Valid Reference individual;
-
-    @Override
-    public List<Extension> extension() {
-      return null;
-    }
-
-    @Override
-    @Pattern(regexp = Fhir.STRING)
-    public String id() {
-      return null;
-    }
-
-    @Override
-    public List<Extension> modifierExtension() {
-      return null;
-    }
   }
 
   @Data
@@ -258,22 +190,6 @@ public class Encounter implements Resource {
     @Valid
     @Min(1)
     Integer rank;
-
-    @Override
-    public List<Extension> extension() {
-      return null;
-    }
-
-    @Override
-    @Pattern(regexp = Fhir.STRING)
-    public String id() {
-      return null;
-    }
-
-    @Override
-    public List<Extension> modifierExtension() {
-      return null;
-    }
   }
 
   @Data
@@ -307,22 +223,6 @@ public class Encounter implements Resource {
     @Valid Reference destination;
 
     @Valid CodeableConcept dischargeDisposition;
-
-    @Override
-    public List<Extension> extension() {
-      return null;
-    }
-
-    @Override
-    @Pattern(regexp = Fhir.STRING)
-    public String id() {
-      return null;
-    }
-
-    @Override
-    public List<Extension> modifierExtension() {
-      return null;
-    }
   }
 
   @Data
@@ -346,22 +246,6 @@ public class Encounter implements Resource {
     @Valid CodeableConcept physicalType;
 
     @Valid Period period;
-
-    @Override
-    public List<Extension> extension() {
-      return null;
-    }
-
-    @Override
-    @Pattern(regexp = Fhir.STRING)
-    public String id() {
-      return null;
-    }
-
-    @Override
-    public List<Extension> modifierExtension() {
-      return null;
-    }
 
     public enum Status {
       planned,
