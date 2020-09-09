@@ -8,17 +8,16 @@ import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Reference;
-import gov.va.api.health.r4.api.resources.DomainResource;
 import gov.va.api.health.r4.api.resources.Resource;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -35,7 +34,7 @@ import lombok.NoArgsConstructor;
 @Schema(
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-encounter.html")
-public class Encounter implements DomainResource {
+public class Encounter implements Resource {
 
   @NotNull @Valid Coding encounterClass;
 
@@ -92,52 +91,29 @@ public class Encounter implements DomainResource {
 
   @Valid Hospitalization hospitalization;
 
-  @Valid Location location;
+  @Valid List<Location> location;
 
   @Valid Reference serviceProvider;
 
   @Valid Reference partOf;
 
   @Override
-  public List<SimpleResource> contained() {
+  public @Pattern(regexp = Fhir.STRING) String id() {
     return null;
   }
 
   @Override
-  public List<Extension> extension() {
+  public @Pattern(regexp = Fhir.STRING) String implicitRules() {
     return null;
   }
 
   @Override
-  @Pattern(regexp = Fhir.STRING)
-  public String id() {
-    return null;
-  }
-
-  @Override
-  @Pattern(regexp = Fhir.STRING)
-  public String implicitRules() {
-    return null;
-  }
-
-  @Override
-  @Pattern(regexp = Fhir.STRING)
-  public String language() {
+  public @Pattern(regexp = Fhir.STRING) String language() {
     return null;
   }
 
   @Override
   public Meta meta() {
-    return null;
-  }
-
-  @Override
-  public List<Extension> modifierExtension() {
-    return null;
-  }
-
-  @Override
-  public Narrative text() {
     return null;
   }
 
@@ -204,8 +180,6 @@ public class Encounter implements DomainResource {
     @NotNull Encounter.Status status;
 
     @NotNull @Valid Period period;
-
-    @Valid List<CodeableConcept> type;
 
     @Override
     public List<Extension> extension() {
@@ -279,7 +253,9 @@ public class Encounter implements DomainResource {
 
     @Valid CodeableConcept use;
 
-    @Valid Integer rank;
+    @Valid
+    @Min(1)
+    Integer rank;
 
     @Override
     public List<Extension> extension() {

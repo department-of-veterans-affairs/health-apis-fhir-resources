@@ -11,6 +11,7 @@ import gov.va.api.health.uscorer4.api.resources.Encounter.Participant;
 import gov.va.api.health.uscorer4.api.resources.Encounter.Status;
 import gov.va.api.health.uscorer4.api.resources.Encounter.StatusHistory;
 import java.util.Arrays;
+import java.util.List;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
@@ -59,18 +60,17 @@ public class SampleEncounters {
         .statusHistory(statusHistory())
         .encounterClass(coding())
         .classHistory(classHistory())
-        .type(codeableConceptList())
-        .serviceType(codeableConceptList())
-        .priority(codeableConceptList())
+        .type(List.of(codeableConcept(), codeableConcept()))
+        .priority(singletonList(codeableConcept()))
         .subject(reference())
-        .episodeOfCare(referenceList())
-        .basedOn(referenceList())
+        .episodeOfCare(List.of(reference(), reference()))
+        .basedOn(List.of(reference(), reference()))
         .participant(participant())
         .appointment(reference())
         .period(period())
         .length(duration())
         .reasonCode(codeableConcept())
-        .reasonReference(referenceList())
+        .reasonReference(List.of(reference(), reference()))
         .account(reference())
         .hospitalization(hospitalization())
         .location(singletonList(location()))
@@ -87,9 +87,9 @@ public class SampleEncounters {
         .origin(reference())
         .admitSource(codeableConcept())
         .reAdmission(codeableConcept())
-        .dietPreference(codeableConceptList())
-        .specialCourtesy(codeableConceptList())
-        .specialArrangement(codeableConceptList())
+        .dietPreference(List.of(codeableConcept(), codeableConcept()))
+        .specialCourtesy(List.of(codeableConcept(), codeableConcept()))
+        .specialArrangement(List.of(codeableConcept(), codeableConcept()))
         .destination(reference())
         .dischargeDisposition(codeableConcept())
         .build();
@@ -102,7 +102,7 @@ public class SampleEncounters {
         .modifierExtension(singletonList(extension()))
         .location(reference())
         .status(Location.Status.planned)
-        .physicalType(codeableConceptList())
+        .physicalType(List.of(codeableConcept(), codeableConcept()))
         .period(period())
         .build();
   }
@@ -112,7 +112,7 @@ public class SampleEncounters {
         .id("4444")
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
-        .type(codeableConceptList())
+        .type(List.of(codeableConcept(), codeableConcept()))
         .period(period())
         .individual(reference())
         .build();
@@ -125,7 +125,6 @@ public class SampleEncounters {
         .modifierExtension(singletonList(extension()))
         .status(Status.planned)
         .period(period())
-        .type(codeableConceptList())
         .build();
   }
 }
