@@ -7,7 +7,7 @@ import gov.va.api.health.stu3.api.samples.SampleDataTypes;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SignatureTest {
 

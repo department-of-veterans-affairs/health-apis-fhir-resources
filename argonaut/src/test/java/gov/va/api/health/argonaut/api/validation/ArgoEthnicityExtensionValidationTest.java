@@ -7,7 +7,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ArgoEthnicityExtensionValidationTest {
   private final SampleExtensions data = SampleExtensions.get();

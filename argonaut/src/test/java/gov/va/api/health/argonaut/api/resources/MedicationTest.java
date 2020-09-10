@@ -6,7 +6,7 @@ import gov.va.api.health.argonaut.api.samples.SampleMedications;
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MedicationTest {
   private final SampleMedications data = SampleMedications.get();

@@ -5,7 +5,7 @@ import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import gov.va.api.health.r4.api.ExactlyOneOfVerifier;
 import gov.va.api.health.r4.api.ZeroOrOneOfVerifier;
 import gov.va.api.health.r4.api.samples.SampleMedicationRequests;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MedicationRequestTest {
 

@@ -1,25 +1,31 @@
 package gov.va.api.health.validation.api;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ZeroOrOneOfVerifierTest {
-  @Test(expected = IllegalStateException.class)
+  @Test
   public void allFields() {
     Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
     Map<Class<?>, Supplier<?>> types =
         ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
-    ZeroOrOneOfVerifier.builder()
-        .sample(new ZeroOrOne("zeroOr", 1, ZeroOrOneEnum.ZERO))
-        .fieldPrefix("zeroOrOne")
-        .knownTypes(types)
-        .stringTypes(stringTypes)
-        .build()
-        .verify();
+    assertThrows(
+        IllegalStateException.class,
+        () -> {
+          ZeroOrOneOfVerifier.builder()
+              .sample(new ZeroOrOne("zeroOr", 1, ZeroOrOneEnum.ZERO))
+              .fieldPrefix("zeroOrOne")
+              .knownTypes(types)
+              .stringTypes(stringTypes)
+              .build()
+              .verify();
+        });
   }
 
   @Test
@@ -64,18 +70,22 @@ public class ZeroOrOneOfVerifierTest {
         .verify();
   }
 
-  @Test(expected = IllegalStateException.class)
+  @Test
   public void twoFields() {
     Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
     Map<Class<?>, Supplier<?>> types =
         ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
-    ZeroOrOneOfVerifier.builder()
-        .sample(new ZeroOrOne("zeroOr", 1, null))
-        .fieldPrefix("zeroOrOne")
-        .knownTypes(types)
-        .stringTypes(stringTypes)
-        .build()
-        .verify();
+    assertThrows(
+        IllegalStateException.class,
+        () -> {
+          ZeroOrOneOfVerifier.builder()
+              .sample(new ZeroOrOne("zeroOr", 1, null))
+              .fieldPrefix("zeroOrOne")
+              .knownTypes(types)
+              .stringTypes(stringTypes)
+              .build()
+              .verify();
+        });
   }
 
   @Test

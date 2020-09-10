@@ -11,7 +11,7 @@ import gov.va.api.health.uscorer4.api.samples.SampleKnownTypes;
 import gov.va.api.health.uscorer4.api.samples.SamplePatients;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PatientTest {
   private final SamplePatients data = SamplePatients.get();

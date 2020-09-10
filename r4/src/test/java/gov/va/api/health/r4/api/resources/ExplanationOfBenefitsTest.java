@@ -12,7 +12,7 @@ import gov.va.api.health.r4.api.samples.SampleExplanationOfBenefits;
 import gov.va.api.health.r4.api.samples.SampleKnownTypes;
 import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ExplanationOfBenefitsTest {
 

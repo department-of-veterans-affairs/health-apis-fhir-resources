@@ -14,7 +14,7 @@ import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
 import java.util.Collections;
 import java.util.List;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MedicationOrderTest {
   private final SampleMedicationOrders data = SampleMedicationOrders.get();

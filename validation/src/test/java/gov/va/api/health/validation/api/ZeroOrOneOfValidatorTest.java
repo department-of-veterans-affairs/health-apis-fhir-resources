@@ -1,6 +1,7 @@
 package gov.va.api.health.validation.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -9,7 +10,7 @@ import javax.validation.ValidationException;
 import javax.validation.ValidatorFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ZeroOrOneOfValidatorTest {
 
@@ -45,9 +46,9 @@ public class ZeroOrOneOfValidatorTest {
     assertThat(violationsOf(new SingleGroup(1, 1))).isNotEmpty();
   }
 
-  @Test(expected = ValidationException.class)
+  @Test
   public void zeroOrOneWithUnknownFieldThrowsException() {
-    violationsOf(new PoorlyDefinedGroup(1, null));
+    assertThrows(ValidationException.class, () -> violationsOf(new PoorlyDefinedGroup(1, null)));
   }
 
   @ZeroOrOneOfs({

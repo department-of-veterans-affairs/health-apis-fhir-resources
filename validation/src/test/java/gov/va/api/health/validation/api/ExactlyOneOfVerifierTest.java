@@ -1,53 +1,67 @@
 package gov.va.api.health.validation.api;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ExactlyOneOfVerifierTest {
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void blankPrefixIsAnIllegalArgument() {
     Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
     Map<Class<?>, Supplier<?>> types =
         ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
-    ExactlyOneOfVerifier.builder()
-        .sample(new ExactlyOne("exactly", null))
-        .fieldPrefix("")
-        .knownTypes(types)
-        .stringTypes(stringTypes)
-        .build()
-        .verify();
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          ExactlyOneOfVerifier.builder()
+              .sample(new ExactlyOne("exactly", null))
+              .fieldPrefix("")
+              .knownTypes(types)
+              .stringTypes(stringTypes)
+              .build()
+              .verify();
+        });
   }
 
-  @Test(expected = IllegalStateException.class)
+  @Test
   public void exactlyBoth() {
     Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
     Map<Class<?>, Supplier<?>> types =
         ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
-    ExactlyOneOfVerifier.builder()
-        .sample(new ExactlyOne("exactly", 1))
-        .fieldPrefix("exactlyOne")
-        .knownTypes(types)
-        .stringTypes(stringTypes)
-        .build()
-        .verify();
+    assertThrows(
+        IllegalStateException.class,
+        () -> {
+          ExactlyOneOfVerifier.builder()
+              .sample(new ExactlyOne("exactly", 1))
+              .fieldPrefix("exactlyOne")
+              .knownTypes(types)
+              .stringTypes(stringTypes)
+              .build()
+              .verify();
+        });
   }
 
-  @Test(expected = IllegalStateException.class)
+  @Test
   public void exactlyNeither() {
     Map<String, Supplier<?>> stringTypes = ImmutableMap.of("", () -> "hello");
     Map<Class<?>, Supplier<?>> types =
         ImmutableMap.of(String.class, () -> "hello", Integer.class, () -> 1);
-    ExactlyOneOfVerifier.builder()
-        .sample(new ExactlyOne(null, null))
-        .fieldPrefix("exactlyOne")
-        .knownTypes(types)
-        .stringTypes(stringTypes)
-        .build()
-        .verify();
+    assertThrows(
+        IllegalStateException.class,
+        () -> {
+          ExactlyOneOfVerifier.builder()
+              .sample(new ExactlyOne(null, null))
+              .fieldPrefix("exactlyOne")
+              .knownTypes(types)
+              .stringTypes(stringTypes)
+              .build()
+              .verify();
+        });
   }
 
   @Test

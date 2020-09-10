@@ -9,7 +9,7 @@ import gov.va.api.health.dstu2.api.resources.Organization.Bundle;
 import gov.va.api.health.dstu2.api.resources.Organization.Entry;
 import gov.va.api.health.dstu2.api.samples.SampleOrganizations;
 import java.util.Collections;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class OrganizationTest {
   private final SampleOrganizations data = SampleOrganizations.get();
