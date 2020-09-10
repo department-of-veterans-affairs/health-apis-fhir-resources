@@ -1,6 +1,7 @@
 package gov.va.api.health.uscorer4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
@@ -23,8 +24,10 @@ import gov.va.api.health.r4.api.resources.Resource;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -38,24 +41,25 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-@JsonAutoDetect(isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-encounter.html")
 public class Encounter implements Resource {
-
-  @NotNull @Builder.Default String resourceType = "Encounter";
+  @NotBlank @Builder.Default String resourceType = "Encounter";
 
   @Pattern(regexp = Fhir.ID)
   String id;
+
+  @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)
   String implicitRules;
 
   @Pattern(regexp = Fhir.CODE)
   String language;
-
-  @Valid Meta meta;
 
   @Valid Narrative text;
 
@@ -71,17 +75,20 @@ public class Encounter implements Resource {
 
   @Valid List<StatusHistory> statusHistory;
 
-  @NotNull @Valid Coding encounterClass;
+  @JsonProperty("class")
+  @NotNull
+  @Valid
+  Coding encounterClass;
 
   @Valid List<ClassHistory> classHistory;
 
-  @Valid List<CodeableConcept> type;
+  @NotEmpty @Valid List<CodeableConcept> type;
 
   @Valid CodeableConcept serviceType;
 
   @Valid CodeableConcept priority;
 
-  @Valid Reference subject;
+  @NotNull @Valid Reference subject;
 
   @Valid List<Reference> episodeOfCare;
 
@@ -91,7 +98,7 @@ public class Encounter implements Resource {
 
   @Valid List<Reference> appointment;
 
-  @NotNull @Valid Period period;
+  @Valid Period period;
 
   @Valid Duration length;
 
@@ -111,6 +118,7 @@ public class Encounter implements Resource {
 
   @Valid Reference partOf;
 
+
   public enum Status {
     planned,
     arrived,
@@ -119,7 +127,26 @@ public class Encounter implements Resource {
     in_progress,
     onleave,
     finished,
-    cancelled
+    cancelled,
+    @JsonProperty("entered-in-error")
+    entered_in_error,
+    unknown
+  }
+
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  @AssertTrue(message = "Slice Definition is Invalid.")
+  private boolean isValidEncounterIdentifier() {
+    /*
+     * System and value are required for the identifier,
+     * so we must check for them
+     */
+    for (Identifier item : identifier) {
+      if (item.system() == null || item.value() == null) {
+        return false;
+      }
+    }
+    return true;
   }
 
   @Data
@@ -128,7 +155,7 @@ public class Encounter implements Resource {
   @JsonAutoDetect(isGetterVisibility = JsonAutoDetect.Visibility.NONE)
   @JsonDeserialize(builder = Encounter.Bundle.BundleBuilder.class)
   @Schema(name = "EncounterBundle")
-  public static class Bundle extends AbstractBundle<Entry> {
+  public static class Bundle extends AbstractBundle<Encounter.Entry> {
     /** Creates a bundle of Entries, each entry being an entry of Encounters. */
     @Builder
     public Bundle(
@@ -196,7 +223,10 @@ public class Encounter implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull Coding encounterClass;
+    @JsonProperty("class")
+    @NotNull
+    @Valid
+    Coding encounterClass;
 
     @NotNull @Valid Period period;
   }
@@ -236,7 +266,7 @@ public class Encounter implements Resource {
 
     @Valid List<CodeableConcept> type;
 
-    @NotNull @Valid Period period;
+    @Valid Period period;
 
     @Valid Reference individual;
   }
@@ -253,13 +283,12 @@ public class Encounter implements Resource {
 
     @Valid List<Extension> extension;
 
-    @Valid List<Extension> modifierExtension;
+    @NotNull @Valid List<Extension> modifierExtension;
 
-    @Valid Reference condition;
+    @NotNull @Valid Reference condition;
 
     @Valid CodeableConcept use;
 
-    @Valid
     @Min(1)
     Integer rank;
   }
@@ -311,9 +340,9 @@ public class Encounter implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Valid Reference location;
+    @NotNull @Valid Reference location;
 
-    @Valid Status status;
+    @Valid Location.Status status;
 
     @Valid CodeableConcept physicalType;
 
