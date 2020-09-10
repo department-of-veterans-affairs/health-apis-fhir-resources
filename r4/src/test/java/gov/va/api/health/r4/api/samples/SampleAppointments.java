@@ -3,8 +3,8 @@ package gov.va.api.health.r4.api.samples;
 import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.resources.Appointment;
-import gov.va.api.health.r4.api.resources.Appointment.AppStatus;
-import gov.va.api.health.r4.api.resources.Appointment.PartStatus;
+import gov.va.api.health.r4.api.resources.Appointment.AppointmentStatus;
+import gov.va.api.health.r4.api.resources.Appointment.ParticipationStatus;
 import gov.va.api.health.r4.api.resources.Appointment.Participant;
 import gov.va.api.health.r4.api.resources.Appointment.Required;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class SampleAppointments {
         .modifierExtension(
             Arrays.asList(extension(), extensionWithQuantity(), extensionWithRatio()))
         .identifier(singletonList(identifier()))
-        .status(AppStatus.booked)
+        .status(AppointmentStatus.booked)
         .cancelationReason(codeableConcept())
         .serviceCategory(singletonList(codeableConcept()))
         .serviceType(singletonList(codeableConcept()))
@@ -54,10 +54,11 @@ public class SampleAppointments {
 
   public Participant participant() {
     return Participant.builder()
-        .actor(reference())
-        .required(Required.required)
-        .status(PartStatus.accepted)
-        .period(period())
-        .build();
+            .type(singletonList(codeableConcept()))
+            .actor(reference())
+            .required(Required.required)
+            .status(ParticipationStatus.accepted)
+            .period(period())
+            .build();
   }
 }

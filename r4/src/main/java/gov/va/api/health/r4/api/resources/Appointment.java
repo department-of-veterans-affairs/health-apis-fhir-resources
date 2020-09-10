@@ -66,7 +66,7 @@ public class Appointment implements DomainResource {
 
   // Appointment Resource
   @Valid List<Identifier> identifier;
-  @Valid @NotNull AppStatus status;
+  @Valid @NotNull AppointmentStatus status;
   @Valid CodeableConcept cancelationReason;
   @Valid List<CodeableConcept> serviceCategory;
   @Valid List<CodeableConcept> serviceType;
@@ -112,7 +112,7 @@ public class Appointment implements DomainResource {
   @Valid List<Period> requestedPeriod;
 
   @SuppressWarnings("unused")
-  public enum AppStatus {
+  public enum AppointmentStatus {
     proposed,
     pending,
     booked,
@@ -136,7 +136,7 @@ public class Appointment implements DomainResource {
   }
 
   @SuppressWarnings("unused")
-  public enum PartStatus {
+  public enum ParticipationStatus {
     accepted,
     declined,
     tentative,
@@ -207,7 +207,7 @@ public class Appointment implements DomainResource {
 
     @Valid Required required;
 
-    @NotNull @Valid PartStatus status;
+    @NotNull @Valid ParticipationStatus status;
 
     @Valid Period period;
   }
