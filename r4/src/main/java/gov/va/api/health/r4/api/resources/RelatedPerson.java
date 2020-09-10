@@ -147,7 +147,7 @@ public class RelatedPerson implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull CodeableConcept language;
+    @Valid @NotNull CodeableConcept language;
 
     Boolean preferred;
   }
