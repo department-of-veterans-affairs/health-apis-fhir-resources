@@ -120,16 +120,16 @@ public class Encounter implements Resource {
 
   @JsonIgnore
   @SuppressWarnings("unused")
-  @AssertTrue(message = "Encounter Definition is Invalid.")
+  @AssertTrue(message = "Encounter Identifier is Invalid. Check the identifier's system and value.")
   private boolean isValidEncounterIdentifier() {
     /*
      * System and value are required for the identifier,
      * so we must check for them and ensure they aren't null
      */
-    if (identifier == null) {
-      return false;
+    if (identifier != null) {
+      return identifier.stream().noneMatch(i -> i.system() == null || i.value() == null);
     }
-    return identifier.stream().noneMatch(i -> i.system() == null || i.value() == null);
+    return true;
   }
 
   public enum Status {

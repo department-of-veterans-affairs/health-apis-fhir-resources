@@ -65,16 +65,40 @@ public class EncounterTest {
   }
 
   @Test
-  public void validationPassesGivenGoodIdentifier() {
+  public void validationFailsGivenIdentifierWithMissingSystem() {
 
+    List<Identifier> invalidIdentifier =
+        singletonList(Identifier.builder().system(null).value("123456").build());
+
+    assertThat(violationsOf(data.encounter().identifier(invalidIdentifier))).isNotEmpty();
+  }
+
+  @Test
+  public void validationFailsGivenIdentifierWithMissingValue() {
+    List<Identifier> invalidIdentifier =
+        singletonList(
+            Identifier.builder()
+                .system("http://www.acme.com/identifiers/patient")
+                .value(null)
+                .build());
+
+    assertThat(violationsOf(data.encounter().identifier(invalidIdentifier))).isNotEmpty();
+  }
+
+  @Test
+  public void validationPassesGivenGoodIdentifier() {
     List<Identifier> validIdentifier =
         singletonList(
             Identifier.builder()
                 .system("http://www.acme.com/identifiers/patient")
                 .value("123456")
                 .build());
-
     assertThat(violationsOf(data.encounter().identifier(validIdentifier))).isEmpty();
+  }
+
+  @Test
+  public void validationPassesGivenNullIdentifier() {
+    assertThat(violationsOf(data.encounter().identifier(null))).isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
