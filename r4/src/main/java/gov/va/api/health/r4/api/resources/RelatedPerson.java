@@ -44,13 +44,12 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/relatedperson.html",
     example = "${r4.relper:gov.va.api.health.r4.api.swaggerexamples.SwaggerRelPer#relper}")
-public class RelatedPerson implements Resource {
+public class RelatedPerson implements DomainResource {
 
-  // Ancestor -- Resource
+  @NotBlank @Builder.Default String resourceType = "RelatedPerson";
+
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
@@ -78,9 +77,10 @@ public class RelatedPerson implements Resource {
   @Pattern(regexp = Fhir.DATE)
   String birthDate;
 
-  @Valid List<Address> locationAddress;
+  @Valid List<Address> address;
   @Valid List<Attachment> photo;
   @Valid Period period;
+  @Valid List<Communication> communication;
 
   @SuppressWarnings("unused")
   public enum Gender {
@@ -99,7 +99,7 @@ public class RelatedPerson implements Resource {
       name = "RelatedPersonBundle",
       example =
           "${r4.relperBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerRelPer#rpBundle}")
-  public static class Bundle extends AbstractBundle<Coverage.Entry> {
+  public static class Bundle extends AbstractBundle<RelatedPerson.Entry> {
 
     /** RelatedPerson bundle builder. */
     @Builder
@@ -114,7 +114,7 @@ public class RelatedPerson implements Resource {
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
-        @Valid List<Coverage.Entry> entry,
+        @Valid List<RelatedPerson.Entry> entry,
         @Valid Signature signature) {
       super(
           resourceType,
