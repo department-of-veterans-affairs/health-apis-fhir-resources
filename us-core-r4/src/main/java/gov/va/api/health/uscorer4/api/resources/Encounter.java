@@ -118,6 +118,19 @@ public class Encounter implements Resource {
 
   @Valid Reference partOf;
 
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  @AssertTrue(message = "Encounter Definition is Invalid.")
+  private boolean isValidEncounterIdentifier() {
+    /*
+     * System and value are required for the identifier,
+     * so we must check for them and ensure they aren't null
+     */
+    if (identifier == null) {
+      return false;
+    }
+    return identifier.stream().noneMatch(i -> i.system() == null || i.value() == null);
+  }
 
   public enum Status {
     planned,
@@ -131,22 +144,6 @@ public class Encounter implements Resource {
     @JsonProperty("entered-in-error")
     entered_in_error,
     unknown
-  }
-
-  @JsonIgnore
-  @SuppressWarnings("unused")
-  @AssertTrue(message = "Slice Definition is Invalid.")
-  private boolean isValidEncounterIdentifier() {
-    /*
-     * System and value are required for the identifier,
-     * so we must check for them
-     */
-    for (Identifier item : identifier) {
-      if (item.system() == null || item.value() == null) {
-        return false;
-      }
-    }
-    return true;
   }
 
   @Data
@@ -169,7 +166,7 @@ public class Encounter implements Resource {
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
-        @Valid List<Entry> entry,
+        @Valid List<Encounter.Entry> entry,
         @Valid Signature signature) {
       super(
           resourceType,
