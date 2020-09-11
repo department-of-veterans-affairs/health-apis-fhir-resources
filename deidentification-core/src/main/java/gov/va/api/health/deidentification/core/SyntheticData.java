@@ -7,7 +7,7 @@ package gov.va.api.health.deidentification.core;
  */
 public interface SyntheticData {
 
-  String synthesizeDate(String rawBirthdate);
+  String synthesizeDate(String rawDate);
 
   String synthesizeDateTime(String rawDateTime);
 
