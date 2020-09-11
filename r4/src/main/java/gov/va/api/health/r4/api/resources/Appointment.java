@@ -1,16 +1,13 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.datatypes.Address;
-import gov.va.api.health.r4.api.datatypes.Attachment;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
-import gov.va.api.health.r4.api.datatypes.ContactPoint;
-import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Signature;
@@ -25,6 +22,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -42,13 +40,12 @@ import lombok.NoArgsConstructor;
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
-    description = "https://www.hl7.org/fhir/R4/relatedperson.html",
+    description = "https://www.hl7.org/fhir/R4/appointment.html",
     example =
-        "${r4.relatedPerson:gov.va.api.health.r4.api.swaggerexamples"
-            + ".SwaggerRelatedPerson#relatedPerson}")
-public class RelatedPerson implements DomainResource {
+        "${r4.appointment:gov.va.api.health.r4.api.swaggerexamples.SwaggerAppointment#appointment}")
+public class Appointment implements DomainResource {
 
-  @NotBlank @Builder.Default String resourceType = "RelatedPerson";
+  @NotBlank @Builder.Default String resourceType = "Appointment";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -67,44 +64,97 @@ public class RelatedPerson implements DomainResource {
   @Valid List<Extension> extension;
   @Valid List<Extension> modifierExtension;
 
-  // RelatedPerson Resource
+  // Appointment Resource
   @Valid List<Identifier> identifier;
-  Boolean active;
-  @NotNull @Valid Reference patient;
-  @Valid List<CodeableConcept> relationship;
-  @Valid List<HumanName> name;
-  @Valid List<ContactPoint> telecom;
-  @Valid Gender gender;
+  @Valid @NotNull AppointmentStatus status;
+  @Valid CodeableConcept cancelationReason;
+  @Valid List<CodeableConcept> serviceCategory;
+  @Valid List<CodeableConcept> serviceType;
+  @Valid List<CodeableConcept> specialty;
+  @Valid CodeableConcept appointmentType;
+  @Valid List<CodeableConcept> reasonCode;
+  @Valid List<Reference> reasonReference;
 
-  @Pattern(regexp = Fhir.DATE)
-  String birthDate;
+  @Min(0)
+  Integer priority;
 
-  @Valid List<Address> address;
-  @Valid List<Attachment> photo;
-  @Valid Period period;
-  @Valid List<Communication> communication;
+  @Pattern(regexp = Fhir.STRING)
+  String description;
+
+  @Valid List<Reference> supportingInformation;
+
+  @Pattern(regexp = Fhir.INSTANT)
+  String start;
+
+  @Pattern(regexp = Fhir.INSTANT)
+  String end;
+
+  @Min(1)
+  Integer minutesDuration;
+
+  @Valid List<Reference> slot;
+
+  @Pattern(regexp = Fhir.DATETIME)
+  String created;
+
+  @Pattern(regexp = Fhir.STRING)
+  String comment;
+
+  @Pattern(regexp = Fhir.STRING)
+  String patientInstruction;
+
+  @Valid List<Reference> basedOn;
+
+  @NotEmpty @Valid List<Participant> participant;
+
+  @Valid List<Period> requestedPeriod;
 
   @SuppressWarnings("unused")
-  public enum Gender {
-    male,
-    female,
-    other,
-    unknown
+  public enum AppointmentStatus {
+    proposed,
+    pending,
+    booked,
+    arrived,
+    fulfilled,
+    cancelled,
+    noshow,
+    @JsonProperty("entered-in-error")
+    entered_in_error,
+    @JsonProperty("checked-in")
+    checked_in,
+    waitlist
+  }
+
+  @SuppressWarnings("unused")
+  public enum Required {
+    required,
+    optional,
+    @JsonProperty("information-only")
+    information_only
+  }
+
+  @SuppressWarnings("unused")
+  public enum ParticipationStatus {
+    accepted,
+    declined,
+    tentative,
+    @JsonProperty("needs-action")
+    needs_action
   }
 
   @Data
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = RelatedPerson.Bundle.BundleBuilder.class)
+  @JsonDeserialize(builder = Appointment.Bundle.BundleBuilder.class)
   @Schema(
-      name = "RelatedPersonBundle",
+      name = "AppointmentBundle",
       example =
-          "${r4.relatedPersonBundle:gov.va.api.health.r4.api.swaggerexamples"
-              + ".SwaggerRelatedPerson#relatedPersonBundle}")
-  public static class Bundle extends AbstractBundle<RelatedPerson.Entry> {
+          "${r4.appointmentBundle:gov.va.api.health.r4.api.swaggerexamples."
+              + "SwaggerAppointment#appointmentBundle}")
+  public static class Bundle extends AbstractBundle<Appointment.Entry> {
 
-    /** RelatedPerson bundle builder. */
+    /** Appointment bundle builder. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -117,7 +167,7 @@ public class RelatedPerson implements DomainResource {
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
-        @Valid List<RelatedPerson.Entry> entry,
+        @Valid List<Appointment.Entry> entry,
         @Valid Signature signature) {
       super(
           resourceType,
@@ -140,8 +190,8 @@ public class RelatedPerson implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "Communication")
-  public static class Communication implements BackboneElement {
+  @Schema(name = "AppointmentParticipant")
+  public static class Participant implements BackboneElement {
 
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -150,18 +200,24 @@ public class RelatedPerson implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Valid @NotNull CodeableConcept language;
+    @Valid List<CodeableConcept> type;
 
-    Boolean preferred;
+    @Valid Reference actor;
+
+    @Valid Required required;
+
+    @NotNull @Valid ParticipationStatus status;
+
+    @Valid Period period;
   }
 
   @Data
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = RelatedPerson.Entry.EntryBuilder.class)
-  @Schema(name = "RelatedPersonEntry")
-  public static class Entry extends AbstractEntry<RelatedPerson> {
+  @JsonDeserialize(builder = Appointment.Entry.EntryBuilder.class)
+  @Schema(name = "AppointmentEntry")
+  public static class Entry extends AbstractEntry<Appointment> {
 
     @Builder
     public Entry(
@@ -170,7 +226,7 @@ public class RelatedPerson implements DomainResource {
         @Valid List<Extension> modifierExtension,
         @Valid List<BundleLink> link,
         @Pattern(regexp = Fhir.URI) String fullUrl,
-        @Valid RelatedPerson resource,
+        @Valid Appointment resource,
         @Valid Search search,
         @Valid Request request,
         @Valid Response response) {

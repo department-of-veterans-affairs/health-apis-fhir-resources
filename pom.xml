@@ -7,7 +7,7 @@
     <version>7.0.10</version>
   </parent>
   <artifactId>fhir-resources-parent</artifactId>
-  <version>4.0.13-SNAPSHOT</version>
+  <version>4.0.16-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>fhir-common</module>
