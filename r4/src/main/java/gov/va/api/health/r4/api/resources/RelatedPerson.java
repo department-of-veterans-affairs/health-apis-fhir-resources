@@ -43,7 +43,9 @@ import lombok.NoArgsConstructor;
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
     description = "https://www.hl7.org/fhir/R4/relatedperson.html",
-    example = "${r4.relper:gov.va.api.health.r4.api.swaggerexamples.SwaggerRelPer#relper}")
+    example =
+        "${r4.relatedPerson:gov.va.api.health.r4.api.swaggerexamples"
+            + ".SwaggerRelatedPerson#relatedPerson}")
 public class RelatedPerson implements DomainResource {
 
   @NotBlank @Builder.Default String resourceType = "RelatedPerson";
@@ -98,7 +100,8 @@ public class RelatedPerson implements DomainResource {
   @Schema(
       name = "RelatedPersonBundle",
       example =
-          "${r4.relperBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerRelPer#rpBundle}")
+          "${r4.relatedPersonBundle:gov.va.api.health.r4.api.swaggerexamples"
+              + ".SwaggerRelatedPerson#relatedPersonBundle}")
   public static class Bundle extends AbstractBundle<RelatedPerson.Entry> {
 
     /** RelatedPerson bundle builder. */
