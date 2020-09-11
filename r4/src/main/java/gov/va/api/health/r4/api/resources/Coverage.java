@@ -84,9 +84,10 @@ public class Coverage implements Resource {
 
   @Valid CodeableConcept relationship;
   @Valid Period period;
-  @NotEmpty List<Reference> payor;
+  @Valid @NotEmpty List<Reference> payor;
 
   @JsonProperty("class")
+  @Valid
   List<CoverageClass> coverageClass;
 
   @Min(1)
@@ -190,7 +191,7 @@ public class Coverage implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull CodeableConcept type;
+    @Valid @NotNull CodeableConcept type;
 
     @Pattern(regexp = Fhir.STRING)
     @NotNull
@@ -238,7 +239,7 @@ public class Coverage implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull CodeableConcept type;
+    @Valid @NotNull CodeableConcept type;
     @Valid Period period;
   }
 }
