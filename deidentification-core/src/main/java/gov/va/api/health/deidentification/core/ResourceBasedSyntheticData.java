@@ -27,7 +27,8 @@ public class ResourceBasedSyntheticData implements SyntheticData {
 
   /**
    * We synthesize Dates and DateTimes by using: month = 1st month , day = first of the month This
-   * technique is a one way transformation and can't be reversed.
+   * technique is a one way transformation and can't be reversed. Years are truncated at {@link
+   * ResourceBasedSyntheticData#TRUNCATION_AGE}
    */
   @Override
   public String synthesizeDate(String rawDate) {
