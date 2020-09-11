@@ -47,10 +47,11 @@ import lombok.NoArgsConstructor;
     example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
 public class Coverage implements Resource {
   // Anscestor -- Resource
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Coverage";
 
   @Valid Meta meta;
 
@@ -117,7 +118,8 @@ public class Coverage implements Resource {
   @Schema(
       name = "CoverageBundle",
       example =
-          "${r4.coverageBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverageBundle}")
+          "${r4.coverageBundle:gov.va.api.health.r4.api."
+              + "swaggerexamples.SwaggerCoverage#coverageBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Coverage bundle builder. */
