@@ -51,13 +51,12 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/claim.html",
     example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}")
-public class Claim implements Resource {
+public class Claim implements DomainResource {
 
-  // Ancestor -- Resource
+  @NotBlank @Builder.Default String resourceType = "Claim";
+
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
