@@ -76,7 +76,6 @@ public class Appointment implements DomainResource {
   @Valid List<Reference> reasonReference;
 
   @Min(0)
-  @Valid
   Integer priority;
 
   @Pattern(regexp = Fhir.STRING)
@@ -91,7 +90,6 @@ public class Appointment implements DomainResource {
   String end;
 
   @Min(1)
-  @Valid
   Integer minutesDuration;
 
   @Valid List<Reference> slot;
@@ -152,7 +150,8 @@ public class Appointment implements DomainResource {
   @Schema(
       name = "AppointmentBundle",
       example =
-          "${r4.apptBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerAppointment#apptBundle}")
+          "${r4.appointmentBundle:gov.va.api.health.r4.api.swaggerexamples."
+              + "SwaggerAppointment#appointmentBundle}")
   public static class Bundle extends AbstractBundle<Appointment.Entry> {
 
     /** Appointment bundle builder. */

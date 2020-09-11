@@ -4,8 +4,8 @@ import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.resources.Appointment;
 import gov.va.api.health.r4.api.resources.Appointment.AppointmentStatus;
-import gov.va.api.health.r4.api.resources.Appointment.ParticipationStatus;
 import gov.va.api.health.r4.api.resources.Appointment.Participant;
+import gov.va.api.health.r4.api.resources.Appointment.ParticipationStatus;
 import gov.va.api.health.r4.api.resources.Appointment.Required;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
@@ -54,11 +54,11 @@ public class SampleAppointments {
 
   public Participant participant() {
     return Participant.builder()
-            .type(singletonList(codeableConcept()))
-            .actor(reference())
-            .required(Required.required)
-            .status(ParticipationStatus.accepted)
-            .period(period())
-            .build();
+        .type(singletonList(codeableConcept()))
+        .actor(reference())
+        .required(Required.required)
+        .status(ParticipationStatus.accepted)
+        .period(period())
+        .build();
   }
 }
