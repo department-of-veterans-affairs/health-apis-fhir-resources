@@ -21,11 +21,5 @@
       <artifactId>us-core-r4</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>gov.va.api.health</groupId>
-      <artifactId>us-core-r4-examples</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>
