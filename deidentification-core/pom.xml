@@ -4,7 +4,7 @@
   <parent>
     <artifactId>fhir-resources-parent</artifactId>
     <groupId>gov.va.api.health</groupId>
-    <version>4.0.15-SNAPSHOT</version>
+    <version>4.0.17-SNAPSHOT</version>
   </parent>
   <artifactId>deidentification-core</artifactId>
   <version>4.0.15-SNAPSHOT</version>
