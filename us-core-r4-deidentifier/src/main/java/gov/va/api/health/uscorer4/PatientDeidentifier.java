@@ -25,6 +25,7 @@ public class PatientDeidentifier implements Function<Patient, Patient> {
      */
     long idBasedSeed = Integer.toUnsignedLong(anonymizedId.hashCode());
     return Patient.builder()
+        // Synthesize .id
         .id(anonymizedId)
         .resourceType(resource.resourceType())
         .meta(resource.meta())
@@ -39,11 +40,14 @@ public class PatientDeidentifier implements Function<Patient, Patient> {
         .name(sanitizeHumanName(resource.name(), idBasedSeed))
         // Remove .telecom[]
         .gender(resource.gender())
+        // Synthesize .birthDate
         .birthDate(syntheticData.synthesizeDate(resource.birthDate()))
         .deceasedBoolean(resource.deceasedBoolean())
+        // Synthesize .deceasedDateTime
         .deceasedDateTime(syntheticData.synthesizeDateTime(resource.deceasedDateTime()))
         // Remove .address[]
         .maritalStatus(resource.maritalStatus())
+        // Swap .multipleBirthInteger -> .multipleBirthBoolean
         .multipleBirthBoolean(
             sanitizeMultipleBirthBoolean(
                 resource.multipleBirthBoolean(), resource.multipleBirthInteger()))
