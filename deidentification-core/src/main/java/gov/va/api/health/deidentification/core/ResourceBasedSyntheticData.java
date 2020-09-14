@@ -7,7 +7,6 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeParseException;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /** Class path resource based implementation of synthetic data. */
 @Slf4j
@@ -32,7 +31,7 @@ public class ResourceBasedSyntheticData implements SyntheticData {
    */
   @Override
   public String synthesizeDate(String rawDate) {
-    if (StringUtils.isBlank(rawDate)) {
+    if (rawDate == null || rawDate.isEmpty()) {
       return null;
     }
     LocalDate date;
@@ -54,7 +53,7 @@ public class ResourceBasedSyntheticData implements SyntheticData {
 
   @Override
   public String synthesizeDateTime(String rawDateTime) {
-    if (StringUtils.isBlank(rawDateTime)) {
+    if (rawDateTime == null || rawDateTime.isEmpty()) {
       return null;
     }
     OffsetDateTime date;
