@@ -12,7 +12,6 @@
     Swagger examples exceed the 100 character line length limit.
    -->
   <suppress checks="LineLength" files="MetadataApi.java" lines="30"/>
-  <suppress checks="LineLength" files="Coverage.java" lines="120"/>
   <suppress checks="LineLength" files="CoverageEligibilityResponse.java" lines="49,184"/>
   <suppress checks="LineLength" files="OperationOutcome.java" lines="32"/>
   <suppress checks="LineLength" files="ExplanationOfBenefit.java" lines="55,430"/>
