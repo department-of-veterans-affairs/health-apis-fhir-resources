@@ -31,7 +31,7 @@ public class ResourceBasedSyntheticData implements SyntheticData {
    */
   @Override
   public String synthesizeDate(String rawDate) {
-    if (rawDate == null || rawDate.isEmpty()) {
+    if (rawDate == null || rawDate.isBlank()) {
       return null;
     }
     LocalDate date;
@@ -53,7 +53,7 @@ public class ResourceBasedSyntheticData implements SyntheticData {
 
   @Override
   public String synthesizeDateTime(String rawDateTime) {
-    if (rawDateTime == null || rawDateTime.isEmpty()) {
+    if (rawDateTime == null || rawDateTime.isBlank()) {
       return null;
     }
     OffsetDateTime date;
