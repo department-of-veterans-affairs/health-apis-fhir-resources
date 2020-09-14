@@ -21,6 +21,7 @@
     <module>argonaut</module>
     <module>argonaut-examples</module>
     <module>us-core-r4</module>
+    <module>us-core-r4-deidentifier</module>
     <module>us-core-r4-examples</module>
   </modules>
 </project>
