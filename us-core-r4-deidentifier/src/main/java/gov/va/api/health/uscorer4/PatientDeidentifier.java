@@ -17,16 +17,16 @@ public class PatientDeidentifier implements Function<Patient, Patient> {
 
   /** Deidentify a Patient Record. */
   public Patient apply(Patient resource) {
-    String anonymizedId = idGenerator.generateIdFrom(resource.id());
+    String deidentifiedId = idGenerator.generateIdFrom(resource.id());
     /*
      * Lets get a repeatable seed from our patient record, so that we can create replicable
      * Synthetic data. For our seed, we will strip the V out of the ICN, and use the resulting long.
      * If we cannot parse the ICN, we create our seed from the string hash.
      */
-    long idBasedSeed = Integer.toUnsignedLong(anonymizedId.hashCode());
+    long idBasedSeed = Integer.toUnsignedLong(deidentifiedId.hashCode());
     return Patient.builder()
         // Synthesize .id
-        .id(anonymizedId)
+        .id(deidentifiedId)
         .resourceType(resource.resourceType())
         .meta(resource.meta())
         .implicitRules(resource.implicitRules())
