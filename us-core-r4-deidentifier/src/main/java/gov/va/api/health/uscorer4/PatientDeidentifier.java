@@ -72,7 +72,7 @@ public class PatientDeidentifier implements Function<Patient, Patient> {
   }
 
   /**
-   * MBI and MBB are a one of choice. If MBI is provided, anonymization must drop it, and instead
+   * MBI and MBB are a one of choice. If MBI is provided, deidentification must drop it, and instead
    * provide the MBB corresponding the value.
    */
   Boolean sanitizeMultipleBirthBoolean(Boolean multipleBirthBoolean, Integer multipleBirthInteger) {
