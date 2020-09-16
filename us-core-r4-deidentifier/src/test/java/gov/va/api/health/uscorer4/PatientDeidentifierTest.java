@@ -23,17 +23,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class PatientDeidentifierTest {
-
   SyntheticData syntheticData = mock(SyntheticData.class);
 
   DeidentifiedIdGenerator idGenerator = mock(DeidentifiedIdGenerator.class);
-
-  PatientDeidentifier anonymizer() {
-    return PatientDeidentifier.builder()
-        .syntheticData(syntheticData)
-        .idGenerator(idGenerator)
-        .build();
-  }
 
   /**
    * Let's mock the synthesis process. We only want to test that the anonymizer is acting correctly
@@ -48,7 +40,7 @@ public class PatientDeidentifierTest {
     when(syntheticData.synthesizeDateTime("2001-03-03T15:08:09Z"))
         .thenReturn("2001-02-01T00:00:00Z");
     when(idGenerator.generateIdFrom(Mockito.anyString())).thenReturn("WHOISIT");
-    assertThat(anonymizer().apply(patientSample)).isEqualTo(deidentified(patientSample));
+    assertThat(deidentifier().apply(patientSample)).isEqualTo(deidentified(patientSample));
   }
 
   Patient deidentified(Patient patient) {
@@ -68,13 +60,20 @@ public class PatientDeidentifierTest {
     return patient;
   }
 
+  PatientDeidentifier deidentifier() {
+    return PatientDeidentifier.builder()
+        .syntheticData(syntheticData)
+        .idGenerator(idGenerator)
+        .build();
+  }
+
   @Test
   void sanitizeMultipleBirthBoolean() {
-    assertThat(anonymizer().sanitizeMultipleBirthBoolean(true, null)).isTrue();
-    assertThat(anonymizer().sanitizeMultipleBirthBoolean(false, null)).isFalse();
-    assertThat(anonymizer().sanitizeMultipleBirthBoolean(null, 2)).isTrue();
-    assertThat(anonymizer().sanitizeMultipleBirthBoolean(null, 0)).isFalse();
-    assertThat(anonymizer().sanitizeMultipleBirthBoolean(null, -1)).isFalse();
+    assertThat(deidentifier().sanitizeMultipleBirthBoolean(true, null)).isTrue();
+    assertThat(deidentifier().sanitizeMultipleBirthBoolean(false, null)).isFalse();
+    assertThat(deidentifier().sanitizeMultipleBirthBoolean(null, 2)).isTrue();
+    assertThat(deidentifier().sanitizeMultipleBirthBoolean(null, 0)).isFalse();
+    assertThat(deidentifier().sanitizeMultipleBirthBoolean(null, -1)).isFalse();
   }
 
   public static class R4PatientSample {

@@ -15,7 +15,7 @@ public class PatientDeidentifier implements Function<Patient, Patient> {
 
   private final DeidentifiedIdGenerator idGenerator;
 
-  /** Anonymize a Patient Record. */
+  /** Deidentify a Patient Record. */
   public Patient apply(Patient resource) {
     String anonymizedId = idGenerator.generateIdFrom(resource.id());
     /*
