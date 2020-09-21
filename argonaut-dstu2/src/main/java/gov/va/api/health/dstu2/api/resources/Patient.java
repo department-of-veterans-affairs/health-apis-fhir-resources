@@ -66,7 +66,6 @@ public class Patient implements Resource {
 
   @Pattern(regexp = Fhir.URI)
   String implicitRules;
-dd 
   @Pattern(regexp = Fhir.CODE)
   String language;
 
