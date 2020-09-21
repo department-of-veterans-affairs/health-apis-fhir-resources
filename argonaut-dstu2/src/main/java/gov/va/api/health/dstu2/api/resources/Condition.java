@@ -43,7 +43,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-condition.html",
     example =
-        "${argonaut.condition:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerCondition#condition}")
+        "${dstu2.condition:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerCondition#condition}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"onsetDateTime", "onsetAge", "onsetPeriod", "onsetRange", "onsetString"},
@@ -142,7 +143,8 @@ public class Condition implements Resource {
   @Schema(
       name = "ConditionBundle",
       example =
-          "${argonaut.conditionBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerCondition#conditionBundle}")
+          "${dstu2.conditionBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerCondition#conditionBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

@@ -44,7 +44,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-procedure.html",
     example =
-        "${argonaut.procedure:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerProcedure#procedure}")
+        "${dstu2.procedure:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerProcedure#procedure}")
 @ExactlyOneOfs({
   @ExactlyOneOf(
       fields = {"status", "_status"},
@@ -127,7 +128,8 @@ public class Procedure implements Resource {
   @Schema(
       name = "ProcedureBundle",
       example =
-          "${argonaut.procedureBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerProcedure#procedureBundle}")
+          "${dstu2.procedureBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerProcedure#procedureBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

@@ -48,7 +48,7 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-allergyintolerance.html",
     example =
-        "${uscorer4.allergyIntolerance:gov.va.api.health.uscorer4.api.swaggerexamples."
+        "${r4.allergyIntolerance:gov.va.api.health.r4.api.swaggerexamples."
             + "SwaggerAllergyIntolerance#allergyIntolerance}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
@@ -153,7 +153,7 @@ public final class AllergyIntolerance implements Resource {
   @Schema(
       name = "AllergyIntoleranceBundle",
       example =
-          "${uscorer4.allergyIntoleranceBundle:gov.va.api.health.uscorer4.api.swaggerexamples."
+          "${r4.allergyIntoleranceBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerAllergyIntolerance#allergyIntoleranceBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */

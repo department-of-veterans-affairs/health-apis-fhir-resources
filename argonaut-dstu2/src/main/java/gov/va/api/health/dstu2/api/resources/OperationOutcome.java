@@ -29,7 +29,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/operationoutcome.html",
     example =
-        "${dstu2.operationOutcome:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerOperationOutcome#operationOutcome}")
+        "${dstu2.operationOutcome:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerOperationOutcome#operationOutcome}")
 public class OperationOutcome implements DomainResource {
   @Pattern(regexp = Fhir.ID)
   String id;

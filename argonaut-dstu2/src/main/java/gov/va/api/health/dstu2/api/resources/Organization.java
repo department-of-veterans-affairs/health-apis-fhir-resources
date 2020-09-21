@@ -40,7 +40,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "http://www.hl7.org/fhir/DSTU2/organization.html",
     example =
-        "${dstu2.organization:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerOrganization#organization}")
+        "${dstu2.organization:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerOrganization#organization}")
 public class Organization implements DomainResource {
   @NotBlank String resourceType;
 
@@ -77,7 +78,8 @@ public class Organization implements DomainResource {
   @Schema(
       name = "OrganizationBundle",
       example =
-          "${dstu2.organizationBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerOrganization#organizationBundle}")
+          "${dstu2.organizationBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerOrganization#organizationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

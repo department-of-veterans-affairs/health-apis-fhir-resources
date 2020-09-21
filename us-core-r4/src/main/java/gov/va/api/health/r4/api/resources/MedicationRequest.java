@@ -50,8 +50,8 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medicationrequest.html",
     example =
-        "${uscorer4.medication:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequest}")
+        "${r4.medication:gov.va.api.health."
+            + "r4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequest}")
 @ZeroOrOneOfs(
     @ZeroOrOneOf(
         fields = {"reportedBoolean", "reportedReference"},
@@ -203,8 +203,8 @@ public class MedicationRequest implements Resource {
   @Schema(
       name = "MedicationRequestBundle",
       example =
-          "${uscorer4.medicationRequestBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequestBundle}")
+          "${r4.medicationRequestBundle:gov.va.api.health."
+              + "r4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequestBundle}")
   public static class Bundle extends AbstractBundle<MedicationRequest.Entry> {
 
     /** Build a Medication Request bundle. */

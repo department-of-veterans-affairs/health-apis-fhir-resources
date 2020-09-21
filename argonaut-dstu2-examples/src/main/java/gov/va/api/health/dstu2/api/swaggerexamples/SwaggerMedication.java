@@ -86,7 +86,8 @@ public class SwaggerMedication {
                                                     "https://www.nlm.nih.gov/research/umls/rxnorm/")
                                                 .code("895994")
                                                 .display(
-                                                    "120 Fluticasone propionate .044 MG/ACTUAT Inhaler")
+                                                    "120 Fluticasone propionate "
+                                                        + ".044 MG/ACTUAT Inhaler")
                                                 .build()))
                                     .text(
                                         "120 ACTUAT Fluticasone propionate .044 MG/ACTUAT Inhaler")

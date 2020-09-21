@@ -46,8 +46,7 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-procedure.html",
     example =
-        "${uscorer4.procedure:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerProcedure#procedure}")
+        "${r4.procedure:gov.va.api.health." + "r4.api.swaggerexamples.SwaggerProcedure#procedure}")
 @ExactlyOneOfs({
   @ExactlyOneOf(
       fields = {"performedDateTime", "performedPeriod"},
@@ -161,8 +160,8 @@ public class Procedure implements Resource {
   @Schema(
       name = "ProcedureBundle",
       example =
-          "${uscorer4.procedureBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerProcedure#procedureBundle}")
+          "${r4.procedureBundle:gov.va.api.health."
+              + "r4.api.swaggerexamples.SwaggerProcedure#procedureBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Build a Procedure bundle. */

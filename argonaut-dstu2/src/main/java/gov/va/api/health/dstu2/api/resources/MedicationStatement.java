@@ -48,7 +48,8 @@ import lombok.NoArgsConstructor;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medicationstatement.html",
     example =
-        "${argonaut.medicationStatement:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatement}")
+        "${dstu2.medicationStatement:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerMedicationStatement#medicationStatement}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"reasonForUseCodeableConcept", "reasonForUseReference"},
@@ -122,7 +123,8 @@ public class MedicationStatement implements Resource {
   @Schema(
       name = "MedicationStatementBundle",
       example =
-          "${argonaut.medicationStatementBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationStatement#medicationStatementBundle}")
+          "${dstu2.medicationStatementBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerMedicationStatement#medicationStatementBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

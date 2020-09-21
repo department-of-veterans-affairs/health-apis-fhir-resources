@@ -42,8 +42,7 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-location.html",
     example =
-        "${uscorer4.location:gov.va.api.health.uscorer4.api."
-            + "swaggerexamples.SwaggerLocation#location}")
+        "${r4.location:gov.va.api.health.r4.api." + "swaggerexamples.SwaggerLocation#location}")
 public class Location implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "Location";
 
@@ -129,7 +128,7 @@ public class Location implements DomainResource {
   @Schema(
       name = "LocationBundle",
       example =
-          "${uscorer4.locationBundle:gov.va.api.health.uscorer4.api."
+          "${r4.locationBundle:gov.va.api.health.r4.api."
               + "swaggerexamples.SwaggerLocation#locationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */

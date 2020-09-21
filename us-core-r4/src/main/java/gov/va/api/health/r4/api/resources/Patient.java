@@ -51,8 +51,7 @@ import lombok.NoArgsConstructor;
 @Schema(
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.html",
-    example =
-        "${uscorer4.patient:gov.va.api.health.uscorer4.api.swaggerexamples.SwaggerPatient#patient}")
+    example = "${r4.patient:gov.va.api.health.r4.api.swaggerexamples.SwaggerPatient#patient}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"deceasedBoolean", "deceasedDateTime"},
@@ -184,7 +183,7 @@ public class Patient implements Resource {
   @Schema(
       name = "PatientBundle",
       example =
-          "${uscorer4.patientBundle:gov.va.api.health.uscorer4.api.swaggerexamples."
+          "${r4.patientBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerPatient#patientBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     /** Patient bundle builder. */

@@ -80,11 +80,13 @@ public class SwaggerMedicationDispense {
             asList(
                 MedicationDispense.DosageInstruction.builder()
                     .text(
-                        "TAKE 1 TEASPOONFUL BY MOUTH EVERY 6 HOURS AS NEEDED FOR COUGH CAN TAKE  2 TEASPOONS AT BEDTIME IF NEEDED. USE SPARINGLY")
+                        "TAKE 1 TEASPOONFUL BY MOUTH EVERY 6 HOURS AS NEEDED FOR COUGH CAN TAKE  "
+                            + "2 TEASPOONS AT BEDTIME IF NEEDED. USE SPARINGLY")
                     .additionalInstructions(
                         CodeableConcept.builder()
                             .text(
-                                "FOR COUGH can take 2 teaspoons at bedtime if needed. Use sparingly")
+                                "FOR COUGH can take 2 teaspoons at bedtime if needed. "
+                                    + "Use sparingly")
                             .build())
                     .timing(
                         Timing.builder()
@@ -193,7 +195,8 @@ public class SwaggerMedicationDispense {
                                 asList(
                                     MedicationDispense.DosageInstruction.builder()
                                         .text(
-                                            "INHALE 2 PUFFS BY MOUTH EVERY 4 HOURS AS NEEDED FOR SHORTNESS OF  BREATH")
+                                            "INHALE 2 PUFFS BY MOUTH EVERY 4 HOURS AS NEEDED FOR "
+                                                + "SHORTNESS OF  BREATH")
                                         .timing(
                                             Timing.builder()
                                                 .code(

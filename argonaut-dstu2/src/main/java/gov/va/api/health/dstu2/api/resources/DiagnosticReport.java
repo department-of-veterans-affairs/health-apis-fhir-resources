@@ -46,8 +46,8 @@ import org.apache.commons.lang3.StringUtils;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-diagnosticreport.html",
     example =
-        "${argonaut.diagnosticReport:"
-            + "gov.va.api.health.argonaut.api.swaggerexamples."
+        "${dstu2.diagnosticReport:"
+            + "gov.va.api.health.dstu2.api.swaggerexamples."
             + "SwaggerDiagnosticReport#diagnosticReport}")
 @ExactlyOneOf(fields = {"performer", "_performer"})
 @ZeroOrOneOf(
@@ -143,8 +143,8 @@ public class DiagnosticReport implements Resource {
   @Schema(
       name = "DiagnosticReportBundle",
       example =
-          "${argonaut.diagnosticReportBundle:"
-              + "gov.va.api.health.argonaut.api.swaggerexamples."
+          "${dstu2.diagnosticReportBundle:"
+              + "gov.va.api.health.dstu2.api.swaggerexamples."
               + "SwaggerDiagnosticReport#diagnosticReportBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
