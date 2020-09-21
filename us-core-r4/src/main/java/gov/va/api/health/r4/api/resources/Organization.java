@@ -46,8 +46,8 @@ import org.apache.commons.lang3.StringUtils;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-organization.html",
     example =
-        "${uscorer4.organization:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerOrganization#organization}")
+        "${r4.organization:gov.va.api.health."
+            + "r4.api.swaggerexamples.SwaggerOrganization#organization}")
 public class Organization implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Organization";
@@ -159,8 +159,8 @@ public class Organization implements Resource {
   @Schema(
       name = "OrganizationBundle",
       example =
-          "${uscorer4.organizationBundle:"
-              + "gov.va.api.health.uscorer4.api.swaggerexamples."
+          "${r4.organizationBundle:"
+              + "gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerOrganization#organizationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */

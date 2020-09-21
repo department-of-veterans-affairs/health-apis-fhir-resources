@@ -47,8 +47,7 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html",
     example =
-        "${uscorer4.condition:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerCondition#condition}")
+        "${r4.condition:gov.va.api.health." + "r4.api.swaggerexamples.SwaggerCondition#condition}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"onsetDateTime", "onsetAge", "onsetPeriod", "onsetRange", "onsetString"},
@@ -148,8 +147,8 @@ public class Condition implements Resource {
   @Schema(
       name = "ConditionBundle",
       example =
-          "${uscorer4.conditionBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerCondition#conditionBundle}")
+          "${r4.conditionBundle:gov.va.api.health."
+              + "r4.api.swaggerexamples.SwaggerCondition#conditionBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */
     @Builder

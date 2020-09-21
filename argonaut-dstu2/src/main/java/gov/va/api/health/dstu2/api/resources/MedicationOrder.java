@@ -50,7 +50,8 @@ import lombok.NoArgsConstructor;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medicationorder.html",
     example =
-        "${argonaut.medicationOrder:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationOrder#medicationOrder}")
+        "${dstu2.medicationOrder:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerMedicationOrder#medicationOrder}")
 @ZeroOrOneOf(
     fields = {"reasonCodeableConcept", "reasonReference"},
     message = "Only one reason field may be specified")
@@ -126,7 +127,8 @@ public class MedicationOrder implements Resource {
   @Schema(
       name = "MedicationOrderBundle",
       example =
-          "${argonaut.medicationOrderBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedicationOrder#medicationOrderBundle}")
+          "${dstu2.medicationOrderBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerMedicationOrder#medicationOrderBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

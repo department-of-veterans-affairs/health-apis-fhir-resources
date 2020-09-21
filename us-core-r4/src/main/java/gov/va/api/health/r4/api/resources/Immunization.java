@@ -47,8 +47,8 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-immunization.html",
     example =
-        "${uscorer4.immunization:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerImmunization#immunization}")
+        "${r4.immunization:gov.va.api.health."
+            + "r4.api.swaggerexamples.SwaggerImmunization#immunization}")
 @ExactlyOneOfs({
   @ExactlyOneOf(
       fields = {"occurrenceDateTime", "occurrenceString"},
@@ -161,7 +161,7 @@ public class Immunization implements Resource {
       name = "ImmunizationBundle",
       example =
           "${r4.immunizationBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerImmunization#immunizationBundle}")
+              + "r4.api.swaggerexamples.SwaggerImmunization#immunizationBundle}")
   public static final class Bundle extends AbstractBundle<Immunization.Entry> {
     /** Builder constructor. */
     @Builder

@@ -59,8 +59,8 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-observation-lab.html",
     example =
-        "${uscorer4.observation:"
-            + "gov.va.api.health.uscorer4.api.swaggerexamples."
+        "${r4.observation:"
+            + "gov.va.api.health.r4.api.swaggerexamples."
             + "SwaggerObservation#observation}")
 @ExactlyOneOfs(
     @ExactlyOneOf(
@@ -271,8 +271,8 @@ public class Observation implements Resource {
   @Schema(
       name = "ObservationBundle",
       example =
-          "${uscorer4.observationBundle:"
-              + "gov.va.api.health.uscorer4.api.swaggerexamples."
+          "${r4.observationBundle:"
+              + "gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerObservation#observationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */

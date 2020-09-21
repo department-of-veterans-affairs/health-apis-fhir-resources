@@ -44,8 +44,8 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medication.html",
     example =
-        "${uscorer4.medication:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerMedication#medication}")
+        "${r4.medication:gov.va.api.health."
+            + "r4.api.swaggerexamples.SwaggerMedication#medication}")
 public class Medication implements Resource {
 
   // Ancestors
@@ -102,8 +102,8 @@ public class Medication implements Resource {
   @Schema(
       name = "MedicationBundle",
       example =
-          "${uscorer4.medicationBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerMedication#medicationBundle}")
+          "${r4.medicationBundle:gov.va.api.health."
+              + "r4.api.swaggerexamples.SwaggerMedication#medicationBundle}")
   public static final class Bundle extends AbstractBundle<Medication.Entry> {
     /** Builder constructor. */
     @Builder

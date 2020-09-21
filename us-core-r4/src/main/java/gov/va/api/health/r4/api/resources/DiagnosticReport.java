@@ -48,8 +48,8 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-diagnosticreport-lab.html",
     example =
-        "${uscorer4.diagnosticReport:gov.va.api.health."
-            + "uscorer4.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}")
+        "${r4.diagnosticReport:gov.va.api.health."
+            + "r4.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReport}")
 @ExactlyOneOfs({
   @ExactlyOneOf(
       fields = {"effectiveDateTime", "effectivePeriod"},
@@ -169,8 +169,8 @@ public class DiagnosticReport implements Resource {
   @Schema(
       name = "DiagnosticReportBundle",
       example =
-          "${uscorer4.diagnosticReportBundle:gov.va.api.health."
-              + "uscorer4.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReportBundle}")
+          "${r4.diagnosticReportBundle:gov.va.api.health."
+              + "r4.api.swaggerexamples.SwaggerDiagnosticReport#diagnosticReportBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */
     @Builder

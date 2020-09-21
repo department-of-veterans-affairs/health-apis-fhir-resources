@@ -3,9 +3,7 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
   <!--
-    Ignore a long realistic example strings.
+    Suppressions here.
    -->
-  <suppress checks="LineLength" files="SwaggerMedication.java" lines="89" />
-  <suppress checks="LineLength" files="SwaggerMedicationDispense.java" lines="83,87,196" />
 </suppressions>
 

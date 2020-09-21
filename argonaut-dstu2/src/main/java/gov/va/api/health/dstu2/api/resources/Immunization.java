@@ -44,7 +44,8 @@ import lombok.NoArgsConstructor;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-immunization.html",
     example =
-        "${argonaut.immunization:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerImmunization#immunization}")
+        "${dstu2.immunization:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerImmunization#immunization}")
 @ExactlyOneOfs({
   @ExactlyOneOf(fields = {"status", "_status"}),
   @ExactlyOneOf(fields = {"reported", "_reported"})
@@ -118,7 +119,8 @@ public class Immunization implements Resource {
   @Schema(
       name = "ImmunizationBundle",
       example =
-          "${argonaut.immunizationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerImmunization#immunizationBundle}")
+          "${dstu2.immunizationBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerImmunization#immunizationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

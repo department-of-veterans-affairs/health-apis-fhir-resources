@@ -40,7 +40,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-medication.html",
     example =
-        "${argonaut.medication:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedication#medication}")
+        "${dstu2.medication:gov.va.api.health.dstu2.api.swaggerexamples"
+            + ".SwaggerMedication#medication}")
 public class Medication implements Resource {
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -95,7 +96,8 @@ public class Medication implements Resource {
   @Schema(
       name = "MedicationBundle",
       example =
-          "${argonaut.medicationBundle:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerMedication#medicationBundle}")
+          "${dstu2.medicationBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerMedication#medicationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(

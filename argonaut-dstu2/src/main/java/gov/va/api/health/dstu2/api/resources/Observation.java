@@ -52,8 +52,8 @@ import org.apache.commons.lang3.StringUtils;
     description =
         "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
     example =
-        "${argonaut.observation:"
-            + "gov.va.api.health.argonaut.api.swaggerexamples."
+        "${dstu2.observation:"
+            + "gov.va.api.health.dstu2.api.swaggerexamples."
             + "SwaggerObservation#observation}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
@@ -180,8 +180,8 @@ public class Observation implements Resource {
   @Schema(
       name = "ObservationBundle",
       example =
-          "${argonaut.observationBundle:"
-              + "gov.va.api.health.argonaut.api.swaggerexamples."
+          "${dstu2.observationBundle:"
+              + "gov.va.api.health.dstu2.api.swaggerexamples."
               + "SwaggerObservation#observationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder

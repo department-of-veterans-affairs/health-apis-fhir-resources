@@ -105,7 +105,8 @@ public class Location implements DomainResource {
   @Schema(
       name = "LocationBundle",
       example =
-          "${dstu2.locationBundle:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerLocation#locationBundle}")
+          "${dstu2.locationBundle:gov.va.api.health.dstu2.api.swaggerexamples"
+              + ".SwaggerLocation#locationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder
     public Bundle(
