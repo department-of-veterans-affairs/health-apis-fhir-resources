@@ -5,7 +5,7 @@
   <!--
     The following resources have certain fields that are reported
     as data absent reason extensions that is required to have a _
-    prefix by the Data Query specification.
+    prefix by the us-core-r4 specification.
   -->
   <suppress checks="MemberName" files=".*(/|\\)CoverageEligibilityResponse.java" message="Member name '(_coverage|_request)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Immunization.java" message="Member name '(_status)'"/>
