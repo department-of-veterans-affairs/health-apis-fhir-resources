@@ -1,0 +1,88 @@
+package gov.va.api.health.dstu2.api.resources;
+
+import gov.va.api.health.dstu2.api.RoundTrip;
+import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
+import gov.va.api.health.dstu2.api.bundle.BundleLink;
+import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
+import gov.va.api.health.dstu2.api.elements.Extension;
+import gov.va.api.health.dstu2.api.resources.Procedure.Bundle;
+import gov.va.api.health.dstu2.api.resources.Procedure.Entry;
+import gov.va.api.health.dstu2.api.samples.SampleKnownTypes;
+import gov.va.api.health.dstu2.api.samples.SampleProcedures;
+import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
+import gov.va.api.health.validation.api.ExactlyOneOfVerifier;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
+import java.util.Collections;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
+public class ProcedureTest {
+  private final SampleProcedures data = SampleProcedures.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
+
+  @Test
+  public void bundlerCanBuildProcedureBundles() {
+    Entry entry =
+        Entry.builder()
+            .extension(Collections.singletonList(data.extension()))
+            .fullUrl("http://procedure.com")
+            .id("123")
+            .link(
+                Collections.singletonList(
+                    BundleLink.builder()
+                        .relation(LinkRelation.self)
+                        .url(("http://procedure.com/1"))
+                        .build()))
+            .resource(data.procedure())
+            .search(data.search())
+            .request(data.request())
+            .response(data.response())
+            .build();
+
+    Bundle bundle =
+        Bundle.builder()
+            .entry(Collections.singletonList(entry))
+            .link(
+                Collections.singletonList(
+                    BundleLink.builder()
+                        .relation(LinkRelation.self)
+                        .url(("http://procedure.com/2"))
+                        .build()))
+            .type(BundleType.searchset)
+            .build();
+
+    RoundTrip.assertRoundTrip(bundle);
+  }
+
+  @Test
+  public void patient() {
+    RoundTrip.assertRoundTrip(data.procedure());
+  }
+
+  @Test
+  public void relatedFields() {
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.procedure())
+        .fieldPrefix("reason")
+        .omissions(List.of("reasonNotPerformed"))
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ExactlyOneOfExtensionVerifier.builder()
+        .sample(data.procedure())
+        .field("status")
+        .extensionClass(Extension.class)
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ExactlyOneOfVerifier.builder()
+        .sample(data.procedure())
+        .fieldPrefix("performed")
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+  }
+}

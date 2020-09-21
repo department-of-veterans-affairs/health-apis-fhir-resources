@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>api-starter</artifactId>
     <groupId>gov.va.api.health</groupId>
     <version>7.0.10</version>
     <relativePath/>
   </parent>
+  <modelVersion>4.0.0</modelVersion>
   <artifactId>us-core-r4</artifactId>
-  <version>4.0.19-SNAPSHOT</version>
+  <version>5.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <properties>
     <checkstyle.suppressions.location>${project.basedir}/checkstyle-suppressions.xml</checkstyle.suppressions.location>
@@ -16,7 +16,7 @@
   <dependencies>
     <dependency>
       <groupId>gov.va.api.health</groupId>
-      <artifactId>r4</artifactId>
+      <artifactId>validation</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

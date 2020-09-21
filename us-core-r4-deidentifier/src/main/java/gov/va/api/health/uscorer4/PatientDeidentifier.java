@@ -4,7 +4,7 @@ import gov.va.api.health.deidentification.core.DeidentifiedIdGenerator;
 import gov.va.api.health.deidentification.core.SyntheticData;
 import gov.va.api.health.deidentification.core.SyntheticName;
 import gov.va.api.health.r4.api.datatypes.HumanName;
-import gov.va.api.health.uscorer4.api.resources.Patient;
+import gov.va.api.health.r4.api.resources.Patient;
 import java.util.List;
 import java.util.function.Function;
 import lombok.Builder;

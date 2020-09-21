@@ -16,7 +16,7 @@ import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.elements.Extension;
-import gov.va.api.health.uscorer4.api.resources.Patient;
+import gov.va.api.health.r4.api.resources.Patient;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;

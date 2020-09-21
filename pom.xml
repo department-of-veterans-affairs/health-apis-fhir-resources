@@ -7,19 +7,15 @@
     <version>7.0.10</version>
   </parent>
   <artifactId>fhir-resources-parent</artifactId>
-  <version>4.0.19-SNAPSHOT</version>
+  <version>5.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>fhir-common</module>
     <module>deidentification-core</module>
     <module>validation</module>
-    <module>r4</module>
-    <module>r4-examples</module>
-    <module>dstu2</module>
-    <module>dstu2-examples</module>
-    <module>stu3</module>
-    <module>argonaut</module>
-    <module>argonaut-examples</module>
+    <module>argonaut-dstu2</module>
+    <module>argonaut-dstu2-examples</module>
+    <module>argonaut-stu3</module>
     <module>us-core-r4</module>
     <module>us-core-r4-deidentifier</module>
     <module>us-core-r4-examples</module>

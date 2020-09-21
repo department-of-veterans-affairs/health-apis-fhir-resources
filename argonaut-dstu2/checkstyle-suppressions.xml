@@ -1,0 +1,32 @@
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+  <!--
+  The following resources have certain fields that are reported
+  as data absent reason extensions that is required to have a _
+  prefix by the Data Query specification.
+-->
+  <suppress checks="MemberName" files=".*(/|\\)Immunization.java" message="Member name '(_status|_reported)'"/>
+  <suppress checks="MemberName" files=".*(/|\\)DiagnosticReport.java" message="Member name '(_performer)'"/>
+  <suppress checks="MemberName" files=".*(/|\\)MedicationOrder.java" message="Member name '(_prescriber)'"/>
+  <suppress checks="MemberName" files=".*(/|\\)Procedure.java" message="Member name '(_status)'"/>
+
+  <!--
+    Swagger examples exceed the 100 character line length limit.
+   -->
+  <suppress checks="LineLength" files="AllergyIntolerance.java" lines="46,143" />
+  <suppress checks="LineLength" files="Appointment.java" lines="43,110" />
+  <suppress checks="LineLength" files="Condition.java" lines="46,145" />
+  <suppress checks="LineLength" files="Encounter.java" lines="118" />
+  <suppress checks="LineLength" files="Immunization.java" lines="47,121" />
+  <suppress checks="LineLength" files="Location.java" lines="108" />
+  <suppress checks="LineLength" files="Medication.java" lines="43,98" />
+  <suppress checks="LineLength" files="MedicationOrder.java" lines="53,129" />
+  <suppress checks="LineLength" files="MedicationStatement.java" lines="51,125" />
+  <suppress checks="LineLength" files="OperationOutcome.java" lines="32" />
+  <suppress checks="LineLength" files="Organization.java" lines="43,80" />
+  <suppress checks="LineLength" files="Practitioner.java" lines="45,128" />
+  <suppress checks="LineLength" files="Procedure.java" lines="47,130" />
+
+</suppressions>

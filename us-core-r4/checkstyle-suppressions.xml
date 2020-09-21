@@ -5,9 +5,17 @@
   <!--
     The following resources have certain fields that are reported
     as data absent reason extensions that is required to have a _
-    prefix by the us-core-r4 specification.
+    prefix by the Data Query specification.
   -->
+  <suppress checks="MemberName" files=".*(/|\\)CoverageEligibilityResponse.java" message="Member name '(_coverage|_request)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Immunization.java" message="Member name '(_status)'"/>
   <suppress checks="MemberName" files=".*(/|\\)MedicationRequest.java" message="Member name '(_requester)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Procedure.java" message="Member name '(_status)'"/>
+  <!--
+    Swagger examples exceed the 100 character line length limit.
+   -->
+  <suppress checks="LineLength" files="MetadataApi.java" lines="30"/>
+  <suppress checks="LineLength" files="CoverageEligibilityResponse.java" lines="49,184"/>
+  <suppress checks="LineLength" files="OperationOutcome.java" lines="32"/>
+  <suppress checks="LineLength" files="ExplanationOfBenefit.java" lines="55,430"/>
 </suppressions>

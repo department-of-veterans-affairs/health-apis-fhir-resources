@@ -1,0 +1,98 @@
+package gov.va.api.health.dstu2.api.resources;
+
+import gov.va.api.health.dstu2.api.RoundTrip;
+import gov.va.api.health.dstu2.api.bundle.AbstractBundle;
+import gov.va.api.health.dstu2.api.bundle.BundleLink;
+import gov.va.api.health.dstu2.api.samples.SampleDiagnosticReports;
+import gov.va.api.health.dstu2.api.samples.SampleKnownTypes;
+import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
+import java.util.Collections;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class DiagnosticReportTest {
+  private final SampleDiagnosticReports data = SampleDiagnosticReports.get();
+  private final SampleKnownTypes types = SampleKnownTypes.get();
+
+  @Test
+  public void bundlerCanBuildDiagnosticReportBundles() {
+    DiagnosticReport.Entry entry =
+        DiagnosticReport.Entry.builder()
+            .extension(Collections.singletonList(data.extension()))
+            .fullUrl("http://diagnosticreports.com")
+            .id("123")
+            .link(
+                Collections.singletonList(
+                    BundleLink.builder()
+                        .relation(BundleLink.LinkRelation.self)
+                        .url(("http://diagnosticreport/1"))
+                        .build()))
+            .resource(data.diagnosticReport())
+            .search(data.search())
+            .request(data.request())
+            .response(data.response())
+            .build();
+
+    DiagnosticReport.Bundle bundle =
+        DiagnosticReport.Bundle.builder()
+            .entry(Collections.singletonList(entry))
+            .link(
+                Collections.singletonList(
+                    BundleLink.builder()
+                        .relation(BundleLink.LinkRelation.self)
+                        .url(("http://diagnosticreport.com/2"))
+                        .build()))
+            .type(AbstractBundle.BundleType.searchset)
+            .build();
+
+    RoundTrip.assertRoundTrip(bundle);
+  }
+
+  @Test
+  public void diagnosticReport() {
+    RoundTrip.assertRoundTrip(data.diagnosticReport());
+  }
+
+  @Test
+  public void relatedGroups() {
+    ZeroOrOneOfVerifier.builder()
+        .sample(data.diagnosticReport())
+        .stringTypes(types.knownStringTypes())
+        .knownTypes(types.knownTypes())
+        .fieldPrefix("effective")
+        .build()
+        .verify();
+  }
+
+  @Test
+  public void validationFailsGivenBadCategory() {
+    Assertions.assertThat(violationsOf(data.diagnosticReport().category(data.codeableConcept())))
+        .isNotEmpty();
+  }
+
+  @Test
+  public void validationFailsGivenNoCategory() {
+    Assertions.assertThat(violationsOf(data.diagnosticReport().category(null))).isNotEmpty();
+  }
+
+  @Test
+  public void validationPassesGivenGoodCategory() {
+    Assertions.assertThat(
+            violationsOf(
+                data.diagnosticReport()
+                    .category()
+                    .coding()
+                    .get(0)
+                    .code("http://hl7.org/fhir/ValueSet/diagnostic-service-sections")))
+        .isEmpty();
+  }
+
+  private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    return factory.getValidator().validate(object);
+  }
+}
