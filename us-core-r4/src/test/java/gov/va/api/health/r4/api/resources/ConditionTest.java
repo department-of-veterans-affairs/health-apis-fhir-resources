@@ -1,8 +1,8 @@
 package gov.va.api.health.r4.api.resources;
 
+import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.RoundTrip;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.samples.SampleConditions;
@@ -40,11 +40,11 @@ public class ConditionTest {
                         .response(samples.response())
                         .build()))
             .build();
-    RoundTrip.assertRoundTrip(bundle);
+    assertRoundTrip(bundle);
   }
 
   @Test
   public void condition() {
-    RoundTrip.assertRoundTrip(samples.condition());
+    assertRoundTrip(samples.condition());
   }
 }

@@ -52,7 +52,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/explanationofbenefit.html",
     example =
-        "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefit}")
+        "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples"
+            + ".SwaggerExplanationOfBenefit#explanationOfBenefit}")
 public class ExplanationOfBenefit implements Resource {
 
   // Ancestor -- Resource
@@ -427,7 +428,8 @@ public class ExplanationOfBenefit implements Resource {
   @Schema(
       name = "ExplanationOfBenefitBundle",
       example =
-          "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerExplanationOfBenefit#explanationOfBenefitBundle}")
+          "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples"
+              + ".SwaggerExplanationOfBenefit#explanationOfBenefitBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Explanation of benefit bundle builder. */

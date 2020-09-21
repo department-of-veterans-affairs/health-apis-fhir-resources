@@ -1,6 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
-import gov.va.api.health.dstu2.api.RoundTrip;
+import static gov.va.api.health.dstu2.api.RoundTrip.assertRoundTrip;
+
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.samples.SampleDiagnosticReports;
@@ -49,12 +50,12 @@ public class DiagnosticReportTest {
             .type(AbstractBundle.BundleType.searchset)
             .build();
 
-    RoundTrip.assertRoundTrip(bundle);
+    assertRoundTrip(bundle);
   }
 
   @Test
   public void diagnosticReport() {
-    RoundTrip.assertRoundTrip(data.diagnosticReport());
+    assertRoundTrip(data.diagnosticReport());
   }
 
   @Test

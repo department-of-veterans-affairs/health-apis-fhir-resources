@@ -46,7 +46,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/coverageeligibilityresponse.html",
     example =
-        "${r4.coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}")
+        "${r4.coverageEligibilityResponse:gov.va.api.health.r4.api.swaggerexamples"
+            + ".SwaggerCoverageEligibilityResponse#coverageEligibilityResponse}")
 @ZeroOrOneOf(
     fields = {"servicedDate", "servicedPeriod"},
     message = "Only one serviced value may be specified.")
@@ -181,7 +182,8 @@ public class CoverageEligibilityResponse implements Resource {
   @Schema(
       name = "CoverageEligibilityResponseBundle",
       example =
-          "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}")
+          "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples"
+              + ".SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
 
     /** Coverage bundle builder. */

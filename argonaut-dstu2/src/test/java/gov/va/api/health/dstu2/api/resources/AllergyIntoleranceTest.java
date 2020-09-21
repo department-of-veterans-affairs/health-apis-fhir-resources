@@ -1,6 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
-import gov.va.api.health.dstu2.api.RoundTrip;
+import static gov.va.api.health.dstu2.api.RoundTrip.assertRoundTrip;
+
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
 import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
@@ -15,7 +16,7 @@ public class AllergyIntoleranceTest {
 
   @Test
   public void allergyIntolerance() {
-    RoundTrip.assertRoundTrip(data.allergyIntolerance());
+    assertRoundTrip(data.allergyIntolerance());
   }
 
   @Test
@@ -49,6 +50,6 @@ public class AllergyIntoleranceTest {
             .type(BundleType.searchset)
             .build();
 
-    RoundTrip.assertRoundTrip(bundle);
+    assertRoundTrip(bundle);
   }
 }

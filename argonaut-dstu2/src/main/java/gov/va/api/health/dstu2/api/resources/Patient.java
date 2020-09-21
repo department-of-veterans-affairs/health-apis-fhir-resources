@@ -46,9 +46,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-    description = "http://www.fhir.org/guides/dstu2/r2/StructureDefinition-argo-patient.html",
-    example =
-        "${dstu2.patient:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patient}")
+    description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-patient.html",
+    example = "${dstu2.patient:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerPatient#patient}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"deceasedBoolean", "deceasedDateTime"},
@@ -152,8 +151,7 @@ public class Patient implements Resource {
   @Schema(
       name = "PatientBundle",
       example =
-          "${dstu2.patientBundle:"
-              + "gov.va.api.health.dstu2.api.swaggerexamples."
+          "${dstu2.patientBundle:gov.va.api.health.dstu2.api.swaggerexamples."
               + "SwaggerPatient#patientBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
     @Builder

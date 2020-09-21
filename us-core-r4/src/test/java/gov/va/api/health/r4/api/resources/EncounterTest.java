@@ -1,12 +1,12 @@
 package gov.va.api.health.r4.api.resources;
 
+import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType;
 import static gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import static gov.va.api.health.r4.api.resources.Encounter.Bundle;
 import static gov.va.api.health.r4.api.resources.Encounter.Entry;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.RoundTrip;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.samples.SampleEncounters;
@@ -50,12 +50,12 @@ public class EncounterTest {
                         .build()))
             .type(BundleType.searchset)
             .build();
-    RoundTrip.assertRoundTrip(bundle);
+    assertRoundTrip(bundle);
   }
 
   @Test
   public void encounter() {
-    RoundTrip.assertRoundTrip(data.encounter());
+    assertRoundTrip(data.encounter());
   }
 
   @Test

@@ -46,8 +46,7 @@ import lombok.NoArgsConstructor;
 @Schema(
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.html",
-    example =
-        "${r4.condition:gov.va.api.health." + "r4.api.swaggerexamples.SwaggerCondition#condition}")
+    example = "${r4.condition:gov.va.api.health.r4.api.swaggerexamples.SwaggerCondition#condition}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"onsetDateTime", "onsetAge", "onsetPeriod", "onsetRange", "onsetString"},

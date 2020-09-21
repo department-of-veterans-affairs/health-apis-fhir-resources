@@ -1,8 +1,8 @@
 package gov.va.api.health.r4.api.resources;
 
+import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.RoundTrip;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.elements.Extension;
@@ -47,7 +47,7 @@ public class MedicationRequestTest {
                         .response(samples.response())
                         .build()))
             .build();
-    RoundTrip.assertRoundTrip(bundle);
+    assertRoundTrip(bundle);
   }
 
   @Test
@@ -72,7 +72,7 @@ public class MedicationRequestTest {
 
   @Test
   void medicationRequest() {
-    RoundTrip.assertRoundTrip(samples.medicationRequest());
+    assertRoundTrip(samples.medicationRequest());
   }
 
   @Test
