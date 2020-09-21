@@ -48,7 +48,7 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "http://www.fhir.org/guides/dstu2/r2/StructureDefinition-argo-patient.html",
     example =
-        "${dstu2.patient:gov.va.api.health.argonaut.api.swaggerexamples.SwaggerPatient#patient}")
+        "${dstu2.patient:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerPatient#patient}")
 @ZeroOrOneOfs({
   @ZeroOrOneOf(
       fields = {"deceasedBoolean", "deceasedDateTime"},
