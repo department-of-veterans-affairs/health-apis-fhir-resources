@@ -6,6 +6,7 @@ import static gov.va.api.health.r4.api.bundle.BundleLink.LinkRelation;
 import static gov.va.api.health.r4.api.resources.Encounter.Bundle;
 import static gov.va.api.health.r4.api.resources.Encounter.Entry;
 import static java.util.Collections.singletonList;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.Identifier;
@@ -15,7 +16,6 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class EncounterTest {
@@ -60,8 +60,7 @@ public class EncounterTest {
 
   @Test
   public void validationFailsGivenBadIdentifier() {
-    Assertions.assertThat(
-            violationsOf(data.encounter().identifier(singletonList(data.identifier()))))
+    assertThat(violationsOf(data.encounter().identifier(singletonList(data.identifier()))))
         .isNotEmpty();
   }
 
@@ -71,8 +70,7 @@ public class EncounterTest {
     List<Identifier> invalidIdentifier =
         singletonList(Identifier.builder().system(null).value("123456").build());
 
-    Assertions.assertThat(violationsOf(data.encounter().identifier(invalidIdentifier)))
-        .isNotEmpty();
+    assertThat(violationsOf(data.encounter().identifier(invalidIdentifier))).isNotEmpty();
   }
 
   @Test
@@ -84,8 +82,7 @@ public class EncounterTest {
                 .value(null)
                 .build());
 
-    Assertions.assertThat(violationsOf(data.encounter().identifier(invalidIdentifier)))
-        .isNotEmpty();
+    assertThat(violationsOf(data.encounter().identifier(invalidIdentifier))).isNotEmpty();
   }
 
   @Test
@@ -96,12 +93,12 @@ public class EncounterTest {
                 .system("http://www.acme.com/identifiers/patient")
                 .value("123456")
                 .build());
-    Assertions.assertThat(violationsOf(data.encounter().identifier(validIdentifier))).isEmpty();
+    assertThat(violationsOf(data.encounter().identifier(validIdentifier))).isEmpty();
   }
 
   @Test
   public void validationPassesGivenNullIdentifier() {
-    Assertions.assertThat(violationsOf(data.encounter().identifier(null))).isEmpty();
+    assertThat(violationsOf(data.encounter().identifier(null))).isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {

@@ -1,6 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
 import static gov.va.api.health.dstu2.api.RoundTrip.assertRoundTrip;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.dstu2.api.bundle.AbstractBundle.BundleType;
 import gov.va.api.health.dstu2.api.bundle.BundleLink;
@@ -15,7 +16,6 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ObservationTest {
@@ -81,18 +81,17 @@ public class ObservationTest {
 
   @Test
   public void validationFailsGivenBadCategory() {
-    Assertions.assertThat(violationsOf(data.observation().category(data.codeableConcept())))
-        .isNotEmpty();
+    assertThat(violationsOf(data.observation().category(data.codeableConcept()))).isNotEmpty();
   }
 
   @Test
   public void validationFailsGivenNoCategory() {
-    Assertions.assertThat(violationsOf(data.observation().category(null))).isNotEmpty();
+    assertThat(violationsOf(data.observation().category(null))).isNotEmpty();
   }
 
   @Test
   public void validationPassesGivenGoodCategory() {
-    Assertions.assertThat(
+    assertThat(
             violationsOf(
                 data.observation()
                     .category()

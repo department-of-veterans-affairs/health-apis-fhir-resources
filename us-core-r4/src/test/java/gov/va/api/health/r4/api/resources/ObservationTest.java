@@ -1,6 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
@@ -13,7 +14,6 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ObservationTest {
@@ -80,7 +80,7 @@ public class ObservationTest {
 
   @Test
   public void validationFailsGivenBadCategorySystem() {
-    Assertions.assertThat(
+    assertThat(
             violationsOf(
                 data.observation().category(Collections.singletonList(data.codeableConcept()))))
         .isNotEmpty();
@@ -88,7 +88,7 @@ public class ObservationTest {
 
   @Test
   public void validationPassesGivenGoodCategory() {
-    Assertions.assertThat(
+    assertThat(
             violationsOf(
                 data.observation()
                     .category()

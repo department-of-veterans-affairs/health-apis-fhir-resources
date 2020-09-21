@@ -46,7 +46,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(
-
     description = "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-patient.html",
     example = "${dstu2.patient:gov.va.api.health.dstu2.api.swaggerexamples.SwaggerPatient#patient}")
 @ZeroOrOneOfs({
@@ -66,6 +65,7 @@ public class Patient implements Resource {
 
   @Pattern(regexp = Fhir.URI)
   String implicitRules;
+
   @Pattern(regexp = Fhir.CODE)
   String language;
 
