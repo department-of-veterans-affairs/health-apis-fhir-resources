@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
+import gov.va.api.health.r4.api.UsCore;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
@@ -78,16 +79,19 @@ public class Organization implements Resource {
   */
   @Valid List<Identifier> identifier;
 
+  @UsCore
   @NotNull Boolean active;
 
   @Valid List<CodeableConcept> type;
 
+  @UsCore
   @NotNull String name;
 
   @Valid List<String> alias;
 
   @Valid List<ContactPoint> telecom;
 
+  @UsCore
   @Valid List<Address> address;
 
   @Valid Reference partOf;
@@ -96,6 +100,7 @@ public class Organization implements Resource {
 
   @Valid List<Reference> endpoint;
 
+  @UsCore
   @JsonIgnore
   @SuppressWarnings("unused")
   @AssertTrue(message = "At most one IdentifierClia can be specified.")
@@ -112,6 +117,7 @@ public class Organization implements Resource {
         <= 1;
   }
 
+  @UsCore
   @JsonIgnore
   @SuppressWarnings("unused")
   @AssertTrue(message = "At most one IdentifierNpi can be specified.")
