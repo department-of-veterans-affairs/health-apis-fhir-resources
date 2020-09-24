@@ -3,6 +3,7 @@ package gov.va.api.health.r4.api.resources;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import gov.va.api.health.r4.api.CarinBlueButton;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
@@ -74,6 +75,7 @@ public class Coverage implements Resource {
   @Valid Reference policyHolder;
   @Valid Reference subscriber;
 
+  @CarinBlueButton
   @Pattern(regexp = Fhir.STRING)
   String subscriberId;
 
