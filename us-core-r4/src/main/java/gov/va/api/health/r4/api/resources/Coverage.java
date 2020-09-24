@@ -1,6 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.CarinBlueButton;
@@ -9,6 +10,7 @@ import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
+import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Money;
 import gov.va.api.health.r4.api.datatypes.Period;
@@ -24,6 +26,7 @@ import gov.va.api.health.validation.api.ExactlyOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -48,7 +51,6 @@ import lombok.NoArgsConstructor;
     example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
 public class Coverage implements Resource {
   // Anscestor -- Resource
-
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -64,18 +66,26 @@ public class Coverage implements Resource {
 
   // Ancestor -- DomainResource
   @Valid Narrative text;
+
   @Valid List<SimpleResource> contained;
+
   @Valid List<Extension> extension;
+
   @Valid List<Extension> modifierExtension;
 
   // Coverage Resource
   @Valid List<Identifier> identifier;
+
   @NotNull Status status;
+
   @Valid CodeableConcept type;
+
   @Valid Reference policyHolder;
+
   @Valid Reference subscriber;
 
   @CarinBlueButton(cardinality = "1..1")
+  @NotBlank
   @Pattern(regexp = Fhir.STRING)
   String subscriberId;
 
@@ -84,9 +94,14 @@ public class Coverage implements Resource {
   @Pattern(regexp = Fhir.STRING)
   String dependent;
 
-  @Valid CodeableConcept relationship;
+  @CarinBlueButton(cardinality = "1..1")
+  @NotNull
+  @Valid
+  CodeableConcept relationship;
+
   @Valid Period period;
-  @Valid @NotEmpty List<Reference> payor;
+
+  @NotEmpty @Valid List<Reference> payor;
 
   @JsonProperty("class")
   @Valid
@@ -103,6 +118,38 @@ public class Coverage implements Resource {
   Boolean subrogation;
 
   @Valid List<Reference> contract;
+
+  @CarinBlueButton(note = "Contraints are imposed on the class field for types of group and plan.")
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  @AssertTrue(
+      message = "Slice(s) from the class field are invalid for Carin Blue Button implementation.")
+  private boolean isValidCarinBlueButtonClassSlice() {
+    if (coverageClass() == null) {
+      return true;
+    }
+    int groupTypeCount = 0;
+    int planTypeCount = 0;
+    for (CoverageClass cc : coverageClass()) {
+      var typeCoding = cc.type().coding();
+      if (typeCoding == null) {
+        continue;
+      }
+      for (Coding coding : typeCoding) {
+        switch (coding.code()) {
+          case "group":
+            groupTypeCount++;
+            break;
+          case "plan":
+            planTypeCount++;
+            break;
+          default:
+            continue;
+        }
+      }
+    }
+    return groupTypeCount <= 1 && planTypeCount <= 1;
+  }
 
   @SuppressWarnings("unused")
   public enum Status {
@@ -124,7 +171,6 @@ public class Coverage implements Resource {
           "${r4.coverageBundle:gov.va.api.health.r4.api."
               + "swaggerexamples.SwaggerCoverage#coverageBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Coverage bundle builder. */
     @Builder
     public Bundle(
@@ -174,8 +220,11 @@ public class Coverage implements Resource {
     @Valid List<Extension> modifierExtension;
 
     @Valid CodeableConcept type;
+
     @Valid SimpleQuantity valueQuantity;
+
     @Valid Money valueMoney;
+
     @Valid List<Exception> exception;
   }
 
@@ -210,7 +259,6 @@ public class Coverage implements Resource {
   @JsonDeserialize(builder = Coverage.Entry.EntryBuilder.class)
   @Schema(name = "CoverageEntry")
   public static class Entry extends AbstractEntry<Coverage> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -242,6 +290,7 @@ public class Coverage implements Resource {
     @Valid List<Extension> modifierExtension;
 
     @Valid @NotNull CodeableConcept type;
+
     @Valid Period period;
   }
 }
