@@ -11,4 +11,9 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER})
-public @interface CarinBlueButton {}
+public @interface CarinBlueButton {
+  /** Indicate there has been a change in cardinality. */
+  String cardinality() default "";
+  /** Indicate there has been a change or specialization. */
+  String note() default "";
+}

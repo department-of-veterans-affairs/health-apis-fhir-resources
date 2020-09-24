@@ -75,7 +75,7 @@ public class Coverage implements Resource {
   @Valid Reference policyHolder;
   @Valid Reference subscriber;
 
-  @CarinBlueButton
+  @CarinBlueButton(cardinality = "1..1")
   @Pattern(regexp = Fhir.STRING)
   String subscriberId;
 
