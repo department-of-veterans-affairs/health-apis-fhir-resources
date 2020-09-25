@@ -80,10 +80,10 @@ public class Organization implements Resource {
   */
   @CarinBlueButton(
       note =
-          "Carin includes an additional slice definition for Identifier:TIN."
-              + "The Identifier.type field's cardinality changes to 1..1."
-              + "The Identifier:NPI slice's Type.Coding changes to 1..*."
-              + "The Identifier:NPI slice's Typie.Coding.Code changes to 1..1")
+          "Carin includes an additional slice definition for Identifier:TIN. "
+              + "The Identifier.type field's cardinality changes cardinality to 1..1. "
+              + "The Identifier:NPI slice's Type.Coding changes cardinality to 1..*. "
+              + "The Identifier:NPI slice's Type.Coding.Code changes cardinality to 1..1.")
   @Valid
   List<Identifier> identifier;
 
