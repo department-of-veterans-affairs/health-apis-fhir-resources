@@ -1,7 +1,6 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.CarinBlueButton;
@@ -10,7 +9,6 @@ import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
-import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Money;
 import gov.va.api.health.r4.api.datatypes.Period;
@@ -26,7 +24,6 @@ import gov.va.api.health.validation.api.ExactlyOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -85,7 +82,6 @@ public class Coverage implements Resource {
   @Valid Reference subscriber;
 
   @CarinBlueButton(cardinality = "1..1")
-  @NotBlank
   @Pattern(regexp = Fhir.STRING)
   String subscriberId;
 
@@ -95,7 +91,6 @@ public class Coverage implements Resource {
   String dependent;
 
   @CarinBlueButton(cardinality = "1..1")
-  @NotNull
   @Valid
   CodeableConcept relationship;
 
@@ -103,6 +98,13 @@ public class Coverage implements Resource {
 
   @NotEmpty @Valid List<Reference> payor;
 
+  @CarinBlueButton(
+      note =
+          "Slice Definition Constraints: "
+              + "- class:group && class:plan "
+              + "  - cardinality=0..1 "
+              + "  - type.coding[] field cardinality=1..* "
+              + "  - type.coding[].code field cardinality=1..1 ")
   @JsonProperty("class")
   @Valid
   List<CoverageClass> coverageClass;
@@ -118,38 +120,6 @@ public class Coverage implements Resource {
   Boolean subrogation;
 
   @Valid List<Reference> contract;
-
-  @CarinBlueButton(note = "Contraints are imposed on the class field for types of group and plan.")
-  @JsonIgnore
-  @SuppressWarnings("unused")
-  @AssertTrue(
-      message = "Slice(s) from the class field are invalid for Carin Blue Button implementation.")
-  private boolean isValidCarinBlueButtonClassSlice() {
-    if (coverageClass() == null) {
-      return true;
-    }
-    int groupTypeCount = 0;
-    int planTypeCount = 0;
-    for (CoverageClass cc : coverageClass()) {
-      var typeCoding = cc.type().coding();
-      if (typeCoding == null) {
-        continue;
-      }
-      for (Coding coding : typeCoding) {
-        switch (coding.code()) {
-          case "group":
-            groupTypeCount++;
-            break;
-          case "plan":
-            planTypeCount++;
-            break;
-          default:
-            continue;
-        }
-      }
-    }
-    return groupTypeCount <= 1 && planTypeCount <= 1;
-  }
 
   @SuppressWarnings("unused")
   public enum Status {
