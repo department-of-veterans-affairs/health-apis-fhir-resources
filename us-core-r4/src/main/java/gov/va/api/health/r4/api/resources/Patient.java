@@ -87,15 +87,17 @@ public class Patient implements Resource {
 
   // R4 Patient Resource
   @CarinBlueButton(
-          note =
-                  "Slice Definition Constraints: "
-                          + "identifier.memberid && identifier:medrecnum && identifier:patacctnum"
-                          + "- cardinality=1..*."
-                          + "- identifier.type field cardinality=0..1"
-                          + "- identifier.type.coding[] field cardinality=1..*"
-                          + "- identifier.type.coding[].code field cardinality=1..1"
-                          + "All other slices identifier.type field cardinality=1..1")
-  @Valid @NotEmpty List<Identifier> identifier;
+      note =
+          "Slice Definition Constraints: "
+              + "identifier.memberid && identifier:medrecnum && identifier:patacctnum"
+              + "- cardinality=1..*."
+              + "- identifier.type field cardinality=0..1"
+              + "- identifier.type.coding[] field cardinality=1..*"
+              + "- identifier.type.coding[].code field cardinality=1..1"
+              + "All other slices identifier.type field cardinality=1..1")
+  @Valid
+  @NotEmpty
+  List<Identifier> identifier;
 
   Boolean active;
 
