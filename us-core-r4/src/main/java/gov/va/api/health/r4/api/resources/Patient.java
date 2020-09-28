@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import gov.va.api.health.r4.api.CarinBlueButton;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
@@ -85,7 +86,17 @@ public class Patient implements Resource {
   @Valid List<Extension> modifierExtension;
 
   // R4 Patient Resource
-  @Valid @NotEmpty List<Identifier> identifier;
+  @CarinBlueButton(
+      note =
+          "Slice Definition Constraints: "
+              + "identifier.memberid && identifier:medrecnum && identifier:patacctnum"
+              + "- cardinality=1..*"
+              + "- identifier.type.coding[] field cardinality=1..*"
+              + "- identifier.type.coding[].code field cardinality=1..1"
+              + "All other slices identifier.type field cardinality=1..1")
+  @Valid
+  @NotEmpty
+  List<Identifier> identifier;
 
   Boolean active;
 

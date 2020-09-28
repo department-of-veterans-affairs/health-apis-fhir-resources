@@ -48,7 +48,6 @@ import lombok.NoArgsConstructor;
     example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
 public class Coverage implements Resource {
   // Anscestor -- Resource
-
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -64,15 +63,22 @@ public class Coverage implements Resource {
 
   // Ancestor -- DomainResource
   @Valid Narrative text;
+
   @Valid List<SimpleResource> contained;
+
   @Valid List<Extension> extension;
+
   @Valid List<Extension> modifierExtension;
 
   // Coverage Resource
   @Valid List<Identifier> identifier;
+
   @NotNull Status status;
+
   @Valid CodeableConcept type;
+
   @Valid Reference policyHolder;
+
   @Valid Reference subscriber;
 
   @CarinBlueButton(cardinality = "1..1")
@@ -84,10 +90,21 @@ public class Coverage implements Resource {
   @Pattern(regexp = Fhir.STRING)
   String dependent;
 
-  @Valid CodeableConcept relationship;
-  @Valid Period period;
-  @Valid @NotEmpty List<Reference> payor;
+  @CarinBlueButton(cardinality = "1..1")
+  @Valid
+  CodeableConcept relationship;
 
+  @Valid Period period;
+
+  @NotEmpty @Valid List<Reference> payor;
+
+  @CarinBlueButton(
+      note =
+          "Slice Definition Constraints: "
+              + "- class:group && class:plan "
+              + "  - cardinality=0..1 "
+              + "  - type.coding[] field cardinality=1..* "
+              + "  - type.coding[].code field cardinality=1..1 ")
   @JsonProperty("class")
   @Valid
   List<CoverageClass> coverageClass;
@@ -124,7 +141,6 @@ public class Coverage implements Resource {
           "${r4.coverageBundle:gov.va.api.health.r4.api."
               + "swaggerexamples.SwaggerCoverage#coverageBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Coverage bundle builder. */
     @Builder
     public Bundle(
@@ -174,8 +190,11 @@ public class Coverage implements Resource {
     @Valid List<Extension> modifierExtension;
 
     @Valid CodeableConcept type;
+
     @Valid SimpleQuantity valueQuantity;
+
     @Valid Money valueMoney;
+
     @Valid List<Exception> exception;
   }
 
@@ -210,7 +229,6 @@ public class Coverage implements Resource {
   @JsonDeserialize(builder = Coverage.Entry.EntryBuilder.class)
   @Schema(name = "CoverageEntry")
   public static class Entry extends AbstractEntry<Coverage> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -242,6 +260,7 @@ public class Coverage implements Resource {
     @Valid List<Extension> modifierExtension;
 
     @Valid @NotNull CodeableConcept type;
+
     @Valid Period period;
   }
 }
