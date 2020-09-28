@@ -79,7 +79,7 @@ public class Organization implements Resource {
   */
   @CarinBlueButton(
       note =
-          "Carin includes an additional slice definition for Identifier:TIN. "
+          "Carin includes an additional slice definition for Identifier:TIN with cardinality ..*."
               + "The Identifier.type field's cardinality changes cardinality to 1..1. "
               + "The Identifier:NPI slice's Type.Coding changes cardinality to 1..*. "
               + "The Identifier:NPI slice's Type.Coding.Code changes cardinality to 1..1.")
