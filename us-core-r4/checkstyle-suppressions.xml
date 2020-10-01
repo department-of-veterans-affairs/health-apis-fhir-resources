@@ -7,6 +7,7 @@
     as data absent reason extensions that is required to have a _
     prefix by the us-core-r4 specification.
   -->
+  <suppress checks="MemberName" files=".*(/|\\)CoverageEligibilityResponse.java" message="Member name '(_coverage|_request)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Immunization.java" message="Member name '(_status)'"/>
   <suppress checks="MemberName" files=".*(/|\\)MedicationRequest.java" message="Member name '(_requester)'"/>
   <suppress checks="MemberName" files=".*(/|\\)Procedure.java" message="Member name '(_status)'"/>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<FindBugsFilter>
-  <!-- Exception is a type in this case, should not be derived from an Exception -->
-  <Match>
-    <Class name="gov.va.api.health.r4.api.resources.Coverage$Exception"/>
-    <Bug pattern="NM_CLASS_NOT_EXCEPTION"/>
-  </Match>
-</FindBugsFilter>
