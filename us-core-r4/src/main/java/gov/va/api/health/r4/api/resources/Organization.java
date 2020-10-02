@@ -108,8 +108,18 @@ public class Organization implements Resource {
 
   @JsonIgnore
   @SuppressWarnings("unused")
+  @AssertTrue(message = "At most, four address.line can be specified per address")
+  private boolean isValidAddressLineCount() {
+    if (address == null) {
+      return true;
+    }
+    return address.stream().noneMatch(e -> e.line() != null && e.line().size() > 4);
+  }
+
+  @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(message = "At most one IdentifierClia can be specified.")
-  private boolean isIdentifierCliaSliceValid() {
+  private boolean isValidIdentifierCliaSlice() {
     if (identifier == null) {
       return true;
     }
@@ -125,7 +135,7 @@ public class Organization implements Resource {
   @JsonIgnore
   @SuppressWarnings("unused")
   @AssertTrue(message = "At most one IdentifierNpi can be specified.")
-  private boolean isIdentifierNpiSliceValid() {
+  private boolean isValidIdentifierNpiSlice() {
     if (identifier == null) {
       return true;
     }
