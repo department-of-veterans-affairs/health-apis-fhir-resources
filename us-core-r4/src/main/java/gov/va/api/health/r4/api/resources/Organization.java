@@ -113,14 +113,7 @@ public class Organization implements Resource {
     if (address == null) {
       return true;
     }
-    for (Address a : address) {
-      if (a.line() != null) {
-        if (a.line().size() > 4) {
-          return false;
-        }
-      }
-    }
-    return true;
+    return address.stream().noneMatch(e -> e.line() != null && e.line().size() > 4);
   }
 
   @JsonIgnore
