@@ -45,7 +45,7 @@ import lombok.NoArgsConstructor;
     example = "${r4.device:gov.va.api.health.r4.api.swaggerexamples.SwaggerDevice#device}")
 public class Device implements Resource {
   // Ancestors
-  @NotBlank @Builder.Default String resourceType = "ImplantableDevice";
+  @NotBlank @Builder.Default String resourceType = "Device";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -72,13 +72,13 @@ public class Device implements Resource {
 
   @Valid DeviceIdentifier udiCarrier;
 
-  @Valid Status status;
+  Status status;
 
   @Valid List<CodeableConcept> statusReason;
 
-  @Valid String distinctIdentifier;
+  String distinctIdentifier;
 
-  @Valid String manufacturer;
+  String manufacturer;
 
   @Pattern(regexp = Fhir.DATETIME)
   String manufactureDate;
@@ -86,15 +86,15 @@ public class Device implements Resource {
   @Pattern(regexp = Fhir.DATETIME)
   String expirationDate;
 
-  @Valid String lotNumber;
+  String lotNumber;
 
-  @Valid String serialNumber;
+  String serialNumber;
 
   @Valid List<DeviceName> deviceName;
 
-  @Valid String modelNumber;
+  String modelNumber;
 
-  @Valid String partNumber;
+  String partNumber;
 
   // This has a Binding of FHIRDeviceTypes(extensible), but there's a ton of them.
   @Valid @NotNull CodeableConcept type;
@@ -225,6 +225,7 @@ public class Device implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class DeviceIdentifier implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
@@ -240,8 +241,10 @@ public class Device implements Resource {
     String jurisdiction;
 
     @Pattern(regexp = Fhir.BASE64)
+    @JsonProperty("carrierAIDC")
     String carrierAidc;
 
+    @JsonProperty("carrierHRF")
     String carrierHrf;
 
     UdiEntryType entryType;
@@ -254,6 +257,7 @@ public class Device implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class DeviceName implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
@@ -262,7 +266,7 @@ public class Device implements Resource {
 
     @Valid @NotNull String name;
 
-    @Valid @NotNull DeviceNameType type;
+    @NotNull DeviceNameType type;
   }
 
   @Data
@@ -272,6 +276,7 @@ public class Device implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Specialization implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
@@ -280,7 +285,7 @@ public class Device implements Resource {
 
     @Valid @NotNull CodeableConcept systemType;
 
-    @Valid String version;
+    String version;
   }
 
   @Data
@@ -290,6 +295,7 @@ public class Device implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Version implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
@@ -310,6 +316,7 @@ public class Device implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Property implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
