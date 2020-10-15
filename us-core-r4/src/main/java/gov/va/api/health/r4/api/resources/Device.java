@@ -44,7 +44,6 @@ import lombok.NoArgsConstructor;
     description = "http://hl7.org/fhir/us/core/StructureDefinition-us-core-implantable-device.html",
     example = "${r4.device:gov.va.api.health.r4.api.swaggerexamples.SwaggerDevice#device}")
 public class Device implements Resource {
-  // Ancestors
   @NotBlank @Builder.Default String resourceType = "Device";
 
   @Pattern(regexp = Fhir.ID)
@@ -122,6 +121,20 @@ public class Device implements Resource {
 
   @Valid Reference parent;
 
+  public enum DeviceNameType {
+    @JsonProperty("udi-label-name")
+    udi_label_name,
+    @JsonProperty("user-friendly-name")
+    user_friendly_name,
+    @JsonProperty("patient-reported-name")
+    patient_reported_name,
+    @JsonProperty("manufacturer-name")
+    manufacturer_name,
+    @JsonProperty("model-name")
+    model_name,
+    other
+  }
+
   public enum Status {
     active,
     inactive,
@@ -138,20 +151,6 @@ public class Device implements Resource {
     @JsonProperty("self-reported")
     self_reported,
     unknown
-  }
-
-  public enum DeviceNameType {
-    @JsonProperty("udi-label-name")
-    udi_label_name,
-    @JsonProperty("user-friendly-name")
-    user_friendly_name,
-    @JsonProperty("patient-reported-name")
-    patient_reported_name,
-    @JsonProperty("manufacturer-name")
-    manufacturer_name,
-    @JsonProperty("model-name")
-    model_name,
-    other
   }
 
   @Data
@@ -232,7 +231,7 @@ public class Device implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Valid @NotNull String deviceIdentifier;
+    @NotNull @NotBlank String deviceIdentifier;
 
     @Pattern(regexp = Fhir.URI)
     String issuer;
@@ -264,9 +263,30 @@ public class Device implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @Valid @NotNull String name;
+    @NotNull @NotBlank String name;
 
     @NotNull DeviceNameType type;
+  }
+
+  @Data
+  @Builder
+  @Schema(name = "DeviceProperty")
+  @AllArgsConstructor
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class Property implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @Valid @NotNull CodeableConcept type;
+
+    @Valid List<Quantity> valueQuantity;
+
+    @Valid List<CodeableConcept> valueCode;
   }
 
   @Data
@@ -306,27 +326,6 @@ public class Device implements Resource {
 
     @Valid Identifier component;
 
-    @Valid @NotNull String value;
-  }
-
-  @Data
-  @Builder
-  @Schema(name = "DeviceProperty")
-  @AllArgsConstructor
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Property implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @Valid @NotNull CodeableConcept type;
-
-    @Valid List<Quantity> valueQuantity;
-
-    @Valid List<CodeableConcept> valueCode;
+    @NotNull @NotBlank String value;
   }
 }

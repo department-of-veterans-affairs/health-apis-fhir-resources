@@ -86,7 +86,7 @@ public interface DeviceApi {
               description =
                   " The Integration Control Number (ICN) assigned by the "
                       + "Master Veteran Index (MVI) that indicates "
-                      + "the patient who the immunization record is "
+                      + "the patient who the device record is "
                       + "associated with.")
           String id,
       @Parameter(
