@@ -91,6 +91,11 @@ public interface DeviceApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
+              name = "type",
+              description = "A code that indicates the type of device included in this resource.")
+          String type,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number being requested.")
           @DefaultValue("1")
