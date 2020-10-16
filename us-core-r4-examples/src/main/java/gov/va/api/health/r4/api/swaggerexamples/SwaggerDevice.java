@@ -20,15 +20,17 @@ public class SwaggerDevice {
   public static Device device() {
     return Device.builder()
         .resourceType("Device")
-        .id("800001608621")
+        .id("I2-526QWVIAZHOZHCMERY7CQDV7UEAYPJXR4SASZH2FJNN3OUGOZ3QA0000")
         .patient(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/I2-LG5QEQRJO6VZONIY6MUJLKLMII000000")
+                .reference(
+                    "https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/2000163")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .owner(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Organization/I2-DJAYYHV2W7ISKUFTCHH4XSGVP4000000")
+                .reference(
+                    "https://sandbox-api.va.gov/services/fhir/v0/r4/Organization/I2-DJAYYHV2W7ISKUFTCHH4XSGVP4000000")
                 .display("JONESBORO VA CLINIC")
                 .build())
         .type(
@@ -36,7 +38,7 @@ public class SwaggerDevice {
                 .coding(
                     asList(
                         Coding.builder()
-                            .system("http://sno`med`.info/sct")
+                            .system("http://snomed.info/sct")
                             .code("53350007")
                             .display("Prosthesis, device (physical object)")
                             .build()))
@@ -84,7 +86,7 @@ public class SwaggerDevice {
         .entry(
             asList(
                 Device.Entry.builder()
-                    .fullUrl("https://sandbox-api.va.gov/services/fhir/v0/r4/Device/800001608621")
+                    .fullUrl("https://sandbox-api.va.gov/services/fhir/v0/r4/Device/I2-526QWVIAZHOZHCMERY7CQDV7UEAYPJXR4SASZH2FJNN3OUGOZ3QA0000")
                     .resource(device())
                     .build()))
         .build();
