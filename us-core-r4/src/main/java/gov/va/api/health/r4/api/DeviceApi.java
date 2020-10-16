@@ -92,7 +92,7 @@ public interface DeviceApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "type",
-              description = "A code that indicates the type of device included in this resource.")
+              description = "A code that indicates the type of medical device in the record.")
           String type,
       @Parameter(
               in = ParameterIn.QUERY,

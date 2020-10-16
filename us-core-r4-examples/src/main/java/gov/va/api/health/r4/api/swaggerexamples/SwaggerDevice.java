@@ -23,20 +23,23 @@ public class SwaggerDevice {
         .id("800001608621")
         .patient(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/2000163")
+                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Patient/I2-LG5QEQRJO6VZONIY6MUJLKLMII000000")
                 .display("Mr. Aurelio227 Cruickshank494")
                 .build())
         .owner(
             Reference.builder()
-                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Organization/528")
+                .reference("https://sandbox-api.va.gov/services/fhir/v0/r4/Organization/I2-DJAYYHV2W7ISKUFTCHH4XSGVP4000000")
                 .display("JONESBORO VA CLINIC")
                 .build())
         .type(
             CodeableConcept.builder()
-                .text("Prosthesis, device (physical object)")
                 .coding(
                     asList(
-                        Coding.builder().system("http://snomed.info/sct").code("53350007").build()))
+                        Coding.builder()
+                            .system("http://sno`med`.info/sct")
+                            .code("53350007")
+                            .display("Prosthesis, device (physical object)")
+                            .build()))
                 .build())
         .manufacturer("BOSTON SCIENTIFIC")
         .deviceName(

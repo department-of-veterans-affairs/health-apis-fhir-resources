@@ -231,7 +231,7 @@ public class Device implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull @NotBlank String deviceIdentifier;
+    @NotBlank String deviceIdentifier;
 
     @Pattern(regexp = Fhir.URI)
     String issuer;
@@ -263,7 +263,7 @@ public class Device implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull @NotBlank String name;
+    @NotBlank String name;
 
     @NotNull DeviceNameType type;
   }
@@ -326,6 +326,6 @@ public class Device implements Resource {
 
     @Valid Identifier component;
 
-    @NotNull @NotBlank String value;
+    @NotBlank String value;
   }
 }
