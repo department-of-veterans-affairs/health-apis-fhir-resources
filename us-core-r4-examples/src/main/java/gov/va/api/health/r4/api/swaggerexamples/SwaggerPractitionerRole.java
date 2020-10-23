@@ -50,32 +50,30 @@ public class SwaggerPractitionerRole {
                                 .display("OPTOMETRIST")
                                 .build()))
                     .build()))
-        .specialty(asList(
-            CodeableConcept.builder()
-                .coding(
-                    asList(
-                        Coding.builder()
-                            .system("http://nucc.org/provider-taxonomy")
-                            .code("207Q00000X")
-                            .display("Family Medicine")
-                            .build()
-                    )
-                )
-              .build()
-        ))
+        .specialty(
+            asList(
+                CodeableConcept.builder()
+                    .coding(
+                        asList(
+                            Coding.builder()
+                                .system("http://nucc.org/provider-taxonomy")
+                                .code("207Q00000X")
+                                .display("Family Medicine")
+                                .build()))
+                    .build()))
         .telecom(
             asList(
                 ContactPoint.builder()
                     .system(ContactPointSystem.phone)
                     .value("333-333-3333")
                     .build()))
-        .availableTime(asList(
-            PractitionerAvailableTime.builder()
-                .daysOfWeek(asList(DaysOfWeek.mon, DaysOfWeek.wed, DaysOfWeek.fri))
-                .availableStartTime("08:00:00")
-                .availableEndTime("15:00:00")
-                .build()
-        ))
+        .availableTime(
+            asList(
+                PractitionerAvailableTime.builder()
+                    .daysOfWeek(asList(DaysOfWeek.mon, DaysOfWeek.wed, DaysOfWeek.fri))
+                    .availableStartTime("08:00:00")
+                    .availableEndTime("15:00:00")
+                    .build()))
         .build();
   }
 

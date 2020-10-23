@@ -94,6 +94,16 @@ public class PractitionerRole implements Resource {
 
   @Valid Reference endpoint;
 
+  @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = PractitionerRole.Bundle.BundleBuilder.class)
+  @Schema(
+      name = "PractitionerRoleBundle",
+      example =
+          "${r4.practitionerRoleBundle:gov.va.api.health."
+              + "r4.api.swaggerexamples.SwaggerPractitionerRole#practitionerRoleBundle}")
   public static final class Bundle extends AbstractBundle<Entry> {
     /** Builder constructor. */
     @Builder
