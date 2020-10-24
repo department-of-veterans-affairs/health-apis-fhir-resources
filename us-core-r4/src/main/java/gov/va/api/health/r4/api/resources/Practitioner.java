@@ -15,6 +15,7 @@ import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Signature;
+import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -45,6 +46,9 @@ import lombok.NoArgsConstructor;
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = " http://hl7.org/fhir/us/core/StructureDefinition-us-core-practitioner.html")
 public class Practitioner implements Resource {
+
+  @NotBlank @Builder.Default String resourceType = "Practitioner";
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -58,7 +62,7 @@ public class Practitioner implements Resource {
 
   @Valid Narrative text;
 
-  @Valid List<Resource> contained;
+  @Valid List<SimpleResource> contained;
 
   @Valid List<Extension> extensions;
 
@@ -87,25 +91,26 @@ public class Practitioner implements Resource {
 
   @JsonIgnore
   @SuppressWarnings("unused")
-  @AssertTrue(message = "At most one IdentifierClia can be specified.")
-  private boolean isValidIdentifier() {
+  @AssertTrue(message = "System and value of identifier must be specified")
+  private boolean isValidIdentifierSystemAndValue() {
     if (identifier == null) {
       return false;
     }
-    return identifier.stream().filter(e -> e.system() != null && e.value() != null).count() >= 1;
+    return identifier.stream().allMatch(e -> e.system() != null && e.value() != null);
   }
 
   @JsonIgnore
   @SuppressWarnings("unused")
-  @AssertTrue(message = "At most one IdentifierClia can be specified.")
-  private boolean isValidName() {
+  @AssertTrue(message = "Family name must be specified")
+  private boolean isValidNameFamily() {
+
     if (name == null) {
       return false;
     }
-    return name.stream().filter(e -> e.family() != null).count() >= 1;
+    return name.stream().allMatch(e -> e.family() != null);
   }
 
-  enum GenderCode {
+  public enum GenderCode {
     male,
     female,
     other,
@@ -117,7 +122,7 @@ public class Practitioner implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "Qualification")
+  @Schema(name = "PractitionerQualification")
   public static class Qualification implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -140,7 +145,7 @@ public class Practitioner implements Resource {
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = Practitioner.Bundle.BundleBuilder.class)
-  @Schema(name = "Practitioner")
+  @Schema(name = "PractitionerBundle")
   public static class Bundle extends AbstractBundle<Practitioner.Entry> {
     /** Builder constructor. */
     @Builder
