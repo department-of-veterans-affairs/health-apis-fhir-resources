@@ -112,7 +112,11 @@ public class Practitioner implements Resource {
     if (identifier == null) {
       return false;
     }
-    return identifier.stream().allMatch(e -> e.system() != null && e.value() != null);
+    return identifier.stream()
+        .allMatch(
+            e ->
+                e.system() != null
+                    && (e.value() != null || e.system().equals("http://hl7.org/fhir/sid/us-npi")));
   }
 
   @JsonIgnore
