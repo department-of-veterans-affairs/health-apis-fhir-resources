@@ -55,9 +55,15 @@ public class PractitionerTest {
 
   @Test
   public void validationFailsGivenBadIdentifier() {
-    assertThat(violationsOf(data.identifier().system(null))).isNotEmpty();
-    assertThat(violationsOf(data.identifier().value(null))).isNotEmpty();
-    assertThat(violationsOf(data.identifier().system(null).value(null))).isNotEmpty();
+    Practitioner prac = data.practitioner();
+    assertThat(violationsOf(prac)).isEmpty();
+    prac.identifier().stream()
+        .forEach(
+            i -> {
+              i.value(null);
+              i.system(null);
+            });
+    assertThat(violationsOf(prac)).isNotEmpty();
   }
 
   @Test
@@ -70,12 +76,23 @@ public class PractitionerTest {
 
   @Test
   public void validationPassesGivenGoodIdentifier() {
-    assertThat(violationsOf(data.identifier().system("system").value("value"))).isEmpty();
+    Practitioner prac = data.practitioner();
+    assertThat(violationsOf(prac)).isEmpty();
+    prac.identifier().stream()
+        .forEach(
+            i -> {
+              i.value("value");
+              i.system("system");
+            });
+    assertThat(violationsOf(prac)).isEmpty();
   }
 
   @Test
   public void validationPassesGivenGoodName() {
-    assertThat(violationsOf(data.humanName().family("Smith"))).isEmpty();
+    Practitioner prac = data.practitioner();
+    assertThat(violationsOf(prac)).isEmpty();
+    prac.name().stream().forEach(n -> n.family("Smith"));
+    assertThat(violationsOf(prac)).isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
