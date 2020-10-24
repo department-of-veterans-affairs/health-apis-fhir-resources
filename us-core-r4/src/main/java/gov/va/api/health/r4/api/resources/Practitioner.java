@@ -36,6 +36,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 @Builder
@@ -46,7 +47,6 @@ import lombok.NoArgsConstructor;
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = " http://hl7.org/fhir/us/core/StructureDefinition-us-core-practitioner.html")
 public class Practitioner implements Resource {
-
   @NotBlank @Builder.Default String resourceType = "Practitioner";
 
   @Pattern(regexp = Fhir.ID)
@@ -91,6 +91,22 @@ public class Practitioner implements Resource {
 
   @JsonIgnore
   @SuppressWarnings("unused")
+  @AssertTrue(message = "At most one IdentifierNpi can be specified.")
+  private boolean isValidIdentifierNpiSlice() {
+    if (identifier == null) {
+      return true;
+    }
+    return identifier.stream()
+            .filter(
+                e ->
+                    StringUtils.isNotBlank(e.system())
+                        && e.system().equals("http://hl7.org/fhir/sid/us-npi"))
+            .count()
+        <= 1;
+  }
+
+  @JsonIgnore
+  @SuppressWarnings("unused")
   @AssertTrue(message = "System and value of identifier must be specified")
   private boolean isValidIdentifierSystemAndValue() {
     if (identifier == null) {
@@ -103,7 +119,6 @@ public class Practitioner implements Resource {
   @SuppressWarnings("unused")
   @AssertTrue(message = "Family name must be specified")
   private boolean isValidNameFamily() {
-
     if (name == null) {
       return false;
     }

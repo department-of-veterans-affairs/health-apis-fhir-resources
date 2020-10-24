@@ -78,12 +78,7 @@ public class PractitionerTest {
   public void validationPassesGivenGoodIdentifier() {
     Practitioner prac = data.practitioner();
     assertThat(violationsOf(prac)).isEmpty();
-    prac.identifier().stream()
-        .forEach(
-            i -> {
-              i.value("value");
-              i.system("system");
-            });
+    prac.identifier().stream().forEach(i -> i.value("value").system("system"));
     assertThat(violationsOf(prac)).isEmpty();
   }
 
