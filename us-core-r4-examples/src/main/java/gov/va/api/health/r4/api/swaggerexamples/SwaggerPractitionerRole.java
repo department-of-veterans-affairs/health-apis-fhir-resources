@@ -10,8 +10,8 @@ import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.ContactPoint.ContactPointSystem;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.PractitionerRole;
+import gov.va.api.health.r4.api.resources.PractitionerRole.DaysOfWeek;
 import gov.va.api.health.r4.api.resources.PractitionerRole.PractitionerAvailableTime;
-import gov.va.api.health.r4.api.resources.PractitionerRole.PractitionerAvailableTime.DaysOfWeek;
 
 public class SwaggerPractitionerRole {
 
@@ -27,14 +27,12 @@ public class SwaggerPractitionerRole {
         .active(Boolean.TRUE)
         .practitioner(
             Reference.builder()
-                // cdw id 294582
                 .reference(
                     "https://sandbox-api.va.gov/services/fhir/v0/r4/Practitioner/I2-54WJZ6YHNQICAV4YZRI54BVVCA000000")
                 .display("Dr John248 Smith811, MD")
                 .build())
         .organization(
             Reference.builder()
-                // cdw id 457959
                 .reference(
                     "https://sandbox-api.va.gov/services/fhir/v0/r4/Organization/I2-TQFMJ6CCI4V425PUMWP2GRESZM000000")
                 .display("LYONS VA MEDICAL CENTER")

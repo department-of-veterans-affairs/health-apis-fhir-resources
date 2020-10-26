@@ -1,6 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
@@ -20,6 +21,7 @@ import gov.va.api.health.r4.api.elements.Reference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -70,7 +72,7 @@ public class PractitionerRole implements Resource {
 
   Boolean active;
 
-  Period period;
+  @Valid Period period;
 
   @Valid @NotNull Reference practitioner;
 
@@ -92,7 +94,27 @@ public class PractitionerRole implements Resource {
 
   String availabilityExceptions;
 
-  @Valid Reference endpoint;
+  @Valid List<Reference> endpoint;
+
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  @AssertTrue(message = "System and value must be set per contact point")
+  private boolean isValidTelecom() {
+    if (telecom == null) {
+      return true;
+    }
+    return telecom.stream().noneMatch(e -> e.system() == null || e.value() == null);
+  }
+
+  public enum DaysOfWeek {
+    mon,
+    tue,
+    wed,
+    thu,
+    fri,
+    sat,
+    sun
+  }
 
   @Data
   @NoArgsConstructor
@@ -181,16 +203,6 @@ public class PractitionerRole implements Resource {
 
     @Pattern(regexp = Fhir.TIME)
     String availableEndTime;
-
-    public enum DaysOfWeek {
-      mon,
-      tue,
-      wed,
-      thu,
-      fri,
-      sat,
-      sun
-    }
   }
 
   @Data
