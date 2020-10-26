@@ -27,7 +27,7 @@ public class SamplePractitioners {
         .telecom(List.of(contactPoint(), contactPoint()))
         .address(List.of(address(), address()))
         .gender(Practitioner.GenderCode.male)
-        .birthDate("1970/09/09")
+        .birthDate("1970-09-09")
         .build();
   }
 }

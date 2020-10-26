@@ -6,19 +6,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.samples.SampleDataTypes;
 import gov.va.api.health.r4.api.samples.SamplePractitioners;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
-import lombok.experimental.Delegate;
 import org.junit.jupiter.api.Test;
 
 public class PractitionerTest {
   private final SamplePractitioners data = SamplePractitioners.get();
-
-  @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   @Test
   public void bundlerCanBuildPractitionerBundles() {
@@ -66,7 +62,10 @@ public class PractitionerTest {
 
   @Test
   public void validationFailsGivenBadName() {
-    assertThat(violationsOf(data.humanName().family(null))).isNotEmpty();
+    Practitioner prac = data.practitioner();
+    assertThat(violationsOf(prac)).isEmpty();
+    prac.name().stream().forEach(n -> n.family(null));
+    assertThat(violationsOf(prac)).isNotEmpty();
   }
 
   @Test
