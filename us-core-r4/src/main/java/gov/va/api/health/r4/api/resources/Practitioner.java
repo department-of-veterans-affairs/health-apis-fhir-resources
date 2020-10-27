@@ -91,32 +91,25 @@ public class Practitioner implements Resource {
 
   @JsonIgnore
   @SuppressWarnings("unused")
-  @AssertTrue(message = "At most one IdentifierNpi can be specified.")
-  private boolean isValidIdentifierNpiSlice() {
-    if (identifier == null) {
-      return true;
-    }
-    return identifier.stream()
-            .filter(
-                e ->
-                    StringUtils.isNotBlank(e.system())
-                        && e.system().equals("http://hl7.org/fhir/sid/us-npi"))
-            .count()
-        <= 1;
-  }
-
-  @JsonIgnore
-  @SuppressWarnings("unused")
   @AssertTrue(message = "System and value of identifier must be specified")
   private boolean isValidIdentifierSystemAndValue() {
     if (identifier == null) {
       return false;
     }
-    return identifier.stream()
-        .allMatch(
-            e ->
-                e.system() != null
-                    && (e.value() != null || e.system().equals("http://hl7.org/fhir/sid/us-npi")));
+
+    boolean validAllSlice =
+        identifier.stream()
+            .allMatch(
+                e ->
+                    StringUtils.isNotEmpty(e.value())
+                        && StringUtils.isNotEmpty(e.system())
+                        && !"http://hl7.org/fhir/sid/us-npi".equals(e.system()));
+
+    boolean validNpiSlice =
+        identifier.stream().filter(e -> "http://hl7.org/fhir/sid/us-npi".equals(e.system())).count()
+            == 1;
+
+    return (validAllSlice ^ validNpiSlice);
   }
 
   @JsonIgnore
@@ -126,7 +119,7 @@ public class Practitioner implements Resource {
     if (name == null) {
       return false;
     }
-    return name.stream().allMatch(e -> e.family() != null);
+    return name.stream().allMatch(e -> StringUtils.isNotEmpty(e.family()));
   }
 
   public enum GenderCode {
