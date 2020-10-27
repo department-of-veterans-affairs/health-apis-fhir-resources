@@ -13,7 +13,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 public interface PractitionerApi {
-
   @Operation(
       summary = "Practitioner Read",
       description =
