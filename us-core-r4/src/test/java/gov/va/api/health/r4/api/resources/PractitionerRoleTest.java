@@ -62,7 +62,6 @@ public class PractitionerRoleTest {
                     .practitionerRole()
                     .telecom(singletonList(samples.contactPoint().system(null)))))
         .isNotEmpty();
-
     // One good one bad
     assertThat(
             violationsOf(
@@ -73,13 +72,6 @@ public class PractitionerRoleTest {
   }
 
   @Test
-  public void validationPassesGivenGoodContactPoint() {
-    assertThat(
-            violationsOf(samples.practitionerRole().telecom(singletonList(samples.contactPoint()))))
-        .isEmpty();
-  }
-
-  @Test
   public void validationFailsGivenBlankDescription() {
     assertThat(
             violationsOf(
@@ -87,6 +79,13 @@ public class PractitionerRoleTest {
                     .practitionerRole()
                     .notAvailable(singletonList(samples.notAvailable().description(null)))))
         .isNotEmpty();
+  }
+
+  @Test
+  public void validationPassesGivenGoodContactPoint() {
+    assertThat(
+            violationsOf(samples.practitionerRole().telecom(singletonList(samples.contactPoint()))))
+        .isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
