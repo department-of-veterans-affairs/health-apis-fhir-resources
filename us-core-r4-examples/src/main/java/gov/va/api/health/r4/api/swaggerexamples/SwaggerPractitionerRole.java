@@ -10,16 +10,12 @@ import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.ContactPoint.ContactPointSystem;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.PractitionerRole;
-import gov.va.api.health.r4.api.resources.PractitionerRole.DaysOfWeek;
+import gov.va.api.health.r4.api.resources.PractitionerRole.DayOfWeek;
 import gov.va.api.health.r4.api.resources.PractitionerRole.PractitionerAvailableTime;
 
 public class SwaggerPractitionerRole {
 
-  /**
-   * An example PractitionerRole.
-   *
-   * @return an example PractitionerRole.
-   */
+  /** An example PractitionerRole. */
   public static PractitionerRole practitionerRole() {
     return PractitionerRole.builder()
         .resourceType("PractitionerRole")
@@ -68,7 +64,7 @@ public class SwaggerPractitionerRole {
         .availableTime(
             asList(
                 PractitionerAvailableTime.builder()
-                    .daysOfWeek(asList(DaysOfWeek.mon, DaysOfWeek.wed, DaysOfWeek.fri))
+                    .daysOfWeek(asList(DayOfWeek.mon, DayOfWeek.wed, DayOfWeek.fri))
                     .availableStartTime("08:00:00")
                     .availableEndTime("15:00:00")
                     .build()))

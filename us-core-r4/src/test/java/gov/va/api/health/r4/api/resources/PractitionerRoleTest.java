@@ -79,6 +79,16 @@ public class PractitionerRoleTest {
         .isEmpty();
   }
 
+  @Test
+  public void validationFailsGivenBlankDescription() {
+    assertThat(
+            violationsOf(
+                samples
+                    .practitionerRole()
+                    .notAvailable(singletonList(samples.notAvailable().description(null)))))
+        .isNotEmpty();
+  }
+
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
     ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     return factory.getValidator().validate(object);

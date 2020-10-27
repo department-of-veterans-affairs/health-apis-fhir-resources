@@ -3,7 +3,7 @@ package gov.va.api.health.r4.api.samples;
 import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.resources.PractitionerRole;
-import gov.va.api.health.r4.api.resources.PractitionerRole.DaysOfWeek;
+import gov.va.api.health.r4.api.resources.PractitionerRole.DayOfWeek;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
@@ -16,7 +16,7 @@ public class SamplePractitionerRoles {
         .id("999")
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
-        .daysOfWeek(singletonList(DaysOfWeek.fri))
+        .daysOfWeek(singletonList(DayOfWeek.fri))
         .allDay(false)
         .availableStartTime("08:00:00")
         .availableEndTime("12:00:00")

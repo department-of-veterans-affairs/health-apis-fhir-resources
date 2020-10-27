@@ -106,7 +106,7 @@ public class PractitionerRole implements Resource {
     return telecom.stream().noneMatch(e -> e.system() == null || e.value() == null);
   }
 
-  public enum DaysOfWeek {
+  public enum DayOfWeek {
     mon,
     tue,
     wed,
@@ -194,7 +194,7 @@ public class PractitionerRole implements Resource {
 
     @Valid List<Extension> modifierExtension;
 
-    List<DaysOfWeek> daysOfWeek;
+    List<DayOfWeek> daysOfWeek;
 
     Boolean allDay;
 
