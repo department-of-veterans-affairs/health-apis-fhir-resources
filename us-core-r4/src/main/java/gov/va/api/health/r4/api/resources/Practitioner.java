@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -103,11 +105,8 @@ public class Practitioner implements Resource {
     }
 
     return identifier.stream()
-        .allMatch(
-            e ->
-                StringUtils.isNotEmpty(e.system())
-                    && (StringUtils.isNotEmpty(e.value())
-                        || "http://hl7.org/fhir/sid/us-npi".equals(e.system())));
+        .filter(e -> !"http://hl7.org/fhir/sid/us-npi".equals(e.system()))
+        .allMatch(e -> isNotEmpty(e.system()) && isNotEmpty(e.value()));
   }
 
   @JsonIgnore
