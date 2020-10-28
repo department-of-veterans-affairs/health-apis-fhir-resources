@@ -97,19 +97,17 @@ public class Practitioner implements Resource {
       return false;
     }
 
-    boolean validAllSlice =
-        identifier.stream()
-            .allMatch(
-                e ->
-                    StringUtils.isNotEmpty(e.value())
-                        && StringUtils.isNotEmpty(e.system())
-                        && !"http://hl7.org/fhir/sid/us-npi".equals(e.system()));
+    if (identifier.stream().filter(e -> "http://hl7.org/fhir/sid/us-npi".equals(e.system())).count()
+        > 1) {
+      return false;
+    }
 
-    boolean validNpiSlice =
-        identifier.stream().filter(e -> "http://hl7.org/fhir/sid/us-npi".equals(e.system())).count()
-            == 1;
-
-    return (validAllSlice ^ validNpiSlice);
+    return identifier.stream()
+        .allMatch(
+            e ->
+                StringUtils.isNotEmpty(e.system())
+                    && (StringUtils.isNotEmpty(e.value())
+                        || "http://hl7.org/fhir/sid/us-npi".equals(e.system())));
   }
 
   @JsonIgnore
