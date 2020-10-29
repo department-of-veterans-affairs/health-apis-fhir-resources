@@ -2,16 +2,20 @@ package gov.va.api.health.r4.api.resources;
 
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
-import static java.util.Collections.singletonList;
+
+import java.util.List;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.samples.SampleQuestionnaires;
-import gov.va.api.health.r4.api.samples.SampleKnownTypes;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 
 public class QuestionnaireTest {
   private final SampleQuestionnaires data = SampleQuestionnaires.get();
-
-  //private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void questionnaire() {
@@ -19,14 +23,21 @@ public class QuestionnaireTest {
   }
 
   @Test
+  public void valid() {
+    assertThat(
+            Validation.buildDefaultValidatorFactory().getValidator().validate(data.questionnaire()))
+        .isEmpty();
+  }
+
+  @Test
   public void bundlerCanBuildQuestionnaireBundles() {
     Questionnaire.Entry entry =
         Questionnaire.Entry.builder()
-            .extension(singletonList(data.extension()))
+            .extension(List.of(data.extension()))
             .fullUrl("http://questionnaire.com")
             .id("123")
             .link(
-                singletonList(
+                List.of(
                     BundleLink.builder()
                         .relation(BundleLink.LinkRelation.self)
                         .url(("http://questionnaire/1"))
@@ -38,9 +49,9 @@ public class QuestionnaireTest {
             .build();
     Questionnaire.Bundle bundle =
         Questionnaire.Bundle.builder()
-            .entry(singletonList(entry))
+            .entry(List.of(entry))
             .link(
-                singletonList(
+                List.of(
                     BundleLink.builder()
                         .relation(BundleLink.LinkRelation.self)
                         .url(("http://questionnaire.com/2"))

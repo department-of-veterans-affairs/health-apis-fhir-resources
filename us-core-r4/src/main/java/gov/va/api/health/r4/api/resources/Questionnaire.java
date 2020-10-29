@@ -187,7 +187,7 @@ public class Questionnaire implements DomainResource {
         "valueCoding",
         "valueReference"
       },
-      message = "Only one value field may be specified")
+      message = "Exactly one value field must be specified")
   public static class AnswerOption implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -274,7 +274,7 @@ public class Questionnaire implements DomainResource {
         "answerQuantity",
         "answerReference"
       },
-      message = "Only one answer field may be specified")
+      message = "Exactly one answer field must be specified")
   public static class EnableWhen implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -354,7 +354,7 @@ public class Questionnaire implements DomainResource {
         "valueQuantity",
         "valueReference"
       },
-      message = "Only one value field may be specified")
+      message = "Exactly one value field must be specified")
   public static class Initial implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
