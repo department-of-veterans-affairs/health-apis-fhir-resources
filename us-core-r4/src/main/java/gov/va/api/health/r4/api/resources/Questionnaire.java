@@ -123,25 +123,9 @@ public class Questionnaire implements DomainResource {
 
   @Valid List<Item> item;
 
-  public enum QuestionnaireItemType {
-    group,
-    display,
-    @JsonProperty("boolean")
-    bool,
-    decimal,
-    integer,
-    date,
-    dateTime,
-    time,
-    string,
-    text,
-    url,
-    choice,
-    @JsonProperty("open-choice")
-    open_choice,
-    attachment,
-    reference,
-    quantity
+  public enum EnableWhenBehavior {
+    all,
+    any
   }
 
   public enum PublicationStatus {
@@ -167,9 +151,25 @@ public class Questionnaire implements DomainResource {
     lessOrEquals
   }
 
-  public enum EnableWhenBehavior {
-    all,
-    any
+  public enum QuestionnaireItemType {
+    group,
+    display,
+    @JsonProperty("boolean")
+    bool,
+    decimal,
+    integer,
+    date,
+    dateTime,
+    time,
+    string,
+    text,
+    url,
+    choice,
+    @JsonProperty("open-choice")
+    open_choice,
+    attachment,
+    reference,
+    quantity
   }
 
   @Data
@@ -177,8 +177,18 @@ public class Questionnaire implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "QuestionnaireItem")
-  public static class Item implements BackboneElement {
+  @Schema(name = "QuestionnaireItemAnswerOption")
+  @ExactlyOneOf(
+      fields = {
+        "valueInteger",
+        "valueDate",
+        "valueTime",
+        "valueString",
+        "valueCoding",
+        "valueReference"
+      },
+      message = "Only one value field may be specified")
+  public static class AnswerOption implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -186,39 +196,141 @@ public class Questionnaire implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotBlank String linkId;
+    Integer valueInteger;
 
-    @Pattern(regexp = Fhir.URI)
-    String definition;
+    @Pattern(regexp = Fhir.DATE)
+    String valueDate;
 
-    @Valid List<Coding> code;
+    @Pattern(regexp = Fhir.TIME)
+    String valueTime;
 
-    String prefix;
+    String valueString;
 
-    String text;
+    @Valid Coding valueCoding;
 
-    @NotNull QuestionnaireItemType type;
+    @Valid Reference valueReference;
 
-    @Valid List<EnableWhen> enableWhen;
+    Boolean initialSelected;
+  }
 
-    EnableWhenBehavior enableBehavior;
+  @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = Questionnaire.Bundle.BundleBuilder.class)
+  @Schema(
+      name = "QuestionnaireBundle",
+      example =
+          "${r4.questionnaireBundle:gov.va.api.health.r4.api.swaggerexamples."
+              + "SwaggerQuestionnaire#questionnaireBundle}")
+  public static class Bundle extends AbstractBundle<Questionnaire.Entry> {
+    /** Bundle builder. */
+    @Builder
+    public Bundle(
+        @NotBlank String resourceType,
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid Meta meta,
+        @Pattern(regexp = Fhir.URI) String implicitRules,
+        @Pattern(regexp = Fhir.CODE) String language,
+        @Valid Identifier identifier,
+        @NotNull BundleType type,
+        @Pattern(regexp = Fhir.INSTANT) String timestamp,
+        @Min(0) Integer total,
+        @Valid List<BundleLink> link,
+        @Valid List<Questionnaire.Entry> entry,
+        @Valid Signature signature) {
+      super(
+          resourceType,
+          id,
+          meta,
+          implicitRules,
+          language,
+          identifier,
+          type,
+          timestamp,
+          total,
+          link,
+          entry,
+          signature);
+    }
+  }
 
-    Boolean required;
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "QuestionnaireItemEnableWhen")
+  @ExactlyOneOf(
+      fields = {
+        "answerBoolean",
+        "answerDecimal",
+        "answerInteger",
+        "answerDate",
+        "answerDateTime",
+        "answerTime",
+        "answerString",
+        "answerCoding",
+        "answerQuantity",
+        "answerReference"
+      },
+      message = "Only one answer field may be specified")
+  public static class EnableWhen implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
 
-    Boolean repeats;
+    @Valid List<Extension> extension;
 
-    Boolean readOnly;
+    @Valid List<Extension> modifierExtension;
 
-    Integer maxLength;
+    @NotNull String question;
 
-    @Pattern(regexp = Fhir.CANONICAL)
-    String answerValueSet;
+    @NotNull QuestionnaireItemOperator operator;
 
-    @Valid List<AnswerOption> answerOption;
+    Boolean answerBoolean;
 
-    @Valid List<Initial> initial;
+    BigDecimal answerDecimal;
 
-    @Valid List<Item> item;
+    Integer answerInteger;
+
+    @Pattern(regexp = Fhir.DATE)
+    String answerDate;
+
+    @Pattern(regexp = Fhir.DATETIME)
+    String answerDateTime;
+
+    @Pattern(regexp = Fhir.TIME)
+    String answerTime;
+
+    String answerString;
+
+    @Valid Coding answerCoding;
+
+    @Valid Quantity answerQuantity;
+
+    @Valid Reference answerReference;
+  }
+
+  @Data
+  @NoArgsConstructor
+  @EqualsAndHashCode(callSuper = true)
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @JsonDeserialize(builder = Questionnaire.Entry.EntryBuilder.class)
+  @Schema(name = "QuestionnaireEntry")
+  public static class Entry extends AbstractEntry<Questionnaire> {
+    @Builder
+    public Entry(
+        @Pattern(regexp = Fhir.ID) String id,
+        @Valid List<Extension> extension,
+        @Valid List<Extension> modifierExtension,
+        @Valid List<BundleLink> link,
+        @Pattern(regexp = Fhir.URI) String fullUrl,
+        @Valid Questionnaire resource,
+        @Valid Search search,
+        @Valid Request request,
+        @Valid Response response) {
+      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
+    }
   }
 
   @Data
@@ -285,18 +397,8 @@ public class Questionnaire implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "QuestionnaireItemAnswerOption")
-  @ExactlyOneOf(
-      fields = {
-        "valueInteger",
-        "valueDate",
-        "valueTime",
-        "valueString",
-        "valueCoding",
-        "valueReference"
-      },
-      message = "Only one value field may be specified")
-  public static class AnswerOption implements BackboneElement {
+  @Schema(name = "QuestionnaireItem")
+  public static class Item implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -304,140 +406,38 @@ public class Questionnaire implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    Integer valueInteger;
+    @NotBlank String linkId;
 
-    @Pattern(regexp = Fhir.DATE)
-    String valueDate;
+    @Pattern(regexp = Fhir.URI)
+    String definition;
 
-    @Pattern(regexp = Fhir.TIME)
-    String valueTime;
+    @Valid List<Coding> code;
 
-    String valueString;
+    String prefix;
 
-    @Valid Coding valueCoding;
+    String text;
 
-    @Valid Reference valueReference;
+    @NotNull QuestionnaireItemType type;
 
-    Boolean initialSelected;
-  }
+    @Valid List<EnableWhen> enableWhen;
 
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "QuestionnaireItemEnableWhen")
-  @ExactlyOneOf(
-      fields = {
-        "answerBoolean",
-        "answerDecimal",
-        "answerInteger",
-        "answerDate",
-        "answerDateTime",
-        "answerTime",
-        "answerString",
-        "answerCoding",
-        "answerQuantity",
-        "answerReference"
-      },
-      message = "Only one answer field may be specified")
-  public static class EnableWhen implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
+    EnableWhenBehavior enableBehavior;
 
-    @Valid List<Extension> extension;
+    Boolean required;
 
-    @Valid List<Extension> modifierExtension;
+    Boolean repeats;
 
-    @NotNull String question;
+    Boolean readOnly;
 
-    @NotNull QuestionnaireItemOperator operator;
+    Integer maxLength;
 
-    Boolean answerBoolean;
+    @Pattern(regexp = Fhir.CANONICAL)
+    String answerValueSet;
 
-    BigDecimal answerDecimal;
+    @Valid List<AnswerOption> answerOption;
 
-    Integer answerInteger;
+    @Valid List<Initial> initial;
 
-    @Pattern(regexp = Fhir.DATE)
-    String answerDate;
-
-    @Pattern(regexp = Fhir.DATETIME)
-    String answerDateTime;
-
-    @Pattern(regexp = Fhir.TIME)
-    String answerTime;
-
-    String answerString;
-
-    @Valid Coding answerCoding;
-
-    @Valid Quantity answerQuantity;
-
-    @Valid Reference answerReference;
-  }
-
-  @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Questionnaire.Bundle.BundleBuilder.class)
-  @Schema(
-      name = "QuestionnaireBundle",
-      example =
-          "${r4.questionnaireBundle:gov.va.api.health.r4.api.swaggerexamples."
-              + "SwaggerQuestionnaire#questionnaireBundle}")
-  public static class Bundle extends AbstractBundle<Questionnaire.Entry> {
-    /** Bundle builder. */
-    @Builder
-    public Bundle(
-        @NotBlank String resourceType,
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid Meta meta,
-        @Pattern(regexp = Fhir.URI) String implicitRules,
-        @Pattern(regexp = Fhir.CODE) String language,
-        @Valid Identifier identifier,
-        @NotNull BundleType type,
-        @Pattern(regexp = Fhir.INSTANT) String timestamp,
-        @Min(0) Integer total,
-        @Valid List<BundleLink> link,
-        @Valid List<Questionnaire.Entry> entry,
-        @Valid Signature signature) {
-      super(
-          resourceType,
-          id,
-          meta,
-          implicitRules,
-          language,
-          identifier,
-          type,
-          timestamp,
-          total,
-          link,
-          entry,
-          signature);
-    }
-  }
-
-  @Data
-  @NoArgsConstructor
-  @EqualsAndHashCode(callSuper = true)
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Questionnaire.Entry.EntryBuilder.class)
-  @Schema(name = "QuestionnaireEntry")
-  public static class Entry extends AbstractEntry<Questionnaire> {
-    @Builder
-    public Entry(
-        @Pattern(regexp = Fhir.ID) String id,
-        @Valid List<Extension> extension,
-        @Valid List<Extension> modifierExtension,
-        @Valid List<BundleLink> link,
-        @Pattern(regexp = Fhir.URI) String fullUrl,
-        @Valid Questionnaire resource,
-        @Valid Search search,
-        @Valid Request request,
-        @Valid Response response) {
-      super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
-    }
+    @Valid List<Item> item;
   }
 }
