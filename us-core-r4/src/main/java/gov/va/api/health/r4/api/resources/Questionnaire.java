@@ -7,11 +7,13 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
+import gov.va.api.health.r4.api.datatypes.Attachment;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
+import gov.va.api.health.r4.api.datatypes.Quantity;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
@@ -20,12 +22,13 @@ import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.validation.api.ExactlyOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -164,6 +167,11 @@ public class Questionnaire implements DomainResource {
     lessOrEquals
   }
 
+  public enum EnableWhenBehavior {
+    all,
+    any
+  }
+
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -193,22 +201,23 @@ public class Questionnaire implements DomainResource {
 
     @Valid List<EnableWhen> enableWhen;
 
-    EnableWhenBehavior  enableBehavior;
-    
+    EnableWhenBehavior enableBehavior;
+
     Boolean required;
-    
+
     Boolean repeats;
-    
+
     Boolean readOnly;
-    
+
     Integer maxLength;
-    
-    @Pattern(regexp = Fhir.CANONICAL) String answerValueSet;
-    
+
+    @Pattern(regexp = Fhir.CANONICAL)
+    String answerValueSet;
+
     @Valid List<AnswerOption> answerOption;
-    
+
     @Valid List<Initial> initial;
-    
+
     @Valid List<Item> item;
   }
 
@@ -219,53 +228,58 @@ public class Questionnaire implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "QuestionnaireItemInitial")
   @ExactlyOneOf(
-	      fields = {"valueBoolean",
-	    		    "valueDecimal",
-	    		    "valueInteger",
-	    		    "valueDate",
-	    		    "valueDateTime",
-	    		    "valueTime",
-	    		    "valueString",
-	    		    "valueUri",
-	    		    "valueAttachment",
-	       		    "valueCoding",
-	    		    "valueQuantity",
-	    		    "valueReference"
-	    		    },
-	      message = "Only one value field may be specified")
+      fields = {
+        "valueBoolean",
+        "valueDecimal",
+        "valueInteger",
+        "valueDate",
+        "valueDateTime",
+        "valueTime",
+        "valueString",
+        "valueUri",
+        "valueAttachment",
+        "valueCoding",
+        "valueQuantity",
+        "valueReference"
+      },
+      message = "Only one value field may be specified")
   public static class Initial implements BackboneElement {
-	    @Pattern(regexp = Fhir.ID)
-	    String id;
+    @Pattern(regexp = Fhir.ID)
+    String id;
 
-	    @Valid List<Extension> extension;
+    @Valid List<Extension> extension;
 
-	    @Valid List<Extension> modifierExtension;
-	    
-	    Boolean valueBoolean;
-	    
-	    BigDecimal valueDecimal;
-	    
-	    Integer valueInteger;
-	    
-	    @Pattern(regexp = Fhir.DATE) valueDate;
-	    
-	    @Pattern(regexp = Fhir.DATETIME) valueDateTime;
-	    
-	    @Pattern(regexp = Fhir.TIME) valueTime;
-	    
-	    String valueString;
-	    
-	    @Pattern(regexp = Fhir.URI) String valueUri;
-	    
-	    @Valid Attachment valueAttachment;
-	    
-	    @Valid Coding valueCoding;
-	    
-	    @Valid Quantity valueQuantity;
-	    
-	    @Valid Reference valueReference;
+    @Valid List<Extension> modifierExtension;
+
+    Boolean valueBoolean;
+
+    BigDecimal valueDecimal;
+
+    Integer valueInteger;
+
+    @Pattern(regexp = Fhir.DATE)
+    String valueDate;
+
+    @Pattern(regexp = Fhir.DATETIME)
+    String valueDateTime;
+
+    @Pattern(regexp = Fhir.TIME)
+    String valueTime;
+
+    String valueString;
+
+    @Pattern(regexp = Fhir.URI)
+    String valueUri;
+
+    @Valid Attachment valueAttachment;
+
+    @Valid Coding valueCoding;
+
+    @Valid Quantity valueQuantity;
+
+    @Valid Reference valueReference;
   }
-  
+
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -273,38 +287,40 @@ public class Questionnaire implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "QuestionnaireItemAnswerOption")
   @ExactlyOneOf(
-	      fields = {
-	    		  "valueInteger",
-	    		    "valueDate",
-	    		    "valueTime",
-	    		    "valueString",
-	    		    "valueCoding",
-	    		    "valueReference"
-	    		    },
-	      message = "Only one value field may be specified")
+      fields = {
+        "valueInteger",
+        "valueDate",
+        "valueTime",
+        "valueString",
+        "valueCoding",
+        "valueReference"
+      },
+      message = "Only one value field may be specified")
   public static class AnswerOption implements BackboneElement {
-	    @Pattern(regexp = Fhir.ID)
-	    String id;
+    @Pattern(regexp = Fhir.ID)
+    String id;
 
-	    @Valid List<Extension> extension;
+    @Valid List<Extension> extension;
 
-	    @Valid List<Extension> modifierExtension;
-	    
-	    Integer valueInteger;
-	    
-	    @Pattern(regexp = Fhir.DATE) valueDate;
-	    
-	    @Pattern(regexp = Fhir.TIME) valueTime;
-	    
-	    String valueString;
-	    
-	    @Valid Coding valueCoding;
-	    
-	    @Valid Reference valueReference;
-	    
-	    Boolean initialSelected;
+    @Valid List<Extension> modifierExtension;
+
+    Integer valueInteger;
+
+    @Pattern(regexp = Fhir.DATE)
+    String valueDate;
+
+    @Pattern(regexp = Fhir.TIME)
+    String valueTime;
+
+    String valueString;
+
+    @Valid Coding valueCoding;
+
+    @Valid Reference valueReference;
+
+    Boolean initialSelected;
   }
-  
+
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -312,18 +328,19 @@ public class Questionnaire implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "QuestionnaireItemEnableWhen")
   @ExactlyOneOf(
-	      fields = {"answerBoolean",
-	    		    "answerDecimal",
-	    		    "answerInteger",
-	    		    "answerDate",
-	    		    "answerDateTime",
-	    		    "answerTime",
-	    		    "answerString",
-	    		    "answerCoding",
-	    		    "answerQuantity",
-	    		    "answerReference"
-	    		    },
-	      message = "Only one answer field may be specified")
+      fields = {
+        "answerBoolean",
+        "answerDecimal",
+        "answerInteger",
+        "answerDate",
+        "answerDateTime",
+        "answerTime",
+        "answerString",
+        "answerCoding",
+        "answerQuantity",
+        "answerReference"
+      },
+      message = "Only one answer field may be specified")
   public static class EnableWhen implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -335,25 +352,28 @@ public class Questionnaire implements DomainResource {
     @NotNull String question;
 
     @NotNull QuestionnaireItemOperator operator;
-    
+
     Boolean answerBoolean;
-    
+
     BigDecimal answerDecimal;
-    
+
     Integer answerInteger;
-    
-    @Pattern(regexp = Fhir.DATE) answerDate;
-    
-    @Pattern(regexp = Fhir.DATETIME) answerDateTime;
-    
-    @Pattern(regexp = Fhir.TIME) answerTime;
-    
+
+    @Pattern(regexp = Fhir.DATE)
+    String answerDate;
+
+    @Pattern(regexp = Fhir.DATETIME)
+    String answerDateTime;
+
+    @Pattern(regexp = Fhir.TIME)
+    String answerTime;
+
     String answerString;
-    
+
     @Valid Coding answerCoding;
-    
+
     @Valid Quantity answerQuantity;
-    
+
     @Valid Reference answerReference;
   }
 
@@ -368,7 +388,7 @@ public class Questionnaire implements DomainResource {
           "${r4.questionnaireBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerQuestionnaire#questionnaireBundle}")
   public static class Bundle extends AbstractBundle<Questionnaire.Entry> {
-   // /** Questionnaire bundle builder. */
+    /** Bundle builder. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -420,8 +440,4 @@ public class Questionnaire implements DomainResource {
       super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
     }
   }
-  
-  public enum EnableWhenBehavior {
-	  all , any
-	  }
 }
