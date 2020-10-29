@@ -283,7 +283,7 @@ public class Questionnaire implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull String question;
+    @NotBlank String question;
 
     @NotNull QuestionnaireItemOperator operator;
 
