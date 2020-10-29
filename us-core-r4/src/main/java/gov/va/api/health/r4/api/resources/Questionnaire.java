@@ -8,11 +8,13 @@ import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.AbstractEntry;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
+import gov.va.api.health.r4.api.datatypes.Coding;
+import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
-import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
+import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -43,7 +45,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/questionnaire.html",
     example =
-        "${r4.questionnaire:gov.va.api.health.r4.api.swaggerexamples.SwaggerQuestionnaire#questionnaire}")
+        "${r4.questionnaire"
+            + ":gov.va.api.health.r4.api.swaggerexamples.SwaggerQuestionnaire#questionnaire}")
 public class Questionnaire implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "Questionnaire";
 
@@ -79,116 +82,293 @@ public class Questionnaire implements DomainResource {
 
   List<@Pattern(regexp = Fhir.CANONICAL) String> derivedFrom;
 
-  @Valid @NotNull QuestionnaireStatus status;
+  @NotNull PublicationStatus status;
 
   Boolean experimental;
-  
+
   List<@Pattern(regexp = Fhir.CODE) String> subjectType;
-  
-  @Pattern(regexp = Fhir.DATETIME) String date;
-  
+
+  @Pattern(regexp = Fhir.DATETIME)
+  String date;
+
   String publisher;
-  
+
   @Valid List<ContactDetail> contact;
-  
-  @Pattern(regexp = Fhir.MARKDOWN) String description;
-  
+
+  @Pattern(regexp = Fhir.MARKDOWN)
+  String description;
+
   @Valid List<UsageContext> useContext;
-  
+
   @Valid List<CodeableConcept> jurisdiction;
-  
-  @Pattern(regexp = Fhir.MARKDOWN) String purpose;
-  
-  @Pattern(regexp = Fhir.MARKDOWN) String copyright; 
-  
-  @Pattern(regexp = Fhir.DATETIME) String approvalDate;
-  
-  @Pattern(regexp = Fhir.DATETIME) String lastReviewDate;
-  
+
+  @Pattern(regexp = Fhir.MARKDOWN)
+  String purpose;
+
+  @Pattern(regexp = Fhir.MARKDOWN)
+  String copyright;
+
+  @Pattern(regexp = Fhir.DATETIME)
+  String approvalDate;
+
+  @Pattern(regexp = Fhir.DATETIME)
+  String lastReviewDate;
+
   @Valid Period effectivePeriod;
-  
-  @Valid List<Code> code;
-  
-  public enum QuestionnaireStatus {
+
+  @Valid List<Coding> code;
+
+  @Valid List<Item> item;
+
+  public enum QuestionnaireItemType {
+    group,
+    display,
+    @JsonProperty("boolean")
+    bool,
+    decimal,
+    integer,
+    date,
+    dateTime,
+    time,
+    string,
+    text,
+    url,
+    choice,
+    @JsonProperty("open-choice")
+    open_choice,
+    attachment,
+    reference,
+    quantity
+  }
+
+  public enum PublicationStatus {
     draft,
     active,
     retired,
     unknown
   }
 
-  // ----------------------
-
-  @Valid CodeableConcept cancelationReason;
-  @Valid List<CodeableConcept> serviceType;
-  @Valid List<CodeableConcept> specialty;
-  @Valid CodeableConcept appointmentType;
- 
-  @Valid List<Reference> reasonReference;
-
-  @Min(0)
-  Integer priority;
-
-  @Pattern(regexp = Fhir.STRING)
-  String description;
-
-  @Valid List<Reference> supportingInformation;
-
-  @Pattern(regexp = Fhir.INSTANT)
-  String start;
-
-  @Pattern(regexp = Fhir.INSTANT)
-  String end;
-
-  @Min(1)
-  Integer minutesDuration;
-
-  @Valid List<Reference> slot;
-
-  @Pattern(regexp = Fhir.DATETIME)
-  String created;
-
-  @Pattern(regexp = Fhir.STRING)
-  String comment;
-
-  @Pattern(regexp = Fhir.STRING)
-  String patientInstruction;
-
-  @Valid List<Reference> basedOn;
-
-  @NotEmpty @Valid List<Participant> participant;
-
-  @Valid List<Period> requestedPeriod;
-
-  @SuppressWarnings("unused")
-  public enum Required {
-    required,
-    optional,
-    @JsonProperty("information-only")
-    information_only
+  public enum QuestionnaireItemOperator {
+    exists,
+    @JsonProperty("=")
+    equals,
+    @JsonProperty("!=")
+    notEquals,
+    @JsonProperty(">")
+    greaterThan,
+    @JsonProperty("<")
+    lessThan,
+    @JsonProperty(">=")
+    greaterOrEquals,
+    @JsonProperty("<=")
+    lessOrEquals
   }
 
-  @SuppressWarnings("unused")
-  public enum ParticipationStatus {
-    accepted,
-    declined,
-    tentative,
-    @JsonProperty("needs-action")
-    needs_action
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "QuestionnaireItem")
+  public static class Item implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotBlank String linkId;
+
+    @Pattern(regexp = Fhir.URI)
+    String definition;
+
+    @Valid List<Coding> code;
+
+    String prefix;
+
+    String text;
+
+    @NotNull QuestionnaireItemType type;
+
+    @Valid List<EnableWhen> enableWhen;
+
+    EnableWhenBehavior  enableBehavior;
+    
+    Boolean required;
+    
+    Boolean repeats;
+    
+    Boolean readOnly;
+    
+    Integer maxLength;
+    
+    @Pattern(regexp = Fhir.CANONICAL) String answerValueSet;
+    
+    @Valid List<AnswerOption> answerOption;
+    
+    @Valid List<Initial> initial;
+    
+    @Valid List<Item> item;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "QuestionnaireItemInitial")
+  @ExactlyOneOf(
+	      fields = {"valueBoolean",
+	    		    "valueDecimal",
+	    		    "valueInteger",
+	    		    "valueDate",
+	    		    "valueDateTime",
+	    		    "valueTime",
+	    		    "valueString",
+	    		    "valueUri",
+	    		    "valueAttachment",
+	       		    "valueCoding",
+	    		    "valueQuantity",
+	    		    "valueReference"
+	    		    },
+	      message = "Only one value field may be specified")
+  public static class Initial implements BackboneElement {
+	    @Pattern(regexp = Fhir.ID)
+	    String id;
+
+	    @Valid List<Extension> extension;
+
+	    @Valid List<Extension> modifierExtension;
+	    
+	    Boolean valueBoolean;
+	    
+	    BigDecimal valueDecimal;
+	    
+	    Integer valueInteger;
+	    
+	    @Pattern(regexp = Fhir.DATE) valueDate;
+	    
+	    @Pattern(regexp = Fhir.DATETIME) valueDateTime;
+	    
+	    @Pattern(regexp = Fhir.TIME) valueTime;
+	    
+	    String valueString;
+	    
+	    @Pattern(regexp = Fhir.URI) String valueUri;
+	    
+	    @Valid Attachment valueAttachment;
+	    
+	    @Valid Coding valueCoding;
+	    
+	    @Valid Quantity valueQuantity;
+	    
+	    @Valid Reference valueReference;
+  }
+  
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "QuestionnaireItemAnswerOption")
+  @ExactlyOneOf(
+	      fields = {
+	    		  "valueInteger",
+	    		    "valueDate",
+	    		    "valueTime",
+	    		    "valueString",
+	    		    "valueCoding",
+	    		    "valueReference"
+	    		    },
+	      message = "Only one value field may be specified")
+  public static class AnswerOption implements BackboneElement {
+	    @Pattern(regexp = Fhir.ID)
+	    String id;
+
+	    @Valid List<Extension> extension;
+
+	    @Valid List<Extension> modifierExtension;
+	    
+	    Integer valueInteger;
+	    
+	    @Pattern(regexp = Fhir.DATE) valueDate;
+	    
+	    @Pattern(regexp = Fhir.TIME) valueTime;
+	    
+	    String valueString;
+	    
+	    @Valid Coding valueCoding;
+	    
+	    @Valid Reference valueReference;
+	    
+	    Boolean initialSelected;
+  }
+  
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @Schema(name = "QuestionnaireItemEnableWhen")
+  @ExactlyOneOf(
+	      fields = {"answerBoolean",
+	    		    "answerDecimal",
+	    		    "answerInteger",
+	    		    "answerDate",
+	    		    "answerDateTime",
+	    		    "answerTime",
+	    		    "answerString",
+	    		    "answerCoding",
+	    		    "answerQuantity",
+	    		    "answerReference"
+	    		    },
+	      message = "Only one answer field may be specified")
+  public static class EnableWhen implements BackboneElement {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Valid List<Extension> modifierExtension;
+
+    @NotNull String question;
+
+    @NotNull QuestionnaireItemOperator operator;
+    
+    Boolean answerBoolean;
+    
+    BigDecimal answerDecimal;
+    
+    Integer answerInteger;
+    
+    @Pattern(regexp = Fhir.DATE) answerDate;
+    
+    @Pattern(regexp = Fhir.DATETIME) answerDateTime;
+    
+    @Pattern(regexp = Fhir.TIME) answerTime;
+    
+    String answerString;
+    
+    @Valid Coding answerCoding;
+    
+    @Valid Quantity answerQuantity;
+    
+    @Valid Reference answerReference;
   }
 
   @Data
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Appointment.Bundle.BundleBuilder.class)
+  @JsonDeserialize(builder = Questionnaire.Bundle.BundleBuilder.class)
   @Schema(
-      name = "AppointmentBundle",
+      name = "QuestionnaireBundle",
       example =
-          "${r4.appointmentBundle:gov.va.api.health.r4.api.swaggerexamples."
-              + "SwaggerAppointment#appointmentBundle}")
-  public static class Bundle extends AbstractBundle<Appointment.Entry> {
-
-    /** Appointment bundle builder. */
+          "${r4.questionnaireBundle:gov.va.api.health.r4.api.swaggerexamples."
+              + "SwaggerQuestionnaire#questionnaireBundle}")
+  public static class Bundle extends AbstractBundle<Questionnaire.Entry> {
+   // /** Questionnaire bundle builder. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -201,7 +381,7 @@ public class Questionnaire implements DomainResource {
         @Pattern(regexp = Fhir.INSTANT) String timestamp,
         @Min(0) Integer total,
         @Valid List<BundleLink> link,
-        @Valid List<Appointment.Entry> entry,
+        @Valid List<Questionnaire.Entry> entry,
         @Valid Signature signature) {
       super(
           resourceType,
@@ -220,39 +400,12 @@ public class Questionnaire implements DomainResource {
   }
 
   @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @Schema(name = "AppointmentParticipant")
-  public static class Participant implements BackboneElement {
-
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @Valid List<CodeableConcept> type;
-
-    @Valid Reference actor;
-
-    @Valid Required required;
-
-    @NotNull @Valid ParticipationStatus status;
-
-    @Valid Period period;
-  }
-
-  @Data
   @NoArgsConstructor
   @EqualsAndHashCode(callSuper = true)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @JsonDeserialize(builder = Appointment.Entry.EntryBuilder.class)
-  @Schema(name = "AppointmentEntry")
-  public static class Entry extends AbstractEntry<Appointment> {
-
+  @JsonDeserialize(builder = Questionnaire.Entry.EntryBuilder.class)
+  @Schema(name = "QuestionnaireEntry")
+  public static class Entry extends AbstractEntry<Questionnaire> {
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -260,11 +413,15 @@ public class Questionnaire implements DomainResource {
         @Valid List<Extension> modifierExtension,
         @Valid List<BundleLink> link,
         @Pattern(regexp = Fhir.URI) String fullUrl,
-        @Valid Appointment resource,
+        @Valid Questionnaire resource,
         @Valid Search search,
         @Valid Request request,
         @Valid Response response) {
       super(id, extension, modifierExtension, link, fullUrl, resource, search, request, response);
     }
   }
+  
+  public enum EnableWhenBehavior {
+	  all , any
+	  }
 }
