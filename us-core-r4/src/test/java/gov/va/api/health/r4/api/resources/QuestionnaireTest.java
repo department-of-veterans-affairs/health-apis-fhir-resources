@@ -9,7 +9,7 @@ import gov.va.api.health.r4.api.samples.SampleAppointments;
 import gov.va.api.health.r4.api.samples.SampleKnownTypes;
 import org.junit.Test;
 
-public class AppointmentTest {
+public class QuestionnaireTest {
   private final SampleAppointments data = SampleAppointments.get();
 
   private final SampleKnownTypes types = SampleKnownTypes.get();

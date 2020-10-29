@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
-public class SampleAppointments {
+public class SampleQuestionnaires {
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Appointment appointment() {
