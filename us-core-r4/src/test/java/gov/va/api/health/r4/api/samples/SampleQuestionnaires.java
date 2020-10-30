@@ -1,8 +1,6 @@
 package gov.va.api.health.r4.api.samples;
 
 import gov.va.api.health.r4.api.resources.Questionnaire;
-import gov.va.api.health.r4.api.resources.Questionnaire.QuestionnaireItemOperator;
-import java.util.Arrays;
 import java.util.List;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
@@ -87,7 +85,9 @@ public class SampleQuestionnaires {
                                                 List.of(
                                                     Questionnaire.EnableWhen.builder()
                                                         .question("1.1")
-                                                        .operator(QuestionnaireItemOperator.equals)
+                                                        .operator(
+                                                            Questionnaire.QuestionnaireItemOperator
+                                                                .equals)
                                                         .answerCoding(coding())
                                                         .build()))
                                             .item(
