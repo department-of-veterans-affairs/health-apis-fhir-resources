@@ -1,9 +1,9 @@
 package gov.va.api.health.r4.api.resources;
 
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
-import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchset;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import gov.va.api.health.r4.api.bundle.AbstractBundle;
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.samples.SampleQuestionnaires;
 import java.util.List;
@@ -40,7 +40,7 @@ public class QuestionnaireTest {
                         .relation(BundleLink.LinkRelation.self)
                         .url(("http://questionnaire.com/2"))
                         .build()))
-            .type(searchset)
+            .type(AbstractBundle.BundleType.searchset)
             .signature(data.signature())
             .build();
     assertRoundTrip(bundle);
