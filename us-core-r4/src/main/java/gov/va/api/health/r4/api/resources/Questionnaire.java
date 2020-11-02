@@ -111,10 +111,10 @@ public class Questionnaire implements DomainResource {
   @Pattern(regexp = Fhir.MARKDOWN)
   String copyright;
 
-  @Pattern(regexp = Fhir.DATETIME)
+  @Pattern(regexp = Fhir.DATE)
   String approvalDate;
 
-  @Pattern(regexp = Fhir.DATETIME)
+  @Pattern(regexp = Fhir.DATE)
   String lastReviewDate;
 
   @Valid Period effectivePeriod;
@@ -154,6 +154,7 @@ public class Questionnaire implements DomainResource {
   public enum QuestionnaireItemType {
     group,
     display,
+    question,
     @JsonProperty("boolean")
     bool,
     decimal,
