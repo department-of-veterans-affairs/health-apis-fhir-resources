@@ -15,6 +15,8 @@ public class SampleQuestionnaireResponses {
         .id("99")
         .extension(List.of(extension(), extension()))
         .modifierExtension(List.of(extension(), extensionWithQuantity(), extensionWithRatio()))
+        .valueString("answer")
+        .valueInteger(42)
         .build();
   }
 

@@ -18,7 +18,7 @@ import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Reference;
-import gov.va.api.health.validation.api.ExactlyOneOf;
+import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.List;
@@ -76,7 +76,6 @@ public class QuestionnaireResponse implements DomainResource {
   @Valid List<Reference> partOf;
 
   @Pattern(regexp = Fhir.CANONICAL)
-  @Valid
   String questionnaire;
 
   @NotNull Status status;
@@ -110,7 +109,7 @@ public class QuestionnaireResponse implements DomainResource {
   @AllArgsConstructor
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @ExactlyOneOf(
+  @ZeroOrOneOf(
       fields = {
         "valueBoolean",
         "valueDecimal",
@@ -125,7 +124,7 @@ public class QuestionnaireResponse implements DomainResource {
         "valueQuantity",
         "valueReference"
       },
-      message = "Exactly one answer field must be specified")
+      message = "Only one value field should be specified")
   public static class Answer implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
