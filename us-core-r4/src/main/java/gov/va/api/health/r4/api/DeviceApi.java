@@ -89,11 +89,7 @@ public interface DeviceApi {
                       + "the patient who the device record is "
                       + "associated with.")
           String id,
-      @Parameter(
-              in = ParameterIn.QUERY,
-              name = "type",
-              description = "A code that indicates the type of medical device in the record.")
-          String type,
+      /* TODO Add type search parameter when it becomes available. */
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
