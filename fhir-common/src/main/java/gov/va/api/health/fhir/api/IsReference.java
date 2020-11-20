@@ -4,9 +4,7 @@ package gov.va.api.health.fhir.api;
  * This common set of attributes across DSTU2, STU3, and R4 reference is used for processing that
  * spans all versions of FHIR.
  */
-public interface IsReference {
-  String display();
-
+public interface IsReference extends HasDisplay {
   IsReference display(String display);
 
   String id();
