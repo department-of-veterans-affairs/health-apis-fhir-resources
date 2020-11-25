@@ -86,6 +86,14 @@ public interface PractitionerApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
+              required = true,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number of the search result.")
           @DefaultValue("1")
