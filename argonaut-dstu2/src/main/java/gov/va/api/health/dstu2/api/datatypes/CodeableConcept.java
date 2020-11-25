@@ -1,9 +1,11 @@
 package gov.va.api.health.dstu2.api.datatypes;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.dstu2.api.Fhir;
 import gov.va.api.health.dstu2.api.elements.Element;
 import gov.va.api.health.dstu2.api.elements.Extension;
+import gov.va.api.health.fhir.api.HasDisplay;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
@@ -28,4 +30,13 @@ public class CodeableConcept implements Element {
 
   @Valid List<Coding> coding;
   String text;
+
+  /**
+   * Return a usuable text value that has been explicitly set or is promoted from a display of an
+   * inner coding.
+   */
+  @JsonProperty
+  public String text() {
+    return HasDisplay.anyDisplay(text, coding);
+  }
 }

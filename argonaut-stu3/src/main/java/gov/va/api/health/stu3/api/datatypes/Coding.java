@@ -3,6 +3,7 @@ package gov.va.api.health.stu3.api.datatypes;
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import gov.va.api.health.fhir.api.HasDisplay;
 import gov.va.api.health.stu3.api.Fhir;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.Pattern;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "http://hl7.org/fhir/STU3/datatypes.html#Coding")
-public class Coding {
+public class Coding implements HasDisplay {
   @Pattern(regexp = Fhir.URI)
   String system;
 
