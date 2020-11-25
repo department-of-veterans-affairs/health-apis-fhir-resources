@@ -47,5 +47,13 @@ public interface MedicationApi {
               required = true,
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
-          String id);
+          String id,
+      @Parameter(
+              in = ParameterIn.PATH,
+              name = "identifier",
+              required = true,
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier);
 }

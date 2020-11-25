@@ -86,7 +86,28 @@ public interface ProcedureApi {
               description =
                   "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
                       + " that refers to the person on which the procedure was performed.")
+          String patient,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "date",
+              description = "Date of procedure.")
+          String date,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
