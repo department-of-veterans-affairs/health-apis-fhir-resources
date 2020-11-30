@@ -106,7 +106,7 @@ public interface ProcedureApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "date",
-              description = "Date of procedure.")
+              description = "The date the procedure was performed.")
           String date,
       @Parameter(
               in = ParameterIn.QUERY,

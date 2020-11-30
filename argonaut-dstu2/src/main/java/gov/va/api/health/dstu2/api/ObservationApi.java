@@ -106,19 +106,22 @@ public interface ObservationApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "code",
-              description = "Code of the observation.")
+              description = "Code of the observation. The code shall be from "
+                      + "LOINC Observation Codes; other codes can be "
+                      + "used if these are not suitable.")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,
               required = true,
               name = "category",
-              description = "Category of the observation.")
+              description = "The category code classifies the general type of the " +
+                      "observation being made.")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
               required = true,
               name = "date",
-              description = "Date of the observation.")
+              description = "Relevant date of the observation.")
           String date,
       @Parameter(
               in = ParameterIn.QUERY,

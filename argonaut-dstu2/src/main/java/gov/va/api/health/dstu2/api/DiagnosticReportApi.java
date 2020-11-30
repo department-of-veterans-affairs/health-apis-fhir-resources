@@ -106,13 +106,18 @@ public interface DiagnosticReportApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "category",
-              description = "Category of the diagnostic report.")
+              description =
+                  "The category classifies the clinical discipline, department "
+                      + "or diagnostic service that created the report.")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
               required = true,
               name = "code",
-              description = "Code of the diagnostic report.")
+              description =
+                  "Code of the diagnostic report. The code shall be from "
+                      + "LOINC Diagnostic Report Codes; other codes can be "
+                      + "used if these are not suitable.")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,

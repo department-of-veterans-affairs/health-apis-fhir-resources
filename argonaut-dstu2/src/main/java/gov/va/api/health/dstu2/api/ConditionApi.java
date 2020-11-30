@@ -112,7 +112,7 @@ public interface ConditionApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "clinicalstatus",
-              description = "Clinical status of the condition.")
+              description = "The current status of symptoms being experienced by the patient.")
           String clinicalstatus,
       @Parameter(
               in = ParameterIn.QUERY,
