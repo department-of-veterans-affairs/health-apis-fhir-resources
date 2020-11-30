@@ -86,12 +86,27 @@ public interface MedicationRequestApi {
               description =
                   "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
                       + " that refers to the person on which the MedicationRequest was performed.")
-          String id,
+          String patient,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "intent",
               description = "Describes the represented intention made by the request.")
           String order,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
+          String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              required = true,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
