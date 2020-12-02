@@ -151,22 +151,22 @@ public class SwaggerQuestionnaire {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire?id=1234&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire?_id=3141&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire?id=1234&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire?_id=3141&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire?id=1234&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire?_id=3141&page=1&_count=15")
                     .build()))
         .entry(
             asList(
                 Questionnaire.Entry.builder()
-                    .fullUrl("https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire/1234")
+                    .fullUrl("https://sandbox-api.va.gov/services/fhir/v0/r4/v0/Questionnaire/3141")
                     .resource(questionnaire())
                     .search(
                         AbstractEntry.Search.builder().mode(AbstractEntry.SearchMode.match).build())

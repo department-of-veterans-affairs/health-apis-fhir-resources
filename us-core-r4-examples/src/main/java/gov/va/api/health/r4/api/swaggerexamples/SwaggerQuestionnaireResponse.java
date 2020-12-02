@@ -86,17 +86,17 @@ public class SwaggerQuestionnaireResponse {
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.self)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/QuestionnaireResponse?id=3141&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/QuestionnaireResponse?_id=3141&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.first)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/QuestionnaireResponse?id=3141&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/QuestionnaireResponse?_id=3141&page=1&_count=15")
                     .build(),
                 BundleLink.builder()
                     .relation(BundleLink.LinkRelation.last)
                     .url(
-                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/QuestionnaireResponse?id=3141&page=1&_count=15")
+                        "https://sandbox-api.va.gov/services/fhir/v0/r4/v0/QuestionnaireResponse?_id=3141&page=1&_count=15")
                     .build()))
         .entry(
             asList(
