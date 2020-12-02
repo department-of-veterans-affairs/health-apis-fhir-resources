@@ -82,7 +82,6 @@ public interface PractitionerApi {
       @Parameter(
               in = ParameterIn.PATH,
               name = "_id",
-              required = true,
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
           String id,

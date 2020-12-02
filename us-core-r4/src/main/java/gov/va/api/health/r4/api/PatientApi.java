@@ -93,7 +93,6 @@ public interface PatientApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "identifier",
               description =
                   "The logical identifier of the resource. Once assigned, this value "

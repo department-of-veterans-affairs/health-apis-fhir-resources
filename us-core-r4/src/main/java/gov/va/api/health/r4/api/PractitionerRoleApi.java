@@ -85,7 +85,6 @@ public interface PractitionerRoleApi {
       @Parameter(in = ParameterIn.QUERY, name = "practitioner.name") String practitionerName,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "specialty",
               description =
                   "The specialty code as defined by the"

@@ -81,7 +81,6 @@ public interface DeviceApi {
   Device.Bundle deviceSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
                   " The Integration Control Number (ICN) assigned by the "
