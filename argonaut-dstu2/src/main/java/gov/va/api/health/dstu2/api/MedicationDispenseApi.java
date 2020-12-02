@@ -79,7 +79,6 @@ public interface MedicationDispenseApi {
   MedicationDispense.Bundle medicationDispenseSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
                   "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"

@@ -79,7 +79,6 @@ public interface EncounterApi {
   Encounter.Bundle encounterSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")

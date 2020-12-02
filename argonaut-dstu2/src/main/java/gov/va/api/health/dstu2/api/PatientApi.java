@@ -82,7 +82,6 @@ public interface PatientApi {
   Patient.Bundle patientSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "_id",
               description =
                   "The logical id of the resource."
@@ -92,7 +91,6 @@ public interface PatientApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "identifier",
               description =
                   "The logical identifier of the resource. Once assigned, this value "

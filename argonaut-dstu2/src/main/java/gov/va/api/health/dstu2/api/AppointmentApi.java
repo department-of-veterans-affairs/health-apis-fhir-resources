@@ -79,7 +79,6 @@ public interface AppointmentApi {
   Appointment.Bundle appointmentSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
                   "An Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"

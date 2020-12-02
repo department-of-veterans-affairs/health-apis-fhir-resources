@@ -81,7 +81,6 @@ public interface ImmunizationApi {
   Immunization.Bundle immunizationSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
                   "Integration Control Number (ICN) assigned by the Master Veteran Index (MVI) "
@@ -89,14 +88,12 @@ public interface ImmunizationApi {
           String patient,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "identifier",
               description =
                   "The logical identifier of the resource. Once assigned, this value "
