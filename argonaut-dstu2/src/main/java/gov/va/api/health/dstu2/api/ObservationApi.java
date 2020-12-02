@@ -106,7 +106,8 @@ public interface ObservationApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "code",
-              description = "Code of the observation. The code shall be from "
+              description =
+                  "Code of the observation. The code shall be from "
                       + "LOINC Observation Codes; other codes can be "
                       + "used if these are not suitable.")
           String code,
@@ -114,8 +115,9 @@ public interface ObservationApi {
               in = ParameterIn.QUERY,
               required = true,
               name = "category",
-              description = "The category code classifies the general type of the " +
-                      "observation being made.")
+              description =
+                  "The category code classifies the general type of the "
+                      + "observation being made.")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
