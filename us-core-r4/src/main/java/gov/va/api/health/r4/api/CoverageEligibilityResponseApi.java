@@ -45,5 +45,5 @@ public interface CoverageEligibilityResponseApi {
   CoverageEligibilityResponse.Bundle coverageEligibilityResponseSearch(
       @Parameter(in = ParameterIn.QUERY, name = "patient") String id,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
-      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);
+      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("30") int count);
 }

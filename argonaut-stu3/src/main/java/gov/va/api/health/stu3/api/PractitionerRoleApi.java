@@ -78,5 +78,5 @@ public interface PractitionerRoleApi {
       @Parameter(in = ParameterIn.QUERY, name = "family") String family,
       @Parameter(in = ParameterIn.QUERY, name = "given") String given,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
-      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);
+      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("30") int count);
 }
