@@ -108,11 +108,15 @@ public interface DiagnosticReportApi {
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
-              name = "code",
+              name = "date",
               description =
-                  "Code of the diagnostic report. The code shall be from "
-                      + "LOINC Diagnostic Report Codes; other codes can be "
-                      + "used if these are not suitable.")
+                  "A date or range of dates (maximum of 2) that describe "
+                      + "the date that the diagnostic report was recorded.")
+          String[] date,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "code",
+              description = "The diagnostic item used for the report.")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,
