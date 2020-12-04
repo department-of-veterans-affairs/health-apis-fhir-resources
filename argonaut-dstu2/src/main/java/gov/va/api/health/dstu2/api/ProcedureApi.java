@@ -102,7 +102,9 @@ public interface ProcedureApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "date",
-              description = "The date the procedure was performed.")
+              description =
+                  "A date or range of dates (maximum of 2) that describe "
+                      + "the date that the procedure was performed.")
           String[] date,
       @Parameter(
               in = ParameterIn.QUERY,

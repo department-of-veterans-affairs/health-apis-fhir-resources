@@ -43,7 +43,7 @@ public interface ImmunizationApi {
               schema = @Schema(implementation = OperationOutcome.class)))
   Immunization immunizationRead(
       @Parameter(
-              in = ParameterIn.QUERY,
+              in = ParameterIn.PATH,
               required = true,
               name = "id",
               description =

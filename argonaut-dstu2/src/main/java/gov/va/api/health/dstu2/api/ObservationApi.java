@@ -116,7 +116,9 @@ public interface ObservationApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "date",
-              description = "Relevant date of the observation.")
+              description =
+                  "A date or range of dates (maximum of 2) that "
+                      + "describe the date that the observation was recorded.")
           String[] date,
       @Parameter(
               in = ParameterIn.QUERY,
