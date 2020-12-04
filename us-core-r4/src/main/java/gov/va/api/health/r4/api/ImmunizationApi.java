@@ -45,26 +45,10 @@ public interface ImmunizationApi {
       @Parameter(
               in = ParameterIn.QUERY,
               required = true,
-              name = "patient",
-              description =
-                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
-                      + " that indicates the patient who the record is associated with.")
-          String patient,
-      @Parameter(
-              in = ParameterIn.QUERY,
-              required = true,
-              name = "_id",
+              name = "id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
-          String id,
-      @Parameter(
-              in = ParameterIn.QUERY,
-              required = true,
-              name = "identifier",
-              description =
-                  "The logical identifier of the resource. Once assigned, this value "
-                      + "never changes.")
-          String identifier);
+          String id);
 
   @Operation(
       summary = "Immunization Search",
