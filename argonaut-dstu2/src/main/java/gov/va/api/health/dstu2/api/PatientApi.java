@@ -93,9 +93,9 @@ public interface PatientApi {
               in = ParameterIn.QUERY,
               name = "identifier",
               description =
-                  "The logical identifer of the resource."
+                  "The logical identifier of the resource."
                       + " Once assigned, this value never changes."
-                      + " For Patients this id is an Integration Control Number (ICN)"
+                      + " For Patients this identifier is an Integration Control Number (ICN)"
                       + " assigned by the Master Veteran Index (MVI).")
           String identifier,
       @Parameter(

@@ -87,11 +87,6 @@ public interface PractitionerApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
-              name = "name",
-              description = "Family name of the practitioner.")
-          String address,
-      @Parameter(
-              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number of the search result.")
           @DefaultValue("1")

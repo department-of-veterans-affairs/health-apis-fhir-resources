@@ -92,21 +92,20 @@ public interface DeviceApi {
               in = ParameterIn.QUERY,
               name = "_id",
               description =
-                      "The logical id of the resource. Once assigned, this value never changes.")
-              String id,
+                  "The logical id of the resource. Once assigned, this value never changes.")
+          String id,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "identifier",
               description =
-                      "The logical identifier of the resource. Once assigned, this value "
-                              + "never changes.")
-              String identifier,
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "type",
-              description =
-                      "The code used to identify the medical device.")
-              String type,
+              description = "The code used to identify the medical device.")
+          String type,
       /* TODO Add type search parameter when it becomes available. */
       @Parameter(
               in = ParameterIn.QUERY,

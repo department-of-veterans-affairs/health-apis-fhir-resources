@@ -106,6 +106,11 @@ public interface MedicationRequestApi {
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
+              name = "intent",
+              description = "The intent identifies the kind of medication order.")
+          String intent,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number of the search result.")
           @DefaultValue("1")

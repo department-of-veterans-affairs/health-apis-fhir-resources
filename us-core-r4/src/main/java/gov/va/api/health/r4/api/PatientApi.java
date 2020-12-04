@@ -95,8 +95,10 @@ public interface PatientApi {
               in = ParameterIn.QUERY,
               name = "identifier",
               description =
-                  "The logical identifier of the resource. Once assigned, this value "
-                      + "never changes.")
+                  "The logical identifier of the resource."
+                      + " Once assigned, this value never changes."
+                      + " For Patients this identifier is an Integration Control Number (ICN)"
+                      + " assigned by the Master Veteran Index (MVI).")
           String identifier,
       // Search by Name, Gender, and BirthDate are available but not as part of the patient flow
       @Parameter(
