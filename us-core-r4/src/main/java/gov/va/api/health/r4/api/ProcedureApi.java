@@ -88,13 +88,6 @@ public interface ProcedureApi {
           String patient,
       @Parameter(
               in = ParameterIn.QUERY,
-              name = "date",
-              description =
-                  "A date or range of dates (maximum of 2) that describes "
-                      + "the date that the procedure was performed.")
-          String[] date,
-      @Parameter(
-              in = ParameterIn.QUERY,
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
@@ -106,6 +99,13 @@ public interface ProcedureApi {
                   "The logical identifier of the resource. Once assigned, this value "
                       + "never changes.")
           String identifier,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "date",
+              description =
+                  "A date or range of dates (maximum of 2) that describes "
+                      + "the date that the procedure was performed.")
+          String[] date,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
