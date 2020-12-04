@@ -117,7 +117,7 @@ public interface ObservationApi {
               in = ParameterIn.QUERY,
               name = "date",
               description = "Relevant date of the observation.")
-          String date,
+          String[] date,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",

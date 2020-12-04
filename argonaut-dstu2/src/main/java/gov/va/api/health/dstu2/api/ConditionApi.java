@@ -104,7 +104,7 @@ public interface ConditionApi {
               name = "category",
               description =
                   "A code that can be used to categorize the "
-                      + "condition(e.g. health-concern or problem).")
+                      + "condition (e.g. health-concern or problem).")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,

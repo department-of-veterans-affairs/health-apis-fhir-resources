@@ -103,7 +103,7 @@ public interface ProcedureApi {
               in = ParameterIn.QUERY,
               name = "date",
               description = "The date the procedure was performed.")
-          String date,
+          String[] date,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",

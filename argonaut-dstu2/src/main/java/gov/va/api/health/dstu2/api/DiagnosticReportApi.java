@@ -116,7 +116,7 @@ public interface DiagnosticReportApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "code",
-              description = "The diagnostic item used for the report.")
+              description = "The diagnostic item(s) that created the report.")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,
