@@ -81,7 +81,7 @@ public interface AppointmentApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  "An Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "An Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that refers to a patient that is participating in the appointment.")
           String id,
       @Parameter(

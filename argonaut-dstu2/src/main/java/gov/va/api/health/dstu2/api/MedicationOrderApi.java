@@ -83,7 +83,7 @@ public interface MedicationOrderApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  "Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " of the person to whom the medication will be given.")
           String patient,
       @Parameter(

@@ -49,7 +49,7 @@ public interface PatientApi {
                   "The logical id of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String id);
 
   @Operation(
@@ -87,7 +87,7 @@ public interface PatientApi {
                   "The logical id of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -96,7 +96,7 @@ public interface PatientApi {
                   "The logical identifier of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this identifier is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,

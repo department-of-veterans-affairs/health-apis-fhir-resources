@@ -83,7 +83,7 @@ public interface ProcedureApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that refers to the person on which the procedure was performed.")
           String patient,
       @Parameter(
