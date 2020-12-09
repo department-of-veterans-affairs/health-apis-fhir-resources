@@ -83,7 +83,7 @@ public interface AllergyIntoleranceApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI) "
+                  "The Integration Control Number (ICN) assigned by the Master Patient Index (MPI) "
                       + "of the patient who has the allergy or intolerance.")
           String patient,
       @Parameter(

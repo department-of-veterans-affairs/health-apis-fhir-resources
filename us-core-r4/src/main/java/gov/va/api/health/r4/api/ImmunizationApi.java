@@ -84,7 +84,7 @@ public interface ImmunizationApi {
               name = "patient",
               description =
                   " The Integration Control Number (ICN) assigned by the "
-                      + "Master Veteran Index (MVI) that indicates "
+                      + "Master Patient Index (MPI) that indicates "
                       + "the patient who the immunization record is "
                       + "associated with.")
           String patient,

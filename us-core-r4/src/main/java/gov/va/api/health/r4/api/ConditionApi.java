@@ -84,7 +84,7 @@ public interface ConditionApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  " The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that indicates the patient who the condition record is associated with.")
           String patient,
       @Parameter(

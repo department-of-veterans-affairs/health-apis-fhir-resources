@@ -83,7 +83,7 @@ public interface DiagnosticReportApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " of the report's subject.")
           String patient,
       @Parameter(

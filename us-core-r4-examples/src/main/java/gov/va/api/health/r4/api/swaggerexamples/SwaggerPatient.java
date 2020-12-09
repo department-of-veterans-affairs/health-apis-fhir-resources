@@ -79,7 +79,7 @@ public class SwaggerPatient {
                                         .code("MR")
                                         .build()))
                             .build())
-                    .system("http://va.gov/mvi")
+                    .system("http://va.gov/mpi")
                     .value("2000163")
                     .build(),
                 Identifier.builder()
