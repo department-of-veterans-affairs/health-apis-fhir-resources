@@ -104,7 +104,8 @@ public interface DiagnosticReportApi {
               in = ParameterIn.QUERY,
               name = "category",
               description =
-                  "The category the diagnostic report record belongs to (e.g. LAB). "
+                  "The category classifies the clinical discipline, department "
+                      + "or diagnostic service that created the report. "
                       + "[Diagnostic Service Section Codes](https://www.hl7.org/fhir/valueset-diagnostic-service-sections.html)")
           String category,
       @Parameter(

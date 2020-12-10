@@ -84,7 +84,7 @@ public interface DiagnosticReportApi {
               name = "patient",
               description =
                   "The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
-                      + " of the report's subject.")
+                      + " that indicates the patient who the record is associated with.")
           String patient,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -118,8 +118,8 @@ public interface DiagnosticReportApi {
               in = ParameterIn.QUERY,
               name = "code",
               description =
-                  "The diagnostic item(s) that created the report. "
-                      + "[LOINC Codes](http://hl7.org/fhir/dstu2/valueset-report-codes.html)")
+                  "A code that indicates the type of information contained within "
+                      + "the diagnostic report. [LOINC Codes](http://hl7.org/fhir/dstu2/valueset-report-codes.html)")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,

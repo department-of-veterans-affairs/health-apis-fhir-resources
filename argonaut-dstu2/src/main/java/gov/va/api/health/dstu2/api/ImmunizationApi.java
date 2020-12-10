@@ -83,8 +83,10 @@ public interface ImmunizationApi {
               in = ParameterIn.QUERY,
               name = "patient",
               description =
-                  "Integration Control Number (ICN) assigned by the Master Patient Index (MPI) "
-                      + "of the patient who either received or did not receive the immunization.")
+                  " The Integration Control Number (ICN) assigned by the "
+                      + "Master Patient Index (MPI) that indicates "
+                      + "the patient who the immunization record is "
+                      + "associated with.")
           String patient,
       @Parameter(
               in = ParameterIn.QUERY,

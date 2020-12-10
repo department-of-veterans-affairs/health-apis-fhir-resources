@@ -103,7 +103,7 @@ public interface ObservationApi {
               in = ParameterIn.QUERY,
               name = "category",
               description =
-                  "The general classification of the type of observation."
+                  "The general classification of the type of observation. "
                       + "[Observation Category Codes](https://www.hl7.org/fhir/valueset-observation-category.html)")
           String category,
       @Parameter(

@@ -103,15 +103,16 @@ public interface ConditionApi {
               in = ParameterIn.QUERY,
               name = "category",
               description =
-                  "A code that can be used to categorize the "
-                      + "condition (e.g. health-concern or problem). "
+                  "The category the condition record belongs to. Can be used to "
+                      + "distinguish between health concerns and problems. "
                       + "[Argonaut Condition Category Codes](https://www.fhir.org/guides/argonaut/r2/ValueSet-condition-category.html)")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "clinicalstatus",
               description =
-                  "The current status of symptoms being experienced by the patient."
+                  "Indicates the clinical state of the condition described by "
+                      + "the record, taking prior conditions into account."
                       + "[Condition Clinical Status Codes](http://hl7.org/fhir/DSTU2/valueset-condition-clinical.html)")
           String clinicalstatus,
       @Parameter(
