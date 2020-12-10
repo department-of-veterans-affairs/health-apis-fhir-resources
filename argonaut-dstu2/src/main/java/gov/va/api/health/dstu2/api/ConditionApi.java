@@ -104,7 +104,8 @@ public interface ConditionApi {
               name = "category",
               description =
                   "A code that can be used to categorize the "
-                      + "condition (e.g. health-concern or problem).")
+                      + "condition (e.g. health-concern or problem). "
+                      + "[Argonaut Condition Category Codes](https://www.fhir.org/guides/argonaut/r2/ValueSet-condition-category.html)")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,

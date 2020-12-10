@@ -104,7 +104,8 @@ public interface DiagnosticReportApi {
               name = "category",
               description =
                   "The category classifies the clinical discipline, department "
-                      + "or diagnostic service that created the report.")
+                      + "or diagnostic service that created the report. "
+                      + "[Diagnostic Service Section Codes](http://hl7.org/fhir/DSTU2/valueset-diagnostic-service-sections.html)")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,

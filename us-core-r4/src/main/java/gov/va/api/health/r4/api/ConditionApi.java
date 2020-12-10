@@ -105,7 +105,8 @@ public interface ConditionApi {
               name = "category",
               description =
                   "The category the condition record belongs to. Can be used to "
-                      + "distinguish between health concerns and problems.")
+                      + "distinguish between health concerns and problems. "
+                      + "[Condition Category Codes](https://www.hl7.org/fhir/valueset-condition-category.html)")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
