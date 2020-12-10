@@ -116,7 +116,9 @@ public interface DiagnosticReportApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "code",
-              description = "The diagnostic item(s) that created the report.")
+              description =
+                  "The diagnostic item(s) that created the report. "
+                      + "[LOINC Codes](http://hl7.org/fhir/dstu2/valueset-report-codes.html)")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,
