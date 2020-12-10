@@ -110,7 +110,9 @@ public interface ConditionApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "clinicalstatus",
-              description = "The current status of symptoms being experienced by the patient.")
+              description =
+                  "The current status of symptoms being experienced by the patient."
+                      + "[Condition Clinical Status Codes](http://hl7.org/fhir/DSTU2/valueset-condition-clinical.html)")
           String clinicalstatus,
       @Parameter(
               in = ParameterIn.QUERY,

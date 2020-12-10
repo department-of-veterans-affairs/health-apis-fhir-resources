@@ -113,7 +113,8 @@ public interface ConditionApi {
               name = "clinical-status",
               description =
                   "Indicates the clinical state of the condition described by "
-                      + "the record, taking prior conditions into account.")
+                      + "the record, taking prior conditions into account."
+                      + "[Condition Clinical Status Codes](https://hl7.org/fhir/r4/valueset-condition-clinical.html)")
           String clinicalStatus,
       @Parameter(
               in = ParameterIn.QUERY,
