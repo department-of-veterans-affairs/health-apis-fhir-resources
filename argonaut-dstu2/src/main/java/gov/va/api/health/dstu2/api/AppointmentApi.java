@@ -79,10 +79,9 @@ public interface AppointmentApi {
   Appointment.Bundle appointmentSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
-                  "An Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "An Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that refers to a patient that is participating in the appointment.")
           String id,
       @Parameter(
@@ -97,6 +96,6 @@ public interface AppointmentApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

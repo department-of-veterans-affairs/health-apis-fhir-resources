@@ -74,5 +74,5 @@ public interface EndpointApi {
       @Parameter(in = ParameterIn.QUERY, name = "organization") String organization,
       @Parameter(in = ParameterIn.QUERY, name = "name") String name,
       @Parameter(in = ParameterIn.QUERY, name = "page") @DefaultValue("1") int page,
-      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("15") int count);
+      @Parameter(in = ParameterIn.QUERY, name = "_count") @DefaultValue("30") int count);
 }

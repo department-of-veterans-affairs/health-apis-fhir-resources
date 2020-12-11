@@ -82,15 +82,9 @@ public interface PractitionerApi {
       @Parameter(
               in = ParameterIn.PATH,
               name = "_id",
-              required = true,
               description =
                   "The logical id of the resource. Once assigned, this value never changes.")
           String id,
-      @Parameter(
-              in = ParameterIn.QUERY,
-              name = "name",
-              description = "Family name of the practitioner.")
-          String address,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
@@ -103,6 +97,6 @@ public interface PractitionerApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

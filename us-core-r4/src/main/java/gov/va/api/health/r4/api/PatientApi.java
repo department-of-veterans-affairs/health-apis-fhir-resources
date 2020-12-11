@@ -50,7 +50,7 @@ public interface PatientApi {
                   "The logical id of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String id);
 
   @Operation(
@@ -89,8 +89,17 @@ public interface PatientApi {
                   "The logical id of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource."
+                      + " Once assigned, this value never changes."
+                      + " For Patients this identifier is an Integration Control Number (ICN)"
+                      + " assigned by the Master Patient Index (MPI).")
+          String identifier,
       // Search by Name, Gender, and BirthDate are available but not as part of the patient flow
       @Parameter(
               in = ParameterIn.QUERY,
@@ -104,6 +113,6 @@ public interface PatientApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

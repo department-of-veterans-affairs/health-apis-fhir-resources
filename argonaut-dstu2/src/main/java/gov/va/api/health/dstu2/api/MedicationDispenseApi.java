@@ -79,10 +79,9 @@ public interface MedicationDispenseApi {
   MedicationDispense.Bundle medicationDispenseSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
-                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that refers to the person to whom the medication will be given.")
           String id,
       @Parameter(
@@ -97,6 +96,6 @@ public interface MedicationDispenseApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

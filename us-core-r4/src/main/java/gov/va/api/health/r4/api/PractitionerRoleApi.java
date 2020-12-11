@@ -80,17 +80,12 @@ public interface PractitionerRoleApi {
               mediaType = "application/fhir+json",
               schema = @Schema(implementation = OperationOutcome.class)))
   PractitionerRole.Bundle practitionerRoleSearch(
-      @Parameter(in = ParameterIn.QUERY, name = "practitioner.identifier")
-          String practitionerIdentifier,
-      @Parameter(in = ParameterIn.QUERY, name = "practitioner.name") String practitionerName,
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
-              name = "specialty",
+              name = "_id",
               description =
-                  "The specialty code as defined by the"
-                      + " NUCC Health Care Provider Taxonomy Code Set")
-          String specialty,
+                  "The logical id of the resource. Once assigned, this value never changes.")
+          String id,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
@@ -103,6 +98,6 @@ public interface PractitionerRoleApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

@@ -49,7 +49,7 @@ public interface PatientApi {
                   "The logical id of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String id);
 
   @Operation(
@@ -82,14 +82,22 @@ public interface PatientApi {
   Patient.Bundle patientSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "_id",
               description =
                   "The logical id of the resource."
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
-                      + " assigned by the Master Veteran Index (MVI).")
+                      + " assigned by the Master Patient Index (MPI).")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource."
+                      + " Once assigned, this value never changes."
+                      + " For Patients this identifier is an Integration Control Number (ICN)"
+                      + " assigned by the Master Patient Index (MPI).")
+          String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
@@ -102,6 +110,6 @@ public interface PatientApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

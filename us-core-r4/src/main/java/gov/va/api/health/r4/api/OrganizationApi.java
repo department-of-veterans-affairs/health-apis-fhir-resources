@@ -87,6 +87,13 @@ public interface OrganizationApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "address",
               description =
                   "Indicates the physical location of the organization "
@@ -127,6 +134,6 @@ public interface OrganizationApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

@@ -81,12 +81,24 @@ public interface MedicationOrderApi {
   MedicationOrder.Bundle medicationOrderSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
-                  "Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " of the person to whom the medication will be given.")
+          String patient,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
@@ -99,6 +111,6 @@ public interface MedicationOrderApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

@@ -81,12 +81,40 @@ public interface ConditionApi {
   Condition.Bundle conditionSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
-                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  " The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that indicates the patient who the condition record is associated with.")
+          String patient,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "category",
+              description =
+                  "The category the condition record belongs to. Can be used to "
+                      + "distinguish between health concerns and problems. "
+                      + "[Argonaut Condition Category Codes](https://www.fhir.org/guides/argonaut/r2/ValueSet-condition-category.html)")
+          String category,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "clinicalstatus",
+              description =
+                  "Indicates the clinical state of the condition described by "
+                      + "the record, taking prior conditions into account."
+                      + "[Condition Clinical Status Codes](http://hl7.org/fhir/DSTU2/valueset-condition-clinical.html)")
+          String clinicalstatus,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
@@ -99,6 +127,6 @@ public interface ConditionApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

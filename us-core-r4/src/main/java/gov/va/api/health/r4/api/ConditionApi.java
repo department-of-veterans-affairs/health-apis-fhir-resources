@@ -82,25 +82,39 @@ public interface ConditionApi {
   Condition.Bundle conditionSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
-                  " The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  " The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that indicates the patient who the condition record is associated with.")
+          String patient,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "category",
               description =
                   "The category the condition record belongs to. Can be used to "
-                      + "distinguish between health concerns and problems.")
+                      + "distinguish between health concerns and problems. "
+                      + "[Condition Category Codes](https://www.hl7.org/fhir/valueset-condition-category.html)")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "clinical-status",
               description =
                   "Indicates the clinical state of the condition described by "
-                      + "the record, taking prior conditions into account.")
+                      + "the record, taking prior conditions into account."
+                      + "[Condition Clinical Status Codes](https://hl7.org/fhir/r4/valueset-condition-clinical.html)")
           String clinicalStatus,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -114,6 +128,6 @@ public interface ConditionApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }

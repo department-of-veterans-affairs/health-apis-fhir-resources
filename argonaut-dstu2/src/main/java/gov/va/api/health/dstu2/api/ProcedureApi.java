@@ -81,12 +81,31 @@ public interface ProcedureApi {
   Procedure.Bundle procedureSearch(
       @Parameter(
               in = ParameterIn.QUERY,
-              required = true,
               name = "patient",
               description =
-                  "The Integration Control Number (ICN) assigned by the Master Veteran Index (MVI)"
+                  "The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that refers to the person on which the procedure was performed.")
+          String patient,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "_id",
+              description =
+                  "The logical id of the resource. Once assigned, this value never changes.")
           String id,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "identifier",
+              description =
+                  "The logical identifier of the resource. Once assigned, this value "
+                      + "never changes.")
+          String identifier,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "date",
+              description =
+                  "A date or range of dates (maximum of 2) that describe "
+                      + "the date that the procedure was performed.")
+          String[] date,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
@@ -99,6 +118,6 @@ public interface ProcedureApi {
               description =
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
-          @DefaultValue("15")
+          @DefaultValue("30")
           int count);
 }
