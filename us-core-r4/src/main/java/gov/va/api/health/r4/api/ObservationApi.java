@@ -111,7 +111,7 @@ public interface ObservationApi {
               name = "code",
               description =
                   "A code that indicates the type of information contained within "
-                      + "the observation. [LOINC Codes](https://www.hl7.org/fhir/valueset-observation-codes.html)")
+                      + "the observation. [LOINC Observation Codes](https://www.hl7.org/fhir/valueset-observation-codes.html)")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,

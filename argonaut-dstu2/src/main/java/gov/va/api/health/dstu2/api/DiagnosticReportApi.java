@@ -119,7 +119,7 @@ public interface DiagnosticReportApi {
               name = "code",
               description =
                   "A code that indicates the type of information contained within "
-                      + "the diagnostic report. [LOINC Codes](http://hl7.org/fhir/dstu2/valueset-report-codes.html)")
+                      + "the diagnostic report. [LOINC Diagnostic Report Codes](http://hl7.org/fhir/dstu2/valueset-report-codes.html)")
           String code,
       @Parameter(
               in = ParameterIn.QUERY,
