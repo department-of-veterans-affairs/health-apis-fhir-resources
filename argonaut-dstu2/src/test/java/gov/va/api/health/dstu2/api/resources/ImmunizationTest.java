@@ -79,5 +79,22 @@ public class ImmunizationTest {
         .stringTypes(types.knownStringTypes())
         .build()
         .verify();
+
+    ExactlyOneOfExtensionVerifier.builder()
+        .sample(data.vaccinationProtocol())
+        .field("targetDisease")
+        .extensionClass(Extension.class)
+        .knownTypes(types.knownTypeCodeableConceptList())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
+    ExactlyOneOfExtensionVerifier.builder()
+        .sample(data.vaccinationProtocol())
+        .field("doseStatus")
+        .extensionClass(Extension.class)
+        .knownTypes(types.knownTypes())
+        .stringTypes(types.knownStringTypes())
+        .build()
+        .verify();
   }
 }

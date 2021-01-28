@@ -20,6 +20,7 @@ import gov.va.api.health.dstu2.api.datatypes.Timing;
 import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.dstu2.api.elements.Reference;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,14 @@ public class SampleKnownTypes {
     suppliers.put(Fhir.INSTANT, () -> "2005-01-21T07:57:00.000Z");
     suppliers.put(Fhir.OID, () -> "urn:oid:0.1");
     suppliers.put(Fhir.XHTML, () -> "<div>html</div>");
+    return suppliers;
+  }
+
+  public Map<Class<?>, Supplier<?>> knownTypeCodeableConceptList() {
+    SampleDataTypes dataTypes = SampleDataTypes.get();
+    Map<Class<?>, Supplier<?>> suppliers = new HashMap<>();
+    suppliers.put(Extension.class, dataTypes::extension);
+    suppliers.put(List.class, dataTypes::codeableConceptList);
     return suppliers;
   }
 

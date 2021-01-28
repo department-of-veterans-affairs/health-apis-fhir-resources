@@ -25,7 +25,6 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -200,6 +199,10 @@ public class Immunization implements Resource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @ExactlyOneOfs({
+    @ExactlyOneOf(fields = {"targetDisease", "_targetDisease"}),
+    @ExactlyOneOf(fields = {"doseStatus", "_doseStatus"})
+  })
   public static class VaccinationProtocol implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -218,8 +221,10 @@ public class Immunization implements Resource {
     @Min(1)
     Integer seriesDoses;
 
-    @NotEmpty @Valid List<CodeableConcept> targetDisease;
-    @NotNull @Valid CodeableConcept doseStatus;
+    @Valid List<CodeableConcept> targetDisease;
+    @Valid Extension _targetDisease;
+    @Valid CodeableConcept doseStatus;
+    @Valid Extension _doseStatus;
     @Valid CodeableConcept doseStatusReason;
   }
 }
