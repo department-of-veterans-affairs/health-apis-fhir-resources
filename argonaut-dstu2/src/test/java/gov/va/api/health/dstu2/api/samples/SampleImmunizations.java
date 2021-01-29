@@ -67,7 +67,8 @@ public class SampleImmunizations {
         .status(null)
         ._status(DataAbsentReason.of(Reason.unsupported))
         .reported(false)
-        ._reported(DataAbsentReason.of(Reason.unsupported));
+        ._reported(DataAbsentReason.of(Reason.unsupported))
+        .vaccinationProtocol(singletonList(vaccinationProtocolWithDataAbsentReasons()));
   }
 
   public Reaction reaction() {
@@ -94,6 +95,15 @@ public class SampleImmunizations {
         .targetDisease(singletonList(codeableConcept()))
         .doseStatus(codeableConcept())
         .doseStatusReason(codeableConcept())
+        .build();
+  }
+
+  public VaccinationProtocol vaccinationProtocolWithDataAbsentReasons() {
+    return VaccinationProtocol.builder()
+        .targetDisease(null)
+        ._targetDisease(DataAbsentReason.of(Reason.unsupported))
+        .doseStatus(null)
+        ._doseStatus(DataAbsentReason.of(Reason.unsupported))
         .build();
   }
 }
