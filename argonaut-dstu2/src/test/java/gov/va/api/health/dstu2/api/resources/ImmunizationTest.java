@@ -9,10 +9,13 @@ import gov.va.api.health.dstu2.api.bundle.BundleLink.LinkRelation;
 import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.dstu2.api.resources.Immunization.Bundle;
 import gov.va.api.health.dstu2.api.resources.Immunization.Entry;
+import gov.va.api.health.dstu2.api.samples.SampleDataTypes;
 import gov.va.api.health.dstu2.api.samples.SampleImmunizations;
 import gov.va.api.health.dstu2.api.samples.SampleKnownTypes;
 import gov.va.api.health.validation.api.ExactlyOneOfExtensionVerifier;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class ImmunizationTest {
@@ -80,11 +83,16 @@ public class ImmunizationTest {
         .build()
         .verify();
 
+    SampleDataTypes dataTypes = SampleDataTypes.get();
+
     ExactlyOneOfExtensionVerifier.builder()
         .sample(data.vaccinationProtocol())
         .field("targetDisease")
         .extensionClass(Extension.class)
-        .knownTypes(types.knownTypeCodeableConceptList())
+        .knownTypes(
+            Map.of(
+                Extension.class, dataTypes::extension,
+                List.class, dataTypes::codeableConceptList))
         .stringTypes(types.knownStringTypes())
         .build()
         .verify();
