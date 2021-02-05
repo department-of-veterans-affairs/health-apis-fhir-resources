@@ -32,7 +32,8 @@
                   "code" : "MR",
                   "display" : "Medical Record Number"
                 }
-              ]
+              ],
+              "text" : "My Medical Record Number"
             },
             "system" : "http://hospital.example.org",
             "value" : "m123"
@@ -108,7 +109,8 @@
               "code" : "207",
               "display" : "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose"
             }
-          ]
+          ],
+          "text" : "The COVID Vaccine"
         },
         "patient" : {
           "reference" : "Patient/Scenario1Patient"
@@ -129,7 +131,8 @@
                     "code" : "840539006",
                     "display" : "COVID-19"
                   }
-                ]
+                ],
+                "text" : "The COVID-19 Vaccine"
               }
             ],
             "doseNumberPositiveInt" : 1,
@@ -160,7 +163,8 @@
               "code" : "207",
               "display" : "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose"
             }
-          ]
+          ],
+          "text" : "The COVID Vaccine"
         },
         "patient" : {
           "reference" : "Patient/Scenario1Patient"
@@ -181,7 +185,8 @@
                     "code" : "840539006",
                     "display" : "COVID-19"
                   }
-                ]
+                ],
+                "text" : "The COVID-19 Vaccine"
               }
             ],
             "doseNumberPositiveInt" : 2,

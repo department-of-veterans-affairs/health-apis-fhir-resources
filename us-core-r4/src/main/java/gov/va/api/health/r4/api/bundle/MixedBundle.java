@@ -6,25 +6,20 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Signature;
 import gov.va.api.health.r4.api.elements.Meta;
-import gov.va.api.health.r4.api.resources.Procedure;
 import gov.va.api.health.r4.api.resources.Resource;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import static java.util.stream.Collectors.toList;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -49,7 +44,7 @@ public class MixedBundle extends AbstractBundle<MixedEntry> {
           @Valid List<MixedEntry> entry,
           @Valid Signature signature) {
     super(
-            resourceType,
+            "Bundle",
             id,
             meta,
             implicitRules,

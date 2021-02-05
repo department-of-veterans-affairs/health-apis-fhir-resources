@@ -63,10 +63,11 @@ import lombok.NoArgsConstructor;
 })
 public class Patient implements Resource {
   // Anscestor -- Resource
+  @NotBlank @Builder.Default String resourceType = "Patient";
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
