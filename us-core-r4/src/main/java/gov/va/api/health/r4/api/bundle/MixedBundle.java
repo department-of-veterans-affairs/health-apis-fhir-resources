@@ -15,6 +15,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -44,7 +46,7 @@ public class MixedBundle extends AbstractBundle<MixedEntry> {
           @Valid List<MixedEntry> entry,
           @Valid Signature signature) {
     super(
-            "Bundle",
+            StringUtils.defaultString(resourceType, "Bundle"),
             id,
             meta,
             implicitRules,
