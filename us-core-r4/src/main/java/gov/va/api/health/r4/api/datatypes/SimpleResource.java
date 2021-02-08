@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/resource.html")
-@JsonDeserialize(as = SimpleResource.class)
+@JsonDeserialize(builder = SimpleResource.SimpleResourceBuilder.class)
 public class SimpleResource implements Resource {
   @NotBlank @Builder.Default String resourceType = "SimpleResource";
 
