@@ -41,6 +41,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 @Builder
@@ -61,6 +62,7 @@ import lombok.NoArgsConstructor;
       fields = {"multipleBirthBoolean", "multipleBirthInteger"},
       message = "Only one multipleBirth field may be specified")
 })
+@JsonDeserialize(as = Patient.class)
 public class Patient implements Resource {
   // Anscestor -- Resource
   @NotBlank @Builder.Default String resourceType = "Patient";
@@ -213,7 +215,7 @@ public class Patient implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          StringUtils.defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

@@ -8,7 +8,6 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 public class MixedResourceTest {
-
   @Test
   void mixed() {
     String path = "/mixed-resource.json";

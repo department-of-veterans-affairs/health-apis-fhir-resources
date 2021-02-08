@@ -58,6 +58,7 @@ import lombok.NoArgsConstructor;
       fields = {"status", "_status"},
       message = "Exactly one occurrence may be specified... status | _status")
 })
+@JsonDeserialize(as = Immunization.class)
 public class Immunization implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Immunization";
