@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @JsonDeserialize(builder = MixedEntry.MixedEntryBuilder.class)
 @Schema(name = "MixedEntry")
 public class MixedEntry extends AbstractEntry<Resource> {
-
   /** Build a MixedEntry. */
   @Builder
   public MixedEntry(

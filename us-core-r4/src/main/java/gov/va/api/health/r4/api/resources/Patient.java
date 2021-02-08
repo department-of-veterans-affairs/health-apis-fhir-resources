@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,7 +43,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 
 @Data
 @Builder
@@ -62,7 +63,7 @@ import org.apache.commons.lang3.StringUtils;
       fields = {"multipleBirthBoolean", "multipleBirthInteger"},
       message = "Only one multipleBirth field may be specified")
 })
-@JsonDeserialize(as = Patient.class)
+@JsonDeserialize(builder = Patient.PatientBuilder.class)
 public class Patient implements Resource {
   // Anscestor -- Resource
   @NotBlank @Builder.Default String resourceType = "Patient";
@@ -215,7 +216,7 @@ public class Patient implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          StringUtils.defaultString(resourceType, "Bundle"),
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

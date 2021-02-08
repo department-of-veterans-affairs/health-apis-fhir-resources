@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.bundle;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
@@ -18,10 +20,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonDeserialize(builder = MixedBundle.MixedBundleBuilder.class)
@@ -43,7 +44,7 @@ public class MixedBundle extends AbstractBundle<MixedEntry> {
       @Valid List<MixedEntry> entry,
       @Valid Signature signature) {
     super(
-        StringUtils.defaultString(resourceType, "Bundle"),
+        defaultString(resourceType, "Bundle"),
         id,
         meta,
         implicitRules,
