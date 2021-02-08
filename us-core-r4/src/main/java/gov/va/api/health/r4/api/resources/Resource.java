@@ -9,15 +9,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.Pattern;
 
 @JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.EXISTING_PROPERTY,
-        property = "resourceType"
-)
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    property = "resourceType")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = MixedBundle.class, name = "Bundle"),
-        @JsonSubTypes.Type(value = Patient.class, name = "Patient"),
-        @JsonSubTypes.Type(value = Immunization.class, name = "Immunization"),
-        @JsonSubTypes.Type(value = Location.class, name = "Location")
+  @JsonSubTypes.Type(value = MixedBundle.class, name = "Bundle"),
+  @JsonSubTypes.Type(value = Patient.class, name = "Patient"),
+  @JsonSubTypes.Type(value = Immunization.class, name = "Immunization"),
+  @JsonSubTypes.Type(value = Location.class, name = "Location")
 })
 @Schema(description = "https://www.hl7.org/fhir/R4/resource.html")
 public interface Resource {

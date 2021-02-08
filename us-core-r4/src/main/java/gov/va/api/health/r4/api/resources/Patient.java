@@ -68,7 +68,6 @@ public class Patient implements Resource {
   @Pattern(regexp = Fhir.ID)
   String id;
 
-
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)
