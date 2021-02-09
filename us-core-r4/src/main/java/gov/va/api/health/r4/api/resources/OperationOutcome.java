@@ -34,11 +34,10 @@ import lombok.NoArgsConstructor;
             + ".SwaggerOperationOutcome#operationOutcome}")
 @JsonDeserialize(builder = OperationOutcome.OperationOutcomeBuilder.class)
 public class OperationOutcome implements DomainResource {
+  @NotBlank @Builder.Default String resourceType = "OperationOutcome";
 
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank @Builder.Default String resourceType = "OperationOutcome";
 
   @Valid Meta meta;
 

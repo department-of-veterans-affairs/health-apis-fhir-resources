@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -180,7 +182,7 @@ public class Immunization implements Resource {
         @Valid List<Immunization.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
