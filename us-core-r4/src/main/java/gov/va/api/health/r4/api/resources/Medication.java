@@ -50,7 +50,6 @@ import lombok.NoArgsConstructor;
             + "r4.api.swaggerexamples.SwaggerMedication#medication}")
 @JsonDeserialize(builder = Medication.MedicationBuilder.class)
 public class Medication implements Resource {
-
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Medication";
 
