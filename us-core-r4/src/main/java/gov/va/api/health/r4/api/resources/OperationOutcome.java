@@ -38,7 +38,7 @@ public class OperationOutcome implements DomainResource {
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "OperationOutcome";
 
   @Valid Meta meta;
 
