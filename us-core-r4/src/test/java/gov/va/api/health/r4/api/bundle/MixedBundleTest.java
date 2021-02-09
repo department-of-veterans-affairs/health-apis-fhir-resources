@@ -1,16 +1,15 @@
-package gov.va.api.health.r4.api.resources;
+package gov.va.api.health.r4.api.bundle;
 
 import static gov.va.api.health.autoconfig.configuration.JacksonConfig.createMapper;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.r4.api.bundle.MixedBundle;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
-public class MixedResourceTest {
+public class MixedBundleTest {
   @Test
   void mixed() {
-    String path = "/mixed-resource.json";
+    String path = "/mixed-bundle.json";
     roundTrip(path, MixedBundle.class);
   }
 
