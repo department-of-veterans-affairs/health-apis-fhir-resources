@@ -51,7 +51,7 @@ public interface Resource {
       } else if (type.equals("SimpleResource")) {
         return mapper.readValue(root.toString(), SimpleResource.class);
       }
-      throw new IllegalStateException();
+      throw new IllegalStateException("Unknown resource type: " + type);
 
       // AllergyIntolerance
       // CapabilityStatement

@@ -36,11 +36,11 @@ import lombok.NoArgsConstructor;
 @Schema(description = "https://www.hl7.org/fhir/R4/capabilitystatement.html")
 @JsonDeserialize(builder = CapabilityStatement.CapabilityStatementBuilder.class)
 public class CapabilityStatement implements Resource {
+  @NotBlank @Builder.Default String resourceType = "CapabilityStatement";
 
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

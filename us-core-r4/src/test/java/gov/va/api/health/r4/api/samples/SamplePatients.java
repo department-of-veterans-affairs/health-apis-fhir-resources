@@ -14,7 +14,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SamplePatients {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Communication communication() {
@@ -28,7 +27,6 @@ public class SamplePatients {
   public Patient patient() {
     return Patient.builder()
         .id("1324")
-        .resourceType("Coverage")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

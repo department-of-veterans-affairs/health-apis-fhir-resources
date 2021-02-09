@@ -47,7 +47,6 @@ import lombok.NoArgsConstructor;
         "${r4.appointment:gov.va.api.health.r4.api.swaggerexamples.SwaggerAppointment#appointment}")
 @JsonDeserialize(builder = Appointment.AppointmentBuilder.class)
 public class Appointment implements DomainResource {
-
   @NotBlank @Builder.Default String resourceType = "Appointment";
 
   @Pattern(regexp = Fhir.ID)

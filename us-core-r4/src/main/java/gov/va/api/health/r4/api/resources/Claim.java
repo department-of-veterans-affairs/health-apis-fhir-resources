@@ -55,7 +55,6 @@ import lombok.NoArgsConstructor;
     example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}")
 @JsonDeserialize(builder = Claim.ClaimBuilder.class)
 public class Claim implements DomainResource {
-
   @NotBlank @Builder.Default String resourceType = "Claim";
 
   @Pattern(regexp = Fhir.ID)

@@ -58,11 +58,11 @@ import lombok.NoArgsConstructor;
     message = "Exactly one request value must be specified.")
 @JsonDeserialize(builder = CoverageEligibilityResponse.CoverageEligibilityResponseBuilder.class)
 public class CoverageEligibilityResponse implements Resource {
+  @NotBlank @Builder.Default String resourceType = "CoverageEligibilityResponse";
+
   // Anscestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 

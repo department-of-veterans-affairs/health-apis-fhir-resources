@@ -30,11 +30,11 @@ import lombok.NoArgsConstructor;
 @Schema(description = "https://www.hl7.org/fhir/R4/terminologycapabilities.html")
 @JsonDeserialize(builder = TerminologyCapabilities.TerminologyCapabilitiesBuilder.class)
 public class TerminologyCapabilities implements Resource {
+  @NotBlank @Builder.Default String resourceType = "TerminologyCapabilities";
 
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

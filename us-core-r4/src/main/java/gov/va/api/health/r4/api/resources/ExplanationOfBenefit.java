@@ -58,12 +58,11 @@ import lombok.NoArgsConstructor;
             + ".SwaggerExplanationOfBenefit#explanationOfBenefit}")
 @JsonDeserialize(builder = ExplanationOfBenefit.ExplanationOfBenefitBuilder.class)
 public class ExplanationOfBenefit implements Resource {
+  @NotBlank @Builder.Default String resourceType = "ExplanationOfBenefit";
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 

@@ -50,11 +50,11 @@ import lombok.NoArgsConstructor;
     example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
 @JsonDeserialize(builder = Coverage.CoverageBuilder.class)
 public class Coverage implements Resource {
+  @NotBlank @Builder.Default String resourceType = "Coverage";
+
   // Anscestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank @Builder.Default String resourceType = "Coverage";
 
   @Valid Meta meta;
 

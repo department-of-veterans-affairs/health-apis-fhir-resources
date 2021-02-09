@@ -50,7 +50,6 @@ import lombok.NoArgsConstructor;
             + ".SwaggerRelatedPerson#relatedPerson}")
 @JsonDeserialize(builder = RelatedPerson.RelatedPersonBuilder.class)
 public class RelatedPerson implements DomainResource {
-
   @NotBlank @Builder.Default String resourceType = "RelatedPerson";
 
   @Pattern(regexp = Fhir.ID)
