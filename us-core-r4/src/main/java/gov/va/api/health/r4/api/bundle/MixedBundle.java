@@ -23,12 +23,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonDeserialize(builder = MixedBundle.MixedBundleBuilder.class)
 @Schema(description = "https://hl7.org/fhir/R4/bundle.html")
-public class MixedBundle extends AbstractBundle<MixedEntry> {
-  /** Mixed bundle. */
+public final class MixedBundle extends AbstractBundle<MixedEntry> {
+  /** Builder constructor. */
   @Builder
   public MixedBundle(
       @NotBlank String resourceType,

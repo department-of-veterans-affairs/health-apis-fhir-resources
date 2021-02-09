@@ -9,19 +9,20 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode(callSuper = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonDeserialize(builder = MixedEntry.MixedEntryBuilder.class)
-@Schema(name = "MixedEntry")
-public class MixedEntry extends AbstractEntry<Resource> {
-  /** Build a MixedEntry. */
+@Schema(description = "https://hl7.org/fhir/R4/bundle.html")
+public final class MixedEntry extends AbstractEntry<Resource> {
+  /** Builder constructor. */
   @Builder
   public MixedEntry(
       @Pattern(regexp = Fhir.ID) String id,
