@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -51,6 +53,7 @@ import lombok.NoArgsConstructor;
       fields = {"performedDateTime", "performedPeriod"},
       message = "performedDateTime or performedPeriod, but not both.")
 })
+@JsonDeserialize(builder = Procedure.ProcedureBuilder.class)
 public class Procedure implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Procedure";
@@ -179,7 +182,7 @@ public class Procedure implements Resource {
         @Valid List<Procedure.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

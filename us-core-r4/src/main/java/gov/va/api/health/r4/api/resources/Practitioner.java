@@ -1,5 +1,6 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -48,6 +49,7 @@ import org.apache.commons.lang3.StringUtils;
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = " http://hl7.org/fhir/us/core/StructureDefinition-us-core-practitioner.html")
+@JsonDeserialize(builder = Practitioner.PractitionerBuilder.class)
 public class Practitioner implements Resource {
   @NotBlank @Builder.Default String resourceType = "Practitioner";
 
@@ -172,7 +174,7 @@ public class Practitioner implements Resource {
         @Valid List<Practitioner.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -55,6 +57,7 @@ import lombok.NoArgsConstructor;
       fields = {"effectiveDateTime", "effectivePeriod"},
       message = "One of effectiveDateTime | effectivePeriod must be set")
 })
+@JsonDeserialize(builder = DiagnosticReport.DiagnosticReportBuilder.class)
 public class DiagnosticReport implements Resource {
   @NotBlank @Builder.Default String resourceType = "DiagnosticReport";
 
@@ -188,7 +191,7 @@ public class DiagnosticReport implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

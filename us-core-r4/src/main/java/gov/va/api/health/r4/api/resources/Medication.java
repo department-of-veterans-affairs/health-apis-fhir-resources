@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -46,6 +48,7 @@ import lombok.NoArgsConstructor;
     example =
         "${r4.medication:gov.va.api.health."
             + "r4.api.swaggerexamples.SwaggerMedication#medication}")
+@JsonDeserialize(builder = Medication.MedicationBuilder.class)
 public class Medication implements Resource {
 
   // Ancestors
@@ -121,7 +124,7 @@ public class Medication implements Resource {
         @Valid List<Medication.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
