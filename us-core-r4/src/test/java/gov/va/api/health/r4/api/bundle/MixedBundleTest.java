@@ -1,9 +1,6 @@
 package gov.va.api.health.r4.api.bundle;
 
-import static gov.va.api.health.autoconfig.configuration.JacksonConfig.createMapper;
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
-import static java.util.Collections.singletonList;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.resources.AllergyIntolerance;
@@ -56,29 +53,10 @@ import gov.va.api.health.r4.api.samples.SampleQuestionnaireResponses;
 import gov.va.api.health.r4.api.samples.SampleQuestionnaires;
 import gov.va.api.health.r4.api.samples.SampleRelatedPersons;
 import gov.va.api.health.r4.api.samples.SampleTerminologyCapabilities;
-import java.util.Arrays;
 import java.util.List;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 public class MixedBundleTest {
-  @Test
-  void _mixed() {
-    String path = "/mixed-bundle.json";
-    _roundTrip(path, MixedBundle.class);
-  }
-
-  @SneakyThrows
-  private <T> void _roundTrip(String path, Class<T> clazz) {
-    T response = createMapper().readValue(getClass().getResourceAsStream(path), clazz);
-    assertThat(response).isExactlyInstanceOf(clazz);
-    String actual = createMapper().writerWithDefaultPrettyPrinter().writeValueAsString(response);
-    String expected =
-        createMapper()
-            .writerWithDefaultPrettyPrinter()
-            .writeValueAsString(createMapper().readTree(getClass().getResourceAsStream(path)));
-    assertThat(actual).isEqualTo(expected);
-  }
 
   @Test
   void allergyIntolerance() {
@@ -88,7 +66,7 @@ public class MixedBundleTest {
   }
 
   @Test
-  void appoointment() {
+  void appointment() {
     Appointment r = SampleAppointments.get().appointment();
     assertRoundTrip(
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
@@ -166,7 +144,7 @@ public class MixedBundleTest {
   }
 
   @Test
-  public void location() {
+  void location() {
     Location r = SampleLocations.get().location();
     assertRoundTrip(
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
@@ -195,30 +173,13 @@ public class MixedBundleTest {
 
   @Test
   void operationOutcome() {
-    SampleDataTypes data = SampleDataTypes.get();
-    OperationOutcome r =
-        OperationOutcome.builder()
-            .id("4321")
-            .meta(data.meta())
-            .implicitRules("http://HelloRules.com")
-            .language("Hello Language")
-            .text(data.narrative())
-            .contained(singletonList(data.resource()))
-            .modifierExtension(
-                Arrays.asList(
-                    data.extension(),
-                    data.extensionWithQuantity(),
-                    data.extensionWithRatio(),
-                    data.extensionWithUsageContext(),
-                    data.extensionWithContactDetail()))
-            .issue(singletonList(data.issue()))
-            .build();
+    OperationOutcome r = SampleDataTypes.get().operationOutcome();
     assertRoundTrip(
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
   }
 
   @Test
-  public void patient() {
+  void patient() {
     Patient r = SamplePatients.get().patient();
     assertRoundTrip(
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());

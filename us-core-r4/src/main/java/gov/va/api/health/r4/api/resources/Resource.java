@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import gov.va.api.health.r4.api.Fhir;
-import gov.va.api.health.r4.api.bundle.MixedBundle;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Meta;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -35,7 +34,6 @@ public interface Resource {
         Map.ofEntries(
             Map.entry("AllergyIntolerance", AllergyIntolerance.class),
             Map.entry("Appointment", Appointment.class),
-            Map.entry("Bundle", MixedBundle.class),
             Map.entry("CapabilityStatement", CapabilityStatement.class),
             Map.entry("Claim", Claim.class),
             Map.entry("Condition", Condition.class),
@@ -78,7 +76,7 @@ public interface Resource {
       String type = root.get("resourceType").asText();
       Class<? extends Resource> clazz = CLASS_MAP.get(type);
       if (clazz != null) {
-        return (Resource) mapper.readValue(root.toString(), clazz);
+        return mapper.readValue(root.toString(), clazz);
       }
       throw new IllegalStateException("Unknown resource type: " + type);
     }
