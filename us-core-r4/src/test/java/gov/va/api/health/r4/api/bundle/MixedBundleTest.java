@@ -75,8 +75,23 @@ public class MixedBundleTest {
         Arguments.of(SampleQuestionnaires.get().questionnaire()),
         Arguments.of(SampleQuestionnaireResponses.get().questionnaireResponse()),
         Arguments.of(SampleRelatedPersons.get().relatedPerson()),
-        Arguments.of(SampleDataTypes.get().resource()),
         Arguments.of(SampleTerminologyCapabilities.get().terminologyCapabilities()));
+  }
+
+  @Test
+  @SneakyThrows
+  void canNotSerializeResourceWithInvalidType() {
+    var r = SamplePatients.get().patient();
+    r.resourceType("NotARealResource");
+    var mixedBundle =
+        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build();
+    ObjectMapper mapper = new JacksonConfig().objectMapper();
+    assertThatExceptionOfType(JsonMappingException.class)
+        .isThrownBy(
+            () ->
+                mapper.readValue(
+                    mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mixedBundle),
+                    MixedBundle.class));
   }
 
   @Test
