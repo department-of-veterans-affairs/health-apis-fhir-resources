@@ -1,8 +1,15 @@
 package gov.va.api.health.r4.api.bundle;
 
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
+import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.resources.AllergyIntolerance;
 import gov.va.api.health.r4.api.resources.Appointment;
 import gov.va.api.health.r4.api.resources.CapabilityStatement;
@@ -27,6 +34,7 @@ import gov.va.api.health.r4.api.resources.Procedure;
 import gov.va.api.health.r4.api.resources.Questionnaire;
 import gov.va.api.health.r4.api.resources.QuestionnaireResponse;
 import gov.va.api.health.r4.api.resources.RelatedPerson;
+import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.r4.api.resources.TerminologyCapabilities;
 import gov.va.api.health.r4.api.samples.SampleAllergyIntolerances;
 import gov.va.api.health.r4.api.samples.SampleAppointments;
@@ -54,6 +62,9 @@ import gov.va.api.health.r4.api.samples.SampleQuestionnaires;
 import gov.va.api.health.r4.api.samples.SampleRelatedPersons;
 import gov.va.api.health.r4.api.samples.SampleTerminologyCapabilities;
 import java.util.List;
+import lombok.Builder;
+import lombok.SneakyThrows;
+import lombok.Value;
 import org.junit.jupiter.api.Test;
 
 public class MixedBundleTest {
@@ -164,6 +175,38 @@ public class MixedBundleTest {
   }
 
   @Test
+  @SneakyThrows
+  void missingResourceType() {
+    Patient pat = SamplePatients.get().patient();
+    pat.resourceType(null);
+    ObjectMapper mapper = new JacksonConfig().objectMapper();
+    Patient evilTwin =
+        mapper.readValue(
+            mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pat), Patient.class);
+    assertThat(evilTwin).isEqualTo(SamplePatients.get().patient());
+    MixedBundle bundle =
+        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(pat).build())).build();
+    String bundleJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bundle);
+    assertThatExceptionOfType(JsonMappingException.class)
+        .isThrownBy(() -> mapper.readValue(bundleJson, MixedBundle.class));
+  }
+
+  @Test
+  void multiple() {
+    Patient pat = SamplePatients.get().patient();
+    Immunization im = SampleImmunizations.get().immunization();
+    Location loc = SampleLocations.get().location();
+    assertRoundTrip(
+        MixedBundle.builder()
+            .entry(
+                List.of(
+                    MixedEntry.builder().resource(pat).build(),
+                    MixedEntry.builder().resource(im).build(),
+                    MixedEntry.builder().resource(loc).build()))
+            .build());
+  }
+
+  @Test
   void observation() {
     Observation r = SampleObservations.get().observation();
     assertRoundTrip(
@@ -238,5 +281,36 @@ public class MixedBundleTest {
     TerminologyCapabilities r = SampleTerminologyCapabilities.get().terminologyCapabilities();
     assertRoundTrip(
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
+  }
+
+  @Test
+  @SneakyThrows
+  void unknownResource() {
+    FooResource foo = FooResource.builder().build();
+    ObjectMapper mapper = new JacksonConfig().objectMapper();
+    FooResource evilTwin =
+        mapper.readValue(
+            mapper.writerWithDefaultPrettyPrinter().writeValueAsString(foo), FooResource.class);
+    assertThat(evilTwin).isEqualTo(foo);
+    MixedBundle bundle =
+        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(foo).build())).build();
+    String bundleJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bundle);
+    assertThatExceptionOfType(JsonMappingException.class)
+        .isThrownBy(() -> mapper.readValue(bundleJson, MixedBundle.class));
+  }
+
+  @Value
+  @Builder
+  @JsonDeserialize(builder = FooResource.FooResourceBuilder.class)
+  private static final class FooResource implements Resource {
+    @Builder.Default String resourceType = "FooResource";
+
+    String id;
+
+    Meta meta;
+
+    String implicitRules;
+
+    String language;
   }
 }
