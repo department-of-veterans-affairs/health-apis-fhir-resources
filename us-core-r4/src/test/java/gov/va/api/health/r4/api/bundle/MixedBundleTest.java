@@ -8,34 +8,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Meta;
-import gov.va.api.health.r4.api.resources.AllergyIntolerance;
-import gov.va.api.health.r4.api.resources.Appointment;
-import gov.va.api.health.r4.api.resources.CapabilityStatement;
-import gov.va.api.health.r4.api.resources.Claim;
-import gov.va.api.health.r4.api.resources.Condition;
-import gov.va.api.health.r4.api.resources.Coverage;
-import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse;
-import gov.va.api.health.r4.api.resources.Device;
-import gov.va.api.health.r4.api.resources.DiagnosticReport;
-import gov.va.api.health.r4.api.resources.Encounter;
-import gov.va.api.health.r4.api.resources.ExplanationOfBenefit;
 import gov.va.api.health.r4.api.resources.Immunization;
 import gov.va.api.health.r4.api.resources.Location;
-import gov.va.api.health.r4.api.resources.Medication;
-import gov.va.api.health.r4.api.resources.MedicationRequest;
-import gov.va.api.health.r4.api.resources.Observation;
-import gov.va.api.health.r4.api.resources.OperationOutcome;
 import gov.va.api.health.r4.api.resources.Patient;
-import gov.va.api.health.r4.api.resources.Practitioner;
-import gov.va.api.health.r4.api.resources.PractitionerRole;
-import gov.va.api.health.r4.api.resources.Procedure;
-import gov.va.api.health.r4.api.resources.Questionnaire;
-import gov.va.api.health.r4.api.resources.QuestionnaireResponse;
-import gov.va.api.health.r4.api.resources.RelatedPerson;
 import gov.va.api.health.r4.api.resources.Resource;
-import gov.va.api.health.r4.api.resources.TerminologyCapabilities;
 import gov.va.api.health.r4.api.samples.SampleAllergyIntolerances;
 import gov.va.api.health.r4.api.samples.SampleAppointments;
 import gov.va.api.health.r4.api.samples.SampleCapabilityStatements;
@@ -62,116 +39,44 @@ import gov.va.api.health.r4.api.samples.SampleQuestionnaires;
 import gov.va.api.health.r4.api.samples.SampleRelatedPersons;
 import gov.va.api.health.r4.api.samples.SampleTerminologyCapabilities;
 import java.util.List;
+import java.util.stream.Stream;
 import lombok.Builder;
 import lombok.SneakyThrows;
 import lombok.Value;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class MixedBundleTest {
-  @Test
-  void allergyIntolerance() {
-    AllergyIntolerance r = SampleAllergyIntolerances.get().allergyIntolerance();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void appointment() {
-    Appointment r = SampleAppointments.get().appointment();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void capabilityStatement() {
-    CapabilityStatement r = SampleCapabilityStatements.get().capability();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void claim() {
-    Claim r = SampleClaims.get().claim();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void condition() {
-    Condition r = SampleConditions.get().condition();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void coverage() {
-    Coverage r = SampleCoverages.get().coverageWithValueMoney();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void coverageEligResponse() {
-    CoverageEligibilityResponse r =
-        SampleCoverageEligibilityResponses.get().coverageEligibilityResponse();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void device() {
-    Device r = SampleDevices.get().device();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void diagnosticReport() {
-    DiagnosticReport r = SampleDiagnosticReports.get().diagnosticReport();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void encounter() {
-    Encounter r = SampleEncounters.get().encounter();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void explanationOfBenefit() {
-    ExplanationOfBenefit r = SampleExplanationOfBenefits.get().explanationOfBenefit();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void immunization() {
-    Immunization r = SampleImmunizations.get().immunization();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void location() {
-    Location r = SampleLocations.get().location();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void medication() {
-    Medication r = SampleMedications.get().medication();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void medicationRequest() {
-    MedicationRequest r = SampleMedicationRequests.get().medicationRequest();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
+  static Stream<Arguments> roundTripResources() {
+    return Stream.of(
+        Arguments.of(SampleAllergyIntolerances.get().allergyIntolerance()),
+        Arguments.of(SampleAppointments.get().appointment()),
+        Arguments.of(SampleCapabilityStatements.get().capability()),
+        Arguments.of(SampleClaims.get().claim()),
+        Arguments.of(SampleConditions.get().condition()),
+        Arguments.of(SampleCoverages.get().coverageWithValueMoney()),
+        Arguments.of(SampleCoverageEligibilityResponses.get().coverageEligibilityResponse()),
+        Arguments.of(SampleDevices.get().device()),
+        Arguments.of(SampleDiagnosticReports.get().diagnosticReport()),
+        Arguments.of(SampleEncounters.get().encounter()),
+        Arguments.of(SampleExplanationOfBenefits.get().explanationOfBenefit()),
+        Arguments.of(SampleImmunizations.get().immunization()),
+        Arguments.of(SampleLocations.get().location()),
+        Arguments.of(SampleMedications.get().medication()),
+        Arguments.of(SampleMedicationRequests.get().medicationRequest()),
+        Arguments.of(SampleObservations.get().observation()),
+        Arguments.of(SampleDataTypes.get().operationOutcome()),
+        Arguments.of(SamplePatients.get().patient()),
+        Arguments.of(SamplePractitioners.get().practitioner()),
+        Arguments.of(SamplePractitionerRoles.get().practitionerRole()),
+        Arguments.of(SampleProcedures.get().procedure()),
+        Arguments.of(SampleQuestionnaires.get().questionnaire()),
+        Arguments.of(SampleQuestionnaireResponses.get().questionnaireResponse()),
+        Arguments.of(SampleRelatedPersons.get().relatedPerson()),
+        Arguments.of(SampleDataTypes.get().resource()),
+        Arguments.of(SampleTerminologyCapabilities.get().terminologyCapabilities()));
   }
 
   @Test
@@ -206,79 +111,9 @@ public class MixedBundleTest {
             .build());
   }
 
-  @Test
-  void observation() {
-    Observation r = SampleObservations.get().observation();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void operationOutcome() {
-    OperationOutcome r = SampleDataTypes.get().operationOutcome();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void patient() {
-    Patient r = SamplePatients.get().patient();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void practitioner() {
-    Practitioner r = SamplePractitioners.get().practitioner();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void practitionerRole() {
-    PractitionerRole r = SamplePractitionerRoles.get().practitionerRole();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void procedure() {
-    Procedure r = SampleProcedures.get().procedure();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void questionnaire() {
-    Questionnaire r = SampleQuestionnaires.get().questionnaire();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void questionnaireResponse() {
-    QuestionnaireResponse r = SampleQuestionnaireResponses.get().questionnaireResponse();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void relatedPerson() {
-    RelatedPerson r = SampleRelatedPersons.get().relatedPerson();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void simpleResource() {
-    SimpleResource r = SampleDataTypes.get().resource();
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  void terminologyCapabilities() {
-    TerminologyCapabilities r = SampleTerminologyCapabilities.get().terminologyCapabilities();
+  @ParameterizedTest
+  @MethodSource
+  void roundTripResources(Resource r) {
     assertRoundTrip(
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
   }
