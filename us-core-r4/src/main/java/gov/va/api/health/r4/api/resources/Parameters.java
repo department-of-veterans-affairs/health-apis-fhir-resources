@@ -32,6 +32,7 @@ import gov.va.api.health.r4.api.elements.Dosage;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -80,6 +81,57 @@ public class Parameters implements Resource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "Parameter")
+  @ZeroOrOneOf(fields = {
+          "valueAge",
+          "valueAnnotation",
+          "valueAttachment",
+          "valueBase64Binary",
+          "valueBoolean",
+          "valueCanonical",
+          "valueCode",
+          "valueCodeableConcept",
+          "valueCoding",
+          "valueContactDetail",
+          "valueContactPoint",
+          "valueContributor",
+          "valueCount",
+          "valueDataRequirement",
+          "valueDate",
+          "valueDateTime",
+          "valueDecimal",
+          "valueDistance",
+          "valueDosage",
+          "valueDuration",
+          "valueExpression",
+          "valueHumanName",
+          "valueId",
+          "valueIdentifier",
+          "valueInstant",
+          "valueInteger",
+          "valueMarkdown",
+          "valueMeta",
+          "valueMoney",
+          "valueOid",
+          "valueParameterDefinition",
+          "valuePeriod",
+          "valuePositiveInt",
+          "valueQuantity",
+          "valueRange",
+          "valueRatio",
+          "valueReference",
+          "valueRelatedArtifact",
+          "valueSampledData",
+          "valueSignature",
+          "valueString",
+          "valueTime",
+          "valueTiming",
+          "valueTriggerDefinition",
+          "valueUnsignedInt",
+          "valueUri",
+          "valueUrl",
+          "valueUsageContext",
+          "valueUuid"
+  })
   public static class Parameter implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -140,7 +192,7 @@ public class Parameters implements Resource {
     String valueUrl;
 
     @Pattern(regexp = Fhir.URI)
-    String uuid;
+    String valueUuid;
 
     @Valid Address valueAddress;
     @Valid Age valueAge;
