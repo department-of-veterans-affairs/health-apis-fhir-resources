@@ -1,7 +1,6 @@
 package gov.va.api.health.r4.api.bundle;
 
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -80,7 +79,7 @@ public class MixedBundleTest {
 
   @Test
   @SneakyThrows
-  void canNotSerializeResourceWithInvalidType() {
+  void exception_invalidResourceType() {
     var r = SamplePatients.get().patient();
     r.resourceType("NotARealResource");
     var mixedBundle =
@@ -96,23 +95,34 @@ public class MixedBundleTest {
 
   @Test
   @SneakyThrows
-  void missingResourceType() {
-    Patient pat = SamplePatients.get().patient();
-    pat.resourceType(null);
-    ObjectMapper mapper = new JacksonConfig().objectMapper();
-    Patient evilTwin =
-        mapper.readValue(
-            mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pat), Patient.class);
-    assertThat(evilTwin).isEqualTo(SamplePatients.get().patient());
+  void exception_missingResourceType() {
+    Patient pat = SamplePatients.get().patient().resourceType(null);
     MixedBundle bundle =
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(pat).build())).build();
-    String bundleJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bundle);
-    assertThatExceptionOfType(JsonMappingException.class)
-        .isThrownBy(() -> mapper.readValue(bundleJson, MixedBundle.class));
+    assertThatExceptionOfType(JsonMappingException.class).isThrownBy(() -> assertRoundTrip(bundle));
   }
 
   @Test
-  void multiple() {
+  @SneakyThrows
+  void exception_unknownResource() {
+    FooResource foo = FooResource.builder().build();
+    // Solo resource can round-trip
+    assertRoundTrip(foo);
+    // Bundled resource requires additional configuration
+    MixedBundle bundle =
+        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(foo).build())).build();
+    assertThatExceptionOfType(JsonMappingException.class).isThrownBy(() -> assertRoundTrip(bundle));
+  }
+
+  @MethodSource
+  @ParameterizedTest
+  void roundTripResources(Resource r) {
+    assertRoundTrip(
+        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
+  }
+
+  @Test
+  void roundTrip_multiple() {
     Patient pat = SamplePatients.get().patient();
     Immunization im = SampleImmunizations.get().immunization();
     Location loc = SampleLocations.get().location();
@@ -124,29 +134,6 @@ public class MixedBundleTest {
                     MixedEntry.builder().resource(im).build(),
                     MixedEntry.builder().resource(loc).build()))
             .build());
-  }
-
-  @ParameterizedTest
-  @MethodSource
-  void roundTripResources(Resource r) {
-    assertRoundTrip(
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build());
-  }
-
-  @Test
-  @SneakyThrows
-  void unknownResource() {
-    FooResource foo = FooResource.builder().build();
-    ObjectMapper mapper = new JacksonConfig().objectMapper();
-    FooResource evilTwin =
-        mapper.readValue(
-            mapper.writerWithDefaultPrettyPrinter().writeValueAsString(foo), FooResource.class);
-    assertThat(evilTwin).isEqualTo(foo);
-    MixedBundle bundle =
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(foo).build())).build();
-    String bundleJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bundle);
-    assertThatExceptionOfType(JsonMappingException.class)
-        .isThrownBy(() -> mapper.readValue(bundleJson, MixedBundle.class));
   }
 
   @Value
