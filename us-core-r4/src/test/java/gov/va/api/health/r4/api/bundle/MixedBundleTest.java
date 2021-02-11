@@ -108,7 +108,7 @@ public class MixedBundleTest {
     FooResource foo = FooResource.builder().build();
     // Solo resource can round-trip
     assertRoundTrip(foo);
-    // FooResource is not in the resources package, so it won't be found
+    // FooResource is not supported in a bundle because it is not in the gov.va.api.health.r4.api.resources package
     MixedBundle bundle =
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(foo).build())).build();
     assertThatExceptionOfType(JsonMappingException.class).isThrownBy(() -> assertRoundTrip(bundle));
