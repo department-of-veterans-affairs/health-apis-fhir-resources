@@ -4,12 +4,11 @@ import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.resources.Immunization;
 import gov.va.api.health.r4.api.resources.Location;
+import gov.va.api.health.r4.api.resources.MissingClassDeserializerResource;
 import gov.va.api.health.r4.api.resources.Patient;
 import gov.va.api.health.r4.api.resources.Resource;
 import gov.va.api.health.r4.api.samples.SampleAllergyIntolerances;
@@ -40,7 +39,6 @@ import gov.va.api.health.r4.api.samples.SampleTerminologyCapabilities;
 import java.util.List;
 import java.util.stream.Stream;
 import lombok.Builder;
-import lombok.SneakyThrows;
 import lombok.Value;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -78,23 +76,20 @@ public class MixedBundleTest {
   }
 
   @Test
-  @SneakyThrows
   void exception_invalidResourceType() {
-    var r = SamplePatients.get().patient();
-    r.resourceType("NotARealResource");
-    var mixedBundle =
+    var r = SamplePatients.get().patient().resourceType("NotARealResource");
+    var bundle =
         MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build();
-    ObjectMapper mapper = new JacksonConfig().objectMapper();
-    assertThatExceptionOfType(JsonMappingException.class)
-        .isThrownBy(
-            () ->
-                mapper.readValue(
-                    mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mixedBundle),
-                    MixedBundle.class));
+    assertThatExceptionOfType(JsonMappingException.class).isThrownBy(() -> assertRoundTrip(bundle));
   }
 
   @Test
-  @SneakyThrows
+  void exception_missingClassDeserializer() {
+    MissingClassDeserializerResource r = MissingClassDeserializerResource.builder().build();
+    assertThatExceptionOfType(StackOverflowError.class).isThrownBy(() -> assertRoundTrip(r));
+  }
+
+  @Test
   void exception_missingResourceType() {
     Patient pat = SamplePatients.get().patient().resourceType(null);
     MixedBundle bundle =
@@ -103,14 +98,13 @@ public class MixedBundleTest {
   }
 
   @Test
-  @SneakyThrows
-  void exception_unknownResource() {
-    FooResource foo = FooResource.builder().build();
-    // Solo resource can round-trip
-    assertRoundTrip(foo);
-    // FooResource is not supported in a bundle because it is not in the gov.va.api.health.r4.api.resources package
+  void exception_wrongPackage() {
+    WrongPackage r = WrongPackage.builder().build();
+    // Solo resource is ok
+    assertRoundTrip(r);
+    // Not supported in a bundle because not in gov.va.api.health.r4.api.resources package
     MixedBundle bundle =
-        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(foo).build())).build();
+        MixedBundle.builder().entry(List.of(MixedEntry.builder().resource(r).build())).build();
     assertThatExceptionOfType(JsonMappingException.class).isThrownBy(() -> assertRoundTrip(bundle));
   }
 
@@ -138,9 +132,9 @@ public class MixedBundleTest {
 
   @Value
   @Builder
-  @JsonDeserialize(builder = FooResource.FooResourceBuilder.class)
-  private static final class FooResource implements Resource {
-    @Builder.Default String resourceType = "FooResource";
+  @JsonDeserialize(builder = WrongPackage.WrongPackageBuilder.class)
+  private static final class WrongPackage implements Resource {
+    @Builder.Default String resourceType = "WrongPackage";
 
     String id;
 
