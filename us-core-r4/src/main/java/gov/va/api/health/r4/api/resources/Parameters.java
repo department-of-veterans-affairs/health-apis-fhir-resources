@@ -33,6 +33,7 @@ import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
+import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -81,58 +82,60 @@ public class Parameters implements Resource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "Parameter")
-  @ZeroOrOneOf(
-      fields = {
-        "valueAge",
-        "valueAnnotation",
-        "valueAttachment",
-        "valueBase64Binary",
-        "valueBoolean",
-        "valueCanonical",
-        "valueCode",
-        "valueCodeableConcept",
-        "valueCoding",
-        "valueContactDetail",
-        "valueContactPoint",
-        "valueContributor",
-        "valueCount",
-        "valueDataRequirement",
-        "valueDate",
-        "valueDateTime",
-        "valueDecimal",
-        "valueDistance",
-        "valueDosage",
-        "valueDuration",
-        "valueExpression",
-        "valueHumanName",
-        "valueId",
-        "valueIdentifier",
-        "valueInstant",
-        "valueInteger",
-        "valueMarkdown",
-        "valueMeta",
-        "valueMoney",
-        "valueOid",
-        "valueParameterDefinition",
-        "valuePeriod",
-        "valuePositiveInt",
-        "valueQuantity",
-        "valueRange",
-        "valueRatio",
-        "valueReference",
-        "valueRelatedArtifact",
-        "valueSampledData",
-        "valueSignature",
-        "valueString",
-        "valueTime",
-        "valueTiming",
-        "valueTriggerDefinition",
-        "valueUnsignedInt",
-        "valueUri",
-        "valueUrl",
-        "valueUsageContext",
-        "valueUuid"
-      })
+  @ZeroOrOneOfs({
+      @ZeroOrOneOf(
+          fields = {
+              "valueAge",
+              "valueAnnotation",
+              "valueAttachment",
+              "valueBase64Binary",
+              "valueBoolean",
+              "valueCanonical",
+              "valueCode",
+              "valueCodeableConcept",
+              "valueCoding",
+              "valueContactDetail",
+              "valueContactPoint",
+              "valueContributor",
+              "valueCount",
+              "valueDataRequirement",
+              "valueDate",
+              "valueDateTime",
+              "valueDecimal",
+              "valueDistance",
+              "valueDosage",
+              "valueDuration",
+              "valueExpression",
+              "valueHumanName",
+              "valueId",
+              "valueIdentifier",
+              "valueInstant",
+              "valueInteger",
+              "valueMarkdown",
+              "valueMeta",
+              "valueMoney",
+              "valueOid",
+              "valueParameterDefinition",
+              "valuePeriod",
+              "valuePositiveInt",
+              "valueQuantity",
+              "valueRange",
+              "valueRatio",
+              "valueReference",
+              "valueRelatedArtifact",
+              "valueSampledData",
+              "valueSignature",
+              "valueString",
+              "valueTime",
+              "valueTiming",
+              "valueTriggerDefinition",
+              "valueUnsignedInt",
+              "valueUri",
+              "valueUrl",
+              "valueUsageContext",
+              "valueUuid"
+          })
+  })
   public static class Parameter implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -178,6 +181,7 @@ public class Parameters implements Resource {
     @Min(1)
     Integer valuePositiveInt;
 
+    @Pattern(regexp = Fhir.STRING)
     String valueString;
 
     @Pattern(regexp = Fhir.TIME)
@@ -196,11 +200,17 @@ public class Parameters implements Resource {
     String valueUuid;
 
     @Valid Address valueAddress;
+
     @Valid Age valueAge;
+
     @Valid Annotation valueAnnotation;
+
     @Valid Attachment valueAttachment;
+
     @Valid CodeableConcept valueCodeableConcept;
+
     @Valid Coding valueCoding;
+
     @Valid ContactPoint valueContactPoint;
 
     @Pattern(regexp = Fhir.CODE)
@@ -213,15 +223,25 @@ public class Parameters implements Resource {
     String valueDuration;
 
     @Valid HumanName valueHumanName;
+
     @Valid Identifier valueIdentifier;
+
     @Valid Money valueMoney;
+
     @Valid Period valuePeriod;
+
     @Valid Quantity valueQuantity;
+
     @Valid Range valueRange;
+
     @Valid Ratio valueRatio;
+
     @Valid Reference valueReference;
+
     @Valid SampledData valueSampledData;
+
     @Valid Signature valueSignature;
+
     @Valid Timing valueTiming;
 
     @Valid ContactDetail valueContactDetail;
@@ -241,10 +261,11 @@ public class Parameters implements Resource {
     @Valid UsageContext valueUsageContext;
 
     @Valid Dosage valueDosage;
+
     @Valid Meta valueMeta;
 
-    Resource resource;
+    @Valid Resource resource;
 
-    List<Parameter> part;
+    @Valid List<Parameter> part;
   }
 }
