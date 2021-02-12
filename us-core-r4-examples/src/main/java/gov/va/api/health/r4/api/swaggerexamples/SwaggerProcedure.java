@@ -14,7 +14,6 @@ import gov.va.api.health.r4.api.resources.Procedure;
 import gov.va.api.health.r4.api.resources.Procedure.Status;
 
 public class SwaggerProcedure {
-
   /**
    * An example Procedure.
    *

@@ -208,7 +208,6 @@ public class MedicationRequest implements Resource {
           "${r4.medicationRequestBundle:gov.va.api.health."
               + "r4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequestBundle}")
   public static class Bundle extends AbstractBundle<MedicationRequest.Entry> {
-
     /** Build a Medication Request bundle. */
     @Builder
     public Bundle(
@@ -269,7 +268,6 @@ public class MedicationRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "MedicationRequestDispenseRequest")
   public static class DispenseRequest implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -299,7 +297,6 @@ public class MedicationRequest implements Resource {
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     @Schema(name = "MedicationRequestDispenseRequestInitialFill")
     public static class InitialFill implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 
@@ -323,7 +320,6 @@ public class MedicationRequest implements Resource {
       fields = {"allowedBoolean", "allowedCodeableConcept"},
       message = "allowedBoolean or allowedCodeableConcept, but not both")
   public static class Substitution implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 

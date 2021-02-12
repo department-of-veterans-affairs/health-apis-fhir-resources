@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class SwaggerExplanationOfBenefit {
-
   /**
    * An example ExplanationOfBenefit.
    *

@@ -10,7 +10,6 @@ import gov.va.api.health.r4.api.resources.Questionnaire;
 import java.util.List;
 
 public class SwaggerQuestionnaire {
-
   /**
    * An example Questionnaire.
    *

@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Condition;
 import java.util.List;
 
 public class SwaggerCondition {
-
   /**
    * An example Condition.
    *

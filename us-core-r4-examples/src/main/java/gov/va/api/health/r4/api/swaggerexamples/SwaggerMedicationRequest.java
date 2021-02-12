@@ -16,7 +16,6 @@ import gov.va.api.health.r4.api.resources.MedicationRequest;
 import java.util.List;
 
 public class SwaggerMedicationRequest {
-
   /**
    * An example MedicationRequest.
    *

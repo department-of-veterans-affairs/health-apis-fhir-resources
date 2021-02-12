@@ -105,7 +105,6 @@ public class RelatedPerson implements DomainResource {
           "${r4.relatedPersonBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerRelatedPerson#relatedPersonBundle}")
   public static class Bundle extends AbstractBundle<RelatedPerson.Entry> {
-
     /** RelatedPerson bundle builder. */
     @Builder
     public Bundle(
@@ -144,7 +143,6 @@ public class RelatedPerson implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "Communication")
   public static class Communication implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -164,7 +162,6 @@ public class RelatedPerson implements DomainResource {
   @JsonDeserialize(builder = RelatedPerson.Entry.EntryBuilder.class)
   @Schema(name = "RelatedPersonEntry")
   public static class Entry extends AbstractEntry<RelatedPerson> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,

@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Device;
 import gov.va.api.health.r4.api.resources.Device.DeviceNameType;
 
 public class SwaggerDevice {
-
   /**
    * An example Device.
    *

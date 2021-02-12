@@ -15,7 +15,6 @@ import gov.va.api.health.r4.api.resources.Patient;
 import java.util.Arrays;
 
 public class SwaggerPatient {
-
   /**
    * An example Patient.
    *

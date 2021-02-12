@@ -13,7 +13,6 @@ import gov.va.api.health.r4.api.resources.Observation;
 import java.math.BigDecimal;
 
 public class SwaggerObservation {
-
   /**
    * An example Observation.
    *

@@ -12,7 +12,6 @@ import gov.va.api.health.r4.api.resources.DiagnosticReport;
 import java.util.List;
 
 public class SwaggerDiagnosticReport {
-
   /**
    * An example DiagnosticReport.
    *

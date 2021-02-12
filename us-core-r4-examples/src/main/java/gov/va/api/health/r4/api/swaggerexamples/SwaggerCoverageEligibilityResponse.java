@@ -20,7 +20,6 @@ import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Purpose;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Status;
 
 public class SwaggerCoverageEligibilityResponse {
-
   /**
    * Example CoverageEligibilityResponse.
    *

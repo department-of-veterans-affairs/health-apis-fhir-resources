@@ -155,7 +155,6 @@ public class Appointment implements DomainResource {
           "${r4.appointmentBundle:gov.va.api.health.r4.api.swaggerexamples."
               + "SwaggerAppointment#appointmentBundle}")
   public static class Bundle extends AbstractBundle<Appointment.Entry> {
-
     /** Appointment bundle builder. */
     @Builder
     public Bundle(
@@ -194,7 +193,6 @@ public class Appointment implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "AppointmentParticipant")
   public static class Participant implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -220,7 +218,6 @@ public class Appointment implements DomainResource {
   @JsonDeserialize(builder = Appointment.Entry.EntryBuilder.class)
   @Schema(name = "AppointmentEntry")
   public static class Entry extends AbstractEntry<Appointment> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,

@@ -10,7 +10,6 @@ import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.Immunization;
 
 public class SwaggerImmunization {
-
   /**
    * An example Immunization.
    *

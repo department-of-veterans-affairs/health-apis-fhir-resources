@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Claim;
 import java.util.Collections;
 
 public class SwaggerClaim {
-
   /**
    * An example Claim.
    *

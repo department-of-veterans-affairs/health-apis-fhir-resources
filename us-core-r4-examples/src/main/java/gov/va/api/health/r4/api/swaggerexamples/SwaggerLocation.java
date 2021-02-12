@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Location;
 import java.util.List;
 
 public class SwaggerLocation {
-
   /**
    * An example Location.
    *

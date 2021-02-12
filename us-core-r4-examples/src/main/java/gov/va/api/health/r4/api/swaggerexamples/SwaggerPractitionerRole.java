@@ -14,7 +14,6 @@ import gov.va.api.health.r4.api.resources.PractitionerRole.DayOfWeek;
 import gov.va.api.health.r4.api.resources.PractitionerRole.PractitionerAvailableTime;
 
 public class SwaggerPractitionerRole {
-
   /** An example PractitionerRole. */
   public static PractitionerRole practitionerRole() {
     return PractitionerRole.builder()

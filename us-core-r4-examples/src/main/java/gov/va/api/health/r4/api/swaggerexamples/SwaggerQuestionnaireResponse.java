@@ -12,7 +12,6 @@ import gov.va.api.health.r4.api.resources.QuestionnaireResponse.Status;
 import java.util.List;
 
 public class SwaggerQuestionnaireResponse {
-
   /**
    * An example QuestionnaireResponse.
    *
