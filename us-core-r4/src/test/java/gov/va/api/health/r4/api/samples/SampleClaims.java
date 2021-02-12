@@ -23,7 +23,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleClaims {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   /*
@@ -54,7 +53,6 @@ public class SampleClaims {
   public Claim claim() {
     return Claim.builder()
         .id("1234")
-        .resourceType("Claim")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

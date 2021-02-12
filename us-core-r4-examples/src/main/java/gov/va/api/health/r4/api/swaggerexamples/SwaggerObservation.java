@@ -13,7 +13,6 @@ import gov.va.api.health.r4.api.resources.Observation;
 import java.math.BigDecimal;
 
 public class SwaggerObservation {
-
   /**
    * An example Observation.
    *
@@ -21,7 +20,6 @@ public class SwaggerObservation {
    */
   public static Observation observation() {
     return Observation.builder()
-        .resourceType("Observation")
         .id("I2-RRCTYID4OWJHGGFQ7S7YPH4G6XVBG6D7VORRKERYLTZD7VBQLCJQ0000")
         .status(Observation.ObservationStatus._final)
         .category(
@@ -71,7 +69,6 @@ public class SwaggerObservation {
    */
   public static Observation.Bundle observationBundle() {
     return Observation.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

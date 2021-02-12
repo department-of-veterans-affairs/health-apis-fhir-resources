@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -162,7 +164,6 @@ public class Procedure implements Resource {
           "${r4.procedureBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerProcedure#procedureBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Build a Procedure bundle. */
     @Builder
     public Bundle(
@@ -179,7 +180,7 @@ public class Procedure implements Resource {
         @Valid List<Procedure.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

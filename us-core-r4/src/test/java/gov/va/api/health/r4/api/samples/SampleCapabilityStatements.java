@@ -33,13 +33,11 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleCapabilityStatements {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public CapabilityStatement capability() {
     return CapabilityStatement.builder()
         .id("c1")
-        .resourceType("Conformance")
         .implicitRules("https://example.com")
         .language("en")
         .text(narrative())

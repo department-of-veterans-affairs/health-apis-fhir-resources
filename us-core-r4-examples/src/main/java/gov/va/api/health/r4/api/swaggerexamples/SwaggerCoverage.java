@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class SwaggerCoverage {
-
   /**
    * An example Coverage.
    *
@@ -26,7 +25,6 @@ public class SwaggerCoverage {
    */
   public static Coverage coverage() {
     return Coverage.builder()
-        .resourceType("Coverage")
         .id("9876B1")
         .text(
             Narrative.builder()
@@ -236,7 +234,6 @@ public class SwaggerCoverage {
    */
   public static Coverage.Bundle coverageBundle() {
     return Coverage.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

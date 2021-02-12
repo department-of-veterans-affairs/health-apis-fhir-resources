@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -55,12 +57,11 @@ import lombok.NoArgsConstructor;
         "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples"
             + ".SwaggerExplanationOfBenefit#explanationOfBenefit}")
 public class ExplanationOfBenefit implements Resource {
+  @NotBlank @Builder.Default String resourceType = "ExplanationOfBenefit";
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
@@ -211,7 +212,6 @@ public class ExplanationOfBenefit implements Resource {
       fields = {"locationAddress", "locationReference"},
       message = "Only one location field may be specified")
   public static class Accident implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -244,7 +244,6 @@ public class ExplanationOfBenefit implements Resource {
         message = "Only one location field may be specified")
   })
   public static class AddItem implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -303,7 +302,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitAddItemDetail")
   public static class AddItemDetail implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -337,7 +335,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitAddItemSubDetail")
   public static class AddItemSubDetail implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -369,7 +366,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitAdjudication")
   public static class Adjudication implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -393,7 +389,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitBenefitBalance")
   public static class BenefitBalance implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -431,7 +426,6 @@ public class ExplanationOfBenefit implements Resource {
           "${r4.explanationOfBenefitBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerExplanationOfBenefit#explanationOfBenefitBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Explanation of benefit bundle builder. */
     @Builder
     public Bundle(
@@ -448,7 +442,7 @@ public class ExplanationOfBenefit implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
@@ -470,7 +464,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitCareTeam")
   public static class CareTeam implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -501,7 +494,6 @@ public class ExplanationOfBenefit implements Resource {
       fields = {"diagnosisCodeableConcept", "diagnosisReference"},
       message = "Only one diagnosis field may be specified")
   public static class Diagnosis implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -531,7 +523,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonDeserialize(builder = ExplanationOfBenefit.Entry.EntryBuilder.class)
   @Schema(name = "ExplanationOfBenefitEntry")
   public static class Entry extends AbstractEntry<ExplanationOfBenefit> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -562,7 +553,6 @@ public class ExplanationOfBenefit implements Resource {
         message = "Only one used field may be specified")
   })
   public static class Financial implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -593,7 +583,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitInsurance")
   public static class Insurance implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -623,7 +612,6 @@ public class ExplanationOfBenefit implements Resource {
         message = "Only one location field may be specified")
   })
   public static class Item implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -694,7 +682,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitItemDetail")
   public static class ItemDetail implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -740,7 +727,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitItemSubDetail")
   public static class ItemSubDetail implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -784,7 +770,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitPayee")
   public static class Payee implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -804,7 +789,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitPayment")
   public static class Payment implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -836,7 +820,6 @@ public class ExplanationOfBenefit implements Resource {
       fields = {"procedureCodeableConcept", "procedureReference"},
       message = "Only one procedure field may be specified")
   public static class Procedure implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -867,7 +850,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitProcessNote")
   public static class ProcessNote implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -893,7 +875,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitRelated")
   public static class Related implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -929,7 +910,6 @@ public class ExplanationOfBenefit implements Resource {
         message = "Only one value field may be specified")
   })
   public static class SupportingInfo implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -971,7 +951,6 @@ public class ExplanationOfBenefit implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ExplanationOfBenefitTotal")
   public static class Total implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 

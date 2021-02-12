@@ -18,7 +18,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleCoverageEligibilityResponses {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Benefit benefit() {
@@ -32,7 +31,6 @@ public class SampleCoverageEligibilityResponses {
   public CoverageEligibilityResponse coverageEligibilityResponse() {
     return CoverageEligibilityResponse.builder()
         .id("1324")
-        .resourceType("Coverage")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

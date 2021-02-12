@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -52,7 +54,6 @@ import lombok.NoArgsConstructor;
     description = "https://www.hl7.org/fhir/R4/claim.html",
     example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}")
 public class Claim implements DomainResource {
-
   @NotBlank @Builder.Default String resourceType = "Claim";
 
   @Pattern(regexp = Fhir.ID)
@@ -156,7 +157,6 @@ public class Claim implements DomainResource {
       fields = {"locationAddress", "locationReference"},
       message = "Only one location field may be specified")
   public static class Accident implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -185,7 +185,6 @@ public class Claim implements DomainResource {
       example =
           "${r4.claimBundle:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claimBundle}")
   public static class Bundle extends AbstractBundle<Claim.Entry> {
-
     /** Claim bundle builder. */
     @Builder
     public Bundle(
@@ -202,7 +201,7 @@ public class Claim implements DomainResource {
         @Valid List<Claim.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
@@ -224,7 +223,6 @@ public class Claim implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimCareTeam")
   public static class CareTeam implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -255,7 +253,6 @@ public class Claim implements DomainResource {
       fields = {"diagnosisCodeableConcept", "diagnosisReference"},
       message = "diagnosisCodeableConcept or diagnosisReference, but not both")
   public static class Diagnosis implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -285,7 +282,6 @@ public class Claim implements DomainResource {
   @JsonDeserialize(builder = Claim.Entry.EntryBuilder.class)
   @Schema(name = "ClaimEntry")
   public static class Entry extends AbstractEntry<Claim> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
@@ -308,7 +304,6 @@ public class Claim implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimInsurance")
   public static class Insurance implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -349,7 +344,6 @@ public class Claim implements DomainResource {
         message = "Only one location field may be specified")
   })
   public static class Item implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -415,7 +409,6 @@ public class Claim implements DomainResource {
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     @Schema(name = "ClaimItemDetail")
     public static class Detail implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 
@@ -456,7 +449,6 @@ public class Claim implements DomainResource {
       @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
       @Schema(name = "ClaimItemDetailSubDetail")
       public static class SubDetail implements BackboneElement {
-
         @Pattern(regexp = Fhir.ID)
         String id;
 
@@ -498,7 +490,6 @@ public class Claim implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimPayee")
   public static class Payee implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -521,7 +512,6 @@ public class Claim implements DomainResource {
       fields = {"procedureCodeableConcept", "procedureReference"},
       message = "procedureCodeableConcept or procedureReference, but not both")
   public static class Procedure implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -552,7 +542,6 @@ public class Claim implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "ClaimRelated")
   public static class Related implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -588,7 +577,6 @@ public class Claim implements DomainResource {
         message = "Only one value field may be specified")
   })
   public static class SupportingInfo implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 

@@ -34,11 +34,11 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/capabilitystatement.html")
 public class CapabilityStatement implements Resource {
+  @NotBlank @Builder.Default String resourceType = "CapabilityStatement";
 
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -65,7 +67,6 @@ import lombok.NoArgsConstructor;
       message = "Exactly one requester field must be specified")
 })
 public class MedicationRequest implements Resource {
-
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "MedicationRequest";
 
@@ -206,7 +207,6 @@ public class MedicationRequest implements Resource {
           "${r4.medicationRequestBundle:gov.va.api.health."
               + "r4.api.swaggerexamples.SwaggerMedicationRequest#medicationRequestBundle}")
   public static class Bundle extends AbstractBundle<MedicationRequest.Entry> {
-
     /** Build a Medication Request bundle. */
     @Builder
     public Bundle(
@@ -223,7 +223,7 @@ public class MedicationRequest implements Resource {
         @Valid List<MedicationRequest.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
@@ -267,7 +267,6 @@ public class MedicationRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "MedicationRequestDispenseRequest")
   public static class DispenseRequest implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -297,7 +296,6 @@ public class MedicationRequest implements Resource {
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     @Schema(name = "MedicationRequestDispenseRequestInitialFill")
     public static class InitialFill implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 
@@ -321,7 +319,6 @@ public class MedicationRequest implements Resource {
       fields = {"allowedBoolean", "allowedCodeableConcept"},
       message = "allowedBoolean or allowedCodeableConcept, but not both")
   public static class Substitution implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 

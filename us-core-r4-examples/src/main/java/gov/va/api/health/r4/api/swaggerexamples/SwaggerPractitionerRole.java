@@ -14,11 +14,9 @@ import gov.va.api.health.r4.api.resources.PractitionerRole.DayOfWeek;
 import gov.va.api.health.r4.api.resources.PractitionerRole.PractitionerAvailableTime;
 
 public class SwaggerPractitionerRole {
-
   /** An example PractitionerRole. */
   public static PractitionerRole practitionerRole() {
     return PractitionerRole.builder()
-        .resourceType("PractitionerRole")
         .id("I2-3NOHFSBEAZEKYRMDWVWB7LAFJNCKM3SFLR2CYELHDC7DZ5X3BKGA0000")
         .active(Boolean.TRUE)
         .practitioner(
@@ -78,7 +76,6 @@ public class SwaggerPractitionerRole {
    */
   public static PractitionerRole.Bundle practitionerRoleBundle() {
     return PractitionerRole.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

@@ -45,12 +45,11 @@ import lombok.NoArgsConstructor;
   message = "Only one serviced value may be specified."
 )
 public class CoverageEligibilityRequest implements Resource {
+  @NotBlank @Builder.Default String resourceType = "CoverageEligibilityRequest";
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
