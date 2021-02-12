@@ -20,12 +20,14 @@ public class RoundTrip {
     assertThat(evilTwin).isEqualTo(object);
 
     if (object instanceof Resource) {
+      ObjectMapper resourceMapper =
+          JacksonConfig.createMapper().registerModule(new Resource.ResourceModule());
       MixedBundle bundle =
           MixedBundle.builder()
               .entry(List.of(MixedEntry.builder().resource((Resource) object).build()))
               .build();
       Object bundleEvilTwin =
-          mapper.readValue(mapper.writeValueAsString(bundle), MixedBundle.class);
+          resourceMapper.readValue(resourceMapper.writeValueAsString(bundle), MixedBundle.class);
       assertThat(bundleEvilTwin).isEqualTo(bundle);
     }
   }
