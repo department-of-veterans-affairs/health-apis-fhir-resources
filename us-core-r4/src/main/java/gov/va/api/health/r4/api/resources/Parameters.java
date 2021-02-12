@@ -33,7 +33,6 @@ import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
-import gov.va.api.health.validation.api.ZeroOrOneOfs;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -74,7 +73,7 @@ public class Parameters implements Resource {
   @Pattern(regexp = Fhir.CODE)
   String language;
 
-  List<Parameter> parameter;
+  @Valid List<Parameter> parameter;
 
   @Data
   @Builder
@@ -82,60 +81,59 @@ public class Parameters implements Resource {
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "Parameter")
-  @ZeroOrOneOfs({
-      @ZeroOrOneOf(
-          fields = {
-              "valueAge",
-              "valueAnnotation",
-              "valueAttachment",
-              "valueBase64Binary",
-              "valueBoolean",
-              "valueCanonical",
-              "valueCode",
-              "valueCodeableConcept",
-              "valueCoding",
-              "valueContactDetail",
-              "valueContactPoint",
-              "valueContributor",
-              "valueCount",
-              "valueDataRequirement",
-              "valueDate",
-              "valueDateTime",
-              "valueDecimal",
-              "valueDistance",
-              "valueDosage",
-              "valueDuration",
-              "valueExpression",
-              "valueHumanName",
-              "valueId",
-              "valueIdentifier",
-              "valueInstant",
-              "valueInteger",
-              "valueMarkdown",
-              "valueMeta",
-              "valueMoney",
-              "valueOid",
-              "valueParameterDefinition",
-              "valuePeriod",
-              "valuePositiveInt",
-              "valueQuantity",
-              "valueRange",
-              "valueRatio",
-              "valueReference",
-              "valueRelatedArtifact",
-              "valueSampledData",
-              "valueSignature",
-              "valueString",
-              "valueTime",
-              "valueTiming",
-              "valueTriggerDefinition",
-              "valueUnsignedInt",
-              "valueUri",
-              "valueUrl",
-              "valueUsageContext",
-              "valueUuid"
-          })
-  })
+  @ZeroOrOneOf(
+      fields = {
+        "valueBase64Binary",
+        "valueBoolean",
+        "valueCanonical",
+        "valueCode",
+        "valueDate",
+        "valueDateTime",
+        "valueDecimal",
+        "valueId",
+        "valueInstant",
+        "valueInteger",
+        "valueMarkdown",
+        "valueOid",
+        "valuePositiveInt",
+        "valueString",
+        "valueTime",
+        "valueUnsignedInt",
+        "valueUri",
+        "valueUrl",
+        "valueUuid",
+        "valueAddress",
+        "valueAge",
+        "valueAnnotation",
+        "valueAttachment",
+        "valueCodeableConcept",
+        "valueCoding",
+        "valueContactPoint",
+        "valueCount",
+        "valueDistance",
+        "valueDuration",
+        "valueHumanName",
+        "valueIdentifier",
+        "valueMoney",
+        "valuePeriod",
+        "valueQuantity",
+        "valueRange",
+        "valueRatio",
+        "valueReference",
+        "valueSampledData",
+        "valueSignature",
+        "valueTiming",
+        "valueContactDetail",
+        "valueContributor",
+        "valueDataRequirement",
+        "valueExpression",
+        "valueParameterDefinition",
+        "valueRelatedArtifact",
+        "valueTriggerDefinition",
+        "valueUsageContext",
+        "valueDosage",
+        "valueMeta"
+      })
   public static class Parameter implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
