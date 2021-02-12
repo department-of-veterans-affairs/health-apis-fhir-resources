@@ -3,6 +3,7 @@ package gov.va.api.health.r4.api.datatypes;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -39,18 +40,19 @@ public class TriggerDefinition {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @ZeroOrOneOf(fields = {"timingTiming", "timingReference", "timingDate", "timingDateTime"})
   public static class Timing {
 
-    gov.va.api.health.r4.api.datatypes.Timing timing;
+    gov.va.api.health.r4.api.datatypes.Timing timingTiming;
 
-    Reference reference;
+    Reference timingReference;
 
     @Pattern(regexp = Fhir.DATE)
     @Valid
-    String data;
+    String timingDate;
 
     @Pattern(regexp = Fhir.DATETIME)
     @Valid
-    String dateTime;
+    String timingDateTime;
   }
 }

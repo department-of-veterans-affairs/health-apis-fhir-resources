@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import gov.va.api.health.r4.api.Fhir;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class Expression {
 
   @Pattern(regexp = Fhir.CODE)
   @Valid
+  @NotBlank
   String language;
 
   @Pattern(regexp = Fhir.STRING)

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import gov.va.api.health.r4.api.Fhir;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,23 +20,31 @@ import lombok.NoArgsConstructor;
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#parameterdefinition")
 public class ParameterDefinition {
 
-  @Pattern(regexp = Fhir.STRING)
-  @Valid
-  String description;
-
-  @Pattern(regexp = Fhir.ID)
+  @Pattern(regexp = Fhir.CODE)
   @Valid
   String name;
 
   @Pattern(regexp = Fhir.CODE)
   @Valid
-  String language;
+  @NotBlank
+  String use;
+
+  Integer min;
 
   @Pattern(regexp = Fhir.STRING)
   @Valid
-  String expression;
+  String max;
 
-  @Pattern(regexp = Fhir.URI)
+  @Pattern(regexp = Fhir.STRING)
   @Valid
-  String reference;
+  String documentation;
+
+  @Pattern(regexp = Fhir.CODE)
+  @Valid
+  @NotBlank
+  String type;
+
+  @Pattern(regexp = Fhir.CANONICAL)
+  @Valid
+  String profile;
 }

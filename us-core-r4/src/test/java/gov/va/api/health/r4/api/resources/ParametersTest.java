@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 public class ParametersTest {
 
-    private final SampleParameters data = SampleParameters.get();
+  private final SampleParameters data = SampleParameters.get();
 
-    @Test
-    void roundTrip() {
-        assertRoundTrip(data.parameters());
-    }
+  @Test
+  void roundTrip() {
+    assertRoundTrip(data.parameters());
+  }
 }

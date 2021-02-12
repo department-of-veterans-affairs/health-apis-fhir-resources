@@ -3,7 +3,9 @@ package gov.va.api.health.r4.api.datatypes;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import gov.va.api.health.r4.api.Fhir;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,9 +22,13 @@ import lombok.NoArgsConstructor;
 public class Contributor {
 
   @Pattern(regexp = Fhir.CODE)
+  @NotBlank
   String type;
 
-  @Valid String name;
+  @Pattern(regexp = Fhir.STRING)
+  @Valid
+  @NotBlank
+  String name;
 
-  @Valid ContactDetail contact;
+  @Valid List<ContactDetail> contact;
 }
