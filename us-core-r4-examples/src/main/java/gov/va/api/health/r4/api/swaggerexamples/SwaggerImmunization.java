@@ -10,7 +10,6 @@ import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.Immunization;
 
 public class SwaggerImmunization {
-
   /**
    * An example Immunization.
    *
@@ -18,7 +17,6 @@ public class SwaggerImmunization {
    */
   public static Immunization immunization() {
     return Immunization.builder()
-        .resourceType("Immunization")
         .id("I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
         .status(Immunization.Status.completed)
         .occurrenceString("2017-04-24T01:15:52Z")
@@ -49,7 +47,6 @@ public class SwaggerImmunization {
    */
   public static Immunization.Bundle immunizationBundle() {
     return Immunization.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

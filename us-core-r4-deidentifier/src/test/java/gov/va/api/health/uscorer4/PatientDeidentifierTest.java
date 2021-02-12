@@ -80,7 +80,6 @@ public class PatientDeidentifierTest {
     public static Patient create() {
       return Patient.builder()
           .id("2000163")
-          .resourceType("Patient")
           .extension(
               asList(
                   Extension.builder()

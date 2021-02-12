@@ -57,12 +57,11 @@ import lombok.NoArgsConstructor;
   )
 })
 public class ServiceRequest implements Resource {
+  @NotBlank @Builder.Default String resourceType = "ServiceRequest";
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 

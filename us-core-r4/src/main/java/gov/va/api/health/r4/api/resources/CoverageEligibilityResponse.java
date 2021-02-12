@@ -188,7 +188,6 @@ public class CoverageEligibilityResponse implements Resource {
           "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Coverage bundle builder. */
     @Builder
     public Bundle(
@@ -244,7 +243,6 @@ public class CoverageEligibilityResponse implements Resource {
   @JsonDeserialize(builder = CoverageEligibilityResponse.Entry.EntryBuilder.class)
   @Schema(name = "CoverageEligibilityResponseEntry")
   public static class Entry extends AbstractEntry<CoverageEligibilityResponse> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,

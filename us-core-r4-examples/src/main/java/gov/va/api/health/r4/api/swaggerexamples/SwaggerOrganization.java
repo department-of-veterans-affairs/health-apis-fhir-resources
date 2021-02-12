@@ -17,7 +17,6 @@ public class SwaggerOrganization {
    */
   public static Organization organization() {
     return Organization.builder()
-        .resourceType("Organization")
         .id("I2-ZJURFG76GQN5LW7WP56TXADUFM000000")
         .identifier(
             List.of(
@@ -56,7 +55,6 @@ public class SwaggerOrganization {
    */
   public static Organization.Bundle organizationBundle() {
     return Organization.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Medication;
 import java.util.List;
 
 public class SwaggerMedication {
-
   /**
    * An example Medication.
    *
@@ -19,7 +18,6 @@ public class SwaggerMedication {
    */
   public static Medication medication() {
     return Medication.builder()
-        .resourceType("Medication")
         .id("I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
         .status(Medication.Status.active)
         .code(
@@ -65,7 +63,6 @@ public class SwaggerMedication {
    */
   public static Medication.Bundle medicationBundle() {
     return Medication.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

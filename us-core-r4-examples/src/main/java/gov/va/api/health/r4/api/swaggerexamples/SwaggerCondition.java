@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Condition;
 import java.util.List;
 
 public class SwaggerCondition {
-
   /**
    * An example Condition.
    *
@@ -19,7 +18,6 @@ public class SwaggerCondition {
    */
   public static Condition condition() {
     return Condition.builder()
-        .resourceType("Condition")
         .id("I2-U4FPJS3E633MAJQBCAA2KAB5BQ000000")
         .clinicalStatus(
             CodeableConcept.builder()
@@ -79,7 +77,6 @@ public class SwaggerCondition {
    */
   public static Condition.Bundle conditionBundle() {
     return Condition.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

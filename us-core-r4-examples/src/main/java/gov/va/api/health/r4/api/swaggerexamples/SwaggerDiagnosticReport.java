@@ -12,7 +12,6 @@ import gov.va.api.health.r4.api.resources.DiagnosticReport;
 import java.util.List;
 
 public class SwaggerDiagnosticReport {
-
   /**
    * An example DiagnosticReport.
    *
@@ -20,7 +19,6 @@ public class SwaggerDiagnosticReport {
    */
   public static DiagnosticReport diagnosticReport() {
     return DiagnosticReport.builder()
-        .resourceType("DiagnosticReport")
         .id("I2-M2QUOOXL3O73NUZCB7HEOVQ2GAGQFOATAYXW5FMU3I57IYQDE6RQ0000")
         .status(DiagnosticReport.DiagnosticReportStatus._final)
         .category(
@@ -65,7 +63,6 @@ public class SwaggerDiagnosticReport {
    */
   public static DiagnosticReport.Bundle diagnosticReportBundle() {
     return DiagnosticReport.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

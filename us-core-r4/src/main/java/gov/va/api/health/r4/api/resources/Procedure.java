@@ -165,7 +165,6 @@ public class Procedure implements Resource {
           "${r4.procedureBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerProcedure#procedureBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Build a Procedure bundle. */
     @Builder
     public Bundle(

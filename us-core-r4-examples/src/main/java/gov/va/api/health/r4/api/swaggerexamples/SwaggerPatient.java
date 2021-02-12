@@ -15,7 +15,6 @@ import gov.va.api.health.r4.api.resources.Patient;
 import java.util.Arrays;
 
 public class SwaggerPatient {
-
   /**
    * An example Patient.
    *
@@ -24,7 +23,6 @@ public class SwaggerPatient {
   public static Patient patient() {
     return Patient.builder()
         .id("2000163")
-        .resourceType("Patient")
         .extension(
             asList(
                 Extension.builder()
@@ -146,7 +144,6 @@ public class SwaggerPatient {
    */
   public static Patient.Bundle patientBundle() {
     return Patient.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

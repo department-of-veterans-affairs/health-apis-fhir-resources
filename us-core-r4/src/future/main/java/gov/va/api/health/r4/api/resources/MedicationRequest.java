@@ -51,12 +51,11 @@ import lombok.NoArgsConstructor;
   message = "medicationCodeableConcept or medicationReference, but not both"
 )
 public class MedicationRequest implements Resource {
-
+  @NotBlank @Builder.Default String resourceType = "MedicationRequest";
+  
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
