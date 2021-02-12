@@ -51,7 +51,7 @@ import lombok.NoArgsConstructor;
 )
 public class MedicationRequest implements Resource {
   @NotBlank @Builder.Default String resourceType = "MedicationRequest";
-  
+
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -187,7 +187,6 @@ public class MedicationRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "MedicationRequestDispenseRequest")
   public static class DispenseRequest implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -217,7 +216,6 @@ public class MedicationRequest implements Resource {
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     @Schema(name = "MedicationRequestDispenseRequestInitialFill")
     public static class InitialFill implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 
@@ -242,7 +240,6 @@ public class MedicationRequest implements Resource {
     message = "allowedBoolean or allowedCodeableConcept, but not both"
   )
   public static class Substitution implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 

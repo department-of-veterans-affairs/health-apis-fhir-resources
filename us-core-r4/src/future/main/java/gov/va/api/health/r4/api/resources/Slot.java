@@ -30,12 +30,12 @@ import lombok.NoArgsConstructor;
   isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/slot.html", 
+  description = "https://www.hl7.org/fhir/R4/slot.html",
   example = "${r4.slot:com.example.Example#example}"
 )
 public class Slot {
   @NotBlank @Builder.Default String resourceType = "Slot";
-  
+
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;

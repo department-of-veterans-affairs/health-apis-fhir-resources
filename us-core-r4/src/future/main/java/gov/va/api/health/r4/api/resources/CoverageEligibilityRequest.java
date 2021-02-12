@@ -124,7 +124,6 @@ public class CoverageEligibilityRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageEligibilityRequestSupportingInfo")
   public static class SupportingInfo implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -149,7 +148,6 @@ public class CoverageEligibilityRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageEligibilityRequestInsurance")
   public static class Insurance implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -173,7 +171,6 @@ public class CoverageEligibilityRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageEligibilityRequestItem")
   public static class Item implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -212,7 +209,6 @@ public class CoverageEligibilityRequest implements Resource {
       message = "Only one diagnosis value may be specified."
     )
     public static class Diagnosis implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 

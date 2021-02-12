@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 )
 public class Schedule {
   @NotBlank @Builder.Default String resourceType = "Schedule";
-  
+
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;

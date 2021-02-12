@@ -121,7 +121,6 @@ public class HealthcareService {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "HealthcareServiceEligibility")
   public static class Eligibility implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -142,7 +141,6 @@ public class HealthcareService {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "HealthcareServiceAvailableTime")
   public static class AvailableTime implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -179,7 +177,6 @@ public class HealthcareService {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "HealthcareServiceNotAvailable")
   public static class NotAvailable implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
