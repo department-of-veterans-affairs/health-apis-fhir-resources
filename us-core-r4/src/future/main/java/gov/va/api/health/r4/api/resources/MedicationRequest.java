@@ -9,7 +9,6 @@ import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.SimpleQuantity;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Dosage;
 import gov.va.api.health.r4.api.elements.Extension;
@@ -68,7 +67,7 @@ public class MedicationRequest implements Resource {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 
