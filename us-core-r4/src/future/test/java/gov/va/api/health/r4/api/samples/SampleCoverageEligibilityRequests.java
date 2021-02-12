@@ -15,13 +15,11 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleCoverageEligibilityRequests {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public CoverageEligibilityRequest coverageEligibilityRequest() {
     return CoverageEligibilityRequest.builder()
         .id("1234")
-        .resourceType("CoverageEligibilityRequest")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

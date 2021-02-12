@@ -9,13 +9,11 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleSchedules {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Schedule schedule() {
     return Schedule.builder()
         .id("1234")
-        .resourceType("Schedule")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

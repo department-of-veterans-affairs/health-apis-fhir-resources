@@ -15,7 +15,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleMedicationRequests {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public DispenseRequest dispenseRequest() {
@@ -33,7 +32,6 @@ public class SampleMedicationRequests {
   public MedicationRequest medicationRequest() {
     return MedicationRequest.builder()
         .id("1234")
-        .resourceType("Claim")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

@@ -12,13 +12,11 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleServiceRequests {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public ServiceRequest serviceRequest() {
     return ServiceRequest.builder()
         .id("1234")
-        .resourceType("Claim")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

@@ -37,12 +37,11 @@ import lombok.NoArgsConstructor;
   example = "${r4.healthcareService:com.example.Example#example}"
 )
 public class HealthcareService {
+  @NotBlank @Builder.Default String resourceType = "HealthcareService";
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 

@@ -35,12 +35,11 @@ import lombok.NoArgsConstructor;
   example = "${r4.slot:com.example.Example#example}"
 )
 public class Slot {
-
+  @NotBlank @Builder.Default String resourceType = "Slot";
+  
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 

@@ -10,13 +10,11 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleSlots {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Slot slot() {
     return Slot.builder()
         .id("1234")
-        .resourceType("Slot")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")
