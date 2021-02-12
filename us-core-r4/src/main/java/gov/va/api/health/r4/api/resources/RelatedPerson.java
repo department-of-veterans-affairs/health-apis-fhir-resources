@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
@@ -47,7 +49,6 @@ import lombok.NoArgsConstructor;
         "${r4.relatedPerson:gov.va.api.health.r4.api.swaggerexamples"
             + ".SwaggerRelatedPerson#relatedPerson}")
 public class RelatedPerson implements DomainResource {
-
   @NotBlank @Builder.Default String resourceType = "RelatedPerson";
 
   @Pattern(regexp = Fhir.ID)
@@ -103,7 +104,6 @@ public class RelatedPerson implements DomainResource {
           "${r4.relatedPersonBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerRelatedPerson#relatedPersonBundle}")
   public static class Bundle extends AbstractBundle<RelatedPerson.Entry> {
-
     /** RelatedPerson bundle builder. */
     @Builder
     public Bundle(
@@ -120,7 +120,7 @@ public class RelatedPerson implements DomainResource {
         @Valid List<RelatedPerson.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
@@ -142,7 +142,6 @@ public class RelatedPerson implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "Communication")
   public static class Communication implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -162,7 +161,6 @@ public class RelatedPerson implements DomainResource {
   @JsonDeserialize(builder = RelatedPerson.Entry.EntryBuilder.class)
   @Schema(name = "RelatedPersonEntry")
   public static class Entry extends AbstractEntry<RelatedPerson> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,

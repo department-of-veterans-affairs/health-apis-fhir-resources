@@ -28,11 +28,11 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/terminologycapabilities.html")
 public class TerminologyCapabilities implements Resource {
+  @NotBlank @Builder.Default String resourceType = "TerminologyCapabilities";
 
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

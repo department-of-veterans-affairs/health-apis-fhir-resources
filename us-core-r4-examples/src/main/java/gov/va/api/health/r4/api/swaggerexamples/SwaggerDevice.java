@@ -11,7 +11,6 @@ import gov.va.api.health.r4.api.resources.Device;
 import gov.va.api.health.r4.api.resources.Device.DeviceNameType;
 
 public class SwaggerDevice {
-
   /**
    * An example Device.
    *
@@ -19,7 +18,6 @@ public class SwaggerDevice {
    */
   public static Device device() {
     return Device.builder()
-        .resourceType("Device")
         .id("I2-526QWVIAZHOZHCMERY7CQDV7UEAYPJXR4SASZH2FJNN3OUGOZ3QA0000")
         .patient(
             Reference.builder()
@@ -62,7 +60,6 @@ public class SwaggerDevice {
    */
   public static Device.Bundle deviceBundle() {
     return Device.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

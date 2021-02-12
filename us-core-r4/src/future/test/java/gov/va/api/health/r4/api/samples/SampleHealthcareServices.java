@@ -13,7 +13,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleHealthcareServices {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public AvailableTime availableTime() {
@@ -32,7 +31,6 @@ public class SampleHealthcareServices {
   public HealthcareService healthcareService() {
     return HealthcareService.builder()
         .id("1234")
-        .resourceType("HealthcareService")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")

@@ -35,12 +35,11 @@ import lombok.NoArgsConstructor;
   example = "${r4.schedule:com.example.Example#example}"
 )
 public class Schedule {
-
+  @NotBlank @Builder.Default String resourceType = "Schedule";
+  
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 

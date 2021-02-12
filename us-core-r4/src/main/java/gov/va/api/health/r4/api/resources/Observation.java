@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -83,7 +85,7 @@ import lombok.NoArgsConstructor;
         },
         message = "Only one value field may be set"))
 public class Observation implements Resource {
-  @Builder.Default String resourceType = "Observation";
+  @NotBlank @Builder.Default String resourceType = "Observation";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -291,7 +293,7 @@ public class Observation implements Resource {
         @Valid List<Observation.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

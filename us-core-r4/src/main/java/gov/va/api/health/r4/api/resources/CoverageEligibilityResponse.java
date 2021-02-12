@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -55,11 +57,11 @@ import lombok.NoArgsConstructor;
     fields = {"request", "_request"},
     message = "Exactly one request value must be specified.")
 public class CoverageEligibilityResponse implements Resource {
+  @NotBlank @Builder.Default String resourceType = "CoverageEligibilityResponse";
+
   // Anscestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
@@ -185,7 +187,6 @@ public class CoverageEligibilityResponse implements Resource {
           "${r4.coverageEligibilityResponseBundle:gov.va.api.health.r4.api.swaggerexamples"
               + ".SwaggerCoverageEligibilityResponse#coverageEligibilityResponseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
-
     /** Coverage bundle builder. */
     @Builder
     public Bundle(
@@ -202,7 +203,7 @@ public class CoverageEligibilityResponse implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,
@@ -241,7 +242,6 @@ public class CoverageEligibilityResponse implements Resource {
   @JsonDeserialize(builder = CoverageEligibilityResponse.Entry.EntryBuilder.class)
   @Schema(name = "CoverageEligibilityResponseEntry")
   public static class Entry extends AbstractEntry<CoverageEligibilityResponse> {
-
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,

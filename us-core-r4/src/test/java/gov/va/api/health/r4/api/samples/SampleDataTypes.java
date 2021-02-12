@@ -45,6 +45,7 @@ import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Narrative.NarrativeStatus;
 import gov.va.api.health.r4.api.elements.Reference;
+import gov.va.api.health.r4.api.resources.OperationOutcome;
 import gov.va.api.health.r4.api.resources.OperationOutcome.Issue;
 import gov.va.api.health.r4.api.resources.OperationOutcome.Issue.IssueSeverity;
 import java.math.BigDecimal;
@@ -236,6 +237,25 @@ public class SampleDataTypes {
 
   public Narrative narrative() {
     return Narrative.builder().status(NarrativeStatus.additional).div("<p>HelloDiv<p>").build();
+  }
+
+  public OperationOutcome operationOutcome() {
+    return OperationOutcome.builder()
+        .id("4321")
+        .meta(meta())
+        .implicitRules("http://HelloRules.com")
+        .language("Hello Language")
+        .text(narrative())
+        .contained(singletonList(resource()))
+        .modifierExtension(
+            Arrays.asList(
+                extension(),
+                extensionWithQuantity(),
+                extensionWithRatio(),
+                extensionWithUsageContext(),
+                extensionWithContactDetail()))
+        .issue(singletonList(issue()))
+        .build();
   }
 
   public Period period() {

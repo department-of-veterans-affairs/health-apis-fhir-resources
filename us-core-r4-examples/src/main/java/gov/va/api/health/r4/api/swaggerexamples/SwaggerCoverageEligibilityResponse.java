@@ -20,7 +20,6 @@ import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Purpose;
 import gov.va.api.health.r4.api.resources.CoverageEligibilityResponse.Status;
 
 public class SwaggerCoverageEligibilityResponse {
-
   /**
    * Example CoverageEligibilityResponse.
    *
@@ -29,7 +28,6 @@ public class SwaggerCoverageEligibilityResponse {
   public static CoverageEligibilityResponse coverageEligibilityResponse() {
     return CoverageEligibilityResponse.builder()
         .id("1008679665V880686")
-        .resourceType("CoverageEligibilityResponse")
         .identifier(
             singletonList(
                 Identifier.builder()
@@ -74,7 +72,6 @@ public class SwaggerCoverageEligibilityResponse {
    */
   public static CoverageEligibilityResponse.Bundle coverageEligibilityResponseBundle() {
     return CoverageEligibilityResponse.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(

@@ -12,7 +12,6 @@ import gov.va.api.health.r4.api.resources.QuestionnaireResponse.Status;
 import java.util.List;
 
 public class SwaggerQuestionnaireResponse {
-
   /**
    * An example QuestionnaireResponse.
    *
@@ -78,7 +77,6 @@ public class SwaggerQuestionnaireResponse {
    */
   public static QuestionnaireResponse.Bundle questionnaireResponseBundle() {
     return QuestionnaireResponse.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

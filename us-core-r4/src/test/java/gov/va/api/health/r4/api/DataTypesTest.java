@@ -1,39 +1,19 @@
 package gov.va.api.health.r4.api;
 
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
-import static java.util.Collections.singletonList;
 
-import gov.va.api.health.r4.api.resources.OperationOutcome;
 import gov.va.api.health.r4.api.samples.SampleDataTypes;
 import gov.va.api.health.r4.api.samples.SampleKnownTypes;
 import gov.va.api.health.validation.api.ZeroOrOneOfVerifier;
-import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 public class DataTypesTest {
-
   private final SampleDataTypes data = SampleDataTypes.get();
   private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void operationOutcome() {
-    assertRoundTrip(
-        OperationOutcome.builder()
-            .id("4321")
-            .meta(data.meta())
-            .implicitRules("http://HelloRules.com")
-            .language("Hello Language")
-            .text(data.narrative())
-            .contained(singletonList(data.resource()))
-            .modifierExtension(
-                Arrays.asList(
-                    data.extension(),
-                    data.extensionWithQuantity(),
-                    data.extensionWithRatio(),
-                    data.extensionWithUsageContext(),
-                    data.extensionWithContactDetail()))
-            .issue(singletonList(data.issue()))
-            .build());
+    assertRoundTrip(data.operationOutcome());
   }
 
   @Test

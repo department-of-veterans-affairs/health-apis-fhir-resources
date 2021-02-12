@@ -16,7 +16,6 @@ import gov.va.api.health.r4.api.resources.MedicationRequest;
 import java.util.List;
 
 public class SwaggerMedicationRequest {
-
   /**
    * An example MedicationRequest.
    *
@@ -24,7 +23,6 @@ public class SwaggerMedicationRequest {
    */
   public static MedicationRequest medicationRequest() {
     return MedicationRequest.builder()
-        .resourceType("MedicationRequest")
         .id("medrx0302")
         .status(MedicationRequest.Status.active)
         .intent(MedicationRequest.Intent.order)
@@ -89,7 +87,6 @@ public class SwaggerMedicationRequest {
    */
   public static MedicationRequest.Bundle medicationRequestBundle() {
     return MedicationRequest.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(
