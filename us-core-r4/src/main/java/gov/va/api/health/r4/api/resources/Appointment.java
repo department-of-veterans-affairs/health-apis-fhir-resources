@@ -45,7 +45,6 @@ import lombok.NoArgsConstructor;
     description = "https://www.hl7.org/fhir/R4/appointment.html",
     example =
         "${r4.appointment:gov.va.api.health.r4.api.swaggerexamples.SwaggerAppointment#appointment}")
-@JsonDeserialize(builder = Appointment.AppointmentBuilder.class)
 public class Appointment implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "Appointment";
 

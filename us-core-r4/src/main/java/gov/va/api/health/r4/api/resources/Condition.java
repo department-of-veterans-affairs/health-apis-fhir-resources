@@ -63,7 +63,6 @@ import lombok.NoArgsConstructor;
       },
       message = "Only one abatement field may be specified")
 })
-@JsonDeserialize(builder = Condition.ConditionBuilder.class)
 public class Condition implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Condition";

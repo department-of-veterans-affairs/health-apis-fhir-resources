@@ -56,7 +56,6 @@ import lombok.NoArgsConstructor;
     example =
         "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples"
             + ".SwaggerExplanationOfBenefit#explanationOfBenefit}")
-@JsonDeserialize(builder = ExplanationOfBenefit.ExplanationOfBenefitBuilder.class)
 public class ExplanationOfBenefit implements Resource {
   @NotBlank @Builder.Default String resourceType = "ExplanationOfBenefit";
 

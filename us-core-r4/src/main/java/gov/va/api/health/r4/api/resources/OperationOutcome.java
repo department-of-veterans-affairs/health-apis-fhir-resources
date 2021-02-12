@@ -1,7 +1,6 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.SimpleResource;
@@ -32,7 +31,6 @@ import lombok.NoArgsConstructor;
     example =
         "${r4.operationOutcome:gov.va.api.health.r4.api.swaggerexamples"
             + ".SwaggerOperationOutcome#operationOutcome}")
-@JsonDeserialize(builder = OperationOutcome.OperationOutcomeBuilder.class)
 public class OperationOutcome implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "OperationOutcome";
 

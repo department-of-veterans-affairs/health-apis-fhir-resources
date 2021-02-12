@@ -57,7 +57,6 @@ import lombok.NoArgsConstructor;
       fields = {"effectiveDateTime", "effectivePeriod"},
       message = "One of effectiveDateTime | effectivePeriod must be set")
 })
-@JsonDeserialize(builder = DiagnosticReport.DiagnosticReportBuilder.class)
 public class DiagnosticReport implements Resource {
   @NotBlank @Builder.Default String resourceType = "DiagnosticReport";
 

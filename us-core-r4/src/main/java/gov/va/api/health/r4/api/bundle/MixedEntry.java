@@ -1,7 +1,6 @@
 package gov.va.api.health.r4.api.bundle;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.resources.Resource;
@@ -19,7 +18,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode(callSuper = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-@JsonDeserialize(builder = MixedEntry.MixedEntryBuilder.class)
 @Schema(description = "https://hl7.org/fhir/R4/bundle.html")
 public final class MixedEntry extends AbstractEntry<Resource> {
   /** Builder constructor. */

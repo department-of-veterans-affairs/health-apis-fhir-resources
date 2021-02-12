@@ -49,7 +49,6 @@ import org.apache.commons.lang3.StringUtils;
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = " http://hl7.org/fhir/us/core/StructureDefinition-us-core-practitioner.html")
-@JsonDeserialize(builder = Practitioner.PractitionerBuilder.class)
 public class Practitioner implements Resource {
   @NotBlank @Builder.Default String resourceType = "Practitioner";
 

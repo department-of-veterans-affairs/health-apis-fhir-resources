@@ -1,21 +1,26 @@
 package gov.va.api.health.r4.api.resources;
 
+import static java.util.stream.Collectors.toSet;
+
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Streams;
 import gov.va.api.health.r4.api.Fhir;
+import gov.va.api.health.r4.api.bundle.MixedBundle;
+import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Meta;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.Set;
 import javax.validation.constraints.Pattern;
 import lombok.SneakyThrows;
 
 @Schema(description = "https://www.hl7.org/fhir/R4/resource.html")
-@JsonDeserialize(using = Resource.ResourceDeserializer.class)
 public interface Resource {
   @Pattern(regexp = Fhir.STRING)
   String id();
@@ -29,7 +34,6 @@ public interface Resource {
   Meta meta();
 
   public final class ResourceDeserializer extends StdDeserializer<Resource> {
-
     public ResourceDeserializer() {
       this(null);
     }
@@ -44,12 +48,34 @@ public interface Resource {
       ObjectMapper mapper = (ObjectMapper) jp.getCodec();
       ObjectNode root = mapper.readTree(jp);
       String type = root.get("resourceType").asText();
-      try {
+      if (type.equals("SimpleResource")) {
+        return mapper.readValue(root.toString(), SimpleResource.class);
+      }
+      if (!type.equals("Bundle")) {
         Class<?> clazz = Class.forName(Resource.class.getPackageName() + "." + type);
         return (Resource) mapper.readValue(root.toString(), clazz);
-      } catch (JsonProcessingException | ClassNotFoundException e) {
-        throw new JsonMappingException(jp, "Unknown resource type: " + type, e);
       }
+      // Bundle
+      Set<String> entryTypes =
+          Streams.stream((ArrayNode) root.get("entry"))
+              .map(node -> node.get("resource").get("resourceType").asText())
+              .collect(toSet());
+      if (entryTypes.size() != 1) {
+        return mapper.readValue(root.toString(), MixedBundle.class);
+      }
+      String highlander = Iterables.getOnlyElement(entryTypes);
+      if (highlander.equals("Bundle")) {
+        return mapper.readValue(root.toString(), MixedBundle.class);
+      }
+      Class<?> bundleClazz =
+          Class.forName(Resource.class.getPackageName() + "." + highlander + "$Bundle");
+      return (Resource) mapper.readValue(root.toString(), bundleClazz);
+    }
+  }
+
+  public final class ResourceModule extends SimpleModule {
+    public ResourceModule() {
+      addDeserializer(Resource.class, new Resource.ResourceDeserializer());
     }
   }
 }
