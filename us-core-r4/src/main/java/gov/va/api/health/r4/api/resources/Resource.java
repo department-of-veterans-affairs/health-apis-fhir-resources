@@ -49,6 +49,7 @@ public interface Resource {
       ObjectNode root = mapper.readTree(jp);
       String type = root.get("resourceType").asText();
       if (type.equals("SimpleResource")) {
+        // SimpleResource is in a different package
         return mapper.readValue(root.toString(), SimpleResource.class);
       }
       if (!type.equals("Bundle")) {
@@ -75,7 +76,7 @@ public interface Resource {
 
   public final class ResourceModule extends SimpleModule {
     public ResourceModule() {
-      addDeserializer(Resource.class, new Resource.ResourceDeserializer());
+      addDeserializer(Resource.class, new ResourceDeserializer());
     }
   }
 }
