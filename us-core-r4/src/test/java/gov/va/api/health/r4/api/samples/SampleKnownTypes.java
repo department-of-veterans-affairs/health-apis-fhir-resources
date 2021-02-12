@@ -22,7 +22,6 @@ import gov.va.api.health.r4.api.datatypes.Timing;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Reference;
-import gov.va.api.health.r4.api.resources.Resource;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;

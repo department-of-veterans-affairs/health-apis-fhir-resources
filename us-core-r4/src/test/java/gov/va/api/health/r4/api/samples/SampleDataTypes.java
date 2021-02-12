@@ -45,8 +45,6 @@ import gov.va.api.health.r4.api.elements.Narrative;
 import gov.va.api.health.r4.api.elements.Narrative.NarrativeStatus;
 import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.r4.api.resources.OperationOutcome;
-import gov.va.api.health.r4.api.resources.OperationOutcome.Issue;
-import gov.va.api.health.r4.api.resources.OperationOutcome.Issue.IssueSeverity;
 import gov.va.api.health.r4.api.resources.Resource;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -54,7 +52,6 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleDataTypes {
-
   public Address address() {
     return Address.builder()
         .id("1234")
@@ -210,9 +207,9 @@ public class SampleDataTypes {
         .build();
   }
 
-  public Issue issue() {
-    return Issue.builder()
-        .severity(IssueSeverity.error)
+  public OperationOutcome.Issue issue() {
+    return OperationOutcome.Issue.builder()
+        .severity(OperationOutcome.Issue.IssueSeverity.error)
         .code("HelloCode")
         .details(details())
         .diagnostics("HelloDiagnostics")
@@ -246,7 +243,6 @@ public class SampleDataTypes {
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")
         .text(narrative())
-        // .contained(singletonList(resource()))
         .modifierExtension(
             Arrays.asList(
                 extension(),
