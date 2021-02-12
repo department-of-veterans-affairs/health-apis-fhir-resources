@@ -74,8 +74,6 @@ public class SampleKnownTypes {
     suppliers.put(Signature.class, dataTypes::signature);
     suppliers.put(SimpleQuantity.class, dataTypes::simpleQuantity);
     suppliers.put(Reference.class, dataTypes::reference);
-    // PETERTODO
-    suppliers.put(Resource.class, dataTypes::resource);
     suppliers.put(Timing.class, dataTypes::timing);
     suppliers.put(UsageContext.class, dataTypes::usageContext);
     return suppliers;
