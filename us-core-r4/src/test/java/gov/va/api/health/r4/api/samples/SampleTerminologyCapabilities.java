@@ -11,7 +11,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleTerminologyCapabilities {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public List<TerminologyCapabilities.CodeSystem> codeSystem() {
@@ -33,7 +32,6 @@ public class SampleTerminologyCapabilities {
   public TerminologyCapabilities terminologyCapabilities() {
     return TerminologyCapabilities.builder()
         .id("c1")
-        .resourceType("Conformance")
         .implicitRules("https://example.com")
         .language("en")
         .url("http://example.com")

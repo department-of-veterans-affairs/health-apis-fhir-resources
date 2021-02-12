@@ -14,7 +14,6 @@ class SwaggerOperationOutcome {
    */
   public static OperationOutcome operationOutcome() {
     return OperationOutcome.builder()
-        .resourceType("OperationOutcome")
         .issue(
             asList(
                 OperationOutcome.Issue.builder()

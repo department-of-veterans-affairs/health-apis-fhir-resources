@@ -15,7 +15,6 @@ public final class SwaggerAllergyIntolerance {
   /** Example AllergyIntolerance. */
   public static AllergyIntolerance allergyIntolerance() {
     return AllergyIntolerance.builder()
-        .resourceType("AllergyIntolerance")
         .id("I2-6F9A021B07D553C88CCEB49A694D4AD9")
         .onsetDateTime("1995-04-30T01:15:52Z")
         .patient(
@@ -73,7 +72,6 @@ public final class SwaggerAllergyIntolerance {
   /** Example bundle. */
   public static AllergyIntolerance.Bundle allergyIntoleranceBundle() {
     return AllergyIntolerance.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

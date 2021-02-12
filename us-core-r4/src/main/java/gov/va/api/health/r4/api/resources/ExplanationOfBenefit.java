@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -54,13 +56,13 @@ import lombok.NoArgsConstructor;
     example =
         "${r4.explanationOfBenefit:gov.va.api.health.r4.api.swaggerexamples"
             + ".SwaggerExplanationOfBenefit#explanationOfBenefit}")
+@JsonDeserialize(builder = ExplanationOfBenefit.ExplanationOfBenefitBuilder.class)
 public class ExplanationOfBenefit implements Resource {
+  @NotBlank @Builder.Default String resourceType = "ExplanationOfBenefit";
 
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank String resourceType;
 
   @Valid Meta meta;
 
@@ -448,7 +450,7 @@ public class ExplanationOfBenefit implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

@@ -35,7 +35,6 @@ public class SwaggerExplanationOfBenefit {
    */
   public static ExplanationOfBenefit explanationOfBenefit() {
     return ExplanationOfBenefit.builder()
-        .resourceType("ExplanationOfBenefit")
         .id("EB3500")
         .text(
             Narrative.builder()
@@ -324,7 +323,6 @@ public class SwaggerExplanationOfBenefit {
    */
   public static ExplanationOfBenefit.Bundle explanationOfBenefitBundle() {
     return ExplanationOfBenefit.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

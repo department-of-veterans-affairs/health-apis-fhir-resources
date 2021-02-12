@@ -78,7 +78,6 @@ public class SwaggerQuestionnaireResponse {
    */
   public static QuestionnaireResponse.Bundle questionnaireResponseBundle() {
     return QuestionnaireResponse.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

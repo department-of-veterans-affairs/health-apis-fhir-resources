@@ -17,7 +17,6 @@ public class SampleAppointments {
 
   public Appointment appointment() {
     return Appointment.builder()
-        .resourceType("Appointment")
         .id("1234")
         .meta(meta())
         .implicitRules("https://HelloRules.com")

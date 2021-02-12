@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -64,8 +66,8 @@ import lombok.NoArgsConstructor;
       fields = {"requester", "_requester"},
       message = "Exactly one requester field must be specified")
 })
+@JsonDeserialize(builder = MedicationRequest.MedicationRequestBuilder.class)
 public class MedicationRequest implements Resource {
-
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "MedicationRequest";
 
@@ -223,7 +225,7 @@ public class MedicationRequest implements Resource {
         @Valid List<MedicationRequest.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

@@ -19,7 +19,6 @@ public class SwaggerClaim {
    */
   public static Claim claim() {
     return Claim.builder()
-        .resourceType("Claim")
         .id("1234509876")
         .status(Claim.Status.active)
         .type(
@@ -74,7 +73,6 @@ public class SwaggerClaim {
    */
   public static Claim.Bundle claimBundle() {
     return Claim.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

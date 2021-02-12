@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -47,6 +49,7 @@ import lombok.NoArgsConstructor;
         "${r4.questionnaireResponse"
             + ":gov.va.api.health.r4.api.swaggerexamples.SwaggerQuestionnaireResponse"
             + "#questionnaireResponse}")
+@JsonDeserialize(builder = QuestionnaireResponse.QuestionnaireResponseBuilder.class)
 public class QuestionnaireResponse implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "QuestionnaireResponse";
 
@@ -191,7 +194,7 @@ public class QuestionnaireResponse implements DomainResource {
         @Valid List<QuestionnaireResponse.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -51,8 +53,8 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/claim.html",
     example = "${r4.claim:gov.va.api.health.r4.api.swaggerexamples.SwaggerClaim#claim}")
+@JsonDeserialize(builder = Claim.ClaimBuilder.class)
 public class Claim implements DomainResource {
-
   @NotBlank @Builder.Default String resourceType = "Claim";
 
   @Pattern(regexp = Fhir.ID)
@@ -202,7 +204,7 @@ public class Claim implements DomainResource {
         @Valid List<Claim.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

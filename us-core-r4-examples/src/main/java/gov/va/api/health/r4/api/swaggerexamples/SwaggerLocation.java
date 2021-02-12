@@ -19,7 +19,6 @@ public class SwaggerLocation {
    */
   public static Location location() {
     return Location.builder()
-        .resourceType("Location")
         .id("I2-4KG3N5YUSPTWD3DAFMLMRL5V5U000000")
         .status(Location.Status.active)
         .name("VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)")
@@ -64,7 +63,6 @@ public class SwaggerLocation {
    */
   public static Location.Bundle locationBundle() {
     return Location.Bundle.builder()
-        .resourceType("Bundle")
         .type(AbstractBundle.BundleType.searchset)
         .total(1)
         .link(

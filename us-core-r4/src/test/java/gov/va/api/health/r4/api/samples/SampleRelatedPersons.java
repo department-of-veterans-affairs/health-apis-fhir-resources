@@ -11,7 +11,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleRelatedPersons {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public Communication communication() {
@@ -20,7 +19,6 @@ public class SampleRelatedPersons {
 
   public RelatedPerson relatedPerson() {
     return RelatedPerson.builder()
-        .resourceType("RelatedPerson")
         .id("1234")
         .meta(meta())
         .implicitRules("https://HelloRules.com")

@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -46,12 +48,13 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/coverage.html",
     example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
+@JsonDeserialize(builder = Coverage.CoverageBuilder.class)
 public class Coverage implements Resource {
+  @NotBlank @Builder.Default String resourceType = "Coverage";
+
   // Anscestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
-
-  @NotBlank @Builder.Default String resourceType = "Coverage";
 
   @Valid Meta meta;
 
@@ -157,7 +160,7 @@ public class Coverage implements Resource {
         @Valid List<Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

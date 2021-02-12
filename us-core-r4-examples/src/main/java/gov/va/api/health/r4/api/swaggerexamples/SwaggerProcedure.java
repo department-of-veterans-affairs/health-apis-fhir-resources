@@ -22,7 +22,6 @@ public class SwaggerProcedure {
    */
   public static Procedure procedure() {
     return Procedure.builder()
-        .resourceType("Procedure")
         .id("I2-AOV4FXGQLPIXGZPTMTWY7Y7KJ4000000")
         .subject(
             Reference.builder()
@@ -57,7 +56,6 @@ public class SwaggerProcedure {
    */
   public static Procedure.Bundle procedureBundle() {
     return Procedure.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(

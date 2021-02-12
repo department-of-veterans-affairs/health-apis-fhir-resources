@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -49,6 +51,7 @@ import org.apache.commons.lang3.StringUtils;
     example =
         "${r4.organization:gov.va.api.health."
             + "r4.api.swaggerexamples.SwaggerOrganization#organization}")
+@JsonDeserialize(builder = Organization.OrganizationBuilder.class)
 public class Organization implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Organization";
@@ -199,7 +202,7 @@ public class Organization implements Resource {
         @Valid List<Organization.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

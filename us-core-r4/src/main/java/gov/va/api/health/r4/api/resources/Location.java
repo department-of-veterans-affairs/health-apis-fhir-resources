@@ -1,5 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
@@ -42,6 +44,7 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-location.html",
     example = "${r4.location:gov.va.api.health.r4.api.swaggerexamples.SwaggerLocation#location}")
+@JsonDeserialize(builder = Location.LocationBuilder.class)
 public class Location implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "Location";
 
@@ -146,7 +149,7 @@ public class Location implements DomainResource {
         @Valid List<Location.Entry> entry,
         @Valid Signature signature) {
       super(
-          resourceType,
+          defaultString(resourceType, "Bundle"),
           id,
           meta,
           implicitRules,

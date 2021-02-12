@@ -1,6 +1,7 @@
 package gov.va.api.health.r4.api.resources;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.ContactDetail;
@@ -27,12 +28,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/terminologycapabilities.html")
+@JsonDeserialize(builder = TerminologyCapabilities.TerminologyCapabilitiesBuilder.class)
 public class TerminologyCapabilities implements Resource {
+  @NotBlank @Builder.Default String resourceType = "TerminologyCapabilities";
 
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

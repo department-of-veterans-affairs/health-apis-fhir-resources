@@ -13,7 +13,6 @@ import lombok.experimental.Delegate;
 
 @NoArgsConstructor(staticName = "get")
 public class SampleCoverages {
-
   @Delegate SampleDataTypes dataTypes = SampleDataTypes.get();
 
   public CostToBeneficiary costToBeneficiaryWithValueMoney() {
@@ -43,7 +42,6 @@ public class SampleCoverages {
   public Coverage coverageWithValueMoney() {
     return Coverage.builder()
         .id("1324")
-        .resourceType("Coverage")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")
@@ -75,7 +73,6 @@ public class SampleCoverages {
   public Coverage coverageWithValueQuanitity() {
     return Coverage.builder()
         .id("1324")
-        .resourceType("Coverage")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello language")
