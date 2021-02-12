@@ -53,7 +53,6 @@ import lombok.NoArgsConstructor;
       fields = {"performedDateTime", "performedPeriod"},
       message = "performedDateTime or performedPeriod, but not both.")
 })
-@JsonDeserialize(builder = Procedure.ProcedureBuilder.class)
 public class Procedure implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "Procedure";

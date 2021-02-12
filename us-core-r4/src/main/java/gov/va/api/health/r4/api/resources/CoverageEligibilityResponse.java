@@ -56,7 +56,6 @@ import lombok.NoArgsConstructor;
 @ExactlyOneOf(
     fields = {"request", "_request"},
     message = "Exactly one request value must be specified.")
-@JsonDeserialize(builder = CoverageEligibilityResponse.CoverageEligibilityResponseBuilder.class)
 public class CoverageEligibilityResponse implements Resource {
   @NotBlank @Builder.Default String resourceType = "CoverageEligibilityResponse";
 

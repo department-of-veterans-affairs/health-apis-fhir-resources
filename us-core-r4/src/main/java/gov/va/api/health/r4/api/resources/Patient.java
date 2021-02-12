@@ -63,7 +63,6 @@ import lombok.NoArgsConstructor;
       fields = {"multipleBirthBoolean", "multipleBirthInteger"},
       message = "Only one multipleBirth field may be specified")
 })
-@JsonDeserialize(builder = Patient.PatientBuilder.class)
 public class Patient implements Resource {
   // Anscestor -- Resource
   @NotBlank @Builder.Default String resourceType = "Patient";

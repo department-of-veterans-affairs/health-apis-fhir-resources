@@ -48,7 +48,6 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "https://www.hl7.org/fhir/R4/coverage.html",
     example = "${r4.coverage:gov.va.api.health.r4.api.swaggerexamples.SwaggerCoverage#coverage}")
-@JsonDeserialize(builder = Coverage.CoverageBuilder.class)
 public class Coverage implements Resource {
   @NotBlank @Builder.Default String resourceType = "Coverage";
 

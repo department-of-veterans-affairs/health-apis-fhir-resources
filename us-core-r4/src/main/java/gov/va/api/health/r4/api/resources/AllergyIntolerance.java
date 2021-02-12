@@ -57,7 +57,6 @@ import lombok.NoArgsConstructor;
       fields = {"onsetDateTime", "onsetAge", "onsetPeriod", "onsetRange", "onsetString"},
       message = "Only one onset field may be specified")
 })
-@JsonDeserialize(builder = AllergyIntolerance.AllergyIntoleranceBuilder.class)
 public final class AllergyIntolerance implements Resource {
   @NotBlank @Builder.Default String resourceType = "AllergyIntolerance";
 

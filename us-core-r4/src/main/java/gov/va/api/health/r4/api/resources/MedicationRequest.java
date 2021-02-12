@@ -66,7 +66,6 @@ import lombok.NoArgsConstructor;
       fields = {"requester", "_requester"},
       message = "Exactly one requester field must be specified")
 })
-@JsonDeserialize(builder = MedicationRequest.MedicationRequestBuilder.class)
 public class MedicationRequest implements Resource {
   // Ancestors
   @NotBlank @Builder.Default String resourceType = "MedicationRequest";

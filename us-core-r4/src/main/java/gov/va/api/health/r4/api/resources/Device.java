@@ -45,7 +45,6 @@ import lombok.NoArgsConstructor;
 @Schema(
     description = "http://hl7.org/fhir/us/core/StructureDefinition-us-core-implantable-device.html",
     example = "${r4.device:gov.va.api.health.r4.api.swaggerexamples.SwaggerDevice#device}")
-@JsonDeserialize(builder = Device.DeviceBuilder.class)
 public class Device implements Resource {
   @NotBlank @Builder.Default String resourceType = "Device";
 

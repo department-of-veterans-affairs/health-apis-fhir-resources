@@ -48,7 +48,6 @@ import lombok.NoArgsConstructor;
 @Schema(
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-encounter.html")
-@JsonDeserialize(builder = Encounter.EncounterBuilder.class)
 public class Encounter implements Resource {
   @NotBlank @Builder.Default String resourceType = "Encounter";
 

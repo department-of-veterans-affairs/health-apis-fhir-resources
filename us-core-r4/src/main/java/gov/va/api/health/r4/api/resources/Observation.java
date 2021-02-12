@@ -84,7 +84,6 @@ import lombok.NoArgsConstructor;
           "valuePeriod"
         },
         message = "Only one value field may be set"))
-@JsonDeserialize(builder = Observation.ObservationBuilder.class)
 public class Observation implements Resource {
   @NotBlank @Builder.Default String resourceType = "Observation";
 

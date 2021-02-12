@@ -44,7 +44,6 @@ import lombok.NoArgsConstructor;
     description =
         "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-location.html",
     example = "${r4.location:gov.va.api.health.r4.api.swaggerexamples.SwaggerLocation#location}")
-@JsonDeserialize(builder = Location.LocationBuilder.class)
 public class Location implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "Location";
 

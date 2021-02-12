@@ -52,7 +52,6 @@ import lombok.NoArgsConstructor;
     example =
         "${r4.questionnaire"
             + ":gov.va.api.health.r4.api.swaggerexamples.SwaggerQuestionnaire#questionnaire}")
-@JsonDeserialize(builder = Questionnaire.QuestionnaireBuilder.class)
 public class Questionnaire implements DomainResource {
   @NotBlank @Builder.Default String resourceType = "Questionnaire";
 
