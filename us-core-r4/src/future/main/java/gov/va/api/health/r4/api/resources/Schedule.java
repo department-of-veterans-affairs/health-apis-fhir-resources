@@ -5,7 +5,6 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
@@ -36,7 +35,7 @@ import lombok.NoArgsConstructor;
 )
 public class Schedule {
   @NotBlank @Builder.Default String resourceType = "Schedule";
-  
+
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -52,7 +51,7 @@ public class Schedule {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 

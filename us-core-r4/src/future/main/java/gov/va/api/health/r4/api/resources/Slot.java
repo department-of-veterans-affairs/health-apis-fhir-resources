@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Identifier;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
 import gov.va.api.health.r4.api.elements.Narrative;
@@ -31,12 +30,12 @@ import lombok.NoArgsConstructor;
   isGetterVisibility = JsonAutoDetect.Visibility.NONE
 )
 @Schema(
-  description = "https://www.hl7.org/fhir/R4/slot.html", 
+  description = "https://www.hl7.org/fhir/R4/slot.html",
   example = "${r4.slot:com.example.Example#example}"
 )
 public class Slot {
   @NotBlank @Builder.Default String resourceType = "Slot";
-  
+
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -52,7 +51,7 @@ public class Slot {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 
