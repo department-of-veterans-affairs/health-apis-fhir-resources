@@ -35,7 +35,7 @@ public final class SwaggerAppointment {
                     .actor(
                         Reference.builder()
                             .reference(
-                                "https://www.freedomstream.io/Argonaut/api/Patient/185601V825290")
+                                "https://sandbox-api.va.gov/services/r4/v0/Patient/185601V825290")
                             .display("VETERAN,JOHN Q")
                             .build())
                     .required(Appointment.Required.required)
@@ -56,7 +56,7 @@ public final class SwaggerAppointment {
                     .actor(
                         Reference.builder()
                             .reference(
-                                "https://www.freedomstream.io/Argonaut/api/Location/71fed7fc-d060-5a35-bba9-e89fd7cdb4e6")
+                                "https://sandbox-api.va.gov/services/r4/v0/Location/I2-LPMZXCR5691VTFT8P0P0123B90GY34TT")
                             .display("ZZZTG SURG POD SCHEULLER COBI")
                             .build())
                     .required(Appointment.Required.required)
