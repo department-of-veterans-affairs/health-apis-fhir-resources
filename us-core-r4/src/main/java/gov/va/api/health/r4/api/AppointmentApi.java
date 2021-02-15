@@ -105,7 +105,7 @@ public interface AppointmentApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "_lastUpdated",
-              description = "The date of when the appointment record was last updated.")
+              description = "The date when the appointment record was last updated.")
           String lastUpdated,
       @Parameter(
               in = ParameterIn.QUERY,
