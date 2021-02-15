@@ -2,6 +2,8 @@ package gov.va.api.health.r4.api.datatypes;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import gov.va.api.health.r4.api.Fhir;
+import gov.va.api.health.r4.api.elements.Element;
+import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
@@ -19,7 +21,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#contributor")
-public class Contributor {
+public class Contributor implements Element {
+
+  @Pattern(regexp = Fhir.ID)
+  String id;
+
+  @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.CODE)
   @NotBlank

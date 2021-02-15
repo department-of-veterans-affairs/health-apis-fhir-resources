@@ -53,7 +53,7 @@ public class DataRequirementTest {
   @Test
   void subjectFailsValidationWithMoreThanOneSubject() {
     var bad =
-        DataRequirement.Subject.builder()
+        DataRequirement.builder()
             .subjectCodeableConcept(CodeableConcept.builder().build())
             .subjectReference(Reference.builder().build())
             .build();
@@ -62,7 +62,7 @@ public class DataRequirementTest {
 
   @Test
   void subjectPassesValidationOneSubjectOrLess() {
-    var good = DataRequirement.Subject.builder().build();
+    var good = DataRequirement.builder().build();
     assertThat(violationsOf(good)).isEmpty();
     good.subjectReference(Reference.builder().build());
     assertThat(violationsOf(good)).isEmpty();

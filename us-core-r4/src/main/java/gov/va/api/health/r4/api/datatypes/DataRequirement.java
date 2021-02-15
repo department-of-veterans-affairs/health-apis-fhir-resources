@@ -24,39 +24,33 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#DataRequirement")
-public class DataRequirement {
+@ZeroOrOneOf(fields = {"subjectCodeableConcept", "subjectReference"})
+public class DataRequirement implements Element {
+
+  @Pattern(regexp = Fhir.ID)
+  String id;
+
+  @Valid List<Extension> extension;
+
   @Pattern(regexp = Fhir.CODE)
   String type;
 
-  @Pattern(regexp = Fhir.CANONICAL)
-  List<String> profile;
+  List<@Pattern(regexp = Fhir.CANONICAL) String> profile;
 
-  @Valid Subject subject;
+  @Valid CodeableConcept subjectCodeableConcept;
 
-  @Pattern(regexp = Fhir.STRING)
-  List<String> mustSupport;
+  @Valid Reference subjectReference;
+
+  List<@Pattern(regexp = Fhir.STRING) String> mustSupport;
 
   @Valid List<CodeFilter> codeFilter;
 
   @Valid List<DateFilter> dateFilter;
 
-  @Valid
   @Min(1)
   Integer limit;
 
-  @Valid List<Element> sort;
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @ZeroOrOneOf(fields = {"subjectCodeableConcept", "subjectReference"})
-  public static class Subject {
-    @Valid CodeableConcept subjectCodeableConcept;
-
-    @Valid Reference subjectReference;
-  }
+  @Valid List<Sort> sort;
 
   @Data
   @Builder
@@ -107,5 +101,23 @@ public class DataRequirement {
     String valueSet;
 
     @Valid List<Coding> code;
+  }
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  public static class Sort implements Element {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Pattern(regexp = Fhir.STRING)
+    String path;
+
+    @Pattern(regexp = Fhir.CODE)
+    String direction;
   }
 }

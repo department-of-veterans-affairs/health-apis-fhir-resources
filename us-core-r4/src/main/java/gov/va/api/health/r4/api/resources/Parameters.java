@@ -211,14 +211,11 @@ public class Parameters implements Resource {
 
     @Valid ContactPoint valueContactPoint;
 
-    @Pattern(regexp = Fhir.CODE)
-    String valueCount;
+    @Valid Quantity valueCount;
 
-    @Pattern(regexp = Fhir.CODE)
-    String valueDistance;
+    @Valid Quantity valueDistance;
 
-    @Pattern(regexp = Fhir.CODE)
-    String valueDuration;
+    @Valid Quantity valueDuration;
 
     @Valid HumanName valueHumanName;
 
