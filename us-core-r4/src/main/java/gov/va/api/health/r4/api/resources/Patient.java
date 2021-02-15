@@ -19,7 +19,6 @@ import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Signature;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -81,7 +80,7 @@ public class Patient implements Resource {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 
