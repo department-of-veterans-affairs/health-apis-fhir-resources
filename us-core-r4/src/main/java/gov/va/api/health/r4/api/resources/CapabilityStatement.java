@@ -6,7 +6,6 @@ import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.ContactDetail;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
@@ -48,7 +47,7 @@ public class CapabilityStatement implements Resource {
   String language;
 
   @Valid Narrative text;
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
   @Valid List<Extension> extension;
   @Valid List<Extension> modifierExtension;
 

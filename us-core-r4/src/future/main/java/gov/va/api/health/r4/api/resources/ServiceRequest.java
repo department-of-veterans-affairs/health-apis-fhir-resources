@@ -10,7 +10,6 @@ import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Quantity;
 import gov.va.api.health.r4.api.datatypes.Range;
 import gov.va.api.health.r4.api.datatypes.Ratio;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.datatypes.Timing;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -74,7 +73,7 @@ public class ServiceRequest implements Resource {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 

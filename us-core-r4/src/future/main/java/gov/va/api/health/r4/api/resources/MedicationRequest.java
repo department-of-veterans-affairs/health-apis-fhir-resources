@@ -9,7 +9,6 @@ import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.SimpleQuantity;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Dosage;
 import gov.va.api.health.r4.api.elements.Extension;
@@ -52,7 +51,7 @@ import lombok.NoArgsConstructor;
 )
 public class MedicationRequest implements Resource {
   @NotBlank @Builder.Default String resourceType = "MedicationRequest";
-  
+
   // Ancestor -- Resource
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -68,7 +67,7 @@ public class MedicationRequest implements Resource {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 
@@ -188,7 +187,6 @@ public class MedicationRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "MedicationRequestDispenseRequest")
   public static class DispenseRequest implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -218,7 +216,6 @@ public class MedicationRequest implements Resource {
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     @Schema(name = "MedicationRequestDispenseRequestInitialFill")
     public static class InitialFill implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 
@@ -243,7 +240,6 @@ public class MedicationRequest implements Resource {
     message = "allowedBoolean or allowedCodeableConcept, but not both"
   )
   public static class Substitution implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 

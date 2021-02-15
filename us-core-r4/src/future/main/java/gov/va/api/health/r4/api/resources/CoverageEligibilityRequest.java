@@ -8,7 +8,6 @@ import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Money;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.SimpleQuantity;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.BackboneElement;
 import gov.va.api.health.r4.api.elements.Extension;
 import gov.va.api.health.r4.api.elements.Meta;
@@ -62,7 +61,7 @@ public class CoverageEligibilityRequest implements Resource {
   // Ancestor -- DomainResource
   @Valid Narrative text;
 
-  @Valid List<SimpleResource> contained;
+  @Valid List<Resource> contained;
 
   @Valid List<Extension> extension;
 
@@ -125,7 +124,6 @@ public class CoverageEligibilityRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageEligibilityRequestSupportingInfo")
   public static class SupportingInfo implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -150,7 +148,6 @@ public class CoverageEligibilityRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageEligibilityRequestInsurance")
   public static class Insurance implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -174,7 +171,6 @@ public class CoverageEligibilityRequest implements Resource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @Schema(name = "CoverageEligibilityRequestItem")
   public static class Item implements BackboneElement {
-
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -213,7 +209,6 @@ public class CoverageEligibilityRequest implements Resource {
       message = "Only one diagnosis value may be specified."
     )
     public static class Diagnosis implements BackboneElement {
-
       @Pattern(regexp = Fhir.ID)
       String id;
 

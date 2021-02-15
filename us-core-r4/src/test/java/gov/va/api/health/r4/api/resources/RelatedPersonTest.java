@@ -5,14 +5,11 @@ import static gov.va.api.health.r4.api.bundle.AbstractBundle.BundleType.searchse
 import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.bundle.BundleLink;
-import gov.va.api.health.r4.api.samples.SampleKnownTypes;
 import gov.va.api.health.r4.api.samples.SampleRelatedPersons;
 import org.junit.Test;
 
 public class RelatedPersonTest {
-
   private final SampleRelatedPersons data = SampleRelatedPersons.get();
-  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   public void bundlerCanBuildRelatedPersonBundles() {

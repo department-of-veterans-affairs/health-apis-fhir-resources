@@ -13,7 +13,6 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Streams;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.bundle.MixedBundle;
-import gov.va.api.health.r4.api.datatypes.SimpleResource;
 import gov.va.api.health.r4.api.elements.Meta;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Set;
@@ -48,10 +47,6 @@ public interface Resource {
       ObjectMapper mapper = (ObjectMapper) jp.getCodec();
       ObjectNode root = mapper.readTree(jp);
       String type = root.get("resourceType").asText();
-      if (type.equals("SimpleResource")) {
-        // SimpleResource is in a different package
-        return mapper.readValue(root.toString(), SimpleResource.class);
-      }
       if (!type.equals("Bundle")) {
         Class<?> clazz = Class.forName(Resource.class.getPackageName() + "." + type);
         return (Resource) mapper.readValue(root.toString(), clazz);
