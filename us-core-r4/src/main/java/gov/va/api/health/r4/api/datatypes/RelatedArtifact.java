@@ -29,29 +29,23 @@ public class RelatedArtifact implements Element {
   @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.CODE)
-  @Valid
   @NotBlank
   String type;
 
   @Pattern(regexp = Fhir.STRING)
-  @Valid
   String label;
 
   @Pattern(regexp = Fhir.STRING)
-  @Valid
   String display;
 
   @Pattern(regexp = Fhir.MARKDOWN)
-  @Valid
   String citation;
 
   @Pattern(regexp = Fhir.URI)
-  @Valid
   String url;
 
   @Valid Attachment document;
 
   @Pattern(regexp = Fhir.URI)
-  @Valid
   String resource;
 }

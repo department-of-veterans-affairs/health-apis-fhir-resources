@@ -29,30 +29,24 @@ public class ParameterDefinition implements Element {
   @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.CODE)
-  @Valid
   String name;
 
   @Pattern(regexp = Fhir.CODE)
-  @Valid
   @NotBlank
   String use;
 
   Integer min;
 
   @Pattern(regexp = Fhir.STRING)
-  @Valid
   String max;
 
   @Pattern(regexp = Fhir.STRING)
-  @Valid
   String documentation;
 
   @Pattern(regexp = Fhir.CODE)
-  @Valid
   @NotBlank
   String type;
 
   @Pattern(regexp = Fhir.CANONICAL)
-  @Valid
   String profile;
 }

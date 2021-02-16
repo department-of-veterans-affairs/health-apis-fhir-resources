@@ -33,7 +33,6 @@ public class Contributor implements Element {
   String type;
 
   @Pattern(regexp = Fhir.STRING)
-  @Valid
   @NotBlank
   String name;
 

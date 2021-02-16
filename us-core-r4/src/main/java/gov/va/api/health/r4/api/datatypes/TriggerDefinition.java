@@ -31,11 +31,9 @@ public class TriggerDefinition implements Element {
   @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.CODE)
-  @Valid
   String type;
 
   @Pattern(regexp = Fhir.STRING)
-  @Valid
   String name;
 
   @Valid Timing timing;
@@ -49,10 +47,8 @@ public class TriggerDefinition implements Element {
   Reference timingReference;
 
   @Pattern(regexp = Fhir.DATE)
-  @Valid
   String timingDate;
 
   @Pattern(regexp = Fhir.DATETIME)
-  @Valid
   String timingDateTime;
 }
