@@ -34,8 +34,6 @@ public class ParametersTest {
     assertThat(violationsOf(data.parametersString())).isEmpty();
     var tmp = data.parametersResource();
     assertThat(violationsOf(tmp)).isEmpty();
-    assertThat(violationsOf(data.vcRequest())).isEmpty();
-    assertThat(violationsOf(data.vcResponse())).isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {

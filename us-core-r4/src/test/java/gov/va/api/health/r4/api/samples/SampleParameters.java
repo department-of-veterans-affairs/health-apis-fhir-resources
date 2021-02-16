@@ -71,30 +71,4 @@ public class SampleParameters {
                     .build()))
         .build();
   }
-
-  public Parameters vcRequest() {
-    return Parameters.builder()
-        .parameter(
-            List.of(
-                Parameters.Parameter.builder()
-                    .name("credentialType")
-                    .valueUri("https://smarthealth.cards#covid19")
-                    .build(),
-                Parameters.Parameter.builder()
-                    .name("includeIdentityClaim")
-                    .valueUri("Patient.name")
-                    .build()))
-        .build();
-  }
-
-  public Parameters vcResponse() {
-    return Parameters.builder()
-        .parameter(
-            List.of(
-                Parameters.Parameter.builder()
-                    .name("verifiableCredential")
-                    .valueString("<<Health Cards as JWS>>")
-                    .build()))
-        .build();
-  }
 }
