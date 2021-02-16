@@ -20,6 +20,80 @@ public class SampleParameters {
                 Parameters.Parameter.builder()
                     .name("Goodnight name")
                     .valueBoolean(Boolean.TRUE)
+                    .part(
+                        List.of(
+                            Parameters.Parameter.builder().name("code").valueCode("focus").build()))
+                    .build()))
+        .build();
+  }
+
+  public Parameters parametersBoolean() {
+    return Parameters.builder()
+        .id("x")
+        .meta(meta())
+        .implicitRules("http://GoodnightRules.com")
+        .language("Goodnight Language")
+        .parameter(
+            List.of(
+                Parameters.Parameter.builder()
+                    .name("Goodnight name")
+                    .valueBoolean(Boolean.TRUE)
+                    .build()))
+        .build();
+  }
+
+  public Parameters parametersResource() {
+    return Parameters.builder()
+        .id("x")
+        .meta(meta())
+        .implicitRules("http://GoodnightRules.com")
+        .language("Goodnight Language")
+        .parameter(
+            List.of(
+                Parameters.Parameter.builder()
+                    .name("Goodnight name")
+                    .resource(SamplePatients.get().patient())
+                    .build()))
+        .build();
+  }
+
+  public Parameters parametersString() {
+    return Parameters.builder()
+        .id("x")
+        .meta(meta())
+        .implicitRules("http://GoodnightRules.com")
+        .language("Goodnight Language")
+        .parameter(
+            List.of(
+                Parameters.Parameter.builder()
+                    .name("Goodnight name")
+                    .valueString("Some string")
+                    .build()))
+        .build();
+  }
+
+  public Parameters vcRequest() {
+    return Parameters.builder()
+        .parameter(
+            List.of(
+                Parameters.Parameter.builder()
+                    .name("credentialType")
+                    .valueUri("https://smarthealth.cards#covid19")
+                    .build(),
+                Parameters.Parameter.builder()
+                    .name("includeIdentityClaim")
+                    .valueUri("Patient.name")
+                    .build()))
+        .build();
+  }
+
+  public Parameters vcResponse() {
+    return Parameters.builder()
+        .parameter(
+            List.of(
+                Parameters.Parameter.builder()
+                    .name("verifiableCredential")
+                    .valueString("<<Health Cards as JWS>>")
                     .build()))
         .build();
   }

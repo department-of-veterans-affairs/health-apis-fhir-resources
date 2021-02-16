@@ -24,13 +24,18 @@ public class ParametersTest {
   void validationFailsGivenBadParameter() {
     var bad = data.parameters();
     bad.parameter().get(0).valueInteger(5);
-    bad.parameter().get(0).valueBoolean(true);
     assertThat(violationsOf(bad)).isNotEmpty();
   }
 
   @Test
   void validationPassesGivenGoodParameter() {
     assertThat(violationsOf(data.parameters())).isEmpty();
+    assertThat(violationsOf(data.parametersBoolean())).isEmpty();
+    assertThat(violationsOf(data.parametersString())).isEmpty();
+    var tmp = data.parametersResource();
+    assertThat(violationsOf(tmp)).isEmpty();
+    assertThat(violationsOf(data.vcRequest())).isEmpty();
+    assertThat(violationsOf(data.vcResponse())).isEmpty();
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
