@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#triggerdefinition")
 @ZeroOrOneOf(fields = {"timingTiming", "timingReference", "timingDate", "timingDateTime"})
 public class TriggerDefinition implements Element {
-
   @Pattern(regexp = Fhir.ID)
   String id;
 

@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#parameterdefinition")
 public class ParameterDefinition implements Element {
-
   @Pattern(regexp = Fhir.ID)
   String id;
 

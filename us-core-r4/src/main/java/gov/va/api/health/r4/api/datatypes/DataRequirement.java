@@ -27,7 +27,6 @@ import lombok.NoArgsConstructor;
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#DataRequirement")
 @ZeroOrOneOf(fields = {"subjectCodeableConcept", "subjectReference"})
 public class DataRequirement implements Element {
-
   @Pattern(regexp = Fhir.ID)
   String id;
 
