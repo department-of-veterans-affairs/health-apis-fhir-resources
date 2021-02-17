@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 public class ParametersTest {
   private final SampleParameters data = SampleParameters.get();
-  private final SampleKnownTypes types = SampleKnownTypes.get();
 
   @Test
   void roundTrip() {
