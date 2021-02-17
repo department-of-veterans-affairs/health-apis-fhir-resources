@@ -12,6 +12,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -135,8 +136,8 @@ public final class DataRequirement implements Element {
     @Pattern(regexp = Fhir.STRING)
     String path;
 
-    @NotBlank
+    @NotNull
     @Pattern(regexp = Fhir.CODE)
-    String direction;
+    SortDirection direction;
   }
 }
