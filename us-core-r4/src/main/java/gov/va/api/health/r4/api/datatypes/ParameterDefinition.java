@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,10 +19,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#parameterdefinition")
-public class ParameterDefinition implements Element {
+public final class ParameterDefinition implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -30,9 +33,7 @@ public class ParameterDefinition implements Element {
   @Pattern(regexp = Fhir.CODE)
   String name;
 
-  @Pattern(regexp = Fhir.CODE)
-  @NotBlank
-  Use use;
+  @NotNull Use use;
 
   Integer min;
 
@@ -42,8 +43,8 @@ public class ParameterDefinition implements Element {
   @Pattern(regexp = Fhir.STRING)
   String documentation;
 
-  @Pattern(regexp = Fhir.CODE)
   @NotBlank
+  @Pattern(regexp = Fhir.CODE)
   String type;
 
   @Pattern(regexp = Fhir.CANONICAL)

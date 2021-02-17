@@ -19,10 +19,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#relatedartifact")
-public class RelatedArtifact implements Element {
+public final class RelatedArtifact implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -54,10 +56,10 @@ public class RelatedArtifact implements Element {
     predecessor,
     successor,
     @JsonProperty("derived-from")
-    derivedFrom,
+    derived_from,
     @JsonProperty("depends-on")
-    dependsOn,
+    depends_on,
     @JsonProperty("composed-of")
-    composedOf
+    composed_of
   }
 }

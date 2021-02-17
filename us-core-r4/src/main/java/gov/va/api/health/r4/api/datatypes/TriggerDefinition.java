@@ -21,11 +21,13 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#triggerdefinition")
 @ZeroOrOneOf(fields = {"timingTiming", "timingReference", "timingDate", "timingDateTime"})
-public class TriggerDefinition implements Element {
+public final class TriggerDefinition implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -52,19 +54,19 @@ public class TriggerDefinition implements Element {
 
   public enum Type {
     @JsonProperty("named-event")
-    namedEvent,
+    named_event,
     periodic,
     @JsonProperty("data-changed")
-    dataChanged,
+    data_changed,
     @JsonProperty("data-added")
-    dataAdded,
+    data_added,
     @JsonProperty("data-modified")
-    dataModified,
+    data_modified,
     @JsonProperty("data-removed")
-    dataRemoved,
+    data_removed,
     @JsonProperty("data-accessed")
-    dataAccessed,
+    data_accessed,
     @JsonProperty("data-access-ended")
-    dataAccessEnded
+    data_access_ended
   }
 }

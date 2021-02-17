@@ -18,10 +18,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#expression")
-public class Expression implements Element {
+public final class Expression implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
@@ -33,8 +35,8 @@ public class Expression implements Element {
   @Pattern(regexp = Fhir.ID)
   String name;
 
-  @Pattern(regexp = Fhir.CODE)
   @NotBlank
+  @Pattern(regexp = Fhir.CODE)
   String language;
 
   @Pattern(regexp = Fhir.STRING)

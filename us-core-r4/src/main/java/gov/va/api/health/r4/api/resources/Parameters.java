@@ -51,12 +51,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonAutoDetect(
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "https://www.hl7.org/fhir/R4/parameters.html")
-public class Parameters implements Resource {
+public final class Parameters implements Resource {
   @NotBlank @Builder.Default String resourceType = "Parameters";
 
   @Pattern(regexp = Fhir.ID)
@@ -75,8 +75,10 @@ public class Parameters implements Resource {
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(
+      fieldVisibility = JsonAutoDetect.Visibility.ANY,
+      isGetterVisibility = JsonAutoDetect.Visibility.NONE)
   @Schema(name = "Parameter")
   @ZeroOrOneOf(
       fields = {
@@ -131,7 +133,7 @@ public class Parameters implements Resource {
         "valueDosage",
         "valueMeta"
       })
-  public static class Parameter implements BackboneElement {
+  public static final class Parameter implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 

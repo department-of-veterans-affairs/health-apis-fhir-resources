@@ -3,7 +3,6 @@ package gov.va.api.health.r4.api.resources;
 import static gov.va.api.health.r4.api.RoundTrip.assertRoundTrip;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import gov.va.api.health.r4.api.samples.SampleKnownTypes;
 import gov.va.api.health.r4.api.samples.SampleParameters;
 import java.util.Set;
 import javax.validation.ConstraintViolation;

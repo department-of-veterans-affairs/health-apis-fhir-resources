@@ -22,18 +22,20 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#DataRequirement")
 @ZeroOrOneOf(fields = {"subjectCodeableConcept", "subjectReference"})
-public class DataRequirement implements Element {
+public final class DataRequirement implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
   @Valid List<Extension> extension;
 
-  @Pattern(regexp = Fhir.CODE)
   @NotBlank
+  @Pattern(regexp = Fhir.CODE)
   String type;
 
   List<@Pattern(regexp = Fhir.CANONICAL) String> profile;
@@ -53,13 +55,21 @@ public class DataRequirement implements Element {
 
   @Valid List<Sort> sort;
 
+  public enum SortDirection {
+    ascending,
+    descending
+  }
+
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(
+      fieldVisibility = JsonAutoDetect.Visibility.ANY,
+      isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+  @Schema(name = "CodeFilter")
   @ExactlyOneOf(fields = {"path", "searchParam"})
-  public static class CodeFilter implements Element {
+  public static final class CodeFilter implements Element {
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -80,11 +90,14 @@ public class DataRequirement implements Element {
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(
+      fieldVisibility = JsonAutoDetect.Visibility.ANY,
+      isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+  @Schema(name = "DateFilter")
   @ZeroOrOneOf(fields = {"valueDateTime", "valuePeriod", "valueDuration"})
   @ExactlyOneOf(fields = {"path", "searchParam"})
-  public static class DateFilter implements Element {
+  public static final class DateFilter implements Element {
     @Pattern(regexp = Fhir.ID)
     String id;
 
@@ -107,20 +120,23 @@ public class DataRequirement implements Element {
   @Data
   @Builder
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class Sort implements Element {
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @JsonAutoDetect(
+      fieldVisibility = JsonAutoDetect.Visibility.ANY,
+      isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+  @Schema(name = "Sort")
+  public static final class Sort implements Element {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
 
-    @Pattern(regexp = Fhir.STRING)
     @NotBlank
+    @Pattern(regexp = Fhir.STRING)
     String path;
 
-    @Pattern(regexp = Fhir.CODE)
     @NotBlank
+    @Pattern(regexp = Fhir.CODE)
     String direction;
   }
 }
