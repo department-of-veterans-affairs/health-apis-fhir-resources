@@ -14,6 +14,7 @@ public class TriggerDefinitionTest {
   void validationFailsGivenMultipleValues() {
     var bad =
         TriggerDefinition.builder()
+            .type(TriggerDefinition.Type.dataAccessed)
             .timingTiming(Timing.builder().build())
             .timingReference(Reference.builder().build())
             .build();
@@ -22,7 +23,7 @@ public class TriggerDefinitionTest {
 
   @Test
   void validationPassesGivenGoodDefinition() {
-    var good = TriggerDefinition.builder().build();
+    var good = TriggerDefinition.builder().type(TriggerDefinition.Type.dataAccessed).build();
     assertThat(violationsOf(good)).isEmpty();
     good.timingTiming(Timing.builder().build());
     assertThat(violationsOf(good)).isEmpty();
