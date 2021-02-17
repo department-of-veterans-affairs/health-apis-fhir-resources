@@ -1,12 +1,14 @@
 package gov.va.api.health.r4.api.datatypes;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.elements.Element;
 import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -27,7 +29,7 @@ public class RelatedArtifact implements Element {
 
   @Valid List<Extension> extension;
 
-  @Valid Type type;
+  @NotNull Type type;
 
   @Pattern(regexp = Fhir.STRING)
   String label;
@@ -52,8 +54,11 @@ public class RelatedArtifact implements Element {
     citation,
     predecessor,
     successor,
-    derivedForm,
+    @JsonProperty("derived-from")
+    derivedFrom,
+    @JsonProperty("depends-on")
     dependsOn,
+    @JsonProperty("composed-of")
     composedOf
   }
 }

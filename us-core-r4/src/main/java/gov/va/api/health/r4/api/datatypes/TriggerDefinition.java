@@ -1,6 +1,7 @@
 package gov.va.api.health.r4.api.datatypes;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.elements.Element;
 import gov.va.api.health.r4.api.elements.Extension;
@@ -9,6 +10,7 @@ import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -30,7 +32,7 @@ public class TriggerDefinition implements Element {
 
   @Valid List<Extension> extension;
 
-  @Valid Type type;
+  @NotNull Type type;
 
   @Pattern(regexp = Fhir.STRING)
   String name;
@@ -50,13 +52,20 @@ public class TriggerDefinition implements Element {
   @Valid Expression condition;
 
   public enum Type {
+    @JsonProperty("named-event")
     namedEvent,
     periodic,
+    @JsonProperty("data-changed")
     dataChanged,
+    @JsonProperty("data-added")
     dataAdded,
+    @JsonProperty("data-modified")
     dataModified,
+    @JsonProperty("data-removed")
     dataRemoved,
+    @JsonProperty("data-accessed")
     dataAccessed,
+    @JsonProperty("data-access-ended")
     dataAccessEnded
   }
 }
