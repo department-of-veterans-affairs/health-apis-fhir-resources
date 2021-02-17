@@ -12,6 +12,7 @@ import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.Contributor;
 import gov.va.api.health.r4.api.datatypes.DataRequirement;
+import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Expression;
 import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
@@ -54,11 +55,7 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
-@Schema(
-    description = "https://www.hl7.org/fhir/R4/parameters.html",
-    example =
-        "${r4.parameters"
-            + ":gov.va.api.health.r4.api.swaggerexamples.SwaggerParameters#parameters}")
+@Schema(description = "https://www.hl7.org/fhir/R4/parameters.html")
 public class Parameters implements Resource {
   @NotBlank @Builder.Default String resourceType = "Parameters";
 
@@ -215,7 +212,7 @@ public class Parameters implements Resource {
 
     @Valid Quantity valueDistance;
 
-    @Valid Quantity valueDuration;
+    @Valid Duration valueDuration;
 
     @Valid HumanName valueHumanName;
 

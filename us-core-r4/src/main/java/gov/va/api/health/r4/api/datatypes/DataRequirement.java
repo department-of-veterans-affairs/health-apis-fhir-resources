@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class DataRequirement implements Element {
   @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.CODE)
+  @NotBlank
   String type;
 
   List<@Pattern(regexp = Fhir.CANONICAL) String> profile;
@@ -51,6 +53,30 @@ public class DataRequirement implements Element {
   Integer limit;
 
   @Valid List<Sort> sort;
+
+  @Data
+  @Builder
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @AllArgsConstructor
+  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+  @ExactlyOneOf(fields = {"path", "searchParam"})
+  public static class CodeFilter implements Element {
+    @Pattern(regexp = Fhir.ID)
+    String id;
+
+    @Valid List<Extension> extension;
+
+    @Pattern(regexp = Fhir.STRING)
+    String path;
+
+    @Pattern(regexp = Fhir.STRING)
+    String searchParam;
+
+    @Pattern(regexp = Fhir.CANONICAL)
+    String valueSet;
+
+    @Valid List<Coding> code;
+  }
 
   @Data
   @Builder
@@ -84,30 +110,6 @@ public class DataRequirement implements Element {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  @ExactlyOneOf(fields = {"path", "searchParam"})
-  public static class CodeFilter implements Element {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Pattern(regexp = Fhir.STRING)
-    String path;
-
-    @Pattern(regexp = Fhir.STRING)
-    String searchParam;
-
-    @Pattern(regexp = Fhir.CANONICAL)
-    String valueSet;
-
-    @Valid List<Coding> code;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Sort implements Element {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -115,9 +117,11 @@ public class DataRequirement implements Element {
     @Valid List<Extension> extension;
 
     @Pattern(regexp = Fhir.STRING)
+    @NotBlank
     String path;
 
     @Pattern(regexp = Fhir.CODE)
+    @NotBlank
     String direction;
   }
 }

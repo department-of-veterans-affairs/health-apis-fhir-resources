@@ -7,7 +7,6 @@ import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,9 +27,7 @@ public class RelatedArtifact implements Element {
 
   @Valid List<Extension> extension;
 
-  @Pattern(regexp = Fhir.CODE)
-  @NotBlank
-  String type;
+  @Valid Type type;
 
   @Pattern(regexp = Fhir.STRING)
   String label;
@@ -46,6 +43,17 @@ public class RelatedArtifact implements Element {
 
   @Valid Attachment document;
 
-  @Pattern(regexp = Fhir.URI)
+  @Pattern(regexp = Fhir.CANONICAL)
   String resource;
+
+  public enum Type {
+    documentation,
+    justification,
+    citation,
+    predecessor,
+    successor,
+    derivedForm,
+    dependsOn,
+    composedOf
+  }
 }

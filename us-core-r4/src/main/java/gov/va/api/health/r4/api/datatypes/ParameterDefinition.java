@@ -33,7 +33,7 @@ public class ParameterDefinition implements Element {
 
   @Pattern(regexp = Fhir.CODE)
   @NotBlank
-  String use;
+  Use use;
 
   Integer min;
 
@@ -49,4 +49,9 @@ public class ParameterDefinition implements Element {
 
   @Pattern(regexp = Fhir.CANONICAL)
   String profile;
+
+  public enum Use {
+    in,
+    out
+  }
 }

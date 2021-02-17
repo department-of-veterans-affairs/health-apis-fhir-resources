@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-@Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#triggerdefinitionz")
+@Schema(description = "https://www.hl7.org/fhir/R4/metadatatypes.html#triggerdefinition")
 @ZeroOrOneOf(fields = {"timingTiming", "timingReference", "timingDate", "timingDateTime"})
 public class TriggerDefinition implements Element {
 
@@ -30,25 +30,33 @@ public class TriggerDefinition implements Element {
 
   @Valid List<Extension> extension;
 
-  @Pattern(regexp = Fhir.CODE)
-  String type;
+  @Valid Type type;
 
   @Pattern(regexp = Fhir.STRING)
   String name;
 
-  @Valid Timing timing;
+  @Valid Timing timingTiming;
 
-  @Valid DataRequirement data;
-
-  @Valid Expression condition;
-
-  Timing timingTiming;
-
-  Reference timingReference;
+  @Valid Reference timingReference;
 
   @Pattern(regexp = Fhir.DATE)
   String timingDate;
 
   @Pattern(regexp = Fhir.DATETIME)
   String timingDateTime;
+
+  @Valid List<DataRequirement> data;
+
+  @Valid Expression condition;
+
+  public enum Type {
+    namedEvent,
+    periodic,
+    dataChanged,
+    dataAdded,
+    dataModified,
+    dataRemoved,
+    dataAccessed,
+    dataAccessEnded
+  }
 }
