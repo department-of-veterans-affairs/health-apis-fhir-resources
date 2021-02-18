@@ -36,7 +36,6 @@ import gov.va.api.health.r4.api.elements.Reference;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -165,7 +164,8 @@ public final class Parameters implements Resource {
     @Pattern(regexp = Fhir.ID)
     String valueId;
 
-    Instant valueInstant;
+    @Pattern(regexp = Fhir.INSTANT)
+    String valueInstant;
 
     Integer valueInteger;
 
