@@ -34,7 +34,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -45,8 +44,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonAutoDetect(
+    fieldVisibility = JsonAutoDetect.Visibility.ANY,
+    isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(description = "http://hl7.org/fhir/R4/extensibility.html#extension")
 @ZeroOrOneOf(
     fields = {
@@ -102,15 +103,13 @@ import lombok.NoArgsConstructor;
       "valueMeta"
     },
     message = "Only one value type may be specified")
-public class Extension implements Element {
-
+public final class Extension implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
   @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.URI)
-  @NotNull
   String url;
 
   @Pattern(regexp = Fhir.BASE64)

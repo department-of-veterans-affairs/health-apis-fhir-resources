@@ -3,7 +3,7 @@ package gov.va.api.health.validation.api;
 import static java.util.stream.Collectors.toList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Preconditions;
+import static com.google.common.base.Preconditions.checkState;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -33,8 +33,10 @@ public abstract class AbstractRelatedFieldVerifier<T> {
 
   /** The determined list of related fields based on the prefix. */
   @Getter private final List<String> fields;
+
   /** Used to create sample values for fields based on the field type. */
   @Getter private final Map<Class<?>, Supplier<?>> knownTypes;
+
   /**
    * Used to create sample String values for fields based on the Pattern regex constraint on the
    * field.
@@ -70,7 +72,7 @@ public abstract class AbstractRelatedFieldVerifier<T> {
     }
     log.info(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(sample));
     problems.forEach(p -> log.error("{}", p));
-    Preconditions.checkState(problems.size() == count);
+    checkState(problems.size() == count);
   }
 
   private Supplier<?> enumSupplier(Class<? extends Enum<?>> type) {
@@ -80,7 +82,7 @@ public abstract class AbstractRelatedFieldVerifier<T> {
   @SneakyThrows
   protected Field field(String name) {
     Field field = sample.getClass().getDeclaredField(name);
-    Preconditions.checkState(field != null, "Cannot determine field type: " + name);
+    checkState(field != null, "Cannot determine field type: " + name);
     return field;
   }
 
@@ -101,7 +103,7 @@ public abstract class AbstractRelatedFieldVerifier<T> {
     } else {
       supplier = knownTypes().get(field.getType());
     }
-    Preconditions.checkState(
+    checkState(
         supplier != null, "Unknown value type for field: " + name + " type: " + field.getType());
     setField(name, supplier.get());
   }
