@@ -160,7 +160,10 @@ public class SampleDataTypes {
   }
 
   public Extension extensionWithContactDetail() {
-    return Extension.builder().valueContactDetail(contactDetail()).build();
+    return Extension.builder()
+        .url("http://HelloUrl.com")
+        .valueContactDetail(contactDetail())
+        .build();
   }
 
   public Extension extensionWithQuantity() {
@@ -183,7 +186,7 @@ public class SampleDataTypes {
   }
 
   public Extension extensionWithUsageContext() {
-    return Extension.builder().valueUsageContext(usageContext()).build();
+    return Extension.builder().url("http://HelloUrl.com").valueUsageContext(usageContext()).build();
   }
 
   public HumanName humanName() {

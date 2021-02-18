@@ -11,9 +11,7 @@ import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
 import gov.va.api.health.r4.api.datatypes.Contributor;
-import gov.va.api.health.r4.api.datatypes.Count;
 import gov.va.api.health.r4.api.datatypes.DataRequirement;
-import gov.va.api.health.r4.api.datatypes.Distance;
 import gov.va.api.health.r4.api.datatypes.Duration;
 import gov.va.api.health.r4.api.datatypes.Expression;
 import gov.va.api.health.r4.api.datatypes.HumanName;
@@ -36,6 +34,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -88,6 +87,7 @@ import lombok.NoArgsConstructor;
       "valueRange",
       "valueRatio",
       "valueReference",
+      "valueSampledData",
       "valueSignature",
       "valueTiming",
       "valueContactDetail",
@@ -107,10 +107,11 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @Pattern(regexp = Fhir.URI)
-  String url;
-
   @Valid List<Extension> extension;
+
+  @Pattern(regexp = Fhir.URI)
+  @NotNull
+  String url;
 
   @Pattern(regexp = Fhir.BASE64)
   String valueBase64Binary;
@@ -180,9 +181,9 @@ public class Extension implements Element {
 
   @Valid ContactPoint valueContactPoint;
 
-  @Valid Count valueCount;
+  @Valid Quantity valueCount;
 
-  @Valid Distance valueDistance;
+  @Valid Quantity valueDistance;
 
   @Valid Duration valueDuration;
 
