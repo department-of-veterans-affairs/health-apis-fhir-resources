@@ -4,14 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.time.Instant;
-import java.time.ZoneOffset;
+import java.util.TimeZone;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class FhirDateTimeParametersTest {
-  private Instant asUtcInstant(String instant) {
-    return Instant.parse(instant).atOffset(ZoneOffset.UTC).toInstant();
+
+  @BeforeAll
+  static void setDateTime() {
+    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
   }
 
   @ParameterizedTest
@@ -26,35 +29,35 @@ public class FhirDateTimeParametersTest {
   @Test
   public void computeDateTimeParameterLowerBound() {
     assertThat(new FhirDateTimeParameters("2021").lowerBound())
-        .isEqualTo(asUtcInstant("2021-01-01T05:00:00Z"));
+        .isEqualTo(Instant.parse("2021-01-01T00:00:00Z"));
     assertThat(new FhirDateTimeParameters("2021-02").lowerBound())
-        .isEqualTo(asUtcInstant("2021-02-01T05:00:00Z"));
+        .isEqualTo(Instant.parse("2021-02-01T00:00:00Z"));
     assertThat(new FhirDateTimeParameters("2021-02-11").lowerBound())
-        .isEqualTo(asUtcInstant("2021-02-11T05:00:00Z"));
+        .isEqualTo(Instant.parse("2021-02-11T00:00:00Z"));
     assertThat(new FhirDateTimeParameters("2021-02-11T09:00:00Z").lowerBound())
-        .isEqualTo(asUtcInstant("2021-02-11T09:00:00Z"));
+        .isEqualTo(Instant.parse("2021-02-11T09:00:00Z"));
     assertThat(new FhirDateTimeParameters("2021-02-11T09:00:00+01:00").lowerBound())
-        .isEqualTo(asUtcInstant("2021-02-11T08:00:00Z"));
+        .isEqualTo(Instant.parse("2021-02-11T08:00:00Z"));
   }
 
   @Test
   public void computeDateTimeParameterUpperBound() {
     assertThat(new FhirDateTimeParameters("2021").upperBound())
-        .isEqualTo(asUtcInstant("2022-01-01T04:59:59.999Z"));
+        .isEqualTo(Instant.parse("2021-12-31T23:59:59.999Z"));
     assertThat(new FhirDateTimeParameters("2021-02").upperBound())
-        .isEqualTo(asUtcInstant("2021-03-01T04:59:59.999Z"));
+        .isEqualTo(Instant.parse("2021-02-28T23:59:59.999Z"));
     assertThat(new FhirDateTimeParameters("2021-02-11").upperBound())
-        .isEqualTo(asUtcInstant("2021-02-12T04:59:59.999Z"));
+        .isEqualTo(Instant.parse("2021-02-11T23:59:59.999Z"));
     assertThat(new FhirDateTimeParameters("2021-02-11T09:00:00Z").upperBound())
-        .isEqualTo(asUtcInstant("2021-02-11T09:00:00.999Z"));
+        .isEqualTo(Instant.parse("2021-02-11T09:00:00.999Z"));
     assertThat(new FhirDateTimeParameters("2021-02-11T09:00:00+01:00").upperBound())
-        .isEqualTo(asUtcInstant("2021-02-11T08:00:00.999Z"));
+        .isEqualTo(Instant.parse("2021-02-11T08:00:00.999Z"));
   }
 
   @Test
   public void dateTimeParameterWithPrefixSatisfiesRange() {
-    long upperBound = asUtcInstant("2022-01-01T04:59:59.999Z").toEpochMilli();
-    long lowerBound = asUtcInstant("2021-01-01T05:00:00Z").toEpochMilli();
+    long upperBound = Instant.parse("2021-12-31T23:59:59.999Z").toEpochMilli();
+    long lowerBound = Instant.parse("2021-01-01T00:00:00Z").toEpochMilli();
     assertThat(new FhirDateTimeParameters("eq2021").isSatisfied(lowerBound, upperBound)).isTrue();
     assertThat(new FhirDateTimeParameters("eq2021").isSatisfied(lowerBound, upperBound + 1))
         .isFalse();
@@ -95,8 +98,8 @@ public class FhirDateTimeParametersTest {
             () ->
                 new FhirDateTimeParameters("2021")
                     .isSatisfied(
-                        asUtcInstant("2021-01-01T05:00:00Z").toEpochMilli(),
-                        asUtcInstant("2021-01-01T04:59:59.999Z").toEpochMilli()));
+                        Instant.parse("2021-01-01T05:00:00Z").toEpochMilli(),
+                        Instant.parse("2021-01-01T04:59:59.999Z").toEpochMilli()));
   }
 
   @ParameterizedTest
