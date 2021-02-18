@@ -1,7 +1,5 @@
 package gov.va.api.health.fhir.api;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.OffsetDateTime;
@@ -10,10 +8,10 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
-import lombok.Data;
+import lombok.Value;
 
-@Data
-public class FhirDateTimeParameters implements Serializable {
+@Value
+public class FhirDateTimeParameter implements Serializable {
   private static final int YEAR = 4;
 
   private static final int YEAR_MONTH = 7;
@@ -24,12 +22,12 @@ public class FhirDateTimeParameters implements Serializable {
 
   private static final int TIME_ZONE_OFFSET = 25;
 
-  public SearchPrefix prefix;
+  SearchPrefix prefix;
 
-  public String date;
+  String date;
 
   /** Extract prefix and date from parameter string. */
-  public FhirDateTimeParameters(String paramString) {
+  public FhirDateTimeParameter(String paramString) {
     super();
     if (paramString.length() <= 1) {
       throw new IllegalArgumentException(
@@ -44,13 +42,11 @@ public class FhirDateTimeParameters implements Serializable {
     }
   }
 
-  /**
-   * Indicates if the given date range (epoch millis) satisfies this date-time parameter.
-   *
-   * <p>See JpaDateTimeParameter.toQuerySnippet(...)
-   */
+  /** Indicates if the given date range (epoch millis) satisfies this date-time parameter. */
   public boolean isSatisfied(long lower, long upper) {
-    checkArgument(lower <= upper);
+    if (lower > upper) {
+      throw new IllegalArgumentException();
+    }
     long lowerBound = lowerBound().toEpochMilli();
     long upperBound = upperBound().toEpochMilli();
 
