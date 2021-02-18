@@ -3,19 +3,32 @@ package gov.va.api.health.r4.api.elements;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import gov.va.api.health.r4.api.Fhir;
 import gov.va.api.health.r4.api.datatypes.Address;
+import gov.va.api.health.r4.api.datatypes.Age;
+import gov.va.api.health.r4.api.datatypes.Annotation;
 import gov.va.api.health.r4.api.datatypes.Attachment;
 import gov.va.api.health.r4.api.datatypes.CodeableConcept;
 import gov.va.api.health.r4.api.datatypes.Coding;
 import gov.va.api.health.r4.api.datatypes.ContactDetail;
 import gov.va.api.health.r4.api.datatypes.ContactPoint;
+import gov.va.api.health.r4.api.datatypes.Contributor;
+import gov.va.api.health.r4.api.datatypes.Count;
+import gov.va.api.health.r4.api.datatypes.DataRequirement;
+import gov.va.api.health.r4.api.datatypes.Distance;
+import gov.va.api.health.r4.api.datatypes.Duration;
+import gov.va.api.health.r4.api.datatypes.Expression;
 import gov.va.api.health.r4.api.datatypes.HumanName;
 import gov.va.api.health.r4.api.datatypes.Identifier;
 import gov.va.api.health.r4.api.datatypes.Money;
+import gov.va.api.health.r4.api.datatypes.ParameterDefinition;
 import gov.va.api.health.r4.api.datatypes.Period;
 import gov.va.api.health.r4.api.datatypes.Quantity;
 import gov.va.api.health.r4.api.datatypes.Range;
 import gov.va.api.health.r4.api.datatypes.Ratio;
+import gov.va.api.health.r4.api.datatypes.RelatedArtifact;
+import gov.va.api.health.r4.api.datatypes.SampledData;
 import gov.va.api.health.r4.api.datatypes.Signature;
+import gov.va.api.health.r4.api.datatypes.Timing;
+import gov.va.api.health.r4.api.datatypes.TriggerDefinition;
 import gov.va.api.health.r4.api.datatypes.UsageContext;
 import gov.va.api.health.validation.api.ZeroOrOneOf;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -40,6 +53,7 @@ import lombok.NoArgsConstructor;
     fields = {
       "valueBase64Binary",
       "valueBoolean",
+      "valueCanonical",
       "valueCode",
       "valueDate",
       "valueDateTime",
@@ -48,15 +62,24 @@ import lombok.NoArgsConstructor;
       "valueInstant",
       "valueInteger",
       "valueMarkdown",
+      "valueOid",
       "valuePositiveInt",
       "valueString",
+      "valueTime",
       "valueUnsignedInt",
       "valueUri",
+      "valueUrl",
+      "valueUuid",
       "valueAddress",
+      "valueAge",
+      "valueAnnotation",
       "valueAttachment",
       "valueCodeableConcept",
       "valueCoding",
       "valueContactPoint",
+      "valueCount",
+      "valueDistance",
+      "valueDuration",
       "valueHumanName",
       "valueIdentifier",
       "valueMoney",
@@ -66,8 +89,17 @@ import lombok.NoArgsConstructor;
       "valueRatio",
       "valueReference",
       "valueSignature",
+      "valueTiming",
       "valueContactDetail",
+      "valueContributor",
+      "valueDataRequirement",
+      "valueExpression",
+      "valueParameterDefinition",
+      "valueRelatedArtifact",
+      "valueTriggerDefinition",
       "valueUsageContext",
+      "valueDosage",
+      "valueMeta"
     },
     message = "Only one value type may be specified")
 public class Extension implements Element {
@@ -84,6 +116,9 @@ public class Extension implements Element {
   String valueBase64Binary;
 
   Boolean valueBoolean;
+
+  @Pattern(regexp = Fhir.CANONICAL)
+  String valueCanonical;
 
   @Pattern(regexp = Fhir.CODE)
   String valueCode;
@@ -107,11 +142,17 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.MARKDOWN)
   String valueMarkdown;
 
+  @Pattern(regexp = Fhir.OID)
+  String valueOid;
+
   @Min(1)
   Integer valuePositiveInt;
 
   @Pattern(regexp = Fhir.STRING)
   String valueString;
+
+  @Pattern(regexp = Fhir.TIME)
+  String valueTime;
 
   @Min(0)
   Integer valueUnsignedInt;
@@ -119,7 +160,17 @@ public class Extension implements Element {
   @Pattern(regexp = Fhir.URI)
   String valueUri;
 
+  @Pattern(regexp = Fhir.URI)
+  String valueUrl;
+
+  @Pattern(regexp = Fhir.URI)
+  String valueUuid;
+
   @Valid Address valueAddress;
+
+  @Valid Age valueAge;
+
+  @Valid Annotation valueAnnotation;
 
   @Valid Attachment valueAttachment;
 
@@ -128,6 +179,12 @@ public class Extension implements Element {
   @Valid Coding valueCoding;
 
   @Valid ContactPoint valueContactPoint;
+
+  @Valid Count valueCount;
+
+  @Valid Distance valueDistance;
+
+  @Valid Duration valueDuration;
 
   @Valid HumanName valueHumanName;
 
@@ -145,9 +202,29 @@ public class Extension implements Element {
 
   @Valid Reference valueReference;
 
+  @Valid SampledData valueSampledData;
+
   @Valid Signature valueSignature;
+
+  @Valid Timing valueTiming;
 
   @Valid ContactDetail valueContactDetail;
 
+  @Valid Contributor valueContributor;
+
+  @Valid DataRequirement valueDataRequirement;
+
+  @Valid Expression valueExpression;
+
+  @Valid ParameterDefinition valueParameterDefinition;
+
+  @Valid RelatedArtifact valueRelatedArtifact;
+
+  @Valid TriggerDefinition valueTriggerDefinition;
+
   @Valid UsageContext valueUsageContext;
+
+  @Valid Dosage valueDosage;
+
+  @Valid Meta valueMeta;
 }
