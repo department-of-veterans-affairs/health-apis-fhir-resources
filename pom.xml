@@ -8,7 +8,6 @@
   </parent>
   <artifactId>fhir-resources-parent</artifactId>
   <version>6.0.4-SNAPSHOT</version>
-  <properties/>
   <packaging>pom</packaging>
   <modules>
     <module>fhir-common</module>
