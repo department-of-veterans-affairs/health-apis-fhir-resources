@@ -64,7 +64,6 @@ import lombok.NoArgsConstructor;
 })
 public class Patient implements Resource {
 
-  @JsonIgnore
   private static final int IDENTIFIER_MIN_SIZE =
       Integer.parseInt(System.getProperty(Patient.class.getName() + ".identifier.min-size", "1"));
 
