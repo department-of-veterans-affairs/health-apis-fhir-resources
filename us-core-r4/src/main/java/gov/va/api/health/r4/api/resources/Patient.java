@@ -65,8 +65,8 @@ import lombok.NoArgsConstructor;
 public class Patient implements Resource {
 
   @JsonIgnore
-  private static final boolean IDENTIFIER_ALLOW_EMPTY =
-      Boolean.parseBoolean(System.getProperty("r4-patient-identifier-allow-empty", "false"));
+  private static final int IDENTIFIER_MIN_SIZE =
+      Integer.parseInt(System.getProperty(Patient.class.getName() + ".identifier.min-size", "1"));
 
   // Anscestor -- Resource
   @NotBlank @Builder.Default String resourceType = "Patient";
@@ -151,10 +151,10 @@ public class Patient implements Resource {
   @AssertTrue(message = "identifier must not be empty")
   @SuppressWarnings("unused")
   private boolean isValidIdentifier() {
-    if (IDENTIFIER_ALLOW_EMPTY) {
-      return true;
+    if (IDENTIFIER_MIN_SIZE > 0) {
+      return identifier != null && identifier.size() >= IDENTIFIER_MIN_SIZE;
     }
-    return identifier != null && !identifier.isEmpty();
+    return true;
   }
 
   @JsonIgnore
