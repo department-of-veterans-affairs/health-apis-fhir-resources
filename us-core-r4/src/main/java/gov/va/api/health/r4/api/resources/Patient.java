@@ -63,6 +63,11 @@ import lombok.NoArgsConstructor;
       message = "Only one multipleBirth field may be specified")
 })
 public class Patient implements Resource {
+
+  @JsonIgnore
+  private static final boolean IDENTIFIER_ALLOW_EMPTY =
+      Boolean.parseBoolean(System.getProperty("r4-patient-identifier-allow-empty", "false"));
+
   // Anscestor -- Resource
   @NotBlank @Builder.Default String resourceType = "Patient";
 
@@ -96,7 +101,6 @@ public class Patient implements Resource {
               + "- identifier.type.coding[].code field cardinality=1..1"
               + "All other slices identifier.type field cardinality=1..1")
   @Valid
-  @NotEmpty
   List<Identifier> identifier;
 
   Boolean active;
@@ -141,6 +145,16 @@ public class Patient implements Resource {
   private boolean isValidEthnicityExtension() {
     return isValidUsCoreExtensionCount(
         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity", 1);
+  }
+
+  @JsonIgnore
+  @AssertTrue(message = "identifier must not be empty")
+  @SuppressWarnings("unused")
+  private boolean isValidIdentifier() {
+    if (IDENTIFIER_ALLOW_EMPTY) {
+      return true;
+    }
+    return identifier != null && !identifier.isEmpty();
   }
 
   @JsonIgnore
