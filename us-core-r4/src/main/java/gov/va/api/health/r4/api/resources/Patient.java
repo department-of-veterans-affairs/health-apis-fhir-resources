@@ -148,7 +148,7 @@ public class Patient implements Resource {
   }
 
   @JsonIgnore
-  @AssertTrue(message = "identifier must not be empty")
+  @AssertTrue(message = "identifier does not meet size constraints")
   @SuppressWarnings("unused")
   private boolean isValidIdentifier() {
     if (IDENTIFIER_MIN_SIZE > 0) {
