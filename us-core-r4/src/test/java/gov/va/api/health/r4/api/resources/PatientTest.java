@@ -27,8 +27,13 @@ public class PatientTest {
 
   private final SampleKnownTypes types = SampleKnownTypes.get();
 
+  private static <T> Set<ConstraintViolation<T>> violationsOf(T object) {
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    return factory.getValidator().validate(object);
+  }
+
   @Test
-  public void bundlerCanBuildPatientBundles() {
+  void bundlerCanBuildPatientBundles() {
     Entry entry =
         Entry.builder()
             .extension(Collections.singletonList(data.extension()))
@@ -60,12 +65,12 @@ public class PatientTest {
   }
 
   @Test
-  public void patient() {
+  void patient() {
     assertRoundTrip(data.patient());
   }
 
   @Test
-  public void relatedGroups() {
+  void relatedGroups() {
     ZeroOrOneOfVerifier.builder()
         .sample(data.patient())
         .fieldPrefix("deceased")
@@ -83,7 +88,7 @@ public class PatientTest {
   }
 
   @Test
-  public void validationFailsGivenNoIdentifiers() {
+  void validationFailsGivenNoIdentifiers() {
     var patient = data.patient();
     assertThat(violationsOf(patient)).isEmpty();
     patient.identifier(List.of());
@@ -94,18 +99,14 @@ public class PatientTest {
 
   @Test
   void validationPassesWhenConfiguredWithMinSizeOfZero() {
-    var patientNoIdentifier = data.patient().identifier(null);
+    var patient = data.patient();
     var save = Patient.IDENTIFIER_MIN_SIZE.get();
     try {
       Patient.IDENTIFIER_MIN_SIZE.set(0);
-      assertThat(violationsOf(patientNoIdentifier)).isEmpty();
+      assertThat(violationsOf(patient.identifier(null))).isEmpty();
+      assertThat(violationsOf(patient.identifier(List.of()))).isEmpty();
     } finally {
       Patient.IDENTIFIER_MIN_SIZE.set(save);
     }
-  }
-
-  private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
-    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    return factory.getValidator().validate(object);
   }
 }
