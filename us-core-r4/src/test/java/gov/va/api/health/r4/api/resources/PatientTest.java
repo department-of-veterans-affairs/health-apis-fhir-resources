@@ -18,7 +18,10 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
+@Execution(ExecutionMode.SAME_THREAD)
 public class PatientTest {
   private final SamplePatients data = SamplePatients.get();
 
@@ -87,6 +90,18 @@ public class PatientTest {
     assertThat(violationsOf(patient)).isNotEmpty();
     patient.identifier(null);
     assertThat(violationsOf(patient)).isNotEmpty();
+  }
+
+  @Test
+  void validationPassesWhenConfiguredWithMinSizeOfZero() {
+    var patientNoIdentifier = data.patient().identifier(null);
+    var save = Patient.IDENTIFIER_MIN_SIZE.get();
+    try {
+      Patient.IDENTIFIER_MIN_SIZE.set(0);
+      assertThat(violationsOf(patientNoIdentifier)).isEmpty();
+    } finally {
+      Patient.IDENTIFIER_MIN_SIZE.set(save);
+    }
   }
 
   private <T> Set<ConstraintViolation<T>> violationsOf(T object) {
