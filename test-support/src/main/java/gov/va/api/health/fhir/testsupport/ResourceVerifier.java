@@ -35,7 +35,7 @@ public final class ResourceVerifier {
 
   private final Class<?> operationOutcomeClass;
 
-  @Builder.Default int maxCount = 100;
+  @Builder.Default Integer maxCount = 100;
 
   /**
    * If the response is a bundle, then the query is a search. We want to verify paging parameters
