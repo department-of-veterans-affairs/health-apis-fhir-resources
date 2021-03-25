@@ -37,7 +37,7 @@ public class Conformance implements Resource {
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Conformance";
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)
