@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>gov.va.api.health</groupId>
-        <artifactId>health-apis-parent</artifactId>
-        <version>7.0.23</version>
-        <relativePath/>
-    </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
     <groupId>gov.va.api.health</groupId>
-    <artifactId>test-support</artifactId>
-    <version>6.0.7-SNAPSHOT</version>
-    <properties/>
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.api.health</groupId>
-            <artifactId>sentinel</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-    </dependencies>
+    <artifactId>health-apis-parent</artifactId>
+    <version>7.0.23</version>
+    <relativePath/>
+  </parent>
+  <groupId>gov.va.api.health</groupId>
+  <artifactId>test-support</artifactId>
+  <version>6.0.7-SNAPSHOT</version>
+  <properties/>
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>gov.va.api.health</groupId>
+      <artifactId>sentinel</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+  </dependencies>
 </project>

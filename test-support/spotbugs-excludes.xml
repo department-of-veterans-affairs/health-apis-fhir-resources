@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Exclusions can be defined here and should include a comment on why the finding can be ignored -->
+    <!--
+  Ignore Lombok-generated code.
+-->
+    <Match>
+        <Or>
+            <Class name="gov.va.api.health.fhir.testsupport.ResourceVerifier$TestCase"/>
+        </Or>
+        <Or>
+            <Method name="equals"/>
+            <Method name="hashCode"/>
+        </Or>
+    </Match>
+    <!--
+This lombok generated builder accepts an array which is then used to pass parameters to a test client.
+This code is never intended to be used for purposes other than testing and is therefore not sensitive.
+-->
+    <Match>
+        <Or>
+            <Class name="gov.va.api.health.fhir.testsupport.ResourceVerifier$TestCase"/>
+        </Or>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+    <!--
+This lombok generated builder accepts an array which is then used to pass parameters to a test client.
+This code is never intended to be used for purposes other than testing and is therefore not sensitive.
+    -->
+    <Match>
+        <Or>
+            <Class name="gov.va.api.health.fhir.testsupport.ResourceVerifier$TestCase$TestCaseBuilder"/>
+        </Or>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+</FindBugsFilter>

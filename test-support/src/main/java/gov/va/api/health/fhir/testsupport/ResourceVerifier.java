@@ -40,7 +40,7 @@ public final class ResourceVerifier {
    * restrict page >= 1, _count >=1, and _count <= 20
    */
   @SneakyThrows
-  protected final <T> void assertPagingParameterBounds(TestCase<T> tc) {
+  final <T> void assertPagingParameterBounds(TestCase<T> tc) {
     if (!bundleClass().isAssignableFrom(tc.response())) {
       return;
     }
@@ -151,13 +151,13 @@ public final class ResourceVerifier {
   @Value
   @Builder
   public static final class TestCase<T> {
+    String[] parameters;
+
     int status;
 
     Class<T> response;
 
     String path;
-
-    String[] parameters;
 
     @Builder.Default ImmutableMap<String, String> headers = ImmutableMap.of();
 
@@ -166,7 +166,7 @@ public final class ResourceVerifier {
     Predicate<T> satisfiesCondition;
 
     String body() {
-      return String.format(body.replaceAll("[{][a-z0-9]+[}]", "%s"), parameters);
+      return String.format(body.replaceAll("[{][a-z0-9]+[}]", "%s"), (Object[]) parameters);
     }
 
     Boolean isPost() {
