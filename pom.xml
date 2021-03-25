@@ -19,5 +19,6 @@
     <module>us-core-r4</module>
     <module>us-core-r4-deidentifier</module>
     <module>us-core-r4-examples</module>
+    <module>test-support</module>
   </modules>
 </project>
