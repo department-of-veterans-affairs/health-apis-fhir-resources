@@ -9,7 +9,7 @@
   </parent>
   <groupId>gov.va.api.health</groupId>
   <artifactId>test-support</artifactId>
-  <version>6.0.7-SNAPSHOT</version>
+  <version>6.0.8-SNAPSHOT</version>
   <properties/>
   <dependencies>
     <dependency>
