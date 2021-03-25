@@ -35,9 +35,11 @@ public final class ResourceVerifier {
 
   private final Class<?> operationOutcomeClass;
 
+  @Builder.Default int maxCount = 100;
+
   /**
    * If the response is a bundle, then the query is a search. We want to verify paging parameters
-   * restrict page >= 1, _count >=1, and _count <= 20
+   * restrict page >= 1, _count >=1, and _count <= $(maxCount + 1)
    */
   @SneakyThrows
   final <T> void assertPagingParameterBounds(TestCase<T> tc) {
@@ -62,15 +64,16 @@ public final class ResourceVerifier {
         .get(tc.path() + "&_count=0", tc.parameters())
         .expect(200)
         .expectValid(tc.response());
+    int tooManies = maxCount() + 1;
     T bundle =
         testClient()
-            .get(tc.path() + "&_count=101", tc.parameters())
+            .get(tc.path() + "&_count=" + tooManies, tc.parameters())
             .expect(200)
             .expectValid(tc.response());
     Method bundleEntryMethod = bundleClass().getMethod("entry");
     ReflectionUtils.makeAccessible(bundleEntryMethod);
     Collection<?> entries = (Collection<?>) bundleEntryMethod.invoke(bundle);
-    assertThat(entries.size()).isLessThan(101);
+    assertThat(entries.size()).isLessThan(tooManies);
   }
 
   private <T> T assertRequest(TestCase<T> tc) {
