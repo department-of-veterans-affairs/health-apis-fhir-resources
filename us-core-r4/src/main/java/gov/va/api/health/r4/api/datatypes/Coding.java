@@ -9,6 +9,7 @@ import gov.va.api.health.r4.api.elements.Element;
 import gov.va.api.health.r4.api.elements.Extension;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,7 +24,7 @@ public class Coding implements Element, HasDisplay {
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  List<Extension> extension;
+  @Valid List<Extension> extension;
 
   @Pattern(regexp = Fhir.URI)
   String system;

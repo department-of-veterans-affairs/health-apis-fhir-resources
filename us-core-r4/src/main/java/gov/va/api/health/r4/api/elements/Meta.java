@@ -23,7 +23,7 @@ public class Meta implements Element {
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @Valid List<Extension> extension;
+  List<@Valid Extension> extension;
 
   @Pattern(regexp = Fhir.ID)
   String versionId;
