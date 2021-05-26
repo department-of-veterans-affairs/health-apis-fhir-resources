@@ -8,7 +8,7 @@ import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.samples.SampleQuestionnaires;
 import java.util.List;
 import javax.validation.Validation;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class QuestionnaireTest {
   private final SampleQuestionnaires data = SampleQuestionnaires.get();

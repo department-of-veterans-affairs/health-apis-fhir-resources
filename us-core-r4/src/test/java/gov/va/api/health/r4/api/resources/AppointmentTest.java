@@ -6,7 +6,7 @@ import static java.util.Collections.singletonList;
 
 import gov.va.api.health.r4.api.bundle.BundleLink;
 import gov.va.api.health.r4.api.samples.SampleAppointments;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AppointmentTest {
   private final SampleAppointments data = SampleAppointments.get();

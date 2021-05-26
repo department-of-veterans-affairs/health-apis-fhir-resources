@@ -4,7 +4,7 @@
   <parent>
     <artifactId>api-starter</artifactId>
     <groupId>gov.va.api.health</groupId>
-    <version>7.0.23</version>
+    <version>8.0.2</version>
     <relativePath/>
   </parent>
   <artifactId>us-core-r4-deidentifier</artifactId>
