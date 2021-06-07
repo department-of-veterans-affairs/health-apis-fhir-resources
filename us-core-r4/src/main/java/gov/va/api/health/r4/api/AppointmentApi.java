@@ -120,5 +120,10 @@ public interface AppointmentApi {
                   "The number of resources that should be returned in a single page."
                       + " The maximum count size is 100.")
           @DefaultValue("30")
-          int count);
+          int count,
+      @Parameter(
+              in = ParameterIn.QUERY,
+              name = "_sort",
+              description = "Order in which to return results. Date is supported.")
+          String sort);
 }
