@@ -46,7 +46,8 @@ import org.apache.commons.lang3.StringUtils;
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
     description =
-        "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-organization.html",
+        "The Organization resource is compliant with both https://www.hl7.org/fhir/organization.html" +
+                "and the more specific http://hl7.org/fhir/us/carin-bb/2020Feb/StructureDefinition-CARIN-BB-Organization.html",
     example =
         "${r4.organization:gov.va.api.health."
             + "r4.api.swaggerexamples.SwaggerOrganization#organization}")
