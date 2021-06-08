@@ -88,11 +88,7 @@ public interface PractitionerApi {
       @Parameter(
               in = ParameterIn.PATH,
               name = "identifier",
-              description =
-                  "The logical identifier of the resource."
-                      + " Once assigned, this value never changes."
-                      + " For Practitioners this identifier is the"
-                      + " National Provider Identifier (NPI).")
+              description = "An identifier uniquely identifies one object/resource.")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
