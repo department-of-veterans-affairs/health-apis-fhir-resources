@@ -53,7 +53,7 @@ public interface ObservationApi {
   @Operation(
       summary = "Observation Search",
       description =
-          "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
+          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-observation-lab.html",
       tags = {"Observation"})
   @GET
   @Path("Observation")
