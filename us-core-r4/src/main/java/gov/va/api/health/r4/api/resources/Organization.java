@@ -46,7 +46,7 @@ import org.apache.commons.lang3.StringUtils;
     isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @Schema(
     description =
-        "https://www.hl7.org/fhir/organization.html",
+        "http://hl7.org/fhir/us/carin-bb/2020Feb/StructureDefinition-CARIN-BB-Organization.html",
     example =
         "${r4.organization:gov.va.api.health."
             + "r4.api.swaggerexamples.SwaggerOrganization#organization}")
