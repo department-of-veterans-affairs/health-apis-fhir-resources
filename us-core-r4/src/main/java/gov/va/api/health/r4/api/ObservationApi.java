@@ -16,7 +16,7 @@ public interface ObservationApi {
   @Operation(
       summary = "Observation Read",
       description =
-          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-observation-lab.html",
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
       tags = {"Observation"})
   @GET
   @Path("Observation/{id}")
