@@ -124,6 +124,6 @@ public interface AppointmentApi {
       @Parameter(
               in = ParameterIn.QUERY,
               name = "_sort",
-              description = "Order in which to return results. Date is supported.")
+              description = "Parameters by which to sort results.")
           String sort);
 }
