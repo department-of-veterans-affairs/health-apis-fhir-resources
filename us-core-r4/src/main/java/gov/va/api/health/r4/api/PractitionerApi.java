@@ -88,7 +88,7 @@ public interface PractitionerApi {
       @Parameter(
               in = ParameterIn.PATH,
               name = "identifier",
-              description = "An identifier uniquely identifies one object/resource.")
+              description = "A unique identifier for a practitioner within a given system.")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
