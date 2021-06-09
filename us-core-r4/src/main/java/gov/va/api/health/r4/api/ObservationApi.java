@@ -15,8 +15,7 @@ import javax.ws.rs.Path;
 public interface ObservationApi {
   @Operation(
       summary = "Observation Read",
-      description =
-          "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-observation-lab.html",
+      description = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
       tags = {"Observation"})
   @GET
   @Path("Observation/{id}")
@@ -52,8 +51,7 @@ public interface ObservationApi {
 
   @Operation(
       summary = "Observation Search",
-      description =
-          "http://www.fhir.org/guides/argonaut/r2/StructureDefinition-argo-observationresults.html",
+      description = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
       tags = {"Observation"})
   @GET
   @Path("Observation")
