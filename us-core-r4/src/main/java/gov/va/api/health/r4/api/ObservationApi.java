@@ -15,8 +15,7 @@ import javax.ws.rs.Path;
 public interface ObservationApi {
   @Operation(
       summary = "Observation Read",
-      description =
-          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
+      description = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
       tags = {"Observation"})
   @GET
   @Path("Observation/{id}")
@@ -52,8 +51,7 @@ public interface ObservationApi {
 
   @Operation(
       summary = "Observation Search",
-      description =
-          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
+      description = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
       tags = {"Observation"})
   @GET
   @Path("Observation")
@@ -120,12 +118,6 @@ public interface ObservationApi {
                   "A date or range of dates (maximum of 2) that describes "
                       + "the date that the observation was recorded.")
           String[] date,
-      @Parameter(
-              in = ParameterIn.QUERY,
-              name = "page",
-              description = "The page number of the search result.")
-          @DefaultValue("1")
-          int page,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "_count",
