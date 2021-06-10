@@ -32,10 +32,11 @@ import lombok.NoArgsConstructor;
         "${dstu2.operationOutcome:gov.va.api.health.dstu2.api.swaggerexamples"
             + ".SwaggerOperationOutcome#operationOutcome}")
 public class OperationOutcome implements DomainResource {
+  @NotBlank @Builder.Default String resourceType = "OperationOutcome";
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

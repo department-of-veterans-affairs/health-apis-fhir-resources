@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -43,7 +45,7 @@ import lombok.NoArgsConstructor;
         "${dstu2.encounter:gov.va.api.health.dstu2.api.swaggerexamples"
             + ".SwaggerEncounter#encounter}")
 public class Encounter implements DomainResource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Encounter";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -119,6 +121,7 @@ public class Encounter implements DomainResource {
           "${dstu2.encounterBundle:gov.va.api.health.dstu2.api.swaggerexamples"
               + ".SwaggerEncounter#encounterBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -131,7 +134,17 @@ public class Encounter implements DomainResource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

@@ -14,7 +14,6 @@ public class SamplePractitioners {
 
   public Practitioner practitioner() {
     return Practitioner.builder()
-        .resourceType("Practitioner")
         .id("2222")
         .meta(Meta.builder().build())
         .implicitRules("http://HelloRules.com")

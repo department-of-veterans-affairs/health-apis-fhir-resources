@@ -48,7 +48,6 @@ public class SampleMedicationOrders {
 
   public MedicationOrder medicationOrder() {
     return MedicationOrder.builder()
-        .resourceType("MedicationOrder")
         .id("2222")
         .meta(meta())
         .implicitRules("http://HelloRules.com")

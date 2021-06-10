@@ -67,7 +67,6 @@ public class SamplePatients {
   public Patient patient() {
     return Patient.builder()
         .id("1234")
-        .resourceType("Patient")
         .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")

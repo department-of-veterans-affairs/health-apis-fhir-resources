@@ -20,7 +20,6 @@ public class SwaggerMedicationOrder {
    */
   public static MedicationOrder medicationOrder() {
     return MedicationOrder.builder()
-        .resourceType("MedicationOrder")
         .id("f07dd74e-844e-5463-99d4-0ca4d5cbeb41")
         .dateWritten("2013-04-14T06:00:00Z")
         .status(MedicationOrder.Status.active)
@@ -54,7 +53,6 @@ public class SwaggerMedicationOrder {
    */
   public static final MedicationOrder.Bundle medicationOrderBundle() {
     return MedicationOrder.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -81,7 +79,6 @@ public class SwaggerMedicationOrder {
                         "https://sandbox-api.va.gov/services/argonaut/v0/MedicationOrder/f07dd74e-844e-5463-99d4-0ca4d5cbeb41")
                     .resource(
                         MedicationOrder.builder()
-                            .resourceType("MedicationOrder")
                             .id("f07dd74e-844e-5463-99d4-0ca4d5cbeb41")
                             .dateWritten("2013-04-14T06:00:00Z")
                             .status(MedicationOrder.Status.active)

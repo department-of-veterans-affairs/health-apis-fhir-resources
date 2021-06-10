@@ -24,7 +24,6 @@ public class SwaggerMedicationDispense {
    */
   public static MedicationDispense medicationDispense() {
     return MedicationDispense.builder()
-        .resourceType("MedicationDispense")
         .id("3ba8c63c-bac2-5f98-b7cd-161792919216")
         .identifier(
             Identifier.builder()
@@ -106,7 +105,6 @@ public class SwaggerMedicationDispense {
    */
   public static MedicationDispense.Bundle medicationDispenseBundle() {
     return MedicationDispense.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1155)
         .link(
@@ -138,7 +136,6 @@ public class SwaggerMedicationDispense {
                         "https://sandbox-api.va.gov/services/argonaut/v0/MedicationDispense/2f587c16-5182-59a5-bdcb-518c7c501f37")
                     .resource(
                         MedicationDispense.builder()
-                            .resourceType("MedicationDispense")
                             .id("2f587c16-5182-59a5-bdcb-518c7c501f37")
                             .identifier(
                                 Identifier.builder()

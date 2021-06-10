@@ -13,7 +13,6 @@ public class SampleOrganizations {
 
   public Organization organization() {
     return Organization.builder()
-        .resourceType("Organization")
         .id("2222")
         .meta(meta())
         .implicitRules("http://HelloRules.com")

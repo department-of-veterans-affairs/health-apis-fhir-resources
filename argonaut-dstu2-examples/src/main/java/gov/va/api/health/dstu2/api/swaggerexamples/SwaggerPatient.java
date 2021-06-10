@@ -26,7 +26,6 @@ public class SwaggerPatient {
   public static Patient patient() {
     return Patient.builder()
         .id("2000163")
-        .resourceType("Patient")
         .extension(
             asList(
                 Extension.builder()
@@ -146,7 +145,6 @@ public class SwaggerPatient {
    */
   public static Patient.Bundle patientBundle() {
     return Patient.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -174,7 +172,6 @@ public class SwaggerPatient {
                     .resource(
                         Patient.builder()
                             .id("2000163")
-                            .resourceType("Patient")
                             .extension(
                                 asList(
                                     Extension.builder()

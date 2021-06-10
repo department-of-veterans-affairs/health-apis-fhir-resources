@@ -22,7 +22,6 @@ public class SwaggerImmunization {
    */
   public static Immunization immunization() {
     return Immunization.builder()
-        .resourceType("Immunization")
         .id("1fd82e3a-a95b-5c04-9a68-c8ddf740ea0c")
         .status(Immunization.Status.completed)
         .date("2017-04-24T01:15:52Z")
@@ -63,7 +62,6 @@ public class SwaggerImmunization {
    */
   public static Immunization.Bundle immunizationBundle() {
     return Immunization.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -90,7 +88,6 @@ public class SwaggerImmunization {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Immunization/1fd82e3a-a95b-5c04-9a68-c8ddf740ea0c")
                     .resource(
                         Immunization.builder()
-                            .resourceType("Immunization")
                             .id("1fd82e3a-a95b-5c04-9a68-c8ddf740ea0c")
                             .status(Immunization.Status.completed)
                             .date("2017-04-24T01:15:52Z")

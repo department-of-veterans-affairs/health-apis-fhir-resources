@@ -37,7 +37,6 @@ public class SampleProcedures {
   public Procedure procedure() {
     return Procedure.builder()
         .id("1234")
-        .resourceType("Procedure")
         .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")

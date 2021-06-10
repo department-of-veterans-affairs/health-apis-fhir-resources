@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -75,7 +77,7 @@ import org.apache.commons.lang3.StringUtils;
       message = "Only one value field may be specified")
 })
 public class Observation implements Resource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Observation";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -184,6 +186,7 @@ public class Observation implements Resource {
               + "gov.va.api.health.dstu2.api.swaggerexamples."
               + "SwaggerObservation#observationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -196,7 +199,17 @@ public class Observation implements Resource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

@@ -21,7 +21,6 @@ public class SwaggerProcedure {
    */
   public static Procedure procedure() {
     return Procedure.builder()
-        .resourceType("Procedure")
         .id("532070f1-cb7b-582e-9380-9e0ef27bc817")
         .subject(
             Reference.builder()
@@ -51,7 +50,6 @@ public class SwaggerProcedure {
    */
   public static Procedure.Bundle procedureBundle() {
     return Procedure.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -78,7 +76,6 @@ public class SwaggerProcedure {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Procedure/532070f1-cb7b-582e-9380-9e0ef27bc817")
                     .resource(
                         Procedure.builder()
-                            .resourceType("Procedure")
                             .id("532070f1-cb7b-582e-9380-9e0ef27bc817")
                             .subject(
                                 Reference.builder()

@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,7 +61,7 @@ import lombok.NoArgsConstructor;
         fields = {"reasonCodeableConcept", "reasonReference"},
         message = "At most one reason may be specified."))
 public class Procedure implements Resource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Procedure";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -131,6 +133,7 @@ public class Procedure implements Resource {
           "${dstu2.procedureBundle:gov.va.api.health.dstu2.api.swaggerexamples"
               + ".SwaggerProcedure#procedureBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -143,7 +146,17 @@ public class Procedure implements Resource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -61,10 +63,11 @@ import lombok.NoArgsConstructor;
       message = "Only one abatement value may be specified")
 })
 public class Condition implements Resource {
+  @NotBlank @Builder.Default String resourceType = "Condition";
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)
@@ -146,6 +149,7 @@ public class Condition implements Resource {
           "${dstu2.conditionBundle:gov.va.api.health.dstu2.api.swaggerexamples"
               + ".SwaggerCondition#conditionBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -158,7 +162,17 @@ public class Condition implements Resource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

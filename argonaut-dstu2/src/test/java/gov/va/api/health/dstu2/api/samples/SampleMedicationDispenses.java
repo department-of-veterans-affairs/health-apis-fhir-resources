@@ -33,7 +33,6 @@ public class SampleMedicationDispenses {
 
   public MedicationDispense medicationDispense() {
     return MedicationDispense.builder()
-        .resourceType("MedicationDispense")
         .id("789")
         .meta(meta())
         .implicitRules("http://HelloRules.com")

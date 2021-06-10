@@ -50,7 +50,6 @@ public class SampleObservations {
   public Observation observation() {
     return Observation.builder()
         .id("1234")
-        .resourceType("Observation")
         .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")

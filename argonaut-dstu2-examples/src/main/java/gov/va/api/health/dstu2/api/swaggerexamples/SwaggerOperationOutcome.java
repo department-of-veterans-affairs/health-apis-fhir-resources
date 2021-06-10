@@ -6,7 +6,6 @@ import gov.va.api.health.dstu2.api.datatypes.CodeableConcept;
 import gov.va.api.health.dstu2.api.resources.OperationOutcome;
 
 public class SwaggerOperationOutcome {
-
   /**
    * An example OperationOutcome.
    *
@@ -14,7 +13,6 @@ public class SwaggerOperationOutcome {
    */
   public static OperationOutcome operationOutcome() {
     return OperationOutcome.builder()
-        .resourceType("OperationOutcome")
         .issue(
             asList(
                 OperationOutcome.Issue.builder()

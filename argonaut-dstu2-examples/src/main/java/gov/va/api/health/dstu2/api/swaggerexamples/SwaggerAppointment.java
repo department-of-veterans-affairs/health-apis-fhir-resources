@@ -21,7 +21,6 @@ public class SwaggerAppointment {
    */
   public static Appointment appointment() {
     return Appointment.builder()
-        .resourceType("Appointment")
         .id("0be173b4-721c-554e-ba7d-966d04633b68")
         .status(Appointment.Status.cancelled)
         .description("Scheduled Visit")
@@ -80,7 +79,6 @@ public class SwaggerAppointment {
    */
   public static Appointment.Bundle appointmentBundle() {
     return Appointment.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -107,7 +105,6 @@ public class SwaggerAppointment {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Appointment/0be173b4-721c-554e-ba7d-966d04633b68")
                     .resource(
                         Appointment.builder()
-                            .resourceType("Appointment")
                             .id("0be173b4-721c-554e-ba7d-966d04633b68")
                             .status(Appointment.Status.cancelled)
                             .description("Scheduled Visit")

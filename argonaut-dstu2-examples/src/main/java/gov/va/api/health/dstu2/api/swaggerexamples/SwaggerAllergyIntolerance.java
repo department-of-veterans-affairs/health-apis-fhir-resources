@@ -22,7 +22,6 @@ public class SwaggerAllergyIntolerance {
    */
   public static AllergyIntolerance allergyIntolerance() {
     return AllergyIntolerance.builder()
-        .resourceType("AllergyIntolerance")
         .id("6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
         .onset("1995-04-30T01:15:52Z")
         .patient(
@@ -62,7 +61,6 @@ public class SwaggerAllergyIntolerance {
    */
   public static AllergyIntolerance.Bundle allergyIntoleranceBundle() {
     return AllergyIntolerance.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -89,7 +87,6 @@ public class SwaggerAllergyIntolerance {
                         "https://sandbox-api.va.gov/services/argonaut/v0/AllergyIntolerance/6f9a021b-07d5-53c8-8cce-b49a694d4ad9")
                     .resource(
                         AllergyIntolerance.builder()
-                            .resourceType("AllergyIntolerance")
                             .id("e2019e0c-fa38-596d-b966-9b86926959a7")
                             .onset("1995-04-30T01:15:52Z")
                             .patient(

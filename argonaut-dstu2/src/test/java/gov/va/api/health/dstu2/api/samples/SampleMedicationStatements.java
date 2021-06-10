@@ -42,7 +42,6 @@ public class SampleMedicationStatements {
 
   public MedicationStatement medicationStatement() {
     return MedicationStatement.builder()
-        .resourceType("MedicationStatement")
         .id("ms1")
         .meta(meta())
         .implicitRules("rules")
