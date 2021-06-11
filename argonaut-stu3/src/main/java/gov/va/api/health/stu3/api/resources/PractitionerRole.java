@@ -126,7 +126,6 @@ public class PractitionerRole implements DomainResource {
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   @JsonDeserialize(builder = PractitionerRole.Entry.EntryBuilder.class)
   public static class Entry extends AbstractEntry<PractitionerRole> {
-    /** Builder constructor. */
     @Builder
     public Entry(
         @Pattern(regexp = Fhir.ID) String id,
