@@ -15,7 +15,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Practitioner;
 
 public class SwaggerPractitioner {
-
   /**
    * An example Practitioner.
    *

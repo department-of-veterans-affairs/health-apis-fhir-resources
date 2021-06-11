@@ -14,7 +14,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Organization;
 
 public class SwaggerOrganization {
-
   /**
    * An example Organization.
    *

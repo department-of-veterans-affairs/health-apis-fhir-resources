@@ -12,7 +12,6 @@ import gov.va.api.health.dstu2.api.datatypes.Coding;
 import gov.va.api.health.dstu2.api.resources.Medication;
 
 public class SwaggerMedication {
-
   /**
    * An example Medication.
    *

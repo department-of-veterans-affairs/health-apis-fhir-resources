@@ -14,7 +14,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Immunization;
 
 public class SwaggerImmunization {
-
   /**
    * An example Immunization.
    *

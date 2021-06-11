@@ -12,7 +12,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Location;
 
 public class SwaggerLocation {
-
   /**
    * An example Location.
    *

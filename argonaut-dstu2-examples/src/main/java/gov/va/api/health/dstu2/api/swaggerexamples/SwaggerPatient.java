@@ -17,7 +17,6 @@ import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.dstu2.api.resources.Patient;
 
 public class SwaggerPatient {
-
   /**
    * An example Patient.
    *

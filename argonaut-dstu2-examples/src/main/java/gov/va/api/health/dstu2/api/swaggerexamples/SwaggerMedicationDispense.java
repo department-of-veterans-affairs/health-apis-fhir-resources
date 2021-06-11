@@ -16,7 +16,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.MedicationDispense;
 
 public class SwaggerMedicationDispense {
-
   /**
    * An example MedicationDispense.
    *
