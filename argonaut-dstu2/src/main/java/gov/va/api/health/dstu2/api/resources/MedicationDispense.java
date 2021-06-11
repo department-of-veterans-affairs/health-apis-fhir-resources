@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -58,7 +60,7 @@ import lombok.NoArgsConstructor;
     fields = {"medicationCodeableConcept", "medicationReference"},
     message = "Exactly one medication field must be specified")
 public class MedicationDispense implements DomainResource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "MedicationDispense";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -150,6 +152,7 @@ public class MedicationDispense implements DomainResource {
               + "gov.va.api.health.dstu2.api.swaggerexamples."
               + "SwaggerMedicationDispense#medicationDispenseBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -162,7 +165,17 @@ public class MedicationDispense implements DomainResource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

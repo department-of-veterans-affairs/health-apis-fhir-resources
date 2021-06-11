@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,10 +45,11 @@ import lombok.NoArgsConstructor;
         "${dstu2.medication:gov.va.api.health.dstu2.api.swaggerexamples"
             + ".SwaggerMedication#medication}")
 public class Medication implements Resource {
+  @NotBlank @Builder.Default String resourceType = "Medication";
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)
@@ -99,6 +102,7 @@ public class Medication implements Resource {
           "${dstu2.medicationBundle:gov.va.api.health.dstu2.api.swaggerexamples"
               + ".SwaggerMedication#medicationBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -111,7 +115,17 @@ public class Medication implements Resource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

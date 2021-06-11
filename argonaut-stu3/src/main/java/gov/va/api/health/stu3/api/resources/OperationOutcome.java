@@ -28,11 +28,11 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Schema(description = "https://www.hl7.org/fhir/operationoutcome.html")
 public class OperationOutcome implements DomainResource {
+  @NotBlank @Builder.Default String resourceType = "OperationOutcome";
 
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)

@@ -13,7 +13,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.MedicationStatement;
 
 public class SwaggerMedicationStatement {
-
   /**
    * An example MedicationStatement.
    *
@@ -21,7 +20,6 @@ public class SwaggerMedicationStatement {
    */
   public static MedicationStatement medicationStatement() {
     return MedicationStatement.builder()
-        .resourceType("MedicationStatement")
         .id("1f46363d-af9b-5ba5-acda-b384373a9af2")
         .patient(
             Reference.builder()
@@ -57,7 +55,6 @@ public class SwaggerMedicationStatement {
    */
   public static MedicationStatement.Bundle medicationStatementBundle() {
     return MedicationStatement.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -84,7 +81,6 @@ public class SwaggerMedicationStatement {
                         "https://sandbox-api.va.gov/services/argonaut/v0/MedicationStatement/1f46363d-af9b-5ba5-acda-b384373a9af2")
                     .resource(
                         MedicationStatement.builder()
-                            .resourceType("MedicationStatement")
                             .id("1f46363d-af9b-5ba5-acda-b384373a9af2")
                             .patient(
                                 Reference.builder()

@@ -15,7 +15,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Practitioner;
 
 public class SwaggerPractitioner {
-
   /**
    * An example Practitioner.
    *
@@ -23,7 +22,6 @@ public class SwaggerPractitioner {
    */
   public static Practitioner practitioner() {
     return Practitioner.builder()
-        .resourceType("Practitioner")
         .id("9e8531cb-8069-5328-b737-938fa044a4e2")
         .active(true)
         .name(
@@ -118,7 +116,6 @@ public class SwaggerPractitioner {
    */
   public static Practitioner.Bundle practitionerBundle() {
     return Practitioner.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -145,7 +142,6 @@ public class SwaggerPractitioner {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Practitioner/9e8531cb-8069-5328-b737-938fa044a4e2")
                     .resource(
                         Practitioner.builder()
-                            .resourceType("Practitioner")
                             .id("9e8531cb-8069-5328-b737-938fa044a4e2")
                             .active(true)
                             .name(

@@ -13,7 +13,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.DiagnosticReport;
 
 public class SwaggerDiagnosticReport {
-
   /**
    * An example DiagnosticReport.
    *
@@ -21,7 +20,6 @@ public class SwaggerDiagnosticReport {
    */
   public static final DiagnosticReport diagnosticReport() {
     return DiagnosticReport.builder()
-        .resourceType("DiagnosticReport")
         .id("0757389a-6e06-51bd-aac0-bd0244e51e46")
         .status(DiagnosticReport.Code._final)
         .category(
@@ -52,7 +50,6 @@ public class SwaggerDiagnosticReport {
    */
   public static final DiagnosticReport.Bundle diagnosticReportBundle() {
     return DiagnosticReport.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -79,7 +76,6 @@ public class SwaggerDiagnosticReport {
                         "https://sandbox-api.va.gov/services/argonaut/v0/DiagnosticReport/0757389a-6e06-51bd-aac0-bd0244e51e46")
                     .resource(
                         DiagnosticReport.builder()
-                            .resourceType("DiagnosticReport")
                             .id("0757389a-6e06-51bd-aac0-bd0244e51e46")
                             .status(DiagnosticReport.Code._final)
                             .category(

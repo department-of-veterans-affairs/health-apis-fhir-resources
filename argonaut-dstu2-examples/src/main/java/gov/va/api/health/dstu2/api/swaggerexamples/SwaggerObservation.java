@@ -14,7 +14,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Observation;
 
 public class SwaggerObservation {
-
   /**
    * An example Observation.
    *
@@ -22,7 +21,6 @@ public class SwaggerObservation {
    */
   public static Observation observation() {
     return Observation.builder()
-        .resourceType("Observation")
         .id("7889e577-88d6-5e6f-8a4d-fb6988b7b3c1")
         .status(Observation.Status._final)
         .category(
@@ -69,7 +67,6 @@ public class SwaggerObservation {
    */
   public static Observation.Bundle observationBundle() {
     return Observation.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -96,7 +93,6 @@ public class SwaggerObservation {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Observation/7889e577-88d6-5e6f-8a4d-fb6988b7b3c1")
                     .resource(
                         Observation.builder()
-                            .resourceType("Observation")
                             .id("7889e577-88d6-5e6f-8a4d-fb6988b7b3c1")
                             .status(Observation.Status._final)
                             .category(

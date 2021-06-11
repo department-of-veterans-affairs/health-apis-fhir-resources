@@ -12,7 +12,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Location;
 
 public class SwaggerLocation {
-
   /**
    * An example Location.
    *
@@ -20,7 +19,6 @@ public class SwaggerLocation {
    */
   public static Location location() {
     return Location.builder()
-        .resourceType("Location")
         .id("96aee2f5-a2ce-588f-8352-f6ea61f0959d")
         .status(Location.Status.active)
         .name("VAMC ALBANY")
@@ -48,7 +46,6 @@ public class SwaggerLocation {
    */
   public static Location.Bundle locationBundle() {
     return Location.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -75,7 +72,6 @@ public class SwaggerLocation {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Location/96aee2f5-a2ce-588f-8352-f6ea61f0959d")
                     .resource(
                         Location.builder()
-                            .resourceType("Location")
                             .id("96aee2f5-a2ce-588f-8352-f6ea61f0959d")
                             .status(Location.Status.active)
                             .name("VAMC ALBANY")

@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -46,7 +48,7 @@ import lombok.NoArgsConstructor;
         "${dstu2.allergyIntolerance:gov.va.api.health.dstu2.api.swaggerexamples"
             + ".SwaggerAllergyIntolerance#allergyIntolerance}")
 public class AllergyIntolerance implements Resource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "AllergyIntolerance";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -144,6 +146,7 @@ public class AllergyIntolerance implements Resource {
           "${dstu2.allergyIntoleranceBundle:gov.va.api.health.dstu2.api.swaggerexamples"
               + ".SwaggerAllergyIntolerance#allergyIntoleranceBundle}")
   public static class Bundle extends AbstractBundle<AllergyIntolerance.Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -156,7 +159,17 @@ public class AllergyIntolerance implements Resource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

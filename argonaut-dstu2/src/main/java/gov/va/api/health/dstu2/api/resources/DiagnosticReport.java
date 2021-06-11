@@ -1,5 +1,7 @@
 package gov.va.api.health.dstu2.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -54,10 +56,11 @@ import org.apache.commons.lang3.StringUtils;
     fields = {"effectiveDateTime", "effectivePeriod"},
     message = "Only one effective value may be specified")
 public class DiagnosticReport implements Resource {
+  @NotBlank @Builder.Default String resourceType = "DiagnosticReport";
+
   @Pattern(regexp = Fhir.ID)
   String id;
 
-  @NotBlank String resourceType;
   @Valid Meta meta;
 
   @Pattern(regexp = Fhir.URI)
@@ -147,6 +150,7 @@ public class DiagnosticReport implements Resource {
               + "gov.va.api.health.dstu2.api.swaggerexamples."
               + "SwaggerDiagnosticReport#diagnosticReportBundle}")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -159,7 +163,17 @@ public class DiagnosticReport implements Resource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

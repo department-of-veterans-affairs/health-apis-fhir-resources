@@ -12,7 +12,6 @@ public class SampleEndpoints {
 
   public Endpoint endpoint() {
     return Endpoint.builder()
-        .resourceType("endpoint")
         .status(Status.active)
         .name("My Name")
         .connectionType(Coding.builder().build())

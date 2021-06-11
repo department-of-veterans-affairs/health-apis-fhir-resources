@@ -40,7 +40,6 @@ public class SampleDiagnosticReports {
   public DiagnosticReport diagnosticReport() {
     return DiagnosticReport.builder()
         .id("1234")
-        .resourceType("Diagnostic Report")
         .meta(meta())
         .implicitRules("https://HelloRules.com")
         .language("Hello Language")

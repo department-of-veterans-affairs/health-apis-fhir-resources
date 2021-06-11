@@ -10,7 +10,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Encounter;
 
 public class SwaggerEncounter {
-
   /**
    * An example Encounter.
    *
@@ -18,7 +17,6 @@ public class SwaggerEncounter {
    */
   public static Encounter encounter() {
     return Encounter.builder()
-        .resourceType("Encounter")
         .id("dc7f6fcc-41f9-5be9-a364-0b0aa938917a")
         .status(Encounter.Status.finished)
         .encounterClass(Encounter.EncounterClass.emergency)
@@ -99,7 +97,6 @@ public class SwaggerEncounter {
    */
   public static final Encounter.Bundle encounterBundle() {
     return Encounter.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -126,7 +123,6 @@ public class SwaggerEncounter {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Encounter/dc7f6fcc-41f9-5be9-a364-0b0aa938917a")
                     .resource(
                         Encounter.builder()
-                            .resourceType("Encounter")
                             .id("dc7f6fcc-41f9-5be9-a364-0b0aa938917a")
                             .status(Encounter.Status.finished)
                             .encounterClass(Encounter.EncounterClass.emergency)

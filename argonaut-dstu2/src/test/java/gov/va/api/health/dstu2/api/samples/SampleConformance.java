@@ -41,7 +41,6 @@ public class SampleConformance {
   public Conformance conformance() {
     return Conformance.builder()
         .id("c1")
-        .resourceType("Conformance")
         .implicitRules("https://example.com")
         .language("en")
         .text(narrative())

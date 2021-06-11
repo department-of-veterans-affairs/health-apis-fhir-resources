@@ -1,5 +1,7 @@
 package gov.va.api.health.stu3.api.resources;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import gov.va.api.health.stu3.api.Fhir;
@@ -45,7 +47,7 @@ import lombok.NoArgsConstructor;
     description =
         "http://www.fhir.org/guides/argonaut/pd/StructureDefinition-argo-practitioner.html")
 public class Practitioner implements DomainResource {
-  @NotBlank String resourceType;
+  @NotBlank @Builder.Default String resourceType = "Practitioner";
 
   @Pattern(regexp = Fhir.ID)
   String id;
@@ -123,6 +125,7 @@ public class Practitioner implements DomainResource {
   @JsonDeserialize(builder = Practitioner.Bundle.BundleBuilder.class)
   @Schema(name = "PractitionerBundle")
   public static class Bundle extends AbstractBundle<Entry> {
+    /** Builder constructor. */
     @Builder
     public Bundle(
         @NotBlank String resourceType,
@@ -135,7 +138,17 @@ public class Practitioner implements DomainResource {
         @Valid List<BundleLink> link,
         @Valid List<Entry> entry,
         @Valid Signature signature) {
-      super(resourceType, id, meta, implicitRules, language, type, total, link, entry, signature);
+      super(
+          defaultString(resourceType, "Bundle"),
+          id,
+          meta,
+          implicitRules,
+          language,
+          type,
+          total,
+          link,
+          entry,
+          signature);
     }
   }
 

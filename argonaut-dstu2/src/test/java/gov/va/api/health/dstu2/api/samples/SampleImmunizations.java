@@ -29,7 +29,6 @@ public class SampleImmunizations {
 
   public Immunization immunization() {
     return Immunization.builder()
-        .resourceType("Immunization")
         .id("2222")
         .meta(meta())
         .implicitRules("http://HelloRules.com")

@@ -41,7 +41,6 @@ public class SampleCapabilityStatement {
   public CapabilityStatement capabilityStatement() {
     return CapabilityStatement.builder()
         .id("c1")
-        .resourceType("CapabilityStatement")
         .implicitRules("https://example.com")
         .language("en")
         .text(narrative())

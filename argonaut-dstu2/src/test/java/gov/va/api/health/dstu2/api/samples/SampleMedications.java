@@ -58,7 +58,6 @@ public class SampleMedications {
   public Medication medication() {
     return Medication.builder()
         .id("1234")
-        .resourceType("Medication")
         .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")

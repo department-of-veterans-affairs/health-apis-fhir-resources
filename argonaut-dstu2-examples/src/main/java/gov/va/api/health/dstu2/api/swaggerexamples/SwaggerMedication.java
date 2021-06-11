@@ -12,7 +12,6 @@ import gov.va.api.health.dstu2.api.datatypes.Coding;
 import gov.va.api.health.dstu2.api.resources.Medication;
 
 public class SwaggerMedication {
-
   /**
    * An example Medication.
    *
@@ -20,7 +19,6 @@ public class SwaggerMedication {
    */
   public static Medication medication() {
     return Medication.builder()
-        .resourceType("Medication")
         .id("f4163f35-1565-552b-a1b9-a2f8870e6f4a")
         .code(
             CodeableConcept.builder()
@@ -48,7 +46,6 @@ public class SwaggerMedication {
    */
   public static final Medication.Bundle medicationBundle() {
     return Medication.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -75,7 +72,6 @@ public class SwaggerMedication {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Medication/f4163f35-1565-552b-a1b9-a2f8870e6f4a")
                     .resource(
                         Medication.builder()
-                            .resourceType("Medication")
                             .id("f4163f35-1565-552b-a1b9-a2f8870e6f4a")
                             .code(
                                 CodeableConcept.builder()

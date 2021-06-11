@@ -14,7 +14,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Organization;
 
 public class SwaggerOrganization {
-
   /**
    * An example Organization.
    *
@@ -22,7 +21,6 @@ public class SwaggerOrganization {
    */
   public static Organization organization() {
     return Organization.builder()
-        .resourceType("Organization")
         .id("6a96677d-f487-52bb-befd-6c90c7f49fa6")
         .active(true)
         .type(
@@ -60,7 +58,6 @@ public class SwaggerOrganization {
    */
   public static Organization.Bundle organizationBundle() {
     return Organization.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -87,7 +84,6 @@ public class SwaggerOrganization {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Organization/6a96677d-f487-52bb-befd-6c90c7f49fa6")
                     .resource(
                         Organization.builder()
-                            .resourceType("Organization")
                             .id("6a96677d-f487-52bb-befd-6c90c7f49fa6")
                             .active(true)
                             .type(

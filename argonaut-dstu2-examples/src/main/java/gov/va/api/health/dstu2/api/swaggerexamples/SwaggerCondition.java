@@ -13,7 +13,6 @@ import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.Condition;
 
 public class SwaggerCondition {
-
   /**
    * An example Condition.
    *
@@ -21,7 +20,6 @@ public class SwaggerCondition {
    */
   public static Condition condition() {
     return Condition.builder()
-        .resourceType("Condition")
         .id("b34bacd3-42b6-5613-b1c2-1abafe1248ba")
         .patient(
             Reference.builder()
@@ -59,7 +57,6 @@ public class SwaggerCondition {
    */
   public static Condition.Bundle conditionBundle() {
     return Condition.Bundle.builder()
-        .resourceType("Bundle")
         .type(BundleType.searchset)
         .total(1)
         .link(
@@ -86,7 +83,6 @@ public class SwaggerCondition {
                         "https://sandbox-api.va.gov/services/argonaut/v0/Condition/b34bacd3-42b6-5613-b1c2-1abafe1248ba")
                     .resource(
                         Condition.builder()
-                            .resourceType("Condition")
                             .id("b34bacd3-42b6-5613-b1c2-1abafe1248ba")
                             .patient(
                                 Reference.builder()

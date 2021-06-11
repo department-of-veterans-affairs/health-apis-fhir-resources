@@ -25,7 +25,6 @@ public class SampleEncounters {
   public Encounter encounter() {
     return Encounter.builder()
         .id("1234")
-        .resourceType("Encounter")
         .meta(meta())
         .implicitRules("http://HelloRules.com")
         .language("Hello Language")

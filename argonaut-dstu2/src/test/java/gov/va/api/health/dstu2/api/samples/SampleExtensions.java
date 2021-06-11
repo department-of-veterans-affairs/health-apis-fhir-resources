@@ -243,7 +243,6 @@ public class SampleExtensions {
 
   private Patient patientWith(List<Extension> extension) {
     return Patient.builder()
-        .resourceType("Patient")
         .extension(extension)
         .identifier(identifier())
         .gender(Patient.Gender.unknown)
