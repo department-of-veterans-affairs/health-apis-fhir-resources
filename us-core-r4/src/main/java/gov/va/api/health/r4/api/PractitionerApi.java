@@ -91,6 +91,21 @@ public interface PractitionerApi {
               description = "A unique identifier for a practitioner within a given system.")
           String identifier,
       @Parameter(
+              in = ParameterIn.PATH,
+              name = "family",
+              description = "The family name of the practitioner.")
+          String family,
+      @Parameter(
+              in = ParameterIn.PATH,
+              name = "given",
+              description = "The given name of the practitioner.")
+          String given,
+      @Parameter(
+              in = ParameterIn.PATH,
+              name = "name",
+              description = "The given or family name of the practitioner.")
+          String name,
+      @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
               description = "The page number of the search result.")
