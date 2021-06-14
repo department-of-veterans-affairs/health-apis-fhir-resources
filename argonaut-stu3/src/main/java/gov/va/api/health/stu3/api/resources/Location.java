@@ -196,10 +196,10 @@ public class Location implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull Double longitude;
+    @NotNull double longitude;
 
-    @NotNull Double latitude;
+    @NotNull double latitude;
 
-    double altitude;
+    Double altitude;
   }
 }
