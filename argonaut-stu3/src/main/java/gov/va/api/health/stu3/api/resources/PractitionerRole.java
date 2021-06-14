@@ -69,9 +69,9 @@ public class PractitionerRole implements DomainResource {
 
   @Valid @NotNull Reference organization;
 
-  @Valid @NotNull CodeableConcept code;
+  @Valid List<CodeableConcept> code;
 
-  @Valid @NotNull CodeableConcept specialty;
+  @Valid List<CodeableConcept> specialty;
 
   @Valid List<Reference> location;
 
