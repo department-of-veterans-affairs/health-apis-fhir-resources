@@ -5,6 +5,7 @@ import static java.util.Collections.singletonList;
 import gov.va.api.health.stu3.api.elements.Meta;
 import gov.va.api.health.stu3.api.elements.Narrative;
 import gov.va.api.health.stu3.api.resources.Practitioner;
+import java.util.List;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
 
@@ -24,7 +25,7 @@ public class SamplePractitioners {
         .modifierExtension(singletonList(extension()))
         .identifier(singletonList(Practitioner.PractitionerIdentifier.builder().build()))
         .active(true)
-        .name(Practitioner.PractitionerHumanName.builder().build())
+        .name(List.of(Practitioner.PractitionerHumanName.builder().build()))
         .telecom(singletonList(dataTypes.contactPoint()))
         .address(singletonList(dataTypes.address()))
         .gender(Practitioner.Gender.male)

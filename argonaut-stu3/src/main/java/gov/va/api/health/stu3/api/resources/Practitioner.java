@@ -70,9 +70,9 @@ public class Practitioner implements DomainResource {
 
   @NotEmpty @Valid List<PractitionerIdentifier> identifier;
 
-  boolean active;
+  Boolean active;
 
-  @NotNull @Valid PractitionerHumanName name;
+  @Valid List<PractitionerHumanName> name;
 
   @Valid List<ContactPoint> telecom;
 
@@ -222,7 +222,7 @@ public class Practitioner implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerRole implements BackboneElement {
+  public static class PractitionerRoleDeleteMe implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 

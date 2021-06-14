@@ -81,7 +81,7 @@ public class Endpoint implements DomainResource {
   @Valid @NotEmpty List<CodeableConcept> payloadType;
 
   @Pattern(regexp = Fhir.CODE)
-  String payloadMimeType;
+  List<String> payloadMimeType;
 
   @NotNull
   @Pattern(regexp = Fhir.URI)
