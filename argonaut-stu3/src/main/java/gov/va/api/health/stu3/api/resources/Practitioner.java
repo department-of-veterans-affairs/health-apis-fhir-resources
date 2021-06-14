@@ -216,30 +216,4 @@ public class Practitioner implements DomainResource {
     @Valid Period period;
     @Valid Reference assigner;
   }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerRoleDeleteMe implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    @Valid List<Extension> modifierExtension;
-
-    @Valid Reference managingOrganization;
-
-    @Valid CodeableConcept role;
-
-    @Valid List<CodeableConcept> specialty;
-
-    @Valid Period period;
-
-    @Valid List<Reference> location;
-
-    @Valid List<Reference> healthcareService;
-  }
 }
