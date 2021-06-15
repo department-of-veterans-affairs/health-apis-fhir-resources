@@ -72,7 +72,7 @@ public class Endpoint implements DomainResource {
 
   @NotNull String name;
 
-  @NotNull @Valid Reference managingOrganization;
+  @Valid @NotNull Reference managingOrganization;
 
   @Valid List<ContactPoint> contact;
 

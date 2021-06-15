@@ -13,11 +13,9 @@ import gov.va.api.health.stu3.api.datatypes.CodeableConcept;
 import gov.va.api.health.stu3.api.datatypes.ContactPoint;
 import gov.va.api.health.stu3.api.datatypes.HumanName;
 import gov.va.api.health.stu3.api.datatypes.Identifier;
-import gov.va.api.health.stu3.api.datatypes.Period;
 import gov.va.api.health.stu3.api.datatypes.Signature;
 import gov.va.api.health.stu3.api.datatypes.SimpleResource;
 import gov.va.api.health.stu3.api.elements.BackboneElement;
-import gov.va.api.health.stu3.api.elements.Element;
 import gov.va.api.health.stu3.api.elements.Extension;
 import gov.va.api.health.stu3.api.elements.Meta;
 import gov.va.api.health.stu3.api.elements.Narrative;
@@ -59,21 +57,35 @@ public class Organization implements DomainResource {
   String language;
 
   @Valid Narrative text;
+
   @Valid List<SimpleResource> contained;
-  @Valid List<Extension> modifierExtension;
+
   @Valid List<Extension> extension;
 
-  @Valid List<OrganizationIdentifier> identifier;
-  @Valid List<ContactPoint> telecom;
-  @Valid List<OrganizationAddress> address;
+  @Valid List<Extension> modifierExtension;
+
+  // @NotEmpty, identifier.system is required
+  @Valid List<Identifier> identifier;
 
   @NotNull Boolean active;
+
   @Valid List<CodeableConcept> type;
+
+  // @NotNull
   String name;
+
   List<String> alias;
 
+  // @NotEmpty
+  @Valid List<ContactPoint> telecom;
+
+  // @NotEmpty, address.text is required
+  @Valid List<Address> address;
+
   @Valid Reference partOf;
-  @Valid List<OrganizationContact> contact;
+
+  @Valid List<Contact> contact;
+
   @Valid List<Reference> endpoint;
 
   @Data
@@ -136,64 +148,20 @@ public class Organization implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class OrganizationIdentifier implements Element {
+  public static class Contact implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
-
-    Identifier.IdentifierUse use;
-
-    @Valid CodeableConcept type;
-
-    @Pattern(regexp = Fhir.URI)
-    String system;
-
-    String value;
-
-    @Valid Period period;
-
-    @Valid Reference assigner;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class OrganizationAddress implements Element {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    Address.AddressUse use;
-    Address.AddressType type;
-    String text;
-    List<String> line;
-    String city;
-    String district;
-    String state;
-    String postalCode;
-    String country;
-    @Valid Period period;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class OrganizationContact implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
 
     @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
 
     @Valid CodeableConcept purpose;
+
     @Valid HumanName name;
+
     @Valid List<ContactPoint> telecom;
+
     @Valid Address address;
   }
 }

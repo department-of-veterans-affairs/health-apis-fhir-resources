@@ -27,11 +27,17 @@ public class HumanName implements Element {
   @Valid List<Extension> extension;
 
   NameUse use;
+
   String text;
+
   String family;
+
   List<String> given;
+
   List<String> prefix;
+
   List<String> suffix;
+
   @Valid Period period;
 
   @SuppressWarnings("unused")

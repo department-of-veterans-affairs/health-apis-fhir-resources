@@ -26,8 +26,11 @@ public class ContactPoint implements Element {
   String id;
 
   @Valid List<Extension> extension;
+
   ContactPointSystem system;
+
   String value;
+
   ContactPointUse use;
 
   @Min(1)

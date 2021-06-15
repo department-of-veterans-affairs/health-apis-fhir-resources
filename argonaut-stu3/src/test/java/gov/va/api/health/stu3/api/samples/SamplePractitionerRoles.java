@@ -2,6 +2,7 @@ package gov.va.api.health.stu3.api.samples;
 
 import static java.util.Collections.singletonList;
 
+import gov.va.api.health.stu3.api.datatypes.ContactPoint;
 import gov.va.api.health.stu3.api.datatypes.Identifier;
 import gov.va.api.health.stu3.api.elements.Meta;
 import gov.va.api.health.stu3.api.elements.Narrative;
@@ -25,7 +26,7 @@ public class SamplePractitionerRoles {
         .modifierExtension(singletonList(extension()))
         .identifier(singletonList(Identifier.builder().build()))
         .active(true)
-        .telecom(singletonList(PractitionerRole.PractitionerContactPoint.builder().build()))
+        .telecom(singletonList(ContactPoint.builder().build()))
         .build();
   }
 }

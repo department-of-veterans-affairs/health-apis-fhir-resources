@@ -13,16 +13,15 @@ import gov.va.api.health.stu3.api.datatypes.CodeableConcept;
 import gov.va.api.health.stu3.api.datatypes.Coding;
 import gov.va.api.health.stu3.api.datatypes.ContactPoint;
 import gov.va.api.health.stu3.api.datatypes.Identifier;
-import gov.va.api.health.stu3.api.datatypes.Period;
 import gov.va.api.health.stu3.api.datatypes.Signature;
 import gov.va.api.health.stu3.api.datatypes.SimpleResource;
 import gov.va.api.health.stu3.api.elements.BackboneElement;
-import gov.va.api.health.stu3.api.elements.Element;
 import gov.va.api.health.stu3.api.elements.Extension;
 import gov.va.api.health.stu3.api.elements.Meta;
 import gov.va.api.health.stu3.api.elements.Narrative;
 import gov.va.api.health.stu3.api.elements.Reference;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -67,10 +66,12 @@ public class Location implements DomainResource {
 
   @Valid List<Identifier> identifier;
 
+  // @NotNull
   Status status;
 
-  Coding operationalStatus;
+  @Valid Coding operationalStatus;
 
+  // @NotNull
   String name;
 
   List<String> alias;
@@ -81,14 +82,17 @@ public class Location implements DomainResource {
 
   @Valid CodeableConcept type;
 
+  // @NotEmpty
   @Valid List<ContactPoint> telecom;
 
-  @Valid LocationAddress address;
+  // @NotNull, validate text is required, 0-2 lines
+  @Valid Address address;
 
   @Valid CodeableConcept physicalType;
 
   @Valid Position position;
 
+  // @NotNull
   @Valid Reference managingOrganization;
 
   @Valid Reference partOf;
@@ -166,28 +170,6 @@ public class Location implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class LocationAddress implements Element {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-    Address.AddressUse use;
-    Address.AddressType type;
-    String text;
-    List<String> line;
-    String city;
-    String district;
-    String state;
-    String postalCode;
-    String country;
-    @Valid Period period;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
   public static class Position implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
@@ -196,10 +178,10 @@ public class Location implements DomainResource {
 
     @Valid List<Extension> modifierExtension;
 
-    @NotNull double longitude;
+    @NotNull BigDecimal longitude;
 
-    @NotNull double latitude;
+    @NotNull BigDecimal latitude;
 
-    Double altitude;
+    BigDecimal altitude;
   }
 }

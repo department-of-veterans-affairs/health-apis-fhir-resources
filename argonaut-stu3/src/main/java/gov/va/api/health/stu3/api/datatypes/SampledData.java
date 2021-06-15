@@ -2,6 +2,7 @@ package gov.va.api.health.stu3.api.datatypes;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -20,10 +21,14 @@ import lombok.NoArgsConstructor;
 @Schema(description = "http://hl7.org/fhir/STU3/datatypes.html#SampledData")
 public class SampledData {
   @Valid @NotNull SimpleQuantity origin;
-  @NotNull double period;
-  double factor;
-  double lowerLimit;
-  double upperLimit;
+
+  @NotNull BigDecimal period;
+
+  BigDecimal factor;
+
+  BigDecimal lowerLimit;
+
+  BigDecimal upperLimit;
 
   @NotNull
   @Min(1)

@@ -18,7 +18,6 @@ import gov.va.api.health.stu3.api.datatypes.Period;
 import gov.va.api.health.stu3.api.datatypes.Signature;
 import gov.va.api.health.stu3.api.datatypes.SimpleResource;
 import gov.va.api.health.stu3.api.elements.BackboneElement;
-import gov.va.api.health.stu3.api.elements.Element;
 import gov.va.api.health.stu3.api.elements.Extension;
 import gov.va.api.health.stu3.api.elements.Meta;
 import gov.va.api.health.stu3.api.elements.Narrative;
@@ -68,11 +67,13 @@ public class Practitioner implements DomainResource {
 
   @Valid List<Extension> modifierExtension;
 
-  @NotEmpty @Valid List<PractitionerIdentifier> identifier;
+  // system and value are required
+  @Valid @NotEmpty List<Identifier> identifier;
 
   Boolean active;
 
-  @Valid List<PractitionerHumanName> name;
+  // exactly one name, family is required
+  @Valid List<HumanName> name;
 
   @Valid List<ContactPoint> telecom;
 
@@ -172,48 +173,5 @@ public class Practitioner implements DomainResource {
     @Valid Period period;
 
     @Valid Reference issuer;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerHumanName implements Element {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-    HumanName.NameUse use;
-    String text;
-    @NotNull String family;
-    List<String> given;
-    List<String> prefix;
-    List<String> suffix;
-    @Valid Period period;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerIdentifier {
-    @Pattern(regexp = Fhir.ID)
-    String id;
-
-    @Valid List<Extension> extension;
-
-    Identifier.IdentifierUse use;
-
-    @Valid CodeableConcept type;
-
-    @Pattern(regexp = Fhir.URI)
-    @NotNull
-    String system;
-
-    @NotNull String value;
-    @Valid Period period;
-    @Valid Reference assigner;
   }
 }

@@ -2,6 +2,8 @@ package gov.va.api.health.stu3.api.samples;
 
 import static java.util.Collections.singletonList;
 
+import gov.va.api.health.stu3.api.datatypes.Address;
+import gov.va.api.health.stu3.api.datatypes.Identifier;
 import gov.va.api.health.stu3.api.resources.Organization;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Delegate;
@@ -20,16 +22,16 @@ public class SampleOrganizations {
         .contained(singletonList(resource()))
         .extension(singletonList(extension()))
         .modifierExtension(singletonList(extension()))
-        .identifier(singletonList(Organization.OrganizationIdentifier.builder().build()))
+        .identifier(singletonList(Identifier.builder().build()))
         .active(true)
         .type(singletonList(codeableConcept()))
         .name("Hello Name")
         .telecom(singletonList(contactPoint()))
-        .address(singletonList(Organization.OrganizationAddress.builder().build()))
+        .address(singletonList(Address.builder().build()))
         .partOf(reference())
         .contact(
             singletonList(
-                Organization.OrganizationContact.builder()
+                Organization.Contact.builder()
                     .purpose(codeableConcept())
                     .name(humanName())
                     .telecom(singletonList(contactPoint()))

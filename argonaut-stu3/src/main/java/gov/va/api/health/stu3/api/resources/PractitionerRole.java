@@ -56,9 +56,13 @@ public class PractitionerRole implements DomainResource {
   String language;
 
   @Valid Narrative text;
+
   @Valid List<SimpleResource> contained;
+
   @Valid List<Extension> modifierExtension;
+
   @Valid List<Extension> extension;
+
   @Valid List<Identifier> identifier;
 
   Boolean active;
@@ -69,23 +73,36 @@ public class PractitionerRole implements DomainResource {
 
   @Valid @NotNull Reference organization;
 
+  // exactly one
   @Valid List<CodeableConcept> code;
 
+  // exactly one
   @Valid List<CodeableConcept> specialty;
 
   @Valid List<Reference> location;
 
   @Valid List<Reference> healthcareService;
 
-  @Valid List<PractitionerContactPoint> telecom;
+  // telecom system and value required
+  @Valid List<ContactPoint> telecom;
 
-  List<PractitionerAvailableTime> availableTime;
+  @Valid List<AvailableTime> availableTime;
 
-  List<PractitionerNotAvailable> notAvailable;
+  @Valid List<NotAvailable> notAvailable;
 
   String availabilityExceptions;
 
   @Valid List<Reference> endpoint;
+
+  public enum DayOfWeek {
+    mon,
+    tue,
+    wed,
+    thur,
+    fri,
+    sat,
+    sun
+  }
 
   @Data
   @NoArgsConstructor
@@ -146,34 +163,16 @@ public class PractitionerRole implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerContactPoint {
+  public static class NotAvailable implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
     @Valid List<Extension> extension;
-    @NotNull ContactPoint.ContactPointSystem system;
-    @NotNull String value;
-    ContactPoint.ContactPointUse use;
-
-    @Min(1)
-    Integer rank;
-
-    @Valid Period period;
-  }
-
-  @Data
-  @Builder
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-  @AllArgsConstructor
-  @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerNotAvailable implements BackboneElement {
-    @Pattern(regexp = Fhir.ID)
-    String id;
 
     @Valid List<Extension> modifierExtension;
-    @Valid List<Extension> extension;
 
     @NotNull String description;
+
     @Valid Period during;
   }
 
@@ -182,14 +181,16 @@ public class PractitionerRole implements DomainResource {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @AllArgsConstructor
   @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-  public static class PractitionerAvailableTime implements BackboneElement {
+  public static class AvailableTime implements BackboneElement {
     @Pattern(regexp = Fhir.ID)
     String id;
 
-    @Valid List<Extension> modifierExtension;
     @Valid List<Extension> extension;
 
-    DaysOfWeek daysOfWeek;
+    @Valid List<Extension> modifierExtension;
+
+    List<DayOfWeek> daysOfWeek;
+
     Boolean allDay;
 
     @Pattern(regexp = Fhir.TIME)
@@ -197,15 +198,5 @@ public class PractitionerRole implements DomainResource {
 
     @Pattern(regexp = Fhir.TIME)
     String availableEndTime;
-
-    public enum DaysOfWeek {
-      mon,
-      tue,
-      wed,
-      thur,
-      fri,
-      sat,
-      sun
-    }
   }
 }

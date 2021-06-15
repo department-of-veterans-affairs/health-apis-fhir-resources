@@ -303,10 +303,10 @@ public final class SampleDataTypes {
   public SampledData sampledData() {
     return SampledData.builder()
         .origin(simpleQuantity())
-        .period(11.11)
-        .factor(11.11)
-        .lowerLimit(11.11)
-        .upperLimit(11.11)
+        .period(new BigDecimal("11.11"))
+        .factor(new BigDecimal("11.11"))
+        .lowerLimit(new BigDecimal("11.11"))
+        .upperLimit(new BigDecimal("11.11"))
         .dimensions(1)
         .data("HelloText")
         .build();

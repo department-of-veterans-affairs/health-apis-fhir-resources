@@ -27,17 +27,25 @@ public class Address implements Element {
   @Valid List<Extension> extension;
 
   AddressUse use;
+
   AddressType type;
+
   String text;
+
   List<String> line;
+
   String city;
+
   String district;
+
   String state;
+
   String postalCode;
+
   String country;
+
   @Valid Period period;
 
-  @SuppressWarnings("unused")
   public enum AddressUse {
     home,
     work,
@@ -45,7 +53,6 @@ public class Address implements Element {
     old
   }
 
-  @SuppressWarnings("unused")
   public enum AddressType {
     postal,
     physical,

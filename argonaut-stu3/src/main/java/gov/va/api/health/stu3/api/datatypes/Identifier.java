@@ -35,7 +35,9 @@ public class Identifier implements Element {
   String system;
 
   String value;
+
   @Valid Period period;
+
   @Valid Reference assigner;
 
   @SuppressWarnings("unused")
