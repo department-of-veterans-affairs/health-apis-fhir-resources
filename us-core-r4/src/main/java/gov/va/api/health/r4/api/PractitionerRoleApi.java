@@ -88,6 +88,16 @@ public interface PractitionerRoleApi {
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
+              name = "practitioner.identifier",
+              description = "A unique identifier for a practitioner within a given system.")
+          String practitionerIdentifier,
+      @Parameter(
+              in = ParameterIn.PATH,
+              name = "practitioner.name",
+              description = "The given or family name of the practitioner.")
+          String name,
+      @Parameter(
+              in = ParameterIn.QUERY,
               name = "page",
               description = "The page number being requested.")
           @DefaultValue("1")
