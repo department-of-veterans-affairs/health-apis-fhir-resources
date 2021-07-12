@@ -93,7 +93,7 @@ public interface ConditionApi {
         content =
             @Content(
                 mediaType = "application/fhir+json",
-                schema = @Schema(implementation = Condition.class))),
+                schema = @Schema(implementation = Condition.Bundle.class))),
     @ApiResponse(
         responseCode = "400",
         description = "Bad request",
