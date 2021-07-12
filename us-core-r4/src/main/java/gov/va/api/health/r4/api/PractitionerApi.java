@@ -137,36 +137,37 @@ public interface PractitionerApi {
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.",
-              example = "I3-87aih87KJHaMAuy89PKA90AOIJL897QHJKNaPZha9jLJKHAO8hkja")
+              example = "I2-QXZOEMHBZNNC7BUGOTHVWYSZAI000000")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "identifier",
               description = "A unique identifier for a practitioner within a given system.",
-              example = "I3-87aih87KJHaMAuy89PKA90AOIJL897QHJKNaPZha9jLJKHAO8hkja")
+              example = "I2-QXZOEMHBZNNC7BUGOTHVWYSZAI000000")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "family",
               description = "The family name of the practitioner.",
-              example = "Familyname")
+              example = "SMITH811")
           String family,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "given",
               description = "The given name of the practitioner.",
-              example = "GivenName")
+              example = "JOHN248")
           String given,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "name",
               description = "The given or family name of the practitioner.",
-              example = "Familyname")
+              example = "SMITH811")
           String name,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
-              description = "The page number of the search result.")
+              description = "The page number of the search result.",
+              example = "1")
           @DefaultValue("1")
           int page,
       @Parameter(
@@ -174,7 +175,8 @@ public interface PractitionerApi {
               name = "_count",
               description =
                   "The number of resources that should be returned in a single page."
-                      + " The maximum count size is 100.")
+                      + " The maximum count size is 100.",
+              example = "30")
           @DefaultValue("30")
           int count);
 }

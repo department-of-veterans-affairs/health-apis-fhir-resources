@@ -76,7 +76,7 @@ public interface ConditionApi {
               required = true,
               description =
                   "The logical id of the resource. Once assigned, this value never changes.",
-              example = "I3-87aih87KJHaMAuy89PKA90AOIJL897QHJKNaPZha9jLJKHAO8hkja")
+              example = "I2-YNHS3O3QEW7HMM53M3MCGSSYDI000000")
           String id);
 
   @Operation(
@@ -140,14 +140,14 @@ public interface ConditionApi {
               description =
                   " The Integration Control Number (ICN) assigned by the Master Patient Index (MPI)"
                       + " that indicates the patient who the condition record is associated with.",
-              example = "1010101010V666666")
+              example = "1011537977V693883")
           String patient,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.",
-              example = "I3-87aih87KJHaMAuy89PKA90AOIJL897QHJKNaPZha9jLJKHAO8hkja")
+              example = "I2-YNHS3O3QEW7HMM53M3MCGSSYDI000000")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -155,7 +155,7 @@ public interface ConditionApi {
               description =
                   "The logical identifier of the resource. Once assigned, this value "
                       + "never changes.",
-              example = "I3-87aih87KJHaMAuy89PKA90AOIJL897QHJKNaPZha9jLJKHAO8hkja")
+              example = "I2-YNHS3O3QEW7HMM53M3MCGSSYDI000000")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -179,7 +179,7 @@ public interface ConditionApi {
               in = ParameterIn.QUERY,
               name = "page",
               description = "The page number being requested.",
-              example = "2")
+              example = "1")
           @DefaultValue("1")
           int page,
       @Parameter(

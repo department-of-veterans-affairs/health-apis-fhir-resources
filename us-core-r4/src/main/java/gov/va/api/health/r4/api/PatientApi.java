@@ -78,7 +78,7 @@ public interface PatientApi {
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
                       + " assigned by the Master Patient Index (MPI).",
-              example = "1010101010V666666")
+              example = "1011537977V693883")
           String id);
 
   @Operation(
@@ -144,7 +144,7 @@ public interface PatientApi {
                       + " Once assigned, this value never changes."
                       + " For Patients this id is an Integration Control Number (ICN)"
                       + " assigned by the Master Patient Index (MPI).",
-              example = "1010101010V666666")
+              example = "1011537977V693883")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -154,14 +154,14 @@ public interface PatientApi {
                       + " Once assigned, this value never changes."
                       + " For Patients this identifier is an Integration Control Number (ICN)"
                       + " assigned by the Master Patient Index (MPI).",
-              example = "1010101010V666666")
+              example = "1011537977V693883")
           String identifier,
       // Search by Name, Gender, and BirthDate are available but not as part of the patient flow
       @Parameter(
               in = ParameterIn.QUERY,
               name = "page",
               description = "The page number of the search result.",
-              example = "2")
+              example = "1")
           @DefaultValue("1")
           int page,
       @Parameter(
