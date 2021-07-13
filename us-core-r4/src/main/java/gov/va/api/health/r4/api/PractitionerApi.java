@@ -74,7 +74,8 @@ public interface PractitionerApi {
               name = "id",
               required = true,
               description =
-                  "The logical id of the resource. Once assigned, this value never changes.")
+                  "The logical id of the resource. Once assigned, this value never changes.",
+              example = "I2-HRJI2MVST2IQSPR7U5SACWIWZA000000")
           String id);
 
   @Operation(
@@ -137,31 +138,31 @@ public interface PractitionerApi {
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.",
-              example = "I2-QXZOEMHBZNNC7BUGOTHVWYSZAI000000")
+              example = "I2-HRJI2MVST2IQSPR7U5SACWIWZA000000")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "identifier",
               description = "A unique identifier for a practitioner within a given system.",
-              example = "I2-QXZOEMHBZNNC7BUGOTHVWYSZAI000000")
+              example = "http://hl7.org/fhir/sid/us-npi|1932127842")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "family",
               description = "The family name of the practitioner.",
-              example = "SMITH811")
+              example = "DOE922")
           String family,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "given",
               description = "The given name of the practitioner.",
-              example = "JOHN248")
+              example = "JANE460")
           String given,
       @Parameter(
               in = ParameterIn.QUERY,
               name = "name",
               description = "The given or family name of the practitioner.",
-              example = "SMITH811")
+              example = "DOE922")
           String name,
       @Parameter(
               in = ParameterIn.QUERY,

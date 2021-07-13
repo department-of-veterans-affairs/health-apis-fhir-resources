@@ -76,7 +76,7 @@ public interface ConditionApi {
               required = true,
               description =
                   "The logical id of the resource. Once assigned, this value never changes.",
-              example = "I2-YNHS3O3QEW7HMM53M3MCGSSYDI000000")
+              example = "I2-FOBJ7YQOH3RIQ5UZ6TRM32ZSQA000000")
           String id);
 
   @Operation(
@@ -147,7 +147,7 @@ public interface ConditionApi {
               name = "_id",
               description =
                   "The logical id of the resource. Once assigned, this value never changes.",
-              example = "I2-YNHS3O3QEW7HMM53M3MCGSSYDI000000")
+              example = "I2-FOBJ7YQOH3RIQ5UZ6TRM32ZSQA000000")
           String id,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -155,7 +155,7 @@ public interface ConditionApi {
               description =
                   "The logical identifier of the resource. Once assigned, this value "
                       + "never changes.",
-              example = "I2-YNHS3O3QEW7HMM53M3MCGSSYDI000000")
+              example = "I2-FOBJ7YQOH3RIQ5UZ6TRM32ZSQA000000")
           String identifier,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -164,7 +164,8 @@ public interface ConditionApi {
                   "The category the condition record belongs to. Can be used to "
                       + "distinguish between health concerns and problems. "
                       + "[Condition Category Codes](https://www.hl7.org/fhir/valueset-condition-category.html)",
-              example = "problem-list-item")
+              example =
+                  "http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item")
           String category,
       @Parameter(
               in = ParameterIn.QUERY,
@@ -173,7 +174,7 @@ public interface ConditionApi {
                   "Indicates the clinical state of the condition described by "
                       + "the record, taking prior conditions into account."
                       + "[Condition Clinical Status Codes](https://hl7.org/fhir/r4/valueset-condition-clinical.html)",
-              example = "active")
+              example = "http://terminology.hl7.org/CodeSystem/condition-clinical|active,resolved")
           String clinicalStatus,
       @Parameter(
               in = ParameterIn.QUERY,
