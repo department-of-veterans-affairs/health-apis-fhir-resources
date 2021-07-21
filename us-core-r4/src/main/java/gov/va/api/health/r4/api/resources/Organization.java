@@ -103,7 +103,7 @@ public class Organization implements Resource {
 
   @Valid Reference partOf;
 
-  @Valid Contact contact;
+  @Valid List<Contact> contact;
 
   @Valid List<Reference> endpoint;
 
